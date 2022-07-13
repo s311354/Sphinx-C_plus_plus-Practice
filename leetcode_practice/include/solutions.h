@@ -131,10 +131,33 @@ public:
     */
     void nextPermutation( std::vector<int> & nums);
 
-    // 1822. Sign of the Product of an Array
+    /**
+    * @brief 1822 Sign of the Product of an Array (Easy)
+    *
+    * There is a function signFunc(x) that returns:
+    * 
+    * 1 if x is positive.
+    * -1 if x is negative.
+    *  0 if x is equal to 0.
+    * 
+    * You are given an integer array nums. Let product be the product of all values in the array nums.
+    * Return signFunc(product).
+    *
+    * @param nums an integer array nums
+    * @return sign of the product of all values in the array nums
+    */
     int arraySign( std::vector<int> & nums);
 
-    // 1448. Count Good Nodes in Binary Tree
+    /**
+    * @brief 1448 Count Good Nodes in Binary Tree (Medium)
+    *
+    * Given a binary tree root, a node X in the tree is named good if in the path from root to X there are no nodes with a value greater than X.
+    * Return the number of good nodes in the binary tree.
+    *
+    * @param root a binary tree root
+    *
+    * @return the number of good nodes in the binary tree
+    */
     int goodNodes(TreeNode* root);
 
     // OA 2019 Min Moves to Make String Without 3 Identical Consecutive Letters
@@ -142,20 +165,51 @@ public:
 
     // OA 2019 Maximum possible value by inserting '5' digit
     int maxPossible(int num, int digit);
-
+ 
     // OA 2019 Minimum characters required to be removed to make frequency of each character unique
     int minCntCharDeletionfrequency(std::string & str, int N);
 
-    // 450 Delete Node in a BST
+    /**
+    * @brief 450 Delete Node in a BST (Medium)
+    *
+    *  Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST.
+    *  Basically, the deletion can be divided into two stages:
+    *  Search for a node to remove.
+    *  If the node is found, delete the node
+    *
+    * @param  root a binary tree root node
+    * @param  key the key in the BST
+    * @return the updated root node reference of the BST
+    */
     TreeNode * deleteNode(TreeNode* root, int key);
 
     // OA 2020 Number of Fractions that Sum to 1
     int sumFraction( std::vector< std::vector<int> > & fracrion);
 
-    // 1578. Minmum Time to Make Rope Colorful
+    /**
+    * @brief 1578 Minmum Time to Make Rope Colorful (Medium)
+    *
+    * Alice has n balloons arranged on a rope. You are given a 0-indexed string colors where colors[i] is the color of the ith balloon.
+    *
+    * Alice wants the rope to be colorful. She does not want two consecutive balloons to be of the same color, so she asks Bob for help. Bob can remove some balloons from the rope to make it colorful. You are given a 0-indexed integer array neededTime where neededTime[i] is the time (in seconds) that Bob needs to remove the ith balloon from the rope.
+    *
+    * Return the minimum time Bob needs to make the rope colorful.
+    *
+    * @param colors a 0-indexed string colors where colors[i] is the color of the ith ballon
+    * @param neededTime 0-indexed integer array neededTime where neededTime[i] is the time (in seconds)
+    * @return the minimum time Bob needs to make the rope colorful
+    */
     int minCost( std::string colors, std::vector<int> & neededTime );
 
-    // 14. Longest Common Prefix
+    /**
+    * @brief 14 Longest Common Prefix (Easy)
+    *
+    * Write a function to find the longest common prefix string amongst an array of strings.
+    * If there is no common prefix, return an empty string "".
+    *
+    * @param strs array of strings
+    * @return the longest common prefix string amongst an array of strings
+    */
     std::string longestPrefix( std::vector< std::string > & strs);
 
     // OA Largest K such that both K and -K exist in array
@@ -167,8 +221,19 @@ public:
     // Length of its longest binary gap
     int lengthBin(int N);
 
-    /* ========== BFS ============ */
-    // 317. Shortest Distance from All Buildings
+    /**
+    * @brief 317 Shortest Distance from All Buildings (Medium)
+    *
+    * You want to build a house on an empty land which reaches all buildings in the shortest amount of distance. You can only move up, down, left and right. You are given a 2D grid of values 0, 1 or 2, where:
+    * Each 0 marks an empty land which you can pass by freely.
+    * Each 1 marks a building which you cannot pass through.
+    * Each 2 marks an obstacle which you cannot pass through.
+    *
+    * For example, given three buildings at (0,0), (0,4), (2,2), and an obstacle at (0,2):
+    *
+    * @param grid 2D grid of values 0, 1, 2
+    * @return the shortest distance from all buildings
+    */
     int shortestDistance( std::vector< std::vector<int> > & grid );
 
     // The Monty Hall Problem
@@ -186,11 +251,29 @@ public:
 
     int uniqueString( std::string &S);
 
-    // 252 Meeting rooms (Greedy Algorithms)
+    /**
+    * @brief 252 Meeting rooms (Medium)
+    *
+    * Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei), determine if a person could attend all meetings.
+    *
+    * @param rooms an array of meeting time intervals consisting of start and end times
+    * @return Whether or not a person could attend all meetings
+    */
     int storeMeetingrooms( std::vector< std::vector<int> > & rooms);
 
-    // 452. Minimum Number of Arrows to Brust Balloons
-   int findMinArrowShots( std::vector< std::vector<int> > &points);
+    /**
+    * @brief 452 Minimum Number of Arrows to Brust Balloons (Medium)
+    *
+    * There are some spherical balloons taped onto a flat wall that represents the XY-plane. The balloons are represented as a 2D integer array points where points[i] = [xstart, xend] denotes a balloon whose horizontal diameter stretches between xstart and xend. You do not know the exact y-coordinates of the balloons.
+    * 
+    * Arrows can be shot up directly vertically (in the positive y-direction) from different points along the x-axis. A balloon with xstart and xend is burst by an arrow shot at x if xstart <= x <= xend. There is no limit to the number of arrows that can be shot. A shot arrow keeps traveling up infinitely, bursting any balloons in its path.
+    * 
+    * Given the array points, return the minimum number of arrows that must be shot to burst all balloons.
+    *
+    * @param points an a 2D array points
+    * @return the minimum number of arrows that must be shot to burst all balloons
+    */
+    int findMinArrowShots( std::vector< std::vector<int> > &points);
 
     int maxFullRound( std::string &A, std::string &B);
 
@@ -198,13 +281,39 @@ public:
 
     int maximumSum( int N, std::vector<int> &A, std::vector<int > &B);
 
-    // 217. Contains Duplicate
+    /**
+    * @brief 217 Contains Duplicate (Easy)
+    * 
+    * Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+    *
+    * @param nums an integer array nums
+    *
+    * @return true if any value appears at least twice in the array
+    */
     bool containDup ( std::vector<int> & nums);
 
-    // 136. Single Number 
+    /**
+    * @brief 136 Single Number (Easy)
+    *
+    * Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+    * You must implement a solution with a linear runtime complexity and use only constant extra space.
+    *
+    * @param nums a non-empty array of integers
+    *
+    * @return single number
+    */
     int singleNumber( std::vector<int> & nums);
 
-    // 349. Intersection of Two Arrays
+    /**
+    * @brief 349 Intersection of Two Arrays
+    *
+    * Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must be unique and you may return the result in any order.
+    *
+    * @param nums1 integer array
+    * @param nums2 integer array
+    *
+    * @return an array of their intersection
+    */
     std::vector<int> intersection( std::vector<int> & nums1, std::vector<int> & nums2);
 
     // 202. Happy Number
