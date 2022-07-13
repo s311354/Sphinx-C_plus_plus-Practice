@@ -1,0 +1,11 @@
+#ifndef CONFIG_H_IN
+#define CONFIG_H_IN
+
+
+#define PROJECT_NAME    "@PROJECT_NAME@"
+#define INPUT_FILES_DIR "@INPUT_FILES_DIR@"
+
+
+
+
+#endif /* CONFIG_H_IN */

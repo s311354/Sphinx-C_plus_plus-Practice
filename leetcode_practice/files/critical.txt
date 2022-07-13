@@ -1,0 +1,113 @@
+Running main() from /Users/shi-rongliu/Documents/GitHub/cplusplus_practice-/practice_common_alogrithm/leetcode_practice/tests/bin/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 50 tests from 1 test case.
+[----------] Global test environment set-up.
+[----------] 50 tests from SolutionsTest
+[ RUN      ] SolutionsTest.minDeletionsTest
+[       OK ] SolutionsTest.minDeletionsTest (0 ms)
+[ RUN      ] SolutionsTest.MinSwapTest
+[       OK ] SolutionsTest.MinSwapTest (0 ms)
+[ RUN      ] SolutionsTest.TwoSumTest
+[       OK ] SolutionsTest.TwoSumTest (0 ms)
+[ RUN      ] SolutionsTest.ShortestDistanceTest
+[       OK ] SolutionsTest.ShortestDistanceTest (0 ms)
+[ RUN      ] SolutionsTest.minStpesTest
+[       OK ] SolutionsTest.minStpesTest (0 ms)
+[ RUN      ] SolutionsTest.maxLengthTest
+[       OK ] SolutionsTest.maxLengthTest (0 ms)
+[ RUN      ] SolutionsTest.sumZero
+[       OK ] SolutionsTest.sumZero (0 ms)
+[ RUN      ] SolutionsTest.nextPermutationTest
+[       OK ] SolutionsTest.nextPermutationTest (0 ms)
+[ RUN      ] SolutionsTest.arraySignTest
+[       OK ] SolutionsTest.arraySignTest (0 ms)
+[ RUN      ] SolutionsTest.goodNodesTest
+[       OK ] SolutionsTest.goodNodesTest (0 ms)
+[ RUN      ] SolutionsTest.filterStringTest
+[       OK ] SolutionsTest.filterStringTest (0 ms)
+[ RUN      ] SolutionsTest.maxPossibleTest
+[       OK ] SolutionsTest.maxPossibleTest (0 ms)
+[ RUN      ] SolutionsTest.deleteNodeTest
+[       OK ] SolutionsTest.deleteNodeTest (0 ms)
+[ RUN      ] SolutionsTest.sumFractionTest
+[       OK ] SolutionsTest.sumFractionTest (0 ms)
+[ RUN      ] SolutionsTest.minCostTest
+[       OK ] SolutionsTest.minCostTest (0 ms)
+[ RUN      ] SolutionsTest.longestPrefixTest
+[       OK ] SolutionsTest.longestPrefixTest (0 ms)
+[ RUN      ] SolutionsTest.getLargestLTest
+[       OK ] SolutionsTest.getLargestLTest (0 ms)
+[ RUN      ] SolutionsTest.balancedStoneTest
+[       OK ] SolutionsTest.balancedStoneTest (0 ms)
+[ RUN      ] SolutionsTest.smallestIntTest
+[       OK ] SolutionsTest.smallestIntTest (0 ms)
+[ RUN      ] SolutionsTest.lengthBinTest
+[       OK ] SolutionsTest.lengthBinTest (0 ms)
+[ RUN      ] SolutionsTest.montyHallTest
+[       OK ] SolutionsTest.montyHallTest (0 ms)
+[ RUN      ] SolutionsTest.lowercaseLettersTest
+[       OK ] SolutionsTest.lowercaseLettersTest (0 ms)
+[ RUN      ] SolutionsTest.scheduleCourseTest
+[       OK ] SolutionsTest.scheduleCourseTest (0 ms)
+[ RUN      ] SolutionsTest.uniqueStringTest
+[       OK ] SolutionsTest.uniqueStringTest (0 ms)
+[ RUN      ] SolutionsTest.storeMeetingroomsTest
+[       OK ] SolutionsTest.storeMeetingroomsTest (0 ms)
+[ RUN      ] SolutionsTest.findMinArrowShotsTest
+[       OK ] SolutionsTest.findMinArrowShotsTest (0 ms)
+[ RUN      ] SolutionsTest.maxFullRoundTest
+[       OK ] SolutionsTest.maxFullRoundTest (0 ms)
+[ RUN      ] SolutionsTest.solutions2Test
+[       OK ] SolutionsTest.solutions2Test (0 ms)
+[ RUN      ] SolutionsTest.maximumSumTest
+[       OK ] SolutionsTest.maximumSumTest (0 ms)
+[ RUN      ] SolutionsTest.containDupTest
+[       OK ] SolutionsTest.containDupTest (0 ms)
+[ RUN      ] SolutionsTest.singleNumberTest
+[       OK ] SolutionsTest.singleNumberTest (0 ms)
+[ RUN      ] SolutionsTest.intersectionTest
+[       OK ] SolutionsTest.intersectionTest (0 ms)
+[ RUN      ] SolutionsTest.isHappyTest
+[       OK ] SolutionsTest.isHappyTest (0 ms)
+[ RUN      ] SolutionsTest.fourSumTest
+[       OK ] SolutionsTest.fourSumTest (0 ms)
+[ RUN      ] SolutionsTest.isSameTreeTest
+[       OK ] SolutionsTest.isSameTreeTest (0 ms)
+[ RUN      ] SolutionsTest.replaceWordsTest
+[       OK ] SolutionsTest.replaceWordsTest (0 ms)
+[ RUN      ] SolutionsTest.uncovered_interval
+[       OK ] SolutionsTest.uncovered_interval (0 ms)
+[ RUN      ] SolutionsTest.minSwapsTest
+[       OK ] SolutionsTest.minSwapsTest (0 ms)
+[ RUN      ] SolutionsTest.minDistanceTest
+[       OK ] SolutionsTest.minDistanceTest (0 ms)
+[ RUN      ] SolutionsTest.commonSubstringTest
+[       OK ] SolutionsTest.commonSubstringTest (0 ms)
+[ RUN      ] SolutionsTest.countDuplicatesTest
+[       OK ] SolutionsTest.countDuplicatesTest (0 ms)
+[ RUN      ] SolutionsTest.plusMinusTest
+[       OK ] SolutionsTest.plusMinusTest (0 ms)
+[ RUN      ] SolutionsTest.minChangeTest
+[       OK ] SolutionsTest.minChangeTest (0 ms)
+[ RUN      ] SolutionsTest.minDeleteCostTest
+[       OK ] SolutionsTest.minDeleteCostTest (0 ms)
+[ RUN      ] SolutionsTest.GetNumberofKTest
+[       OK ] SolutionsTest.GetNumberofKTest (0 ms)
+[ RUN      ] SolutionsTest.findNumberswithSumTest
+[       OK ] SolutionsTest.findNumberswithSumTest (0 ms)
+[ RUN      ] SolutionsTest.getMedianTest
+[       OK ] SolutionsTest.getMedianTest (0 ms)
+[ RUN      ] SolutionsTest.almostSortedTest
+[       OK ] SolutionsTest.almostSortedTest (0 ms)
+[ RUN      ] SolutionsTest.judgeCircleTest
+[       OK ] SolutionsTest.judgeCircleTest (0 ms)
+[ RUN      ] SolutionsTest.criticalConnectionsTest
+1
+1
+1
+3
+[       OK ] SolutionsTest.criticalConnectionsTest (0 ms)
+[----------] 50 tests from SolutionsTest (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 50 tests from 1 test case ran. (2 ms total)
+[  PASSED  ] 50 tests.
