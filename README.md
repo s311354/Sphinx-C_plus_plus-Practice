@@ -1,3 +1,5 @@
+[![Documentation Status](https://readthedocs.org/projects/sphinx-c-plus-plus-practice/badge/?version=latest)](https://sphinx-c-plus-plus-practice.readthedocs.io/en/latest/?badge=latest)
+
 ## Sphinx C_plus_plus Practice
 
 ### Introduction ###
