@@ -46,6 +46,12 @@ $ tree of leetcode_practice directory
     └── leetcode_integration_test.cc
 ```
 
+To build the code that configurated by in CMakeLists.txt file, you can follow with the commands below in the [`leetcode_practice`](\leetcode_practice) directory:
+```
+$ cmake -S . -B build
+$ cmake --build build
+```
+
 ### Installation ###
 
 Assumptions and Requirements

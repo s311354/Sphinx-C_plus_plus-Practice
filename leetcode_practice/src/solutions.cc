@@ -15,6 +15,7 @@ Solutions::~Solutions() {};
 
 bool Solutions::isPalindrome(std::string s)
 {
+    /*
     int start = 0, end = s.length() - 1;
 
     while (start < s.length() / 2) {
@@ -26,6 +27,26 @@ bool Solutions::isPalindrome(std::string s)
     }
 
     return true;
+    */
+    int start = 0, end = s.length() - 1;
+
+    while (start < end) {
+        if (s[start] == ' ') {
+            start ++;
+            continue;
+        }
+
+        if (s[end] == ' ') {
+            end ++;
+            continue;
+        }
+
+        if (s[start] != s[end]) return false;
+        else start ++; end --;
+    }
+
+    return true;
+
 }
 
 bool Solutions::isValidChar(char c)
@@ -2761,6 +2782,7 @@ bool isUniqe(std::string s, std::vector< std::string> & palindrome, std::vector<
 
 bool isPalindrome(std::string &s)
 {
+    /*
     int start = 0, end = s.length() - 1;
 
     while (start < s.length() / 2) {
@@ -2771,6 +2793,26 @@ bool isPalindrome(std::string &s)
             }
 
             std::cout << start << std::endl;
+    }
+
+    return true;
+    */
+
+    int start = 0, end = s.length() - 1;
+
+    while (start < end) {
+        if (s[start] == ' ') {
+            start ++;
+            continue;
+        }
+
+        if (s[end] == ' ') {
+            end ++;
+            continue;
+        }
+
+        if (s[start] != s[end]) return false;
+        else start ++; end --;
     }
 
     return true;
@@ -3257,7 +3299,7 @@ bool colorable_node(int i, std::vector<int> &color, std::vector< std::vector<int
     std::queue<int> q;
     q.push(i);
     color[i] = 0; // color the first node
-    
+
     while (!q.empty()) {
         int vertex = q.front();
         q.pop();
