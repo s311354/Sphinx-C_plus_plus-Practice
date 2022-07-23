@@ -45,7 +45,6 @@ public:
     /**
      * Create a new Solutions object.
      * @brief Default constructor.
-     * @see Solutions(std::istream& s)
      */
     Solutions();
 
@@ -53,7 +52,6 @@ public:
     * Create a new Solutions object with high level input Operations on character streams.
     * @brief Constructor.
     * @param  s character streams
-    * @see Solutions()
     */
     Solutions(std::istream& s);
 
@@ -352,6 +350,9 @@ public:
     // 10. Regular Expression Matching
     bool isMatch( std::string s, std::string p);
 
+    // 125. Valid Palindrome
+    bool isPalindrome(std::string s);
+
 private:
 
 
@@ -362,7 +363,7 @@ private:
     *
     * @return: 0
     */
-    bool isPalindrome(std::string s);
+
     bool isValidChar(char c);
     bool isValidString(std::string s);
     bool isUniqieString( const std::string s);

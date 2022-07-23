@@ -30,19 +30,16 @@ bool Solutions::isPalindrome(std::string s)
     */
     int start = 0, end = s.length() - 1;
 
-    while (start < end) {
-        if (s[start] == ' ') {
+    while (start <= end) {
+        if (!isalnum(s[start])) {
             start ++;
-            continue;
+        } else if (!isalnum(s[end])) {
+            end --;
+        } else if (toupper(s[start]) != toupper(s[end])) {
+            return false;
+        } else {
+            start ++; end --;
         }
-
-        if (s[end] == ' ') {
-            end ++;
-            continue;
-        }
-
-        if (s[start] != s[end]) return false;
-        else start ++; end --;
     }
 
     return true;
@@ -2782,37 +2779,18 @@ bool isUniqe(std::string s, std::vector< std::string> & palindrome, std::vector<
 
 bool isPalindrome(std::string &s)
 {
-    /*
     int start = 0, end = s.length() - 1;
 
-    while (start < s.length() / 2) {
-            if (s[start] == s[end - start]) {
-                start ++;
-            } else {
-                return false;
-            }
-
-            std::cout << start << std::endl;
-    }
-
-    return true;
-    */
-
-    int start = 0, end = s.length() - 1;
-
-    while (start < end) {
-        if (s[start] == ' ') {
+    while (start <= end) {
+        if (!isalnum(s[start])) {
             start ++;
-            continue;
+        } else if (!isalnum(s[end])) {
+            end --;
+        } else if (toupper(s[start]) != toupper(s[end])) {
+            return false;
+        } else {
+            start ++; end --;
         }
-
-        if (s[end] == ' ') {
-            end ++;
-            continue;
-        }
-
-        if (s[start] != s[end]) return false;
-        else start ++; end --;
     }
 
     return true;
