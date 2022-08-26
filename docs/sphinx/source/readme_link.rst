@@ -9,3 +9,4 @@ Solutions list
     :stub-columns: 0
 
     #, Title, Level, Time, Space Note, Tags
+

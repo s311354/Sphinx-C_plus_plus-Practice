@@ -70,7 +70,7 @@ In a member function declaration of definition, override specifier ensures that 
 
 * The identifier override, if used, appears immediatedly after the declarator in the syntax of a member function declaration or a member function definition inside a class definition.
 
-See the [Override specifier][override] page for more info.
+See the <a href="https://en.cppreference.com/w/cpp/language/override">Cppreference Override specifier page</a> for more info.
 
 ### Operator Overloading ###
 
@@ -114,7 +114,7 @@ int main() {
 }
 ```
 
-See the [Operator overloading][operator] page for more info.
+See the <a href="https://en.cppreference.com/w/cpp/language/operators">Cppreference Operator overloading page</a> for more info.
 
 ### The Differences between Prefix and Postfix Operators ###
 
@@ -129,17 +129,6 @@ Postfix:
 int a = 0;
 int b = a++; // a = 1, b = 0
 ```
-
-### Storage Class Specifier ###
-
-Specify storage duration and linkage of objects and functions:
-
-* auto: automatic duration and no linkage
-* register: automatic duration and no linkage; address of this variable cannot be taken
-* static: static duration and internal linkage (unless at block scope)
-* extern: static duration and external linkage (unless already declared internal)
-
-See the [Storage-class specifiers][storage] page for more info.
 
 ### Static Members ###
 
@@ -161,28 +150,20 @@ class MyClass
 
 * In functions: static variables in functions do not depend on the function scope. This means, if you call a function once, and you call it again, the same value of the static variable will remain unchanged. In general, static means the variable is independent of every scope in the program. This is very useful when you wanna avoid using global variables.
 
-See the [Static members][static] page for more info.
+See the <a href="https://en.cppreference.com/w/cpp/language/static">Cppreference Static members page</a> for more info.
 
 ### Volatile ###
 
-Volatile is used to signify to the compiler not to optimize use of the variable that is declared volatile. Sometimes, it's necessary to guarantee that a variable is up to date. For example, when a different thread requires that it has a certain value.
+Volatile **is used to signify to the compiler not to optimize use of the variable** that is declared volatile. Sometimes, it's necessary to guarantee that a variable is up to date. For example, when a different thread requires that it has a certain value.
 
-See the [cv (const and volatile) type qualifiers][cv] page for more info.
+See the <a href="https://en.cppreference.com/w/cpp/language/cv">Cppreference Const and Volatile type qualifiers page</a> for more info.
 
 ### Pure Virtual Functions ###
 
 A pure virtual in C++ is a virtual function for which we can have implementation, But we must override that function in the derived class, otherwise the derived class will also become abstract class.
 
-See the [virtual function specifier][virtual] for more info.
+A virtual member is a member function that **can be redefined in a derived class**, while preserving its calling properties through references.
 
-[storage]:https://en.cppreference.com/w/c/language/storage_duration "https://en.cppreference.com/w/c/language/storage_duration"
+A class that declares or inherits a virtual function is called a polymorphic class.
 
-[operator]:https://en.cppreference.com/w/cpp/language/operators "https://en.cppreference.com/w/cpp/language/operators"
-
-[override]:https://en.cppreference.com/w/cpp/language/override "https://en.cppreference.com/w/cpp/language/override"
-
-[static]:https://en.cppreference.com/w/cpp/language/static "https://en.cppreference.com/w/cpp/language/static"
-
-[cv]:https://en.cppreference.com/w/cpp/language/cv "https://en.cppreference.com/w/cpp/language/cv"
-
-[virtual]:https://en.cppreference.com/w/cpp/language/virtual "https://en.cppreference.com/w/cpp/language/virtual"
+See the <a href="https://cplusplus.com/doc/tutorial/polymorphism/">Cplusplus Polymorphism page</a> for more info.

@@ -62,6 +62,7 @@ Assumptions and Requirements
 + C++ 14
 + Breathe 4.34.0
 + Doxygen 1.9.1
++ Boost
 
 Note: Sphinx can run on Linux, Windows and MacOS. Although this tutorial uses MacOS, the steps are the same in the Windows and Linux.
 
