@@ -167,3 +167,38 @@ A virtual member is a member function that **can be redefined in a derived class
 A class that declares or inherits a virtual function is called a polymorphic class.
 
 See the <a href="https://cplusplus.com/doc/tutorial/polymorphism/">Cplusplus Polymorphism page</a> for more info.
+
+### Exception Handing ###
+
+The process of detecting and taking an appropriate action for exceptions is referred to exception handling.
+
+Exception handling involves the following steps:
+- Look for possible error scenarios (try)
+- Inform that an error as occurred and the type of the error (throw)
+- Receive the error information (catch)
+- Take corrective actions (Handle)
+
+For a simple example:
+```
+#define MAX 10
+int main () {
+    int index = 0;
+    try {
+        while (index < MAX) {
+            if (index > MAX) {
+                throw 1;
+            } else if (index < 0) {
+                throw -1;
+            }
+            index++;
+        }
+    }
+    catch(int error) {
+        if (1 == error) {
+            cout << "index cannot be > 10";
+        } else {
+            cout << "Array index cannot be negative.";
+        }
+    }
+}
+```
