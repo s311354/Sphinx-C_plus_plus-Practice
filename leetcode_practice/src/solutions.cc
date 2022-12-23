@@ -63,17 +63,6 @@ bool Solutions::isValidString(std::string s)
     return true;
 }
 
-/*! \brief Minimum Deletions to Make Character Frequencies Unique
- *
- *  A string s is called good if there are no two different characters in s that have the same frequency.
- *  
- *  Given a string s, return the minimum number of characters you need to delete to make s good.
- *  
- *  The frequency of a character in a string is the number of times it appears in the string. 
- * 
- *  For example, in the string "aab", the frequency of 'a' is 2, while the freqnency of 'b' is 1.
- * \return the minmum number of characters you need tp delete to make s good
- */
 int Solutions::minDeletions(std::string s)
 {
     std::vector<int> v(26, 0);
@@ -82,6 +71,7 @@ int Solutions::minDeletions(std::string s)
         v[it - 'a'] ++;
 
     // Count the frequencies of elements
+    // key: the ASCII code of character, value: the frequencies of element
     std::map<int, int> mp;
     for (int i = 0; i < 26; ++i) mp[v[i]] ++;
 
@@ -106,16 +96,6 @@ int Solutions::minDeletions(std::string s)
     return ans;
 }
 
-/*! \brief Minimum Adjacent Swaps to Make Palindrome
- *
- *  Given a string, what is the minimum number of adjacent swaps required to convert a string into a palindrome. If not possibl, return -1.
- *
- * Runtime: 200 ms, faster than 10.57% of C++ online submissions for Minimum Swaps to Group All 1's Together II.
- *
- * Memory Usage: 80.3 MB, less than 92.20% of C++ online submissions for Minimum Swaps to Group All 1's Together II.
- *
- * \return the minimum number of adjust required
- */
 int Solutions::minSwaps(std::string s)
 {
     int start = 0, end = s.length() - 1, ans = 0;
@@ -132,10 +112,12 @@ int Solutions::minSwaps(std::string s)
             //  Core begins
             //  track of the left and right points and compare
             int left_index, right_index;
+
+            // Indicate the index which the substring is not palindrome from right and left side
             for (left_index = start; left_index <= end - start && s[left_index] != s[end - start]; ++left_index);
             for (right_index = end - start - 1; right_index >= start && s[right_index] != s[start]; --right_index);
 
-            // choose minimum distance between left side or right side
+            // Choose minimum distance between left side or right side
             if (left_index - start < end - start - right_index) {
                 for (int p = left_index; p > start; --p) {
                     std::swap(s[p], s[p-1]);
@@ -161,12 +143,6 @@ int Solutions::minSwaps(std::string s)
     return ans;
 }
 
-/*! \brief Two Sum
- *
- *  Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
- *
- * \return indices of the two numbers such that they add up to target
- */
 std::vector<int> Solutions::twoSum(std::vector<int>& num, int target)
 {
     std::vector<int> indices_two_sum;
@@ -184,7 +160,7 @@ std::vector<int> Solutions::twoSum(std::vector<int>& num, int target)
     }
     */
 
-    // O(n)
+    // time: O(N) space: O(2N)
     std::map<int, int> hashmap;
     hashmap.clear();
 
@@ -296,15 +272,12 @@ void Solutions::bfs_distance(int column, int row, std::vector< std::vector<int> 
     }
 }
 
-/*! \brief Min Steps to Make Pilles Equal Height
- *
- *  Alex is given n piles of equal or unequal heights. In one step, Alex can remove any number of boxes from the pile which has the maximum height and try to make it equal to the one which is just lower than the maximum height of the stack. Determine the minmum number of steps required to make all of the piles equal in height.
- *
- * \return Min Steps
- */
-int Solutions::minStpes( std::vector<int>& num)
+
+int Solutions::minStpes( std::vector<int>& num )
 {
     int steps = 0;
+
+    // Sorting
     std::sort(num.begin(), num.end(), std::greater<int> ());
 
     int i = 1;
@@ -2178,14 +2151,15 @@ bool Solutions::judgeCircle( std::string moves)
  * \return all critical connections in the network in any order.
  */
 void undirected_dfs(int curr, int parent, int visited, std::vector< std::vector<int> > & undirectedgraph, std::vector<int>& lowlink, std::vector< std::vector<int> > &bridge){
+
     lowlink[curr] = visited ++;
-    
+
     // Exploring the neighbor node
     for (auto & nextnode : undirectedgraph[curr]) {
 
         if ( nextnode == parent)
             continue;
-        
+
         // unvisited (Depth-first Search)
         if (lowlink[nextnode] == 0) undirected_dfs(nextnode, curr, visited, undirectedgraph, lowlink, bridge);
         // Assign low value to current node (circle back around to reach)
@@ -2209,6 +2183,11 @@ std::vector< std::vector<int> > Solutions::criticalConnections(int n, std::vecto
     }
 
     undirected_dfs(0, -1, 1, undirectedgraph, lowlink, bridge);
+
+    // for (int i = 0; i < lowlink.size(); ++i) {
+    //     std::cout <<   "node: " << i << "; link: " << lowlink[i] << std::endl;
+    // }
+
     return bridge;
 }
 
@@ -2802,12 +2781,12 @@ void checkUniqueLen( std::vector<std::string> & arr, std::string graphstr, int c
 
         palindrome.push_back(graphstr);
         if (size == 0) {
-            std::cout << "Palindrome: " << graphstr.c_str() << " " << curindex  - 1 << " " << index - 1 << std::endl;
+            // std::cout << "Palindrome: " << graphstr.c_str() << " " << curindex  - 1 << " " << index - 1 << std::endl;
             int pre_index = curindex - 1;
             int post_index = index - 1;
             count = count + pre_index + post_index;
         } else {
-            std::cout << "Reverse Palindrome: " <<  arr[curindex] << " " << arr[index] << " "  << graphstr.c_str() << " " << size - (curindex  - 1) << " " << size - (index - 1) << std::endl;
+            // std::cout << "Reverse Palindrome: " <<  arr[curindex] << " " << arr[index] << " "  << graphstr.c_str() << " " << size - (curindex  - 1) << " " << size - (index - 1) << std::endl;
             int pre_index = size - (curindex - 1);
             int post_index = size - (index - 1);
             count = count + pre_index + post_index;

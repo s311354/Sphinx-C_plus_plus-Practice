@@ -68,14 +68,33 @@ public:
 
     /* ========== Microsoft OA ============ */
 
-    // 1647. Miniumum Deletions to Make Character Frequencies Unique
+    /**
+    * @brief 1647 Miniumum Deletions to Make Character Frequencies Uniqe
+    *
+    * A string s is called good if there are no two different characters is s that have the same frequency.
+    * Given a string s, return the minimum number of characters you need to delete to make a good.
+    *
+    * The frequency of a character in a string is the number of times it apears in the string.
+    *
+    * For example, in the string "aab", the frequency of 'a' is 2, while the frequency of 'b' is 1.
+    *
+    * @param s a string
+    * @return the minimum number of characters you need to delete to make s good
+    */
     int minDeletions(std::string s);
 
-    // OA 2019 Minimum Adjacent Swaps to Make Palindrome
+    /**
+    * @brief OA 2019  Minimum Adjacent Swaps to Make Palindrome
+    *
+    * Given a string, what is the minimum number of adjacent swaps required to convert a string into a palindrome. If not possible, return -1.
+    *
+    * @param s a string
+    * @return the minimum number of adjacent swaps required to convert a string into palindrome.
+*/
     int minSwaps(std::string s);
 
     /**
-    * @brief  1 Two Sum (Easy)
+    * @brief 1 Two Sum (Easy)
     * 
     * Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
     * You may assume that each input would have exactly one solution, and you may not use the same element twice.
@@ -88,7 +107,14 @@ public:
     */
     std::vector<int> twoSum(std::vector<int>& num, int target);
 
-    // OA 2019 Min Steps to Make Piles Equal Height
+    /**
+    * @brief  OA 2019 Min Steps to Make Piles Equal Height
+    *
+    *  Alex is given n piles of equal or unequal heights. In one step, Alex can remove any number of boxes from the pile which has the maximum height and try to make it equal to the one which is just lower then the maximum height of the stack. Determine the minimum number of steps required to make all of the piles equal in height.
+    *
+    * @param nums n piles of equal or unequal heights
+    * @return min steps
+    */
     int minStpes( std::vector<int>& nums );
 
     // OA 2019 Largest K such that both K and -K exist in array
