@@ -282,6 +282,7 @@ int Solutions::minStpes( std::vector<int>& num )
 
     int i = 1;
     while ( i < num.capacity()) {
+        // every time meet differernt number, count the step to make piles equal height
         if (num[i] != num[i-1]) {
             steps += i;
         }
@@ -291,18 +292,6 @@ int Solutions::minStpes( std::vector<int>& num )
     return steps;
 }
 
-/*! \brief Maximum Length of a Concatenated String with Unique
- *
- *  You are given an array of strings arr. A string s is formed by the concatenation of a subsequence of arr that has unique characters.
- *
- *
- * Runtime: 796 ms, faster than 11.58% of C++ online submissions for Maximum Length of a Concatenated String with Unique Characters.
- * 
- *
- * Memory Usage: 438.7 MB, less than 5.02% of C++ online submissions for Maximum Length of a Concatenated String with Unique Characters.
- *
- * \return the maximum possible length of s
- */
 int Solutions::maxLength( std::vector< std::string> & arr)
 {
 
@@ -323,7 +312,7 @@ void Solutions::checkLen( const std::vector<std::string> & arr, std::string grap
         count = graphstr.size() > count ? graphstr.size(): count;
     }
 
-    // recursive
+    // recursive DFS
     for (int i = index; i < arr.size(); ++i) {
         checkLen(arr, graphstr+arr[i], i+1, count);
     }
@@ -349,16 +338,6 @@ bool Solutions::isUniqieString( const std::string s)
     return true;
 }
 
-/*! \brief Find N Unique Integers Sum up to Zero
- *
- *  Given an integer n, return any array containing n unique integers such that they add up to 0
- *
- * Runtime: 3 ms, faster than 41.85% of C++ online submissions for Find N Unique Integers Sum up to Zero.
- *
- * Memory Usage: 6.6 MB, less than 96.56% of C++ online submissions for Find N Unique Integers Sum up to Zero.
- *
- * \return Array containing n unique integers such that they add up to 0
- */
 std::vector<int> Solutions::sumZero(int n)
 {
     std::vector<int> v;
@@ -373,19 +352,6 @@ std::vector<int> Solutions::sumZero(int n)
     return v;
 }
 
-/*! \brief Next Permutation
- *
- *  Implement next permutation, which rearrange numbers into the lexicographically next greater permutation of numbers
- *
- *  If such an arrangement is impossible, it must rearrange it to the lowest possible order (i.e., sorted in ascending order).
- *
- *  The replacement must be in place and use only constant extra memory
- *
- *  Runtime: 11 ms, faster than 19.49% of C++ online submissions for Next Permutation.
- *
- *  Memory Usage: 12.1 MB, less than 75.54% of C++ online submissions for Next Permutation. 
- * \return None
- */
 void Solutions::nextPermutation( std::vector<int>& nums)
 {
     int i = nums.size() - 2;
