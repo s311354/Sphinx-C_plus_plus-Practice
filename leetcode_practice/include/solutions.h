@@ -147,18 +147,44 @@ public:
     * The next permutation of an array of integers is the next lexicographically greater permutation of its integer. More formally, if all the permutations of the array are sorted in one container according to their lexicographical order, then the next permutation of that array is the permutation that follows it in the sorted container. If such arrangement is not possible, the array must be rearranged as the lowest possible order (i.e., sorted in ascending order).
     *
     * @param nums a permutation of an array of integers
-    *
     * @return the next permutation of an array
     */
     void nextPermutation( std::vector<int> & nums);
 
     // 1822. Sign of the Product of an Array
+    /**
+    * @brief  1822. Sign of the Product of an Array
+    *
+    * Detailed There is a function signFunc(x) that returns:
+    * - 1 of x is positive
+    * - -1 of x is negative
+    * - 0 of x is equal to 0
+    *
+    * You are given an integer array nums. Let products be the product of all values in the array nums
+    *
+    * @param nums an integer array nums
+    * @return signFunc
+    */
     int arraySign( std::vector<int> & nums);
 
-    // 1448. Count Good Nodes in Binary Tree
+    /**
+    * @brief  1448. Count Good Nodes in Binary Tree
+    *
+    * Given a binary tree root, a node X in the tree is named good if in the path from root to X there are no nodes with a value greater than X.
+    *
+    * @param root binary tree root
+    * @return the number of good nodes in the binary tree
+    */
     int goodNodes(TreeNode* root);
 
-    // OA 2019 Min Moves to Make String Without 3 Identical Consecutive Letters
+    /**
+    * @brief  OA 2019 Min Moves to Make String Without 3 Identical Consecutive Letters
+    *
+    * Given a string a having lowercase English letters, returns a string with no instances of three identical consecutive letters, obtained from s by deleting the minimum possible number of letters.
+    *
+    * @param s a string having lowercase English letters
+    * @return a string with no instances of three identical consecutive letters, obtained from s
+    */
     std::string filterString(std::string &s);
 
     // OA 2019 Maximum possible value by inserting '5' digit

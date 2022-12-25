@@ -373,21 +373,6 @@ void Solutions::nextPermutation( std::vector<int>& nums)
     std::reverse(nums.begin()+i+1, nums.end());
 }
 
-/*! \brief Sign of the Product of an Array
- *
- *  Detailed There is a function signFunc(x) that returns: 
- *  - 1  of x is positive
- *  - -1 of x is negative
- *  - 0  of x is equal to 0
- *
- *  You are given an integer array nums. Let products be the product of all values in the array nums
- *
- *  Runtime: 4 ms, faster than 87.44% of C++ online submissions for Sign of the Product of an Array.
- *
- *  Memory Usage: 10.2 MB, less than 44.94% of C++ online submissions for Sign of the Product of an Array.
- *
- * \return signFunc(product)
- */
 int Solutions::arraySign( std::vector<int> & nums)
 {
     int sign = 1;
@@ -403,20 +388,10 @@ int Solutions::arraySign( std::vector<int> & nums)
     return sign;
 }
 
-/*! \brief Count Good Nodes in Binary Tree
- *
- *  Given a binary tree root, a node X in the tree is named good if in the path from root to X there are no nodes with a value greater than X.
- * Runtime: 176 ms, faster than 51.57% of C++ online submissions for Count Good Nodes in Binary Tree.
- *
- * Memory Usage: 86.4 MB, less than 11.71% of C++ online submissions for Count Good Nodes in Binary Tree.
- *
- * \return the number of good nodes in the binary tree
- */
 int Solutions::goodNodes(TreeNode * root)
 {
     int count = 0;
 
-//     PrintBFS(root);
     countGoodNode(root, root->val, count);
 
     return count;
@@ -454,6 +429,7 @@ void Solutions::countGoodNode(TreeNode * node, int value, int & count)
     /* Proposal 2 */ 
     if (node == nullptr) return;
 
+    // the condition of good node
     if (node->val >= value) {
         count ++;
         value = node->val;
@@ -556,13 +532,6 @@ std::vector<int> Solutions::PrintLinkedlist(LinkedListNode* node)
     return contenter;
 }
 
-
-/*! \brief String Without 3 Identical Consecutive Letters
- *
- * Given a string s having lowercase English letters, returns a string with no instances of three identical consecutive letters, obtained from s by deleting the minimum possible number of letters.
- *
- * \return a string with no instance of three identical consecutive letters
- */
 std::string Solutions::filterString(std::string &s)
 {
     std::string letter(s.begin(), s.begin()+2);
