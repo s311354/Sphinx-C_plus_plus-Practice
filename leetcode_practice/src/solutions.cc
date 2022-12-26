@@ -534,6 +534,7 @@ std::vector<int> Solutions::PrintLinkedlist(LinkedListNode* node)
 
 std::string Solutions::filterString(std::string &s)
 {
+    // default string with two characters
     std::string letter(s.begin(), s.begin()+2);
 
     for (int i = 2; i < s.length(); ++i) {
@@ -544,12 +545,6 @@ std::string Solutions::filterString(std::string &s)
     return letter;
 }
 
-/*! \brief Maximum possible value by insert 5 digit
- *
- *  Write a function that returns the maximum possible value obtained by inserting 5 digit inside the decimal representation of integer N.
- *
- * \return Maximim possivle value
- */
 int Solutions::maxPossible(int num, int digit)
 {
     std::vector<int> nums;
@@ -570,11 +565,11 @@ int Solutions::maxPossible(int num, int digit)
 
     if (isPos) {
         for (auto it = nums.rbegin() ;  it != nums.rend(); it++) {
-                if (*it < digit) {
-                    //std::cout << *it << std::endl;
-                    nums.insert(it.base(), digit);
-                    break;
-                }
+            if (*it < digit) {
+                //std::cout << *it << std::endl;
+                nums.insert(it.base(), digit);
+                break;
+            }
         }
     } else {
         for (auto it = nums.rbegin() ;  it != nums.rend(); it++) {
@@ -586,6 +581,7 @@ int Solutions::maxPossible(int num, int digit)
         }
     }
 
+    // Decimal representation
     int ans = 0;
     for (auto it = nums.rbegin();  it!=nums.rend() ; it++) {
         ans = *it + ans*10;
@@ -594,17 +590,6 @@ int Solutions::maxPossible(int num, int digit)
     return (isPos ? ans : -1*ans);
 }
 
-/*! \brief Delete Node in a BST
- *
- *  Given a root node reference of a BST and a key, delete the node with the given key in the BST.
- * Runtime: 50 ms, faster than 44.79% of C++ online submissions for Delete Node in a BST.
- *
- *
- * Memory Usage: 32.7 MB, less than 75.94% of C++ online submissions for Delete Node in a BST.
- *
- *
- * \return the root node reference (possibly updated) of the BST
- */
 TreeNode* Solutions::deleteNode(TreeNode* node, int key)
 {
     if (node == nullptr ) return nullptr;
@@ -615,8 +600,7 @@ TreeNode* Solutions::deleteNode(TreeNode* node, int key)
         } else if (node->left == nullptr || node->right == nullptr) {
             node = node->right;
         } else {
-            // Get Min from left side
-            //TreeNode * new_node = getMinNode(node->right);
+            // remove Min node from left side
             TreeNode* new_node = node->left;
             while(new_node->right != nullptr) new_node = new_node->right;
 
@@ -642,20 +626,15 @@ TreeNode* Solutions::getMinNode (TreeNode* node) {
     return getMinNode(node->left);
 }
 
-/*! \brief Number of Fractions that Sum to 1
- *
- *  You are given a list of lists fractions where each list contains [numerator, denominator] which represents the number number/denominator
- *
- * \return the number of pairs of fractions there are that sums to 1
- */
-int Solutions::sumFraction( std::vector< std::vector<int> > & fracrion)
+int Solutions::sumFraction( std::vector< std::vector<int> > & fraction)
 {
+    // key: the pair of fraction, value: number of pairs of fraction
     std::map < std::pair<int, int>, int > dict;
     int ans = 0;
 
-    for (auto& elem : fracrion) {
+    for (auto& elem : fraction) {
         int g = gcd(elem[0], elem[1]);
-        dict[{elem[0]/g, elem[1]/g}]++;
+        dict[ {elem[0]/g, elem[1]/g} ]++;
     }
 
     for (auto it = dict.begin(); it != dict.end() ; it++) {
@@ -663,13 +642,15 @@ int Solutions::sumFraction( std::vector< std::vector<int> > & fracrion)
         int count = it->second;
 
         if (key.first * 2 > key.second) continue;
+
         if (key.first * 2 == key.second) {
             ans += count * (count - 1) /2;
         } else {
             auto it_match = dict.find({key.second - key.first, key.second});
-            if ( it_match!= dict.end()) ans += count * it_match->second;  
+            if ( it_match!= dict.end()) ans += count * it_match->second;
         }
     }
+
     return ans;
 }
 
@@ -682,22 +663,6 @@ int Solutions::gcd(int a, int b) {
         return a;
 }
 
-
- /*! \brief Minimum Time to Make Rope Colorful
- *
- * Alice has n balloons arranged on a rope. You are given a 0-indexed string colors where colors[i] is the color of the ith ballon.
- *
- * Alice wants the rope to be colorful. She does not want two consecutive balloons to be of the same color, so she asks Bob for help. Bob can remove some balloons from the rope to make it colorful. 
- * You are given a 0-indexed integer array neededTime where neededTime[i] is the time (in seconds) that Bob nees to remove the ith balloon from the rope.
- * 
- * Runtime: 128 ms, faster than 97.71% of C++ online submissions for Minimum Time to Make Rope Colorful.
- *
- *
- * Memory Usage: 95.4 MB, less than 51.98% of C++ online submissions for Minimum Time to Make Rope Colorful.
- *
- *
- * \return Return the minimum time Bob need to make the rope colorful
- */
 int Solutions::minCost( std::string colors, std::vector<int> & neededTime)
 {
     int ans = 0;
@@ -706,6 +671,7 @@ int Solutions::minCost( std::string colors, std::vector<int> & neededTime)
     for (int i = 1; i < colors.size(); i++)
     {
         if (colors[index] == colors[i]) {
+            // minimum time
             if (neededTime[index] < neededTime[i]) {
                 ans += neededTime[index];
                 index = i;
@@ -719,21 +685,6 @@ int Solutions::minCost( std::string colors, std::vector<int> & neededTime)
     return  ans;
 }
 
- /*! \brief Longest Common Prefix
- *
- * Write a function to find the longest common prefix string amongst an array of strings
- * 
- * If there is no common prefix, return an empty string ""
- *
- *  Runtime: 0 ms, faster than 100.00% of C++ online submissions for Longest Common Prefix.
- *
- *
- *  Memory Usage: 9.1 MB, less than 92.73% of C++ online submissions for Longest Common Prefix.
- *
- *
- *
- * \return Longest common prefix
- */
 std::string Solutions::longestPrefix(std::vector< std::string > & strs)
 {
     // O(n log n)

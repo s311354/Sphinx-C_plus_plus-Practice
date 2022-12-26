@@ -108,7 +108,7 @@ public:
     std::vector<int> twoSum(std::vector<int>& num, int target);
 
     /**
-    * @brief  OA 2019 Min Steps to Make Piles Equal Height
+    * @brief OA 2019 Min Steps to Make Piles Equal Height
     *
     *  Alex is given n piles of equal or unequal heights. In one step, Alex can remove any number of boxes from the pile which has the maximum height and try to make it equal to the one which is just lower then the maximum height of the stack. Determine the minimum number of steps required to make all of the piles equal in height.
     *
@@ -153,7 +153,7 @@ public:
 
     // 1822. Sign of the Product of an Array
     /**
-    * @brief  1822. Sign of the Product of an Array
+    * @brief 1822. Sign of the Product of an Array
     *
     * Detailed There is a function signFunc(x) that returns:
     * - 1 of x is positive
@@ -168,7 +168,7 @@ public:
     int arraySign( std::vector<int> & nums);
 
     /**
-    * @brief  1448. Count Good Nodes in Binary Tree
+    * @brief 1448. Count Good Nodes in Binary Tree
     *
     * Given a binary tree root, a node X in the tree is named good if in the path from root to X there are no nodes with a value greater than X.
     *
@@ -178,7 +178,7 @@ public:
     int goodNodes(TreeNode* root);
 
     /**
-    * @brief  OA 2019 Min Moves to Make String Without 3 Identical Consecutive Letters
+    * @brief OA 2019 Min Moves to Make String Without 3 Identical Consecutive Letters
     *
     * Given a string a having lowercase English letters, returns a string with no instances of three identical consecutive letters, obtained from s by deleting the minimum possible number of letters.
     *
@@ -187,22 +187,60 @@ public:
     */
     std::string filterString(std::string &s);
 
-    // OA 2019 Maximum possible value by inserting '5' digit
+    /**
+    * @brief OA 2019 Maximum possible value by insert 5 digit
+    *
+    * Write a function that returns the maximum possible value obtained by inserting 5 digit inside the decimal representation of integer N.
+    *
+    * @param num 5 digit
+    * @param digit the decimal representation of integer N
+    * @return the maximum possible value
+    */
     int maxPossible(int num, int digit);
 
-    // OA 2019 Minimum characters required to be removed to make frequency of each character unique
-    int minCntCharDeletionfrequency(std::string & str, int N);
-
-    // 450 Delete Node in a BST
+    /**
+    * @brief Delete Node in a BST
+    *
+    * Given a root node reference of a BST and a key, delete the node with the given key in the BST.
+    *
+    * @param root root node reference of BST
+    * @param key delete node with the given key
+    * @return Return Parameter description
+    */
     TreeNode * deleteNode(TreeNode* root, int key);
 
-    // OA 2020 Number of Fractions that Sum to 1
-    int sumFraction( std::vector< std::vector<int> > & fracrion);
+    /**
+    * @brief OA 2020 Number of Fractions that Sum to 1
+    * You are given a list of lists fractions where each list contains [numerator, denominator] which represents the number number/denominator
+    *
+    * @param fraction a list of lists fractions
+    * @return the number of pairs of fractions there are that sums to 1
+    */
+    int sumFraction( std::vector< std::vector<int> > & fraction);
 
-    // 1578. Minmum Time to Make Rope Colorful
+    /**
+    * @brief 1578. Minimum Time to Make Rope Colorful
+    *
+    * Alice has n balloons arranged on a rope. You are given a 0-indexed string colors where colors[i] is the color of the ith ballon
+    *
+    * Alice wants the rope to be colorful. She does not want two consecutive balloons to be of the same color, so she asks Bob for help. Bob can remove some ballons from the rope to make it colorful/
+    *
+    * @param colors 0-indexed string colors 
+    * @param neededTime time to make rope colorful
+    * @return Return the minimum time Bob beed to make the rope colorful
+    */
     int minCost( std::string colors, std::vector<int> & neededTime );
 
-    // 14. Longest Common Prefix
+    /**
+    * @brief 14. Longest Common Prefix
+    * 
+    * Write a function to find the longest common prefix string amongst an array of strings
+    *
+    * If there is no common prefix, return an empty string ""
+    *
+    * @param strs an array of strings
+    * @return longest common prefix
+    */
     std::string longestPrefix( std::vector< std::string > & strs);
 
     // OA Largest K such that both K and -K exist in array
@@ -403,15 +441,6 @@ public:
     bool isPalindrome(std::string s);
 
 private:
-
-
-    /**
-    * @brief: brief
-    *
-    * @param: 0
-    *
-    * @return: 0
-    */
 
     bool isValidChar(char c);
     bool isValidString(std::string s);
