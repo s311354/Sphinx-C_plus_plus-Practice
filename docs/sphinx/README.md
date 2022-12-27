@@ -202,3 +202,9 @@ int main () {
     }
 }
 ```
+
+### Attribute Specifier Sequence (C++11) ###
+
+Attribute provide the unified standard syntax for implementation-defined language extensions, such as the GNU and IBM language extensions __attribute__((..)), Microsoft extension __declspec(), etc.
+
+See the <a href="https://en.cppreference.com/w/cpp/language/attributes">Attribute specifier sequence page</a> for more info.
