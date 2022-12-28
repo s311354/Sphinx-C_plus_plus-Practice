@@ -97,7 +97,30 @@ See the `cppreference static member functions <https://en.cppreference.com/w/cpp
 
 ...
 
-Seperate compilation
-^^^^^^^^^^^^^^^^^^^^^
+CMake Tools
+-------------------
 
-C++ uses separate compilation for each file, and then links them together when the final executable is being producted.
+CMake is a tool to manage building of source code. Orginally, CMake was designed as a gengerator for various dialects of Makefile. It is widely used for the C and C++ language, but it may be used to build soruce code of other language too.
+
+cmake-modules (FetchContent)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+See the `CMake cmake-modules page <https://cmake.org/cmake/help/latest/manual/cmake-modules.7.html>`_ for more info.
+
+FetchContent
+'''''''''''''''
+
+This module enables populating content at configure time via any method supported by the ExternalPorject module.
+
+The simple of declaring content details for some dependencies::
+
+    FetchContent_Declare(
+        googletest
+        GIT_REPOSITORY https://github.com/google/googletest.git
+        GIT_TAG        703bd9caab50b139428cea1aaff9974ebee5742e # release-1.10.0
+    )
+    FetchContent_MakeAvailable(googletest)
+
+The FetchContent_MakeAvailable() command ensure the named dependencies have been populated, either by an earlier call or by populating them itself. When performing the population, it will also add them to the main build, if possible, so that the main build can use the populated projects' targets, etc.
+
+See the `Cmake FetchContent page <https://cmake.org/cmake/help/latest/module/FetchContent.html>`_ for more info.
