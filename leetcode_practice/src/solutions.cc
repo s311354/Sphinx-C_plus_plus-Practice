@@ -180,23 +180,16 @@ std::vector<int> Solutions::twoSum(std::vector<int>& num, int target)
     return indices_two_sum;
 }
 
-/*! \brief Shortest Distance from All Buildings
- *
- *  You want to build a house on an empty land which reaches all buildings in the shortest amount of distance.
- *  You can only move up, down, left, and right. You are given a 2D grid of values 0, 1, or 2, where:
- *  Each 0 marks an empty land which you can pass by freely.
- *  Each 1 markd a building which you cannot pass through.
- *  Each 2 marks an obstacle which you cannot pass through.
- *
- * \return the shortest distance
- */
 int Solutions::shortestDistance( std::vector< std::vector<int> > & grid )
 {
-    int row = grid.size(), column = grid[0].size();
+    int row = grid.size();
+    int column = grid[0].size();
 
-    std::vector< std::vector<int> > distance(row, std::vector<int>(column, 0)), visit(row, std::vector<int>(column, 0));
+    std::vector< std::vector<int> > distance(row, std::vector<int>(column, 0));
+    std::vector< std::vector<int> > visit(row, std::vector<int>(column, 0));
 
-    int num_building = 0, ans = INT_MAX;
+    int num_building = 0;
+    int ans = INT_MAX;
 
     // do BFS
     for (int i = 0; i < row; ++i) {
@@ -251,16 +244,13 @@ void Solutions::bfs_distance(int column, int row, std::vector< std::vector<int> 
             // meet the boundary
             if (xx == grid.size() || xx < 0 || yy == grid[0].size() || yy <0) continue;
 
-//             std::cout <<  "X " << xx << " Y " << yy << " Depth " << curDepth << std::endl;
-            if (xx == grid.size()) std::cout << "Boundary" << std::endl;
-
             // Only empty land which you can pass by freely
-            if (step != 0 && grid[xx].at(yy) != 0) continue;
+            if (step != 0 && grid[xx][yy] != 0) continue;
 
             // Update Status
-            visit[xx].at(yy)++; //how many visitor have visited here
-            distance[xx].at(yy) += step;
-            grid[xx].at(yy) = -1; // visited
+            visit[xx][yy]++; //how many visitor have visited here
+            distance[xx][yy] += step;
+            grid[xx][yy] = -1; // visited
 
             to_visit.push(std::pair<int, int>(xx+1, yy)); // Up
             to_visit.push(std::pair<int, int>(xx-1, yy)); // Down

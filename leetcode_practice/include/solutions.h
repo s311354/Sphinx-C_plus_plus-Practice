@@ -274,10 +274,21 @@ public:
     * @param N a binary gap within a positive integer N
     * @return maximum sequence of consecutive zeros
     */
-    int lengthBin(int N);
+    int lengthBin(uint32_t N);
 
-    /* ========== BFS ============ */
-    // 317. Shortest Distance from All Buildings
+    /**
+    * @brief  317. Shortest Distance from All Buildings
+    *
+    * You want to build a house on an empty land which reaches all buildings in the shortest amount of distance.
+    *
+    * You can only move up, down, left, and right. You are given a 2D grid of values 0, 1, or 2, where:
+    * Each 0 marks an empty land which you can pass by freely.
+    * Each 1 marks a building which you cannot pass through
+    * Each 2 marks an obstacle which you cannot pass through
+    *
+    * @param grid 2D grid of values 0, 1, 2
+    * @return the shortest distance
+    */
     int shortestDistance( std::vector< std::vector<int> > & grid );
 
     // The Monty Hall Problem
