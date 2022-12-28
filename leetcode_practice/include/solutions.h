@@ -266,7 +266,14 @@ public:
     */
     int smallestInt( std::vector<int> &A);
 
-    // Length of its longest binary gap
+    /**
+    * @brief  Maximum sequence of consecutive zeros
+    *
+    * A binary gap within a positive integer N is any maximum sequence of consecutive zeros that is surrounded by ones at both ends in the binary representation of N. For example, number 9 has binary representation 1001 and contains a binary gap of length 2
+    *
+    * @param N a binary gap within a positive integer N
+    * @return maximum sequence of consecutive zeros
+    */
     int lengthBin(int N);
 
     /* ========== BFS ============ */

@@ -757,21 +757,22 @@ int Solutions::getLargestK( std::vector<int> & nums){
 
 int Solutions::smallestInt( std::vector<int> &A )
 {
-    /*
     std::vector<int> v(A.size(), 0);
+
     for (auto elem : A) {
         if (elem > 0) v[elem] ++;
     }
 
     int i;
+
     for (i = 1 ; i < v.size(); i ++) {
         if (v[i] == 0) return i;
     }
 
     return i + 1;
-    */
 
     // C++17
+    /*
     size_t smallest = 0;
     auto maxit = std::max_element(A.begin(), A.end());
 
@@ -783,6 +784,7 @@ int Solutions::smallestInt( std::vector<int> &A )
     }
 
     return i;
+    */
 }
 
 /*! \brief  Minimum number of changes
@@ -807,19 +809,26 @@ int Solutions::minChange( std::string &S, int k)
     return mincharge;
 }
 
-/*! \brief Maximum sequence of consecutive zeros
- *
- *  A binary gap within a positive integer N is any maximum sequence of consecutive zeros that is surrounded by ones at both ends in the binary representation of N. For example, number 9 has binary representation 1001 and contains a binary gap of length 2
- *
- * \return maximum sequence of consecutive zeros
- */
-int Solutions::lengthBin(int N)
+int evil (uint32_t N)
 {
+    return N & (N + 1) ? evil(N | (N >> 1)) + 1 : 0;
+}
+
+int Solutions::lengthBin(uint32_t N)
+{
+    if (N == 0) return 0;
+
+    while(!(N & 1)) N >>= 1;
+
+    return evil(N);
+
+    /*
     std::bitset<16> binary(N) ;
 
     std::string bit = binary.to_string();
 
     int ans = INT_MIN, max = 0;
+
     for (auto elem : bit) {
         if( elem == '0') {
             max ++;
@@ -830,6 +839,7 @@ int Solutions::lengthBin(int N)
     }
 
     return (ans == INT_MIN) ? 0: ans;
+    */
 }
 
 /*! \brief The Monty Hall Problem
@@ -3598,7 +3608,6 @@ int Solutions::maxProfit( std::vector<int> & prices) {
     // Max profit must come from notHold
     return curProfit;
 }
-
 
 /*! \brief Min Cost Climbing Stairs
  *
