@@ -747,6 +747,8 @@ int Solutions::getLargestK( std::vector<int> & nums){
 
 int Solutions::smallestInt( std::vector<int> &A )
 {
+
+    /*
     std::vector<int> v(A.size(), 0);
 
     for (auto elem : A) {
@@ -761,8 +763,8 @@ int Solutions::smallestInt( std::vector<int> &A )
 
     return i + 1;
 
+    */
     // C++17
-    /*
     size_t smallest = 0;
     auto maxit = std::max_element(A.begin(), A.end());
 
@@ -774,7 +776,6 @@ int Solutions::smallestInt( std::vector<int> &A )
     }
 
     return i;
-    */
 }
 
 /*! \brief  Minimum number of changes
@@ -1716,7 +1717,6 @@ std::vector< std::string > Solutions::commonSubstring( std::vector< std::string>
 
 int Solutions::countDuplicates( std::vector<int> input)
 {
-    /*
     int count = 0;
     std::unordered_set<int> numberset;
 
@@ -1727,8 +1727,7 @@ int Solutions::countDuplicates( std::vector<int> input)
             numberset.erase(*it);
         }
     }
-    */
-
+/*
     int count = 0;
     std::vector<int> numbers(input[0], 0);
     for (auto & num : input) {
@@ -1738,7 +1737,7 @@ int Solutions::countDuplicates( std::vector<int> input)
     for (int i = 0; i < numbers.size(); ++i) {
         if (numbers[i] > 1) count ++;
     }
-
+*/
     return count;
 }
 
@@ -2065,7 +2064,6 @@ std::vector< std::vector<int> > Solutions::criticalConnections(int n, std::vecto
  */
 int Solutions::findPeakElement( std::vector<int> & nums)
 {
-    /*
     int start = 0, end = nums.size() - 1;
     if (start > end && end == 0) return -1;
 
@@ -2082,8 +2080,8 @@ int Solutions::findPeakElement( std::vector<int> & nums)
 
     return start;
 
-    */
 
+/*
     int start = 0, end = nums.size() - 1;
     if (start > end && end == 0) return -1;
 
@@ -2099,6 +2097,7 @@ int Solutions::findPeakElement( std::vector<int> & nums)
     }
 
     return -1;
+*/
 }
 
 /*! \brief Add Two Numbers
