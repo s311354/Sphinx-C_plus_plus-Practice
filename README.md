@@ -1,3 +1,5 @@
+[![Documentation Status](https://readthedocs.org/projects/sphinx-c-plus-plus-practice/badge/?version=latest)](https://sphinx-c-plus-plus-practice.readthedocs.io/en/latest/?badge=latest)
+
 ## Sphinx C_plus_plus Practice
 
 ### Introduction ###
@@ -46,6 +48,12 @@ $ tree of leetcode_practice directory
     └── leetcode_integration_test.cc
 ```
 
+To build the code that configurated by in CMakeLists.txt file, you can follow with the commands below in the [`leetcode_practice`](\leetcode_practice) directory:
+```
+$ cmake -S . -B build
+$ cmake --build build
+```
+
 ### Installation ###
 
 Assumptions and Requirements
@@ -54,6 +62,7 @@ Assumptions and Requirements
 + C++ 14
 + Breathe 4.34.0
 + Doxygen 1.9.1
++ Boost
 
 Note: Sphinx can run on Linux, Windows and MacOS. Although this tutorial uses MacOS, the steps are the same in the Windows and Linux.
 

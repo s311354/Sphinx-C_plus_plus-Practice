@@ -11,6 +11,7 @@ Welcome to Leetcode Sample Project's documentation!
    :caption: Contents:
 
    readme_link
+   note
    guide
    api
 

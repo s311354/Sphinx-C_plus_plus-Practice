@@ -45,7 +45,6 @@ public:
     /**
      * Create a new Solutions object.
      * @brief Default constructor.
-     * @see Solutions(std::istream& s)
      */
     Solutions();
 
@@ -53,7 +52,6 @@ public:
     * Create a new Solutions object with high level input Operations on character streams.
     * @brief Constructor.
     * @param  s character streams
-    * @see Solutions()
     */
     Solutions(std::istream& s);
 
@@ -70,14 +68,33 @@ public:
 
     /* ========== Microsoft OA ============ */
 
-    // 1647. Miniumum Deletions to Make Character Frequencies Unique
+    /**
+    * @brief 1647 Miniumum Deletions to Make Character Frequencies Uniqe
+    *
+    * A string s is called good if there are no two different characters is s that have the same frequency.
+    * Given a string s, return the minimum number of characters you need to delete to make a good.
+    *
+    * The frequency of a character in a string is the number of times it apears in the string.
+    *
+    * For example, in the string "aab", the frequency of 'a' is 2, while the frequency of 'b' is 1.
+    *
+    * @param s a string
+    * @return the minimum number of characters you need to delete to make s good
+    */
     int minDeletions(std::string s);
 
-    // OA 2019 Minimum Adjacent Swaps to Make Palindrome
+    /**
+    * @brief OA 2019  Minimum Adjacent Swaps to Make Palindrome
+    *
+    * Given a string, what is the minimum number of adjacent swaps required to convert a string into a palindrome. If not possible, return -1.
+    *
+    * @param s a string
+    * @return the minimum number of adjacent swaps required to convert a string into palindrome.
+*/
     int minSwaps(std::string s);
 
     /**
-    * @brief  1 Two Sum (Easy)
+    * @brief 1 Two Sum (Easy)
     * 
     * Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
     * You may assume that each input would have exactly one solution, and you may not use the same element twice.
@@ -90,11 +107,15 @@ public:
     */
     std::vector<int> twoSum(std::vector<int>& num, int target);
 
-    // OA 2019 Min Steps to Make Piles Equal Height
+    /**
+    * @brief OA 2019 Min Steps to Make Piles Equal Height
+    *
+    *  Alex is given n piles of equal or unequal heights. In one step, Alex can remove any number of boxes from the pile which has the maximum height and try to make it equal to the one which is just lower then the maximum height of the stack. Determine the minimum number of steps required to make all of the piles equal in height.
+    *
+    * @param nums n piles of equal or unequal heights
+    * @return min steps
+    */
     int minStpes( std::vector<int>& nums );
-
-    // OA 2019 Largest K such that both K and -K exist in array
-    int largestK( std::vector<int>& nums);
 
     /**
     * @brief 1239 Maximum length of a Concatenated String with Unique Characters. (Medium)
@@ -126,7 +147,6 @@ public:
     * The next permutation of an array of integers is the next lexicographically greater permutation of its integer. More formally, if all the permutations of the array are sorted in one container according to their lexicographical order, then the next permutation of that array is the permutation that follows it in the sorted container. If such arrangement is not possible, the array must be rearranged as the lowest possible order (i.e., sorted in ascending order).
     *
     * @param nums a permutation of an array of integers
-    *
     * @return the next permutation of an array
     */
     void nextPermutation( std::vector<int> & nums);
@@ -160,10 +180,25 @@ public:
     */
     int goodNodes(TreeNode* root);
 
-    // OA 2019 Min Moves to Make String Without 3 Identical Consecutive Letters
+    /**
+    * @brief OA 2019 Min Moves to Make String Without 3 Identical Consecutive Letters
+    *
+    * Given a string a having lowercase English letters, returns a string with no instances of three identical consecutive letters, obtained from s by deleting the minimum possible number of letters.
+    *
+    * @param s a string having lowercase English letters
+    * @return a string with no instances of three identical consecutive letters, obtained from s
+    */
     std::string filterString(std::string &s);
 
-    // OA 2019 Maximum possible value by inserting '5' digit
+    /**
+    * @brief OA 2019 Maximum possible value by insert 5 digit
+    *
+    * Write a function that returns the maximum possible value obtained by inserting 5 digit inside the decimal representation of integer N.
+    *
+    * @param num 5 digit
+    * @param digit the decimal representation of integer N
+    * @return the maximum possible value
+    */
     int maxPossible(int num, int digit);
  
     // OA 2019 Minimum characters required to be removed to make frequency of each character unique
@@ -183,8 +218,14 @@ public:
     */
     TreeNode * deleteNode(TreeNode* root, int key);
 
-    // OA 2020 Number of Fractions that Sum to 1
-    int sumFraction( std::vector< std::vector<int> > & fracrion);
+    /**
+    * @brief OA 2020 Number of Fractions that Sum to 1
+    * You are given a list of lists fractions where each list contains [numerator, denominator] which represents the number number/denominator
+    *
+    * @param fraction a list of lists fractions
+    * @return the number of pairs of fractions there are that sums to 1
+    */
+    int sumFraction( std::vector< std::vector<int> > & fraction);
 
     /**
     * @brief 1578 Minmum Time to Make Rope Colorful (Medium)
@@ -212,14 +253,39 @@ public:
     */
     std::string longestPrefix( std::vector< std::string > & strs);
 
-    // OA Largest K such that both K and -K exist in array
+    /**
+    * @brief OA Largest K such that both K and -K exist in array
+    *
+    *  Write a function that, given an array A of N integers, returns the lagest integer K > 0 such that both values K and -K exist in array A.
+    *
+    * @param nums an array A of N integer
+    * @return lagest K
+    */
     int getLargestK( std::vector<int> & nums);
 
-    // Codility Test
+    /**
+    * @brief Smallest Positive Integer
+    *
+    * Write a function that given an array A of N integer, return the smallest positive integer (greater than 0) that does not occur in A
+    *
+    * For example, given A = [1, 3, 6. 4. 1. 2], the function should return 5.
+    *
+    * Given A = [1, 2, 3]. the function should return 4.
+    *
+    * @param A
+    * @return smallest positive integer
+    */
     int smallestInt( std::vector<int> &A);
 
-    // Length of its longest binary gap
-    int lengthBin(int N);
+    /**
+    * @brief  Maximum sequence of consecutive zeros
+    *
+    * A binary gap within a positive integer N is any maximum sequence of consecutive zeros that is surrounded by ones at both ends in the binary representation of N. For example, number 9 has binary representation 1001 and contains a binary gap of length 2
+    *
+    * @param N a binary gap within a positive integer N
+    * @return maximum sequence of consecutive zeros
+    */
+    int lengthBin(uint32_t N);
 
     /**
     * @brief 317 Shortest Distance from All Buildings (Medium)
@@ -461,17 +527,11 @@ public:
     // 10. Regular Expression Matching
     bool isMatch( std::string s, std::string p);
 
+    // 125. Valid Palindrome
+    bool isPalindrome(std::string s);
+
 private:
 
-
-    /**
-    * @brief: brief
-    *
-    * @param: 0
-    *
-    * @return: 0
-    */
-    bool isPalindrome(std::string s);
     bool isValidChar(char c);
     bool isValidString(std::string s);
     bool isUniqieString( const std::string s);

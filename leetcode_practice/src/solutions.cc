@@ -15,6 +15,7 @@ Solutions::~Solutions() {};
 
 bool Solutions::isPalindrome(std::string s)
 {
+    /*
     int start = 0, end = s.length() - 1;
 
     while (start < s.length() / 2) {
@@ -26,6 +27,23 @@ bool Solutions::isPalindrome(std::string s)
     }
 
     return true;
+    */
+    int start = 0, end = s.length() - 1;
+
+    while (start <= end) {
+        if (!isalnum(s[start])) {
+            start ++;
+        } else if (!isalnum(s[end])) {
+            end --;
+        } else if (toupper(s[start]) != toupper(s[end])) {
+            return false;
+        } else {
+            start ++; end --;
+        }
+    }
+
+    return true;
+
 }
 
 bool Solutions::isValidChar(char c)
@@ -45,17 +63,6 @@ bool Solutions::isValidString(std::string s)
     return true;
 }
 
-/*! \brief Minimum Deletions to Make Character Frequencies Unique
- *
- *  A string s is called good if there are no two different characters in s that have the same frequency.
- *  
- *  Given a string s, return the minimum number of characters you need to delete to make s good.
- *  
- *  The frequency of a character in a string is the number of times it appears in the string. 
- * 
- *  For example, in the string "aab", the frequency of 'a' is 2, while the freqnency of 'b' is 1.
- * \return the minmum number of characters you need tp delete to make s good
- */
 int Solutions::minDeletions(std::string s)
 {
     std::vector<int> v(26, 0);
@@ -64,6 +71,7 @@ int Solutions::minDeletions(std::string s)
         v[it - 'a'] ++;
 
     // Count the frequencies of elements
+    // key: the ASCII code of character, value: the frequencies of element
     std::map<int, int> mp;
     for (int i = 0; i < 26; ++i) mp[v[i]] ++;
 
@@ -88,16 +96,6 @@ int Solutions::minDeletions(std::string s)
     return ans;
 }
 
-/*! \brief Minimum Adjacent Swaps to Make Palindrome
- *
- *  Given a string, what is the minimum number of adjacent swaps required to convert a string into a palindrome. If not possibl, return -1.
- *
- * Runtime: 200 ms, faster than 10.57% of C++ online submissions for Minimum Swaps to Group All 1's Together II.
- *
- * Memory Usage: 80.3 MB, less than 92.20% of C++ online submissions for Minimum Swaps to Group All 1's Together II.
- *
- * \return the minimum number of adjust required
- */
 int Solutions::minSwaps(std::string s)
 {
     int start = 0, end = s.length() - 1, ans = 0;
@@ -114,10 +112,12 @@ int Solutions::minSwaps(std::string s)
             //  Core begins
             //  track of the left and right points and compare
             int left_index, right_index;
+
+            // Indicate the index which the substring is not palindrome from right and left side
             for (left_index = start; left_index <= end - start && s[left_index] != s[end - start]; ++left_index);
             for (right_index = end - start - 1; right_index >= start && s[right_index] != s[start]; --right_index);
 
-            // choose minimum distance between left side or right side
+            // Choose minimum distance between left side or right side
             if (left_index - start < end - start - right_index) {
                 for (int p = left_index; p > start; --p) {
                     std::swap(s[p], s[p-1]);
@@ -143,12 +143,6 @@ int Solutions::minSwaps(std::string s)
     return ans;
 }
 
-/*! \brief Two Sum
- *
- *  Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
- *
- * \return indices of the two numbers such that they add up to target
- */
 std::vector<int> Solutions::twoSum(std::vector<int>& num, int target)
 {
     std::vector<int> indices_two_sum;
@@ -166,7 +160,7 @@ std::vector<int> Solutions::twoSum(std::vector<int>& num, int target)
     }
     */
 
-    // O(n)
+    // time: O(N) space: O(2N)
     std::map<int, int> hashmap;
     hashmap.clear();
 
@@ -186,23 +180,16 @@ std::vector<int> Solutions::twoSum(std::vector<int>& num, int target)
     return indices_two_sum;
 }
 
-/*! \brief Shortest Distance from All Buildings
- *
- *  You want to build a house on an empty land which reaches all buildings in the shortest amount of distance.
- *  You can only move up, down, left, and right. You are given a 2D grid of values 0, 1, or 2, where:
- *  Each 0 marks an empty land which you can pass by freely.
- *  Each 1 markd a building which you cannot pass through.
- *  Each 2 marks an obstacle which you cannot pass through.
- *
- * \return the shortest distance
- */
 int Solutions::shortestDistance( std::vector< std::vector<int> > & grid )
 {
-    int row = grid.size(), column = grid[0].size();
+    int row = grid.size();
+    int column = grid[0].size();
 
-    std::vector< std::vector<int> > distance(row, std::vector<int>(column, 0)), visit(row, std::vector<int>(column, 0));
+    std::vector< std::vector<int> > distance(row, std::vector<int>(column, 0));
+    std::vector< std::vector<int> > visit(row, std::vector<int>(column, 0));
 
-    int num_building = 0, ans = INT_MAX;
+    int num_building = 0;
+    int ans = INT_MAX;
 
     // do BFS
     for (int i = 0; i < row; ++i) {
@@ -257,16 +244,13 @@ void Solutions::bfs_distance(int column, int row, std::vector< std::vector<int> 
             // meet the boundary
             if (xx == grid.size() || xx < 0 || yy == grid[0].size() || yy <0) continue;
 
-//             std::cout <<  "X " << xx << " Y " << yy << " Depth " << curDepth << std::endl;
-            if (xx == grid.size()) std::cout << "Boundary" << std::endl;
-
             // Only empty land which you can pass by freely
-            if (step != 0 && grid[xx].at(yy) != 0) continue;
+            if (step != 0 && grid[xx][yy] != 0) continue;
 
             // Update Status
-            visit[xx].at(yy)++; //how many visitor have visited here
-            distance[xx].at(yy) += step;
-            grid[xx].at(yy) = -1; // visited
+            visit[xx][yy]++; //how many visitor have visited here
+            distance[xx][yy] += step;
+            grid[xx][yy] = -1; // visited
 
             to_visit.push(std::pair<int, int>(xx+1, yy)); // Up
             to_visit.push(std::pair<int, int>(xx-1, yy)); // Down
@@ -278,19 +262,17 @@ void Solutions::bfs_distance(int column, int row, std::vector< std::vector<int> 
     }
 }
 
-/*! \brief Min Steps to Make Pilles Equal Height
- *
- *  Alex is given n piles of equal or unequal heights. In one step, Alex can remove any number of boxes from the pile which has the maximum height and try to make it equal to the one which is just lower than the maximum height of the stack. Determine the minmum number of steps required to make all of the piles equal in height.
- *
- * \return Min Steps
- */
-int Solutions::minStpes( std::vector<int>& num)
+
+int Solutions::minStpes( std::vector<int>& num )
 {
     int steps = 0;
+
+    // Sorting
     std::sort(num.begin(), num.end(), std::greater<int> ());
 
     int i = 1;
     while ( i < num.capacity()) {
+        // every time meet differernt number, count the step to make piles equal height
         if (num[i] != num[i-1]) {
             steps += i;
         }
@@ -300,18 +282,6 @@ int Solutions::minStpes( std::vector<int>& num)
     return steps;
 }
 
-/*! \brief Maximum Length of a Concatenated String with Unique
- *
- *  You are given an array of strings arr. A string s is formed by the concatenation of a subsequence of arr that has unique characters.
- *
- *
- * Runtime: 796 ms, faster than 11.58% of C++ online submissions for Maximum Length of a Concatenated String with Unique Characters.
- * 
- *
- * Memory Usage: 438.7 MB, less than 5.02% of C++ online submissions for Maximum Length of a Concatenated String with Unique Characters.
- *
- * \return the maximum possible length of s
- */
 int Solutions::maxLength( std::vector< std::string> & arr)
 {
 
@@ -332,7 +302,7 @@ void Solutions::checkLen( const std::vector<std::string> & arr, std::string grap
         count = graphstr.size() > count ? graphstr.size(): count;
     }
 
-    // recursive
+    // recursive DFS
     for (int i = index; i < arr.size(); ++i) {
         checkLen(arr, graphstr+arr[i], i+1, count);
     }
@@ -358,16 +328,6 @@ bool Solutions::isUniqieString( const std::string s)
     return true;
 }
 
-/*! \brief Find N Unique Integers Sum up to Zero
- *
- *  Given an integer n, return any array containing n unique integers such that they add up to 0
- *
- * Runtime: 3 ms, faster than 41.85% of C++ online submissions for Find N Unique Integers Sum up to Zero.
- *
- * Memory Usage: 6.6 MB, less than 96.56% of C++ online submissions for Find N Unique Integers Sum up to Zero.
- *
- * \return Array containing n unique integers such that they add up to 0
- */
 std::vector<int> Solutions::sumZero(int n)
 {
     std::vector<int> v;
@@ -382,19 +342,6 @@ std::vector<int> Solutions::sumZero(int n)
     return v;
 }
 
-/*! \brief Next Permutation
- *
- *  Implement next permutation, which rearrange numbers into the lexicographically next greater permutation of numbers
- *
- *  If such an arrangement is impossible, it must rearrange it to the lowest possible order (i.e., sorted in ascending order).
- *
- *  The replacement must be in place and use only constant extra memory
- *
- *  Runtime: 11 ms, faster than 19.49% of C++ online submissions for Next Permutation.
- *
- *  Memory Usage: 12.1 MB, less than 75.54% of C++ online submissions for Next Permutation. 
- * \return None
- */
 void Solutions::nextPermutation( std::vector<int>& nums)
 {
     int i = nums.size() - 2;
@@ -416,21 +363,6 @@ void Solutions::nextPermutation( std::vector<int>& nums)
     std::reverse(nums.begin()+i+1, nums.end());
 }
 
-/*! \brief Sign of the Product of an Array
- *
- *  Detailed There is a function signFunc(x) that returns: 
- *  - 1  of x is positive
- *  - -1 of x is negative
- *  - 0  of x is equal to 0
- *
- *  You are given an integer array nums. Let products be the product of all values in the array nums
- *
- *  Runtime: 4 ms, faster than 87.44% of C++ online submissions for Sign of the Product of an Array.
- *
- *  Memory Usage: 10.2 MB, less than 44.94% of C++ online submissions for Sign of the Product of an Array.
- *
- * \return signFunc(product)
- */
 int Solutions::arraySign( std::vector<int> & nums)
 {
     int sign = 1;
@@ -446,20 +378,10 @@ int Solutions::arraySign( std::vector<int> & nums)
     return sign;
 }
 
-/*! \brief Count Good Nodes in Binary Tree
- *
- *  Given a binary tree root, a node X in the tree is named good if in the path from root to X there are no nodes with a value greater than X.
- * Runtime: 176 ms, faster than 51.57% of C++ online submissions for Count Good Nodes in Binary Tree.
- *
- * Memory Usage: 86.4 MB, less than 11.71% of C++ online submissions for Count Good Nodes in Binary Tree.
- *
- * \return the number of good nodes in the binary tree
- */
 int Solutions::goodNodes(TreeNode * root)
 {
     int count = 0;
 
-//     PrintBFS(root);
     countGoodNode(root, root->val, count);
 
     return count;
@@ -497,6 +419,7 @@ void Solutions::countGoodNode(TreeNode * node, int value, int & count)
     /* Proposal 2 */ 
     if (node == nullptr) return;
 
+    // the condition of good node
     if (node->val >= value) {
         count ++;
         value = node->val;
@@ -599,15 +522,9 @@ std::vector<int> Solutions::PrintLinkedlist(LinkedListNode* node)
     return contenter;
 }
 
-
-/*! \brief String Without 3 Identical Consecutive Letters
- *
- * Given a string s having lowercase English letters, returns a string with no instances of three identical consecutive letters, obtained from s by deleting the minimum possible number of letters.
- *
- * \return a string with no instance of three identical consecutive letters
- */
 std::string Solutions::filterString(std::string &s)
 {
+    // default string with two characters
     std::string letter(s.begin(), s.begin()+2);
 
     for (int i = 2; i < s.length(); ++i) {
@@ -618,12 +535,6 @@ std::string Solutions::filterString(std::string &s)
     return letter;
 }
 
-/*! \brief Maximum possible value by insert 5 digit
- *
- *  Write a function that returns the maximum possible value obtained by inserting 5 digit inside the decimal representation of integer N.
- *
- * \return Maximim possivle value
- */
 int Solutions::maxPossible(int num, int digit)
 {
     std::vector<int> nums;
@@ -644,11 +555,11 @@ int Solutions::maxPossible(int num, int digit)
 
     if (isPos) {
         for (auto it = nums.rbegin() ;  it != nums.rend(); it++) {
-                if (*it < digit) {
-                    //std::cout << *it << std::endl;
-                    nums.insert(it.base(), digit);
-                    break;
-                }
+            if (*it < digit) {
+                //std::cout << *it << std::endl;
+                nums.insert(it.base(), digit);
+                break;
+            }
         }
     } else {
         for (auto it = nums.rbegin() ;  it != nums.rend(); it++) {
@@ -660,6 +571,7 @@ int Solutions::maxPossible(int num, int digit)
         }
     }
 
+    // Decimal representation
     int ans = 0;
     for (auto it = nums.rbegin();  it!=nums.rend() ; it++) {
         ans = *it + ans*10;
@@ -668,17 +580,6 @@ int Solutions::maxPossible(int num, int digit)
     return (isPos ? ans : -1*ans);
 }
 
-/*! \brief Delete Node in a BST
- *
- *  Given a root node reference of a BST and a key, delete the node with the given key in the BST.
- * Runtime: 50 ms, faster than 44.79% of C++ online submissions for Delete Node in a BST.
- *
- *
- * Memory Usage: 32.7 MB, less than 75.94% of C++ online submissions for Delete Node in a BST.
- *
- *
- * \return the root node reference (possibly updated) of the BST
- */
 TreeNode* Solutions::deleteNode(TreeNode* node, int key)
 {
     if (node == nullptr ) return nullptr;
@@ -689,8 +590,7 @@ TreeNode* Solutions::deleteNode(TreeNode* node, int key)
         } else if (node->left == nullptr || node->right == nullptr) {
             node = node->right;
         } else {
-            // Get Min from left side
-            //TreeNode * new_node = getMinNode(node->right);
+            // remove Min node from left side
             TreeNode* new_node = node->left;
             while(new_node->right != nullptr) new_node = new_node->right;
 
@@ -716,20 +616,15 @@ TreeNode* Solutions::getMinNode (TreeNode* node) {
     return getMinNode(node->left);
 }
 
-/*! \brief Number of Fractions that Sum to 1
- *
- *  You are given a list of lists fractions where each list contains [numerator, denominator] which represents the number number/denominator
- *
- * \return the number of pairs of fractions there are that sums to 1
- */
-int Solutions::sumFraction( std::vector< std::vector<int> > & fracrion)
+int Solutions::sumFraction( std::vector< std::vector<int> > & fraction)
 {
+    // key: the pair of fraction, value: number of pairs of fraction
     std::map < std::pair<int, int>, int > dict;
     int ans = 0;
 
-    for (auto& elem : fracrion) {
+    for (auto& elem : fraction) {
         int g = gcd(elem[0], elem[1]);
-        dict[{elem[0]/g, elem[1]/g}]++;
+        dict[ {elem[0]/g, elem[1]/g} ]++;
     }
 
     for (auto it = dict.begin(); it != dict.end() ; it++) {
@@ -737,13 +632,15 @@ int Solutions::sumFraction( std::vector< std::vector<int> > & fracrion)
         int count = it->second;
 
         if (key.first * 2 > key.second) continue;
+
         if (key.first * 2 == key.second) {
             ans += count * (count - 1) /2;
         } else {
             auto it_match = dict.find({key.second - key.first, key.second});
-            if ( it_match!= dict.end()) ans += count * it_match->second;  
+            if ( it_match!= dict.end()) ans += count * it_match->second;
         }
     }
+
     return ans;
 }
 
@@ -756,22 +653,6 @@ int Solutions::gcd(int a, int b) {
         return a;
 }
 
-
- /*! \brief Minimum Time to Make Rope Colorful
- *
- * Alice has n balloons arranged on a rope. You are given a 0-indexed string colors where colors[i] is the color of the ith ballon.
- *
- * Alice wants the rope to be colorful. She does not want two consecutive balloons to be of the same color, so she asks Bob for help. Bob can remove some balloons from the rope to make it colorful. 
- * You are given a 0-indexed integer array neededTime where neededTime[i] is the time (in seconds) that Bob nees to remove the ith balloon from the rope.
- * 
- * Runtime: 128 ms, faster than 97.71% of C++ online submissions for Minimum Time to Make Rope Colorful.
- *
- *
- * Memory Usage: 95.4 MB, less than 51.98% of C++ online submissions for Minimum Time to Make Rope Colorful.
- *
- *
- * \return Return the minimum time Bob need to make the rope colorful
- */
 int Solutions::minCost( std::string colors, std::vector<int> & neededTime)
 {
     int ans = 0;
@@ -780,6 +661,7 @@ int Solutions::minCost( std::string colors, std::vector<int> & neededTime)
     for (int i = 1; i < colors.size(); i++)
     {
         if (colors[index] == colors[i]) {
+            // minimum time
             if (neededTime[index] < neededTime[i]) {
                 ans += neededTime[index];
                 index = i;
@@ -793,21 +675,6 @@ int Solutions::minCost( std::string colors, std::vector<int> & neededTime)
     return  ans;
 }
 
- /*! \brief Longest Common Prefix
- *
- * Write a function to find the longest common prefix string amongst an array of strings
- * 
- * If there is no common prefix, return an empty string ""
- *
- *  Runtime: 0 ms, faster than 100.00% of C++ online submissions for Longest Common Prefix.
- *
- *
- *  Memory Usage: 9.1 MB, less than 92.73% of C++ online submissions for Longest Common Prefix.
- *
- *
- *
- * \return Longest common prefix
- */
 std::string Solutions::longestPrefix(std::vector< std::string > & strs)
 {
     // O(n log n)
@@ -815,9 +682,10 @@ std::string Solutions::longestPrefix(std::vector< std::string > & strs)
     std::string ans = "";
     sort(begin(strs), end(strs));
     int last_index = strs.size() - 1;
+
     for (int i = 0; i < strs[0].size(); i++)
     {
-        if( strs.at(0)[i] == strs.at(last_index)[i]) ans += strs.at(0)[i];
+        if( strs[0][i] == strs[last_index][i]) ans += strs[0][i];
         else break;
     }
 
@@ -827,13 +695,17 @@ std::string Solutions::longestPrefix(std::vector< std::string > & strs)
 
     // O(2n)
     std::string ans = ""; int min = 0;
-    //sort(strs.begin(), strs.end());
+
     if (strs.empty()) return "";
+
+    // find the index of minimum string
     for (int i = 0; i < strs.size(); i++) {
         if (strs[i].size() < strs[min].size()) min = i;
     }
+
+    // common prefix
     for (int i = 0; i < strs[min].size() ; ++i) {
-        for (int k = 0;  k < strs.size(); ++k) {
+        for (int k = 0;  k < strs.size() ; ++k) {
             if (strs[k][i] != strs[min][i]) return ans;
         }
         ans += strs[0][i];
@@ -841,13 +713,6 @@ std::string Solutions::longestPrefix(std::vector< std::string > & strs)
     return ans;
 }
 
- /*! \brief Lagest K such that both K and -K exist in array
- *
- * Write a function that, given an array A of N integers, returns the lagest integer K > 0 such that both values K and -K exist in array A. 
- * If there is no such integer, the function should return 0
- *
- * \return latgest K
- */
 int Solutions::getLargestK( std::vector<int> & nums){
 
 /*
@@ -867,65 +732,39 @@ int Solutions::getLargestK( std::vector<int> & nums){
 
     return ans;
 */
-/*
-    std::unordered_set<int> set;
-    int max = 0;
-    // insert a new key
-    for(auto var : nums)
-    {
-        set.insert(var);
-    }
-
-    // check if the key is in the hash set
-    for(auto var : nums)
-    {
-        // Iterator to an element with key equivalent to key. If no such element is found, past-the-end (see end()) iterator is returned.
-        if (set.find(-var) != set.end() and var > max)
-        {
-            max = var;
-        }
-    }
-    return max;
-*/
     int ans = 0;
 
     for (auto & elem : nums) {
         if (elem > 0) continue;
+
         auto it = std::find(begin(nums), end(nums), elem*-1);
-//         ans = std::max(ans, *it);
+
         ans = ans > *it ? ans : *it;
     }
 
     return ans;
 }
 
-/*! \brief Smallest Positive Integer
- *
- *  Write a function that, given an array A of N integers, returns the smallest positive integer (greater than 0) that does not occur in A.
- *
- *  For example, given A = [1, 3, 6, 4, 1, 2], the function should return 5.
- *  Given A = [1, 2, 3], the function should return 4.
- *  Given A = [-1, -3], the function should return 1.
- *
- *
- * \return  smallest positive integer
- */
 int Solutions::smallestInt( std::vector<int> &A )
 {
+
     /*
     std::vector<int> v(A.size(), 0);
+
     for (auto elem : A) {
         if (elem > 0) v[elem] ++;
     }
 
     int i;
+
     for (i = 1 ; i < v.size(); i ++) {
         if (v[i] == 0) return i;
     }
 
     return i + 1;
-    */
 
+    */
+    // C++17
     size_t smallest = 0;
     auto maxit = std::max_element(A.begin(), A.end());
 
@@ -961,19 +800,26 @@ int Solutions::minChange( std::string &S, int k)
     return mincharge;
 }
 
-/*! \brief Maximum sequence of consecutive zeros
- *
- *  A binary gap within a positive integer N is any maximum sequence of consecutive zeros that is surrounded by ones at both ends in the binary representation of N. For example, number 9 has binary representation 1001 and contains a binary gap of length 2
- *
- * \return maximum sequence of consecutive zeros
- */
-int Solutions::lengthBin(int N)
+int evil (uint32_t N)
 {
+    return N & (N + 1) ? evil(N | (N >> 1)) + 1 : 0;
+}
+
+int Solutions::lengthBin(uint32_t N)
+{
+    if (N == 0) return 0;
+
+    while(!(N & 1)) N >>= 1;
+
+    return evil(N);
+
+    /*
     std::bitset<16> binary(N) ;
 
     std::string bit = binary.to_string();
 
     int ans = INT_MIN, max = 0;
+
     for (auto elem : bit) {
         if( elem == '0') {
             max ++;
@@ -984,6 +830,7 @@ int Solutions::lengthBin(int N)
     }
 
     return (ans == INT_MIN) ? 0: ans;
+    */
 }
 
 /*! \brief The Monty Hall Problem
@@ -1870,7 +1717,6 @@ std::vector< std::string > Solutions::commonSubstring( std::vector< std::string>
 
 int Solutions::countDuplicates( std::vector<int> input)
 {
-    /*
     int count = 0;
     std::unordered_set<int> numberset;
 
@@ -1881,8 +1727,7 @@ int Solutions::countDuplicates( std::vector<int> input)
             numberset.erase(*it);
         }
     }
-    */
-
+/*
     int count = 0;
     std::vector<int> numbers(input[0], 0);
     for (auto & num : input) {
@@ -1892,7 +1737,7 @@ int Solutions::countDuplicates( std::vector<int> input)
     for (int i = 0; i < numbers.size(); ++i) {
         if (numbers[i] > 1) count ++;
     }
-
+*/
     return count;
 }
 
@@ -2160,14 +2005,15 @@ bool Solutions::judgeCircle( std::string moves)
  * \return all critical connections in the network in any order.
  */
 void undirected_dfs(int curr, int parent, int visited, std::vector< std::vector<int> > & undirectedgraph, std::vector<int>& lowlink, std::vector< std::vector<int> > &bridge){
+
     lowlink[curr] = visited ++;
-    
+
     // Exploring the neighbor node
     for (auto & nextnode : undirectedgraph[curr]) {
 
         if ( nextnode == parent)
             continue;
-        
+
         // unvisited (Depth-first Search)
         if (lowlink[nextnode] == 0) undirected_dfs(nextnode, curr, visited, undirectedgraph, lowlink, bridge);
         // Assign low value to current node (circle back around to reach)
@@ -2191,6 +2037,11 @@ std::vector< std::vector<int> > Solutions::criticalConnections(int n, std::vecto
     }
 
     undirected_dfs(0, -1, 1, undirectedgraph, lowlink, bridge);
+
+    // for (int i = 0; i < lowlink.size(); ++i) {
+    //     std::cout <<   "node: " << i << "; link: " << lowlink[i] << std::endl;
+    // }
+
     return bridge;
 }
 
@@ -2213,7 +2064,6 @@ std::vector< std::vector<int> > Solutions::criticalConnections(int n, std::vecto
  */
 int Solutions::findPeakElement( std::vector<int> & nums)
 {
-    /*
     int start = 0, end = nums.size() - 1;
     if (start > end && end == 0) return -1;
 
@@ -2230,8 +2080,8 @@ int Solutions::findPeakElement( std::vector<int> & nums)
 
     return start;
 
-    */
 
+/*
     int start = 0, end = nums.size() - 1;
     if (start > end && end == 0) return -1;
 
@@ -2247,6 +2097,7 @@ int Solutions::findPeakElement( std::vector<int> & nums)
     }
 
     return -1;
+*/
 }
 
 /*! \brief Add Two Numbers
@@ -2763,14 +2614,16 @@ bool isPalindrome(std::string &s)
 {
     int start = 0, end = s.length() - 1;
 
-    while (start < s.length() / 2) {
-            if (s[start] == s[end - start]) {
-                start ++;
-            } else {
-                return false;
-            }
-
-            std::cout << start << std::endl;
+    while (start <= end) {
+        if (!isalnum(s[start])) {
+            start ++;
+        } else if (!isalnum(s[end])) {
+            end --;
+        } else if (toupper(s[start]) != toupper(s[end])) {
+            return false;
+        } else {
+            start ++; end --;
+        }
     }
 
     return true;
@@ -2782,12 +2635,12 @@ void checkUniqueLen( std::vector<std::string> & arr, std::string graphstr, int c
 
         palindrome.push_back(graphstr);
         if (size == 0) {
-            std::cout << "Palindrome: " << graphstr.c_str() << " " << curindex  - 1 << " " << index - 1 << std::endl;
+            // std::cout << "Palindrome: " << graphstr.c_str() << " " << curindex  - 1 << " " << index - 1 << std::endl;
             int pre_index = curindex - 1;
             int post_index = index - 1;
             count = count + pre_index + post_index;
         } else {
-            std::cout << "Reverse Palindrome: " <<  arr[curindex] << " " << arr[index] << " "  << graphstr.c_str() << " " << size - (curindex  - 1) << " " << size - (index - 1) << std::endl;
+            // std::cout << "Reverse Palindrome: " <<  arr[curindex] << " " << arr[index] << " "  << graphstr.c_str() << " " << size - (curindex  - 1) << " " << size - (index - 1) << std::endl;
             int pre_index = size - (curindex - 1);
             int post_index = size - (index - 1);
             count = count + pre_index + post_index;
@@ -3257,7 +3110,7 @@ bool colorable_node(int i, std::vector<int> &color, std::vector< std::vector<int
     std::queue<int> q;
     q.push(i);
     color[i] = 0; // color the first node
-    
+
     while (!q.empty()) {
         int vertex = q.front();
         q.pop();
@@ -3744,7 +3597,6 @@ int Solutions::maxProfit( std::vector<int> & prices) {
     // Max profit must come from notHold
     return curProfit;
 }
-
 
 /*! \brief Min Cost Climbing Stairs
  *

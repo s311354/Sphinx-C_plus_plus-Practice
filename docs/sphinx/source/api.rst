@@ -1,8 +1,8 @@
-The solutions C++ API Reference
+The leetcode C++ API Reference
 =================================
 
-C++ Classes
------------
+The C++ Solutions Class
+-------------------------
 
 .. doxygenclass:: leetcode::Solutions
     :members:
