@@ -1,7 +1,7 @@
 Notes:
 ======
 
-The fundamental features/concept of features (classes, separate compilation)
+The fundamental features/concept of features (classes)
 -----------------------------------------------------------------------------
 
 Classes
@@ -46,7 +46,7 @@ See the `cppreference Non-static data members page <https://en.cppreference.com/
 
 Static data members are not associated with any object. They exist even if no objects of the class have been defined.
 
-There is only one instance of the static data member in the entire program with static storage duration, unless the keyword thread_local is used, in which case there is one such object per thread with thread storage duration (since C++11).
+There is only one instance of the static data member in the entire program with **static storage duration**, unless the keyword thread_local is used, in which case there is one such object per thread with thread storage duration (since C++11).
 
 Static data members cannot be mutable.
 
@@ -62,6 +62,8 @@ The simple example declared static data members in a member specification of a c
         constexpr static int arr[] = { 1, 2, 3 };   // constexpr static data member (since C++11)
         inline static int y = 1;                    // inline static data member (since C++17)
     }
+
+Note: static storage duration means the storage for the object is allocated when the program begins and deallocated when the program ends. Only one instance of object exists.
 
 See the `cppreference static members page <https://en.cppreference.com/w/cpp/language/static#Static_data_members>`_ for more info.
 
@@ -87,7 +89,7 @@ See the `cppreference non-static member functions page <https://en.cppreference.
 
 + `static member functions <https://en.cppreference.com/w/cpp/language/static#Static_member_functions>`_
 
-static member functions are not associated with any object. When called, they have **no this pointer**.
+static member functions are not associated with any object. When called, they **have no this pointer**.
 
 static member functions **cannot** be virtual, const, volatile, or ref-qualified.
 
@@ -96,6 +98,29 @@ The address of a static member function may be stored in a regular pointer to fu
 See the `cppreference static member functions <https://en.cppreference.com/w/cpp/language/static#Static_member_functions>`_ for more info.
 
 ...
+
+Nested types:
+''''''''''''''
+
++ `nested classes <https://en.cppreference.com/w/cpp/language/nested_types>`_
+
+A declaration of a class/struct or union may appear within another class. Such declaration declares a nested class.
+
+The example declared nested class::
+
+    struct enclose
+    {
+        struct inner
+        {
+            static int x;
+            void f(int i);
+        };
+    };
+
+    int enclose::inner::x = 1;
+    void enclose::inner::f(int i) {}
+
+See the `cppreference nested classes page <https://en.cppreference.com/w/cpp/language/nested_types>`_ for more info.
 
 CMake Tools
 -------------------
@@ -124,3 +149,69 @@ The simple of declaring content details for some dependencies::
 The FetchContent_MakeAvailable() command ensure the named dependencies have been populated, either by an earlier call or by populating them itself. When performing the population, it will also add them to the main build, if possible, so that the main build can use the populated projects' targets, etc.
 
 See the `Cmake FetchContent page <https://cmake.org/cmake/help/latest/module/FetchContent.html>`_ for more info.
+
+GitHub Actions
+---------------------
+
+GitHub Actions jobs can be automatically triggered, where you run, and how you can interact with the code in your repository.
+
+See the `GitHub Actions page <https://docs.github.com/en/actions>`_ for more info.
+
+Using Jobs in Workflow
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+A Workflow run is made up of one or more jobs, which run in parallel by default. To run jobs sequentially, you can define dependencies on other jobs using the 'jobs.<job_id>.needs' keyword. Each job runs in a runner environment specified by 'runs-on'.
+
+See the `Using jobs in a workflow page <https://docs.github.com/en/actions/using-jobs/using-jobs-in-a-workflow>`_ for more info.
+
+Workflow syntax for GitHub Actions
+'''''''''''''''''''''''''''''''''''
+
+A workflow is a configurable automated process made up of one or more jobs. You can create a YAML file to define your workflow configuration.
+
+The simple example creating a cmake workflow configuration::
+
+    name: CMake
+
+    on:
+      push:
+        branches: [ "main" ]
+      pull_request:
+        branches: [ "main" ]
+
+    env:
+      # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+      BUILD_TYPE: Release
+
+    jobs:
+      build:
+        # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
+        # You can convert this to a matrix build if you need cross-platform coverage.
+        # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+        runs-on: ubuntu-latest
+
+        steps:
+        - uses: actions/checkout@v3
+
+        - name: Install Boost library
+          run: sudo apt-get install libboost-all-dev
+
+        - name: Configure CMake
+          # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
+          # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
+          working-directory: ${{github.workspace}}/leetcode_practice
+          run: cmake -B build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+        - name: Build
+          # Build your program with the given configuration
+          working-directory: ${{github.workspace}}/leetcode_practice
+          run: cmake --build build --config ${{env.BUILD_TYPE}}
+
+        - name: Test
+          working-directory: ${{github.workspace}}/leetcode_practice/build
+          # Execute tests defined by the CMake configuration.
+          # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
+          run: ${{github.workspace}}/leetcode_practice/build/tests/leetcode_integration_test
+          # run: ctest -C ${{env.BUILD_TYPE}}
+
+See the `Workflow syntax for GitHub Actions page <https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on>`_ for more info.
