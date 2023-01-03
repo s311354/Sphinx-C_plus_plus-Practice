@@ -122,6 +122,51 @@ The example declared nested class::
 
 See the `cppreference nested classes page <https://en.cppreference.com/w/cpp/language/nested_types>`_ for more info.
 
+Copy Assignment Operator
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A copy assignment operator of class T is a non-template non-static member function with the name 'operator=' that takes exactly one parameter of type T, T&, const T&, volatile T&, or const volatile T&. For a type to be CopyAssignable, it must have a public copy assignment operator.
+
+The example of user-defined copy assignment::
+
+    struct A
+    {
+        int n;
+        std::string s1;
+
+        A() = default;
+        A(A const&) = default;
+
+        // user-defined copy assignment (copy-and-swap idiom)
+        A& operator=(A other)
+        {
+            std::swap(n, other.n);
+            std::swap(s1, other.s1);
+            return *this;
+        }
+    };
+
+    struct B : A
+    {
+        std::string s2; // implicitly-defined copy assignment
+    }
+
+    int main()
+    {
+        A a1, a2;
+        a1 = a2; // user-defined copy assignment
+        B b1, b2;
+        b2.s1 = "foo";
+        b2.s2 = "bar";
+        b1 = b2; // implicitly-defined copy assignment
+        std::cout << "b1.s1" = << b1.s1 << "; b1.s2 = " << b1.s2 << "\n";
+    }
+
+    ========================
+    b1.s1 = foo; b1.s2 = bar
+
+See the `cppreference Copy assignment operator page <https://en.cppreference.com/w/cpp/language/copy_assignment>`_ for more info.
+
 CMake Tools
 -------------------
 
