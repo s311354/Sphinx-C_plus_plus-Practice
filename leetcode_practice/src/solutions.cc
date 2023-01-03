@@ -873,17 +873,11 @@ int Solutions::getRandom(int low, int high, int badNum)
     return random;
 }
 
-
-/*! \brief Minimum number of letters
- *
- *  You are given a string S consisting of N lowercase letters. In one move you can remove any substring from S, which starts and ends with the same letter and is at least two letters long. What is the minimum number of letters that may remain in S after any number of such moves?
- *
- * \return minimum number of letters
- */
 int Solutions::lowercaseLetters( std::string &S)
 {
     int ans = 0;
     int startnumber = 0;
+    int endnumber = S.size();
 
     if (S.size() == 0 or S.size() == 1) return S.size();
 
@@ -899,13 +893,9 @@ int Solutions::lowercaseLetters( std::string &S)
         }
     }
 
-
     if (startnumber + 1 == S.size()) S.erase(0, startnumber );
 
     else S.erase(0, startnumber +1 );
-
-
-    int endnumber = S.size();
 
     if (S.size() != 1) {
         for (auto it = S.rbegin() + 1;  it!=S.rend() ; it++) {
@@ -922,7 +912,6 @@ int Solutions::lowercaseLetters( std::string &S)
 
     return S.size();
 }
-
 
 /*! \brief Balanced Stone Heaps
  *
