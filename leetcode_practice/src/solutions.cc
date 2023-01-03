@@ -877,7 +877,6 @@ int Solutions::lowercaseLetters( std::string &S)
 {
     int ans = 0;
     int startnumber = 0;
-    int endnumber = S.size();
 
     if (S.size() == 0 or S.size() == 1) return S.size();
 
@@ -896,6 +895,8 @@ int Solutions::lowercaseLetters( std::string &S)
     if (startnumber + 1 == S.size()) S.erase(0, startnumber );
 
     else S.erase(0, startnumber +1 );
+
+    int endnumber = S.size();
 
     if (S.size() != 1) {
         for (auto it = S.rbegin() + 1;  it!=S.rend() ; it++) {
