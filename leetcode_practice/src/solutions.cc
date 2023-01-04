@@ -66,16 +66,15 @@ bool Solutions::isValidString(std::string s)
 int Solutions::minDeletions(std::string s)
 {
     std::vector<int> v(26, 0);
+    std::map<int, int> mp;
+    int ans = 0;
 
     for (auto it : s)
         v[it - 'a'] ++;
 
     // Count the frequencies of elements
     // key: the ASCII code of character, value: the frequencies of element
-    std::map<int, int> mp;
     for (int i = 0; i < 26; ++i) mp[v[i]] ++;
-
-    int ans = 0;
 
     // Traverse map from backwards (find the minimum number of character need to delete)
     for (auto it = mp.rbegin();  it!=mp.rend() ; ++it) {
@@ -98,7 +97,9 @@ int Solutions::minDeletions(std::string s)
 
 int Solutions::minSwaps(std::string s)
 {
-    int start = 0, end = s.length() - 1, ans = 0;
+    int start = 0, end = s.length() - 1;
+    int left_index, right_index;
+    int ans = 0;
 
     if (isValidString(s)) {
         while (start < s.length()/2) {
@@ -109,10 +110,6 @@ int Solutions::minSwaps(std::string s)
                 continue;
             }
 
-            //  Core begins
-            //  track of the left and right points and compare
-            int left_index, right_index;
-
             // Indicate the index which the substring is not palindrome from right and left side
             for (left_index = start; left_index <= end - start && s[left_index] != s[end - start]; ++left_index);
             for (right_index = end - start - 1; right_index >= start && s[right_index] != s[start]; --right_index);
@@ -121,7 +118,7 @@ int Solutions::minSwaps(std::string s)
             if (left_index - start < end - start - right_index) {
                 for (int p = left_index; p > start; --p) {
                     std::swap(s[p], s[p-1]);
-                } 
+                }
                 ans += left_index - start;
             } else {
                 for (int p = right_index; p < end - start; ++p) {
@@ -131,7 +128,6 @@ int Solutions::minSwaps(std::string s)
             }
 
             ++start;
-
         }
 
         if (!isPalindrome(s)) return -1;
@@ -145,11 +141,9 @@ int Solutions::minSwaps(std::string s)
 
 std::vector<int> Solutions::twoSum(std::vector<int>& num, int target)
 {
-    std::vector<int> indices_two_sum;
-    indices_two_sum.clear();
-
     // O(n^2)
     /*
+    std::vector<int> indices_two_sum;
     for (int i = 0; i < num.capacity(); ++i) {
         for (int j = i + 1; j < num.capacity(); ++j) {
             if( (num[i] + num[j]) == target) {
@@ -160,9 +154,9 @@ std::vector<int> Solutions::twoSum(std::vector<int>& num, int target)
     }
     */
 
-    // time: O(N) space: O(2N)
+    std::vector<int> indices_two_sum;
+    // key: target - number ; value: index of the number
     std::map<int, int> hashmap;
-    hashmap.clear();
 
     for (int i = 0; i < num.capacity() ; i++)
     {
@@ -289,9 +283,8 @@ int Solutions::maxLength( std::vector< std::string> & arr)
 
     if (arr.size() < 0) return 0;
 
-//     if (arr.size() == 1) return arr[0].size();
-
     checkLen( arr, "", 0, len);
+
     return len;
 }
 
@@ -360,7 +353,7 @@ void Solutions::nextPermutation( std::vector<int>& nums)
     }
 
     // reverse the numbers following to get the next smallest lexicographic permutation.
-    std::reverse(nums.begin()+i+1, nums.end());
+    std::reverse(nums.begin() + i + 1, nums.end());
 }
 
 int Solutions::arraySign( std::vector<int> & nums)
@@ -369,6 +362,7 @@ int Solutions::arraySign( std::vector<int> & nums)
 
     for (auto elem : nums) {
         if (elem < 0) sign = sign*-1;
+
         if (elem == 0) {
             sign = 0;
             return sign;
@@ -527,6 +521,7 @@ std::string Solutions::filterString(std::string &s)
     // default string with two characters
     std::string letter(s.begin(), s.begin()+2);
 
+    // without 3 identical consecutive letters
     for (int i = 2; i < s.length(); ++i) {
         if (s[i] != s[i-1] or s[i] != s[i-2])
             letter.push_back(s[i]);
@@ -538,8 +533,8 @@ std::string Solutions::filterString(std::string &s)
 int Solutions::maxPossible(int num, int digit)
 {
     std::vector<int> nums;
-
     bool isPos = true; 
+    int ans = 0;
 
     if (num < 0) {
         isPos = false;
@@ -548,6 +543,7 @@ int Solutions::maxPossible(int num, int digit)
 
     if (num == 0) nums.push_back(0);
 
+    // Convert to decimal representation
     while (num > 0) {
         nums.push_back(num%10);
         num = num/10;
@@ -556,7 +552,6 @@ int Solutions::maxPossible(int num, int digit)
     if (isPos) {
         for (auto it = nums.rbegin() ;  it != nums.rend(); it++) {
             if (*it < digit) {
-                //std::cout << *it << std::endl;
                 nums.insert(it.base(), digit);
                 break;
             }
@@ -572,7 +567,6 @@ int Solutions::maxPossible(int num, int digit)
     }
 
     // Decimal representation
-    int ans = 0;
     for (auto it = nums.rbegin();  it!=nums.rend() ; it++) {
         ans = *it + ans*10;
     }
@@ -592,6 +586,7 @@ TreeNode* Solutions::deleteNode(TreeNode* node, int key)
         } else {
             // remove Min node from left side
             TreeNode* new_node = node->left;
+
             while(new_node->right != nullptr) new_node = new_node->right;
 
             node->val = new_node->val;
@@ -624,7 +619,7 @@ int Solutions::sumFraction( std::vector< std::vector<int> > & fraction)
 
     for (auto& elem : fraction) {
         int g = gcd(elem[0], elem[1]);
-        dict[ {elem[0]/g, elem[1]/g} ]++;
+        dict[ { elem[0]/g, elem[1]/g } ]++;
     }
 
     for (auto it = dict.begin(); it != dict.end() ; it++) {
@@ -637,6 +632,7 @@ int Solutions::sumFraction( std::vector< std::vector<int> > & fraction)
             ans += count * (count - 1) /2;
         } else {
             auto it_match = dict.find({key.second - key.first, key.second});
+
             if ( it_match!= dict.end()) ans += count * it_match->second;
         }
     }
@@ -661,6 +657,7 @@ int Solutions::minCost( std::string colors, std::vector<int> & neededTime)
     for (int i = 1; i < colors.size(); i++)
     {
         if (colors[index] == colors[i]) {
+
             // minimum time
             if (neededTime[index] < neededTime[i]) {
                 ans += neededTime[index];
@@ -668,6 +665,7 @@ int Solutions::minCost( std::string colors, std::vector<int> & neededTime)
             } else {
                 ans += neededTime[i];
             }
+
         } else {
             index = i;
         }
@@ -694,22 +692,27 @@ std::string Solutions::longestPrefix(std::vector< std::string > & strs)
     */
 
     // O(2n)
-    std::string ans = ""; int min = 0;
+    std::string ans = "";
+    int min = 0;
 
     if (strs.empty()) return "";
 
     // find the index of minimum string
     for (int i = 0; i < strs.size(); i++) {
-        if (strs[i].size() < strs[min].size()) min = i;
+        if (strs[i].size() < strs[min].size())
+            min = i;
     }
 
     // common prefix
     for (int i = 0; i < strs[min].size() ; ++i) {
         for (int k = 0;  k < strs.size() ; ++k) {
-            if (strs[k][i] != strs[min][i]) return ans;
+            if (strs[k][i] != strs[min][i])
+                return ans;
         }
+
         ans += strs[0][i];
     }
+
     return ans;
 }
 
@@ -747,24 +750,25 @@ int Solutions::getLargestK( std::vector<int> & nums){
 
 int Solutions::smallestInt( std::vector<int> &A )
 {
-
-    /*
-    std::vector<int> v(A.size(), 0);
+    int i;
+    int max = 0;
+    std::map<int, int> v;
 
     for (auto elem : A) {
+        max = max > elem ? max : elem;
         if (elem > 0) v[elem] ++;
     }
 
-    int i;
+    if (v.empty()) return 1;
 
-    for (i = 1 ; i < v.size(); i ++) {
+    for (i = 1 ; i < max ; ++i) {
         if (v[i] == 0) return i;
     }
 
     return i + 1;
 
-    */
     // C++17
+    /*
     size_t smallest = 0;
     auto maxit = std::max_element(A.begin(), A.end());
 
@@ -776,6 +780,7 @@ int Solutions::smallestInt( std::vector<int> &A )
     }
 
     return i;
+    */
 }
 
 /*! \brief  Minimum number of changes
@@ -800,18 +805,20 @@ int Solutions::minChange( std::string &S, int k)
     return mincharge;
 }
 
-int evil (uint32_t N)
+int consecutive_zero (uint32_t N)
 {
-    return N & (N + 1) ? evil(N | (N >> 1)) + 1 : 0;
+    // count how many time to fill with zero
+    return N & (N + 1) ? consecutive_zero(N | (N >> 1)) + 1 : 0;
 }
 
 int Solutions::lengthBin(uint32_t N)
 {
     if (N == 0) return 0;
 
+    // truncating consecutive zeros at the tails
     while(!(N & 1)) N >>= 1;
 
-    return evil(N);
+    return consecutive_zero(N);
 
     /*
     std::bitset<16> binary(N) ;
@@ -2614,6 +2621,19 @@ bool isPalindrome(std::string &s)
 {
     int start = 0, end = s.length() - 1;
 
+    while (start < s.length() / 2) {
+            if (s[start] == s[end - start]) {
+                start ++;
+            } else {
+                return false;
+            }
+    }
+
+    return true;
+
+/*
+    int start = 0, end = s.length() - 1;
+
     while (start <= end) {
         if (!isalnum(s[start])) {
             start ++;
@@ -2627,6 +2647,7 @@ bool isPalindrome(std::string &s)
     }
 
     return true;
+*/
 }
 
 void checkUniqueLen( std::vector<std::string> & arr, std::string graphstr, int curindex, int index, int& count, std::vector< std::string>  & palindrome, int size)

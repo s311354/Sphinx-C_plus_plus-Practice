@@ -84,7 +84,7 @@ public:
     int minDeletions(std::string s);
 
     /**
-    * @brief OA 2019  Minimum Adjacent Swaps to Make Palindrome
+    * @brief OA 2019  Minimum Adjacent Swaps to Make Palindrome (HARD)
     *
     * Given a string, what is the minimum number of adjacent swaps required to convert a string into a palindrome. If not possible, return -1.
     *
@@ -121,7 +121,9 @@ public:
     * @brief 1239 Maximum length of a Concatenated String with Unique Characters. (Medium)
     *
     * You are given an array of strings arr. A string s is formed by the concatenation of a subsequence of arr that has unique characters.
+    *
     * Return the maximum possible length of s.
+    *
     * A subsequence is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.
     *
     * @param arr an array of string
@@ -144,6 +146,7 @@ public:
     *
     * A permutation of an array of integers is an arrangement of its members into a sequence or linear order.
     * For example, for arr = [1,2,3], the following are considered permutations of arr: [1,2,3], [1,3,2], [3,1,2], [2,3,1].
+    *
     * The next permutation of an array of integers is the next lexicographically greater permutation of its integer. More formally, if all the permutations of the array are sorted in one container according to their lexicographical order, then the next permutation of that array is the permutation that follows it in the sorted container. If such arrangement is not possible, the array must be rearranged as the lowest possible order (i.e., sorted in ascending order).
     *
     * @param nums a permutation of an array of integers
@@ -210,6 +213,7 @@ public:
 
     /**
     * @brief OA 2020 Number of Fractions that Sum to 1
+    *
     * You are given a list of lists fractions where each list contains [numerator, denominator] which represents the number number/denominator
     *
     * @param fraction a list of lists fractions
@@ -261,7 +265,7 @@ public:
     *
     * Given A = [1, 2, 3]. the function should return 4.
     *
-    * @param A
+    * @param A of N integer
     * @return smallest positive integer
     */
     int smallestInt( std::vector<int> &A);
