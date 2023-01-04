@@ -295,10 +295,24 @@ public:
     */
     int shortestDistance( std::vector< std::vector<int> > & grid );
 
-    // The Monty Hall Problem
+    /**
+    * @brief  The Monty Hall Problem
+    *
+    * The Monty Hall problem is a famous conundrum in probability which takes the form of a hypothetical game show. The contestant is presented which three doors; behind one is a car and behind each of the other two is a goat. The contestant picks a door and then the gameshow host opens a different door to reveal a goat. The host knows which door conceals the car. The contestant is then invited to switch to the other closed door or stick with their initial choice.
+    *
+    * @param guess
+    * @return probability
+    */
     float montyHall(int guess);
 
-    // Lowercase letters
+    /**
+    * @brief  Minimum number of letters
+    *
+    * You are given a string S consisting of N lowercase letters. In one move you can remove any substring from S, which starts and ends with the same letter and is at least two letters long. What is the minimum number of letters that may remain in S after any any number of such moves?
+    *
+    * @param S a string S consisting of N lowercase letters
+    * @return minimum number of letters
+    */
     int lowercaseLetters( std::string &S);
 
     // Balanced Stone Heaps
