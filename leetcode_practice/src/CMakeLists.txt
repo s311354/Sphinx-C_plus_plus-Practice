@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.25)
 project(SOLUTIONS_LIB VERSION 0.0.1 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_BUILD_TYPE RelWithDebInfo)
 
 # boost
@@ -14,6 +14,8 @@ ENDIF()
 
 set(SOURCE_FILES solutions.cc)
 find_path(SOLUTIONS_INCLUDE_DIRS solutions.h HINTS ${CMAKE_SOURCE_DIR}/include)
+
+message(${SOLUTIONS_INCLUDE_DIRS})
 
 add_library(solutions SHARED ${SOURCE_FILES})
 target_include_directories(solutions PUBLIC ${SOLUTIONS_INCLUDE_DIRS})

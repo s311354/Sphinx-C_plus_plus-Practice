@@ -3,7 +3,7 @@
 
 
 #define PROJECT_NAME    "SOLUTIONS_INTEGRATION_TEST_PROJECT"
-#define INPUT_FILES_DIR "/home/louis/GitHub/Sphinx-C_plus_plus-Practice/leetcode_practice/file"
+#define INPUT_FILES_DIR "/home/vboxuser/GitHub/cpp_practice/Sphinx-C_plus_plus-Practice/leetcode_practice/file"
 
 
 

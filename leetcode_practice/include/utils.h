@@ -30,12 +30,13 @@ struct TreeNode
 };
 
 struct LinkedListNode {
-    /* data */
-    int val;
-    LinkedListNode * next;
     LinkedListNode() : val(0), next(nullptr) {}
     LinkedListNode(int x) : val(x), next(nullptr) {}
-    LinkedListNode(int x, LinkedListNode *next) : val(x), next(next) {}
+    LinkedListNode(int x, std::unique_ptr<LinkedListNode> next) : val(x), next(std::move(next)) {}
+
+    /* data */
+    int val;
+    std::unique_ptr<LinkedListNode> next;
 };
 
 } /* leetcode */ 

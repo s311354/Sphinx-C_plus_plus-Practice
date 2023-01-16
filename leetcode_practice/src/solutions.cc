@@ -450,16 +450,14 @@ TreeNode* Solutions::getNewNode(int value)
     return node;
 }
 
-LinkedListNode* Solutions::getNewHead(int value)
+std::unique_ptr<LinkedListNode> Solutions::getNewHead(int value)
 {
-    LinkedListNode * node = new LinkedListNode;
-    node->val = value;
-    node->next = nullptr;
+    std::unique_ptr<LinkedListNode> node(new LinkedListNode(value, nullptr));
 
     return node;
 }
 
-LinkedListNode* Solutions::insertLinkedlistNode(LinkedListNode* node, int value)
+std::unique_ptr<LinkedListNode> Solutions::insertLinkedlistNode(std::unique_ptr<LinkedListNode> node, int value)
 {
     if (node == nullptr) {
 
@@ -467,7 +465,7 @@ LinkedListNode* Solutions::insertLinkedlistNode(LinkedListNode* node, int value)
         return node;
     }
 
-    node->next = insertLinkedlistNode(node->next, value);
+    node->next = insertLinkedlistNode(std::move(node->next), value);
 
     return node;
 }
@@ -495,21 +493,23 @@ std::vector<int> Solutions::PrintBFS(TreeNode * node)
     return bfsvector;
 }
 
-std::vector<int> Solutions::PrintLinkedlist(LinkedListNode* node)
+std::vector<int> Solutions::PrintLinkedlist(std::unique_ptr<LinkedListNode> node)
 {
-    LinkedListNode* current_node;
+    std::unique_ptr<LinkedListNode> current_node;
     std::vector<int> contenter;
-    std::queue<LinkedListNode*> node_queue;
 
-    node_queue.push(node);
+    std::queue<std::unique_ptr<LinkedListNode>> node_queue;
+
+    node_queue.push(std::move(node));
 
     while (! node_queue.empty()) {
-        current_node = node_queue.front();
+        current_node = std::move(node_queue.front());
         node_queue.pop();
 
         if ( current_node != nullptr ) {
             contenter.push_back(current_node->val);
-            if(current_node->next != nullptr) node_queue.push(current_node->next);
+
+            if(current_node->next != nullptr) node_queue.push(std::move(current_node->next));
         }
     }
 
@@ -2103,86 +2103,51 @@ int Solutions::findPeakElement( std::vector<int> & nums)
  *
  *  You may assume the two numbers do not contain any leading zero, except the number 0 itself.
  *
- * Runtime: 33 ms, faster than 81.03% of C++ online submissions for Add Two Numbers.
- *
- * Memory Usage: 71.4 MB, less than 81.12% of C++ online submissions for Add Two Numbers.
- *
- *
  * \return the sum as a linked list.
  */
-LinkedListNode* Solutions::addTwoNumbers(LinkedListNode* l1, LinkedListNode* l2)
+std::unique_ptr<LinkedListNode> Solutions::addTwoNumbers(std::unique_ptr<LinkedListNode> l1, std::unique_ptr<LinkedListNode> l2)
 {
-    /*
-    int c = 0;
-    LinkedListNode* node = nullptr;
+    int sum = 0;
 
-    while (c || l1 || l2) {
-        c += (l1 ? l1->val : 0) + (l2? l2->val : 0);
-        node = insertLinkedlistNode(node, c%10);
-        c /= 10;
-        if (l1) l1 = l1->next;
-        if (l2) l2 = l2->next;
+    std::unique_ptr<LinkedListNode> node (new LinkedListNode(-1));
+    std::unique_ptr<LinkedListNode> temp = std::move(node);
+
+    while (sum || l1 || l2) {
+        sum += (l1 ? l1->val : 0) + (l2 ? l2->val : 0);
+
+        temp = insertLinkedlistNode(std::move(temp), sum%10);
+
+        sum /= 10;
+
+        if (l1) l1 = std::move(l1->next);
+        if (l2) l2 = std::move(l2->next);
     }
+
+    node = std::move(temp->next);
 
     return node;
-    */
-
-    int c = 0;
-
-    LinkedListNode  node(0);
-    LinkedListNode * temp = &node;
-
-    while (c || l1 || l2 ) {
-        c += (l1 ? l1->val : 0) + (l2 ? l2->val : 0);
-        LinkedListNode * next_node = new LinkedListNode(c%10);
-        temp->next = next_node;
-        temp = temp->next;
-        c /= 10;
-        if (l1) l1 = l1->next;
-        if (l2) l2 = l2->next;
-    }
-
-    return node.next;
 }
-
 
 /*! \brief Remove Duplicates from Sorted List
  *
  *  Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
  *
- * Runtime: 15 ms, faster than 48.52% of C++ online submissions for Remove Duplicates from Sorted List.
- *
- * Memory Usage: 11.6 MB, less than 79.43% of C++ online submissions for Remove Duplicates from Sorted List.
- *
- *
  * \return Return parameter description
  */
-LinkedListNode* Solutions::deleteDuplicates(LinkedListNode * head)
+std::unique_ptr<LinkedListNode> Solutions::deleteDuplicates(std::unique_ptr<LinkedListNode> head)
 {
     if (!head) return head;
-    LinkedListNode * tmp = head;
+
+    std::unique_ptr<LinkedListNode> tmp(std::move(head));
 
     while (tmp && tmp->next) {
         if (tmp->val == tmp->next->val)
-            tmp->next = tmp->next->next;
-        else tmp = tmp->next;
+            tmp->next = std::move(tmp->next->next);
+        else tmp = std::move(tmp->next);
+        head = insertLinkedlistNode(std::move(head), tmp->val);
     }
 
     return head;
-    /*
-	if(!head) return head;
-	LinkedListNode* tmp = head;
-
-	while(tmp && tmp -> next)
-	{
-		if(tmp -> val == tmp -> next -> val)
-			tmp -> next = tmp -> next -> next;
-		else
-			tmp = tmp -> next; 
-	}
-
-	return head;
-    */
 }
 
 int Solutions::balancedSum( std::vector<int> arr)

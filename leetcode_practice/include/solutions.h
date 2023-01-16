@@ -63,8 +63,8 @@ public:
 
     std::vector<int> PrintBFS(TreeNode* node);
     TreeNode* insertBTNode(TreeNode* node, int value, int index);
-    std::vector<int> PrintLinkedlist(LinkedListNode* node);
-    LinkedListNode* insertLinkedlistNode(LinkedListNode* node, int value);
+    std::vector<int> PrintLinkedlist(std::unique_ptr<LinkedListNode> node);
+    std::unique_ptr<LinkedListNode> insertLinkedlistNode(std::unique_ptr<LinkedListNode> node, int value);
 
     /* ========== Microsoft OA ============ */
 
@@ -401,10 +401,10 @@ public:
     int findPeakElement( std::vector<int> & nums);
 
     // 2. Add Two Numbers
-    LinkedListNode* addTwoNumbers(LinkedListNode* l1, LinkedListNode* l2);
+    std::unique_ptr<LinkedListNode> addTwoNumbers(std::unique_ptr<LinkedListNode> l1, std::unique_ptr<LinkedListNode> l2);
 
     // 83. Remove Duplicate from Sorted List
-    LinkedListNode* deleteDuplicates(LinkedListNode * head);
+    std::unique_ptr<LinkedListNode> deleteDuplicates(std::unique_ptr<LinkedListNode> head);
 
     // Interview Question
     int balancedSum( std::vector<int> arr);
@@ -514,7 +514,7 @@ private:
 
     TreeNode* getMinNode(TreeNode* node);
 
-    LinkedListNode* getNewHead(int value);
+    std::unique_ptr<LinkedListNode> getNewHead(int value);
 };
 
 
