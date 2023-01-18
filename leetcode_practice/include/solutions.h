@@ -61,8 +61,8 @@ public:
     */
     virtual ~Solutions();
 
-    std::vector<int> PrintBFS(TreeNode* node);
-    TreeNode* insertBTNode(TreeNode* node, int value, int index);
+    std::vector<int> PrintBFS(std::unique_ptr<TreeNode> node);
+    std::unique_ptr<TreeNode> insertBTNode(std::unique_ptr<TreeNode> node, int value, int index);
     std::vector<int> PrintLinkedlist(std::unique_ptr<LinkedListNode> node);
     std::unique_ptr<LinkedListNode> insertLinkedlistNode(std::unique_ptr<LinkedListNode> node, int value);
 
@@ -177,7 +177,7 @@ public:
     * @param root binary tree root
     * @return the number of good nodes in the binary tree
     */
-    int goodNodes(TreeNode* root);
+    int goodNodes(std::unique_ptr<TreeNode> root);
 
     /**
     * @brief OA 2019 Min Moves to Make String Without 3 Identical Consecutive Letters
@@ -209,7 +209,7 @@ public:
     * @param key delete node with the given key
     * @return Return Parameter description
     */
-    TreeNode * deleteNode(TreeNode* root, int key);
+    std::unique_ptr<TreeNode> deleteNode(std::unique_ptr<TreeNode> root, int key);
 
     /**
     * @brief OA 2020 Number of Fractions that Sum to 1
@@ -354,7 +354,7 @@ public:
     std::vector< std::vector<int> >  fourSum( std::vector<int> & nums, int target);
 
     // 100 Same Tree
-    bool isSameTree(TreeNode* p, TreeNode* q);
+    bool isSameTree(std::unique_ptr<TreeNode> p, std::unique_ptr<TreeNode> q);
 
     // 648. Replace Words
     std::string replaceWords( std::vector< std::string > & dictionary, std::string  sentence);
@@ -419,10 +419,10 @@ public:
     std::vector< std::string> addOperators( std::string num, int target);
 
     // 110 Balanced Binary Tree
-    bool isBalanced(TreeNode* root);
+    bool isBalanced(std::unique_ptr<TreeNode> root);
 
     // 108 Convert Sorted Array to Binary Search Tree
-    TreeNode* sortedArrayToBST( std::vector<int> &nums);
+    std::unique_ptr<TreeNode> sortedArrayToBST( std::vector<int> &nums);
 
     // 130. Surrounded Regions
     std::vector< std::vector<char> > surroundedRegions( std::vector< std::vector<char> > & board );
@@ -500,9 +500,9 @@ private:
     bool isUniqieString( const std::string s);
     void checkLen( const std::vector<std::string> & arr, std::string str, int index, int& count);
     void bfs_distance(int column, int row, std::vector< std::vector<int> > &grid, std::vector< std::vector<int> > &distance, std::vector< std::vector<int> >  &visit);
-    void countGoodNode(TreeNode* node, int value, int& count);
+    void countGoodNode(std::unique_ptr<TreeNode> node, int value, int& count);
 
-    void PrintInorder(TreeNode * node);
+    void PrintInorder(std::unique_ptr<TreeNode> node);
 
     int getRandom(int low, int high, int badNum);
     int gcd (int a, int b);
@@ -510,9 +510,9 @@ private:
 
     std::vector<int> parseInts(const std::string & str);
 
-    TreeNode* getNewNode(int value);
+    std::unique_ptr<TreeNode> getNewNode(int value);
 
-    TreeNode* getMinNode(TreeNode* node);
+    std::unique_ptr<TreeNode> getMinNode(std::unique_ptr<TreeNode> node);
 
     std::unique_ptr<LinkedListNode> getNewHead(int value);
 };

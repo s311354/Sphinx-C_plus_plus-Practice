@@ -22,7 +22,7 @@ configure_file("${SOLUTIONS_INCLUDE_DIRS}/config.h.in" "${SOLUTIONS_INCLUDE_DIRS
 
 add_executable(leetcode_integration_test leetcode_integration_test.cc)
 target_include_directories(leetcode_integration_test PUBLIC ${SOLUTIONS_INCLUDE_DIRS} ${GTEST_INCLUDE_DIRS})
-target_link_libraries(leetcode_integration_test solutions gtest_main pthread)
+target_link_libraries(leetcode_integration_test solutions gtest_main)
 
 include(GoogleTest)
 gtest_discover_tests(leetcode_integration_test)
