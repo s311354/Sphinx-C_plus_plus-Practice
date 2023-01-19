@@ -66,16 +66,15 @@ bool Solutions::isValidString(std::string s)
 int Solutions::minDeletions(std::string s)
 {
     std::vector<int> v(26, 0);
+    std::map<int, int> mp;
+    int ans = 0;
 
     for (auto it : s)
         v[it - 'a'] ++;
 
     // Count the frequencies of elements
     // key: the ASCII code of character, value: the frequencies of element
-    std::map<int, int> mp;
     for (int i = 0; i < 26; ++i) mp[v[i]] ++;
-
-    int ans = 0;
 
     // Traverse map from backwards (find the minimum number of character need to delete)
     for (auto it = mp.rbegin();  it!=mp.rend() ; ++it) {
@@ -98,7 +97,9 @@ int Solutions::minDeletions(std::string s)
 
 int Solutions::minSwaps(std::string s)
 {
-    int start = 0, end = s.length() - 1, ans = 0;
+    int start = 0, end = s.length() - 1;
+    int left_index, right_index;
+    int ans = 0;
 
     if (isValidString(s)) {
         while (start < s.length()/2) {
@@ -109,10 +110,6 @@ int Solutions::minSwaps(std::string s)
                 continue;
             }
 
-            //  Core begins
-            //  track of the left and right points and compare
-            int left_index, right_index;
-
             // Indicate the index which the substring is not palindrome from right and left side
             for (left_index = start; left_index <= end - start && s[left_index] != s[end - start]; ++left_index);
             for (right_index = end - start - 1; right_index >= start && s[right_index] != s[start]; --right_index);
@@ -121,7 +118,7 @@ int Solutions::minSwaps(std::string s)
             if (left_index - start < end - start - right_index) {
                 for (int p = left_index; p > start; --p) {
                     std::swap(s[p], s[p-1]);
-                } 
+                }
                 ans += left_index - start;
             } else {
                 for (int p = right_index; p < end - start; ++p) {
@@ -131,7 +128,6 @@ int Solutions::minSwaps(std::string s)
             }
 
             ++start;
-
         }
 
         if (!isPalindrome(s)) return -1;
@@ -145,11 +141,9 @@ int Solutions::minSwaps(std::string s)
 
 std::vector<int> Solutions::twoSum(std::vector<int>& num, int target)
 {
-    std::vector<int> indices_two_sum;
-    indices_two_sum.clear();
-
     // O(n^2)
     /*
+    std::vector<int> indices_two_sum;
     for (int i = 0; i < num.capacity(); ++i) {
         for (int j = i + 1; j < num.capacity(); ++j) {
             if( (num[i] + num[j]) == target) {
@@ -160,9 +154,9 @@ std::vector<int> Solutions::twoSum(std::vector<int>& num, int target)
     }
     */
 
-    // time: O(N) space: O(2N)
+    std::vector<int> indices_two_sum;
+    // key: target - number ; value: index of the number
     std::map<int, int> hashmap;
-    hashmap.clear();
 
     for (int i = 0; i < num.capacity() ; i++)
     {
@@ -289,9 +283,8 @@ int Solutions::maxLength( std::vector< std::string> & arr)
 
     if (arr.size() < 0) return 0;
 
-//     if (arr.size() == 1) return arr[0].size();
-
     checkLen( arr, "", 0, len);
+
     return len;
 }
 
@@ -360,7 +353,7 @@ void Solutions::nextPermutation( std::vector<int>& nums)
     }
 
     // reverse the numbers following to get the next smallest lexicographic permutation.
-    std::reverse(nums.begin()+i+1, nums.end());
+    std::reverse(nums.begin() + i + 1, nums.end());
 }
 
 int Solutions::arraySign( std::vector<int> & nums)
@@ -369,6 +362,7 @@ int Solutions::arraySign( std::vector<int> & nums)
 
     for (auto elem : nums) {
         if (elem < 0) sign = sign*-1;
+
         if (elem == 0) {
             sign = 0;
             return sign;
@@ -378,45 +372,18 @@ int Solutions::arraySign( std::vector<int> & nums)
     return sign;
 }
 
-int Solutions::goodNodes(TreeNode * root)
+int Solutions::goodNodes(std::unique_ptr<TreeNode> root)
 {
     int count = 0;
 
-    countGoodNode(root, root->val, count);
+    countGoodNode(std::move(root), root->val, count);
 
     return count;
 }
 
-void Solutions::countGoodNode(TreeNode * node, int value, int & count)
+void Solutions::countGoodNode(std::unique_ptr<TreeNode> node, int value, int & count)
 {
 
-    /* Proposal 1. Partial Pass
-    std::stack< TreeNode *> stack_node; // LIFO
-    stack_node.push(node);
-
-    TreeNode * current = nullptr;
-
-
-    while (!stack_node.empty()) {
-
-        current = stack_node.top();
-        stack_node.pop();
-
-        if (current != nullptr) {
-
-            if ( current->val >= value) {
-                count ++;
-                value = current->val;
-            }
-
-            if (current->left != nullptr) stack_node.push(current->left);
-            if (current->right != nullptr) stack_node.push(current->right);
-        }
-
-    }
-    */
-
-    /* Proposal 2 */ 
     if (node == nullptr) return;
 
     // the condition of good node
@@ -425,12 +392,12 @@ void Solutions::countGoodNode(TreeNode * node, int value, int & count)
         value = node->val;
     }
 
-    countGoodNode(node->left, value, count);
-    countGoodNode(node->right, value, count);
+    countGoodNode(std::move(node->left), value, count);
+    countGoodNode(std::move(node->right), value, count);
 
 }
 
-TreeNode* Solutions::insertBTNode(TreeNode* node, int value, int index)
+std::unique_ptr<TreeNode> Solutions::insertBTNode(std::unique_ptr<TreeNode> node, int value, int index)
 {
     if (node == nullptr) {
         if (value != -1) node = getNewNode(value);
@@ -438,34 +405,29 @@ TreeNode* Solutions::insertBTNode(TreeNode* node, int value, int index)
     }
 
     if ( index % 2) {
-        node->left = insertBTNode(node->left, value, index);
+        node->left = insertBTNode(std::move(node->left), value, index);
     } else {
-        node->right = insertBTNode(node->right, value, index);
+        node->right = insertBTNode(std::move(node->right), value, index);
     }
 
     return node;
 }
 
-TreeNode* Solutions::getNewNode(int value)
+std::unique_ptr<TreeNode> Solutions::getNewNode(int value)
 {
-    TreeNode * node = new TreeNode;
-    node->val = value;
-    node->left = nullptr;
-    node->right = nullptr;
+    std::unique_ptr<TreeNode> node (new TreeNode(value, nullptr, nullptr));
 
     return node;
 }
 
-LinkedListNode* Solutions::getNewHead(int value)
+std::unique_ptr<LinkedListNode> Solutions::getNewHead(int value)
 {
-    LinkedListNode * node = new LinkedListNode;
-    node->val = value;
-    node->next = nullptr;
+    std::unique_ptr<LinkedListNode> node(new LinkedListNode(value, nullptr));
 
     return node;
 }
 
-LinkedListNode* Solutions::insertLinkedlistNode(LinkedListNode* node, int value)
+std::unique_ptr<LinkedListNode> Solutions::insertLinkedlistNode(std::unique_ptr<LinkedListNode> node, int value)
 {
     if (node == nullptr) {
 
@@ -473,49 +435,51 @@ LinkedListNode* Solutions::insertLinkedlistNode(LinkedListNode* node, int value)
         return node;
     }
 
-    node->next = insertLinkedlistNode(node->next, value);
+    node->next = insertLinkedlistNode(std::move(node->next), value);
 
     return node;
 }
 
-std::vector<int> Solutions::PrintBFS(TreeNode * node)
+std::vector<int> Solutions::PrintBFS(std::unique_ptr<TreeNode> node)
 {
-    TreeNode* current;
+    std::unique_ptr<TreeNode> current;
     std::vector<int> bfsvector;
 
-    std::queue<TreeNode*> node_queue;
-    node_queue.push(node);
+    std::queue<std::unique_ptr<TreeNode>> node_queue;
+    node_queue.push(std::move(node));
 
     while (! node_queue.empty()) {
-        current = node_queue.front();
+        current = std::move(node_queue.front());
         node_queue.pop();
 
         if ( current != nullptr ) {
 //             std::cout << current->val << std::endl;
             bfsvector.push_back(current->val);
-            if(current->left != nullptr) node_queue.push(current->left);
-            if(current->right != nullptr) node_queue.push(current->right);
+            if(current->left != nullptr) node_queue.push(std::move(current->left));
+            if(current->right != nullptr) node_queue.push(std::move(current->right));
         }
     }
 
     return bfsvector;
 }
 
-std::vector<int> Solutions::PrintLinkedlist(LinkedListNode* node)
+std::vector<int> Solutions::PrintLinkedlist(std::unique_ptr<LinkedListNode> node)
 {
-    LinkedListNode* current_node;
+    std::unique_ptr<LinkedListNode> current_node;
     std::vector<int> contenter;
-    std::queue<LinkedListNode*> node_queue;
 
-    node_queue.push(node);
+    std::queue<std::unique_ptr<LinkedListNode>> node_queue;
+
+    node_queue.push(std::move(node));
 
     while (! node_queue.empty()) {
-        current_node = node_queue.front();
+        current_node = std::move(node_queue.front());
         node_queue.pop();
 
         if ( current_node != nullptr ) {
             contenter.push_back(current_node->val);
-            if(current_node->next != nullptr) node_queue.push(current_node->next);
+
+            if(current_node->next != nullptr) node_queue.push(std::move(current_node->next));
         }
     }
 
@@ -527,6 +491,7 @@ std::string Solutions::filterString(std::string &s)
     // default string with two characters
     std::string letter(s.begin(), s.begin()+2);
 
+    // without 3 identical consecutive letters
     for (int i = 2; i < s.length(); ++i) {
         if (s[i] != s[i-1] or s[i] != s[i-2])
             letter.push_back(s[i]);
@@ -538,8 +503,8 @@ std::string Solutions::filterString(std::string &s)
 int Solutions::maxPossible(int num, int digit)
 {
     std::vector<int> nums;
-
     bool isPos = true; 
+    int ans = 0;
 
     if (num < 0) {
         isPos = false;
@@ -548,6 +513,7 @@ int Solutions::maxPossible(int num, int digit)
 
     if (num == 0) nums.push_back(0);
 
+    // Convert to decimal representation
     while (num > 0) {
         nums.push_back(num%10);
         num = num/10;
@@ -556,7 +522,6 @@ int Solutions::maxPossible(int num, int digit)
     if (isPos) {
         for (auto it = nums.rbegin() ;  it != nums.rend(); it++) {
             if (*it < digit) {
-                //std::cout << *it << std::endl;
                 nums.insert(it.base(), digit);
                 break;
             }
@@ -572,7 +537,6 @@ int Solutions::maxPossible(int num, int digit)
     }
 
     // Decimal representation
-    int ans = 0;
     for (auto it = nums.rbegin();  it!=nums.rend() ; it++) {
         ans = *it + ans*10;
     }
@@ -580,7 +544,7 @@ int Solutions::maxPossible(int num, int digit)
     return (isPos ? ans : -1*ans);
 }
 
-TreeNode* Solutions::deleteNode(TreeNode* node, int key)
+std::unique_ptr<TreeNode> Solutions::deleteNode(std::unique_ptr<TreeNode> node, int key)
 {
     if (node == nullptr ) return nullptr;
 
@@ -588,32 +552,33 @@ TreeNode* Solutions::deleteNode(TreeNode* node, int key)
         if( node->left == nullptr and node->right == nullptr) {
             return nullptr;
         } else if (node->left == nullptr || node->right == nullptr) {
-            node = node->right;
+            node = std::move(node->right);
         } else {
             // remove Min node from left side
-            TreeNode* new_node = node->left;
-            while(new_node->right != nullptr) new_node = new_node->right;
+            std::unique_ptr<TreeNode> new_node = std::move(node->left);
+
+            while(new_node->right != nullptr) new_node = std::move(new_node->right);
 
             node->val = new_node->val;
-            node->left = deleteNode(node->left, node->val); // reconstruct tree
+            node->left = deleteNode(std::move(node->left), node->val); // reconstruct tree
         }
     }
 
     if ( key < node->val) {
-        node->left = deleteNode(node->left, key);
+        node->left = deleteNode(std::move(node->left), key);
     } else if (key > node->val) {
-        node->right = deleteNode(node->right, key);
+        node->right = deleteNode(std::move(node->right), key);
     }
 
     return node;
 }
 
-TreeNode* Solutions::getMinNode (TreeNode* node) {
+std::unique_ptr<TreeNode> Solutions::getMinNode (std::unique_ptr<TreeNode> node) {
     if (node == nullptr) return nullptr;
 
     if (node->left == nullptr) return node;
 
-    return getMinNode(node->left);
+    return getMinNode(std::move(node->left));
 }
 
 int Solutions::sumFraction( std::vector< std::vector<int> > & fraction)
@@ -624,7 +589,7 @@ int Solutions::sumFraction( std::vector< std::vector<int> > & fraction)
 
     for (auto& elem : fraction) {
         int g = gcd(elem[0], elem[1]);
-        dict[ {elem[0]/g, elem[1]/g} ]++;
+        dict[ { elem[0]/g, elem[1]/g } ]++;
     }
 
     for (auto it = dict.begin(); it != dict.end() ; it++) {
@@ -637,6 +602,7 @@ int Solutions::sumFraction( std::vector< std::vector<int> > & fraction)
             ans += count * (count - 1) /2;
         } else {
             auto it_match = dict.find({key.second - key.first, key.second});
+
             if ( it_match!= dict.end()) ans += count * it_match->second;
         }
     }
@@ -661,6 +627,7 @@ int Solutions::minCost( std::string colors, std::vector<int> & neededTime)
     for (int i = 1; i < colors.size(); i++)
     {
         if (colors[index] == colors[i]) {
+
             // minimum time
             if (neededTime[index] < neededTime[i]) {
                 ans += neededTime[index];
@@ -668,6 +635,7 @@ int Solutions::minCost( std::string colors, std::vector<int> & neededTime)
             } else {
                 ans += neededTime[i];
             }
+
         } else {
             index = i;
         }
@@ -694,22 +662,27 @@ std::string Solutions::longestPrefix(std::vector< std::string > & strs)
     */
 
     // O(2n)
-    std::string ans = ""; int min = 0;
+    std::string ans = "";
+    int min = 0;
 
     if (strs.empty()) return "";
 
     // find the index of minimum string
     for (int i = 0; i < strs.size(); i++) {
-        if (strs[i].size() < strs[min].size()) min = i;
+        if (strs[i].size() < strs[min].size())
+            min = i;
     }
 
     // common prefix
     for (int i = 0; i < strs[min].size() ; ++i) {
         for (int k = 0;  k < strs.size() ; ++k) {
-            if (strs[k][i] != strs[min][i]) return ans;
+            if (strs[k][i] != strs[min][i])
+                return ans;
         }
+
         ans += strs[0][i];
     }
+
     return ans;
 }
 
@@ -747,24 +720,25 @@ int Solutions::getLargestK( std::vector<int> & nums){
 
 int Solutions::smallestInt( std::vector<int> &A )
 {
-
-    /*
-    std::vector<int> v(A.size(), 0);
+    int i;
+    int max = 0;
+    std::map<int, int> v;
 
     for (auto elem : A) {
+        max = max > elem ? max : elem;
         if (elem > 0) v[elem] ++;
     }
 
-    int i;
+    if (v.empty()) return 1;
 
-    for (i = 1 ; i < v.size(); i ++) {
+    for (i = 1 ; i < max ; ++i) {
         if (v[i] == 0) return i;
     }
 
     return i + 1;
 
-    */
     // C++17
+    /*
     size_t smallest = 0;
     auto maxit = std::max_element(A.begin(), A.end());
 
@@ -776,6 +750,7 @@ int Solutions::smallestInt( std::vector<int> &A )
     }
 
     return i;
+    */
 }
 
 /*! \brief  Minimum number of changes
@@ -800,18 +775,20 @@ int Solutions::minChange( std::string &S, int k)
     return mincharge;
 }
 
-int evil (uint32_t N)
+int consecutive_zero (uint32_t N)
 {
-    return N & (N + 1) ? evil(N | (N >> 1)) + 1 : 0;
+    // count how many time to fill with zero
+    return N & (N + 1) ? consecutive_zero(N | (N >> 1)) + 1 : 0;
 }
 
 int Solutions::lengthBin(uint32_t N)
 {
     if (N == 0) return 0;
 
+    // truncating consecutive zeros at the tails
     while(!(N & 1)) N >>= 1;
 
-    return evil(N);
+    return consecutive_zero(N);
 
     /*
     std::bitset<16> binary(N) ;
@@ -873,13 +850,6 @@ int Solutions::getRandom(int low, int high, int badNum)
     return random;
 }
 
-
-/*! \brief Minimum number of letters
- *
- *  You are given a string S consisting of N lowercase letters. In one move you can remove any substring from S, which starts and ends with the same letter and is at least two letters long. What is the minimum number of letters that may remain in S after any number of such moves?
- *
- * \return minimum number of letters
- */
 int Solutions::lowercaseLetters( std::string &S)
 {
     int ans = 0;
@@ -899,11 +869,9 @@ int Solutions::lowercaseLetters( std::string &S)
         }
     }
 
-
     if (startnumber + 1 == S.size()) S.erase(0, startnumber );
 
     else S.erase(0, startnumber +1 );
-
 
     int endnumber = S.size();
 
@@ -922,7 +890,6 @@ int Solutions::lowercaseLetters( std::string &S)
 
     return S.size();
 }
-
 
 /*! \brief Balanced Stone Heaps
  *
@@ -1519,7 +1486,7 @@ std::vector< std::vector<int> > Solutions::fourSum( std::vector<int>& nums, int 
  *
  * \return if they are structurally identical
  */
-bool Solutions::isSameTree(TreeNode* p, TreeNode * q)
+bool Solutions::isSameTree(std::unique_ptr<TreeNode> p, std::unique_ptr<TreeNode> q)
 {
     if (!p and !q) return true;
 
@@ -1527,8 +1494,7 @@ bool Solutions::isSameTree(TreeNode* p, TreeNode * q)
 
     if (p->val != q->val) return false;
 
-
-    return isSameTree(p->left, q->left) and isSameTree(p->right, q->right);
+    return isSameTree(std::move(p->left), std::move(q->left)) and isSameTree(std::move(p->right), std::move(q->right));
 }
 
 
@@ -2106,86 +2072,51 @@ int Solutions::findPeakElement( std::vector<int> & nums)
  *
  *  You may assume the two numbers do not contain any leading zero, except the number 0 itself.
  *
- * Runtime: 33 ms, faster than 81.03% of C++ online submissions for Add Two Numbers.
- *
- * Memory Usage: 71.4 MB, less than 81.12% of C++ online submissions for Add Two Numbers.
- *
- *
  * \return the sum as a linked list.
  */
-LinkedListNode* Solutions::addTwoNumbers(LinkedListNode* l1, LinkedListNode* l2)
+std::unique_ptr<LinkedListNode> Solutions::addTwoNumbers(std::unique_ptr<LinkedListNode> l1, std::unique_ptr<LinkedListNode> l2)
 {
-    /*
-    int c = 0;
-    LinkedListNode* node = nullptr;
+    int sum = 0;
 
-    while (c || l1 || l2) {
-        c += (l1 ? l1->val : 0) + (l2? l2->val : 0);
-        node = insertLinkedlistNode(node, c%10);
-        c /= 10;
-        if (l1) l1 = l1->next;
-        if (l2) l2 = l2->next;
+    std::unique_ptr<LinkedListNode> node (new LinkedListNode(-1));
+    std::unique_ptr<LinkedListNode> temp = std::move(node);
+
+    while (sum || l1 || l2) {
+        sum += (l1 ? l1->val : 0) + (l2 ? l2->val : 0);
+
+        temp = insertLinkedlistNode(std::move(temp), sum%10);
+
+        sum /= 10;
+
+        if (l1) l1 = std::move(l1->next);
+        if (l2) l2 = std::move(l2->next);
     }
+
+    node = std::move(temp->next);
 
     return node;
-    */
-
-    int c = 0;
-
-    LinkedListNode  node(0);
-    LinkedListNode * temp = &node;
-
-    while (c || l1 || l2 ) {
-        c += (l1 ? l1->val : 0) + (l2 ? l2->val : 0);
-        LinkedListNode * next_node = new LinkedListNode(c%10);
-        temp->next = next_node;
-        temp = temp->next;
-        c /= 10;
-        if (l1) l1 = l1->next;
-        if (l2) l2 = l2->next;
-    }
-
-    return node.next;
 }
-
 
 /*! \brief Remove Duplicates from Sorted List
  *
  *  Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
  *
- * Runtime: 15 ms, faster than 48.52% of C++ online submissions for Remove Duplicates from Sorted List.
- *
- * Memory Usage: 11.6 MB, less than 79.43% of C++ online submissions for Remove Duplicates from Sorted List.
- *
- *
  * \return Return parameter description
  */
-LinkedListNode* Solutions::deleteDuplicates(LinkedListNode * head)
+std::unique_ptr<LinkedListNode> Solutions::deleteDuplicates(std::unique_ptr<LinkedListNode> head)
 {
     if (!head) return head;
-    LinkedListNode * tmp = head;
+
+    std::unique_ptr<LinkedListNode> tmp(std::move(head));
 
     while (tmp && tmp->next) {
         if (tmp->val == tmp->next->val)
-            tmp->next = tmp->next->next;
-        else tmp = tmp->next;
+            tmp->next = std::move(tmp->next->next);
+        else tmp = std::move(tmp->next);
+        head = insertLinkedlistNode(std::move(head), tmp->val);
     }
 
     return head;
-    /*
-	if(!head) return head;
-	LinkedListNode* tmp = head;
-
-	while(tmp && tmp -> next)
-	{
-		if(tmp -> val == tmp -> next -> val)
-			tmp -> next = tmp -> next -> next;
-		else
-			tmp = tmp -> next; 
-	}
-
-	return head;
-    */
 }
 
 int Solutions::balancedSum( std::vector<int> arr)
@@ -2364,12 +2295,12 @@ std::vector< std::string> Solutions::addOperators( std::string num, int target)
  *
  * \return determin if it is height-balanced.
  */
-int getHeight(TreeNode * root)
+int getHeight(std::unique_ptr<TreeNode> root)
 {
     if (root == nullptr) return 0;
 
-    int depthleft = getHeight(root->left);
-    int depthright = getHeight(root->right);
+    int depthleft = getHeight(std::move(root->left));
+    int depthright = getHeight(std::move(root->right));
 
     if (depthright == -1 || depthright == -1 || std::abs(depthleft - depthright) > 1 ) return -1;
 
@@ -2393,11 +2324,11 @@ int getHeight(TreeNode * root)
  *
  * \return whether or not the tree is Balanced Binary Tree
  */
-bool Solutions::isBalanced(TreeNode * root)
+bool Solutions::isBalanced(std::unique_ptr<TreeNode> root)
 {
     if (root == nullptr) return true;
 
-    return getHeight(root) != -1;
+    return getHeight(std::move(root)) != -1;
 }
 
 /*! \brief Convert Sorted Array to Binary Search Tree
@@ -2410,18 +2341,19 @@ bool Solutions::isBalanced(TreeNode * root)
  *
  * \return Return parameter description
  */
-TreeNode * helper( std::vector<int> & nums, int low, int high)
+std::unique_ptr<TreeNode> helper( std::vector<int> & nums, int low, int high)
 {
     if(low <= high) {
         int mid = low + (high - low)/2;
-        TreeNode* root = new TreeNode(nums[mid]);
+        std::unique_ptr<TreeNode> root (new TreeNode(nums[mid]));
         root->left = helper(nums, low, mid - 1);
         root->right = helper(nums, mid + 1, high);
         return root;
     }
     return NULL;
 }
-TreeNode* Solutions::sortedArrayToBST( std::vector<int> & nums)
+
+std::unique_ptr<TreeNode> Solutions::sortedArrayToBST( std::vector<int> & nums)
 {
     return helper(nums, 0, nums.size() - 1);
 }
@@ -2614,6 +2546,19 @@ bool isPalindrome(std::string &s)
 {
     int start = 0, end = s.length() - 1;
 
+    while (start < s.length() / 2) {
+            if (s[start] == s[end - start]) {
+                start ++;
+            } else {
+                return false;
+            }
+    }
+
+    return true;
+
+/*
+    int start = 0, end = s.length() - 1;
+
     while (start <= end) {
         if (!isalnum(s[start])) {
             start ++;
@@ -2627,6 +2572,7 @@ bool isPalindrome(std::string &s)
     }
 
     return true;
+*/
 }
 
 void checkUniqueLen( std::vector<std::string> & arr, std::string graphstr, int curindex, int index, int& count, std::vector< std::string>  & palindrome, int size)

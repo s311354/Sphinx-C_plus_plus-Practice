@@ -61,10 +61,10 @@ public:
     */
     virtual ~Solutions();
 
-    std::vector<int> PrintBFS(TreeNode* node);
-    TreeNode* insertBTNode(TreeNode* node, int value, int index);
-    std::vector<int> PrintLinkedlist(LinkedListNode* node);
-    LinkedListNode* insertLinkedlistNode(LinkedListNode* node, int value);
+    std::vector<int> PrintBFS(std::unique_ptr<TreeNode> node);
+    std::unique_ptr<TreeNode> insertBTNode(std::unique_ptr<TreeNode> node, int value, int index);
+    std::vector<int> PrintLinkedlist(std::unique_ptr<LinkedListNode> node);
+    std::unique_ptr<LinkedListNode> insertLinkedlistNode(std::unique_ptr<LinkedListNode> node, int value);
 
     /* ========== Microsoft OA ============ */
 
@@ -84,7 +84,7 @@ public:
     int minDeletions(std::string s);
 
     /**
-    * @brief OA 2019  Minimum Adjacent Swaps to Make Palindrome
+    * @brief OA 2019  Minimum Adjacent Swaps to Make Palindrome (HARD)
     *
     * Given a string, what is the minimum number of adjacent swaps required to convert a string into a palindrome. If not possible, return -1.
     *
@@ -121,7 +121,9 @@ public:
     * @brief 1239 Maximum length of a Concatenated String with Unique Characters. (Medium)
     *
     * You are given an array of strings arr. A string s is formed by the concatenation of a subsequence of arr that has unique characters.
+    *
     * Return the maximum possible length of s.
+    *
     * A subsequence is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.
     *
     * @param arr an array of string
@@ -144,6 +146,7 @@ public:
     *
     * A permutation of an array of integers is an arrangement of its members into a sequence or linear order.
     * For example, for arr = [1,2,3], the following are considered permutations of arr: [1,2,3], [1,3,2], [3,1,2], [2,3,1].
+    *
     * The next permutation of an array of integers is the next lexicographically greater permutation of its integer. More formally, if all the permutations of the array are sorted in one container according to their lexicographical order, then the next permutation of that array is the permutation that follows it in the sorted container. If such arrangement is not possible, the array must be rearranged as the lowest possible order (i.e., sorted in ascending order).
     *
     * @param nums a permutation of an array of integers
@@ -178,7 +181,7 @@ public:
     *
     * @return the number of good nodes in the binary tree
     */
-    int goodNodes(TreeNode* root);
+    int goodNodes(std::unique_ptr<TreeNode> root);
 
     /**
     * @brief OA 2019 Min Moves to Make String Without 3 Identical Consecutive Letters
@@ -216,10 +219,11 @@ public:
     * @param  key the key in the BST
     * @return the updated root node reference of the BST
     */
-    TreeNode * deleteNode(TreeNode* root, int key);
+    std::unique_ptr<TreeNode> deleteNode(std::unique_ptr<TreeNode> root, int key);
 
     /**
     * @brief OA 2020 Number of Fractions that Sum to 1
+    *
     * You are given a list of lists fractions where each list contains [numerator, denominator] which represents the number number/denominator
     *
     * @param fraction a list of lists fractions
@@ -272,7 +276,7 @@ public:
     *
     * Given A = [1, 2, 3]. the function should return 4.
     *
-    * @param A
+    * @param A of N integer
     * @return smallest positive integer
     */
     int smallestInt( std::vector<int> &A);
@@ -302,10 +306,24 @@ public:
     */
     int shortestDistance( std::vector< std::vector<int> > & grid );
 
-    // The Monty Hall Problem
+    /**
+    * @brief  The Monty Hall Problem
+    *
+    * The Monty Hall problem is a famous conundrum in probability which takes the form of a hypothetical game show. The contestant is presented which three doors; behind one is a car and behind each of the other two is a goat. The contestant picks a door and then the gameshow host opens a different door to reveal a goat. The host knows which door conceals the car. The contestant is then invited to switch to the other closed door or stick with their initial choice.
+    *
+    * @param guess
+    * @return probability
+    */
     float montyHall(int guess);
 
-    // Lowercase letters
+    /**
+    * @brief  Minimum number of letters
+    *
+    * You are given a string S consisting of N lowercase letters. In one move you can remove any substring from S, which starts and ends with the same letter and is at least two letters long. What is the minimum number of letters that may remain in S after any any number of such moves?
+    *
+    * @param S a string S consisting of N lowercase letters
+    * @return minimum number of letters
+    */
     int lowercaseLetters( std::string &S);
 
     // Balanced Stone Heaps
@@ -391,7 +409,7 @@ public:
     std::vector< std::vector<int> >  fourSum( std::vector<int> & nums, int target);
 
     // 100 Same Tree
-    bool isSameTree(TreeNode* p, TreeNode* q);
+    bool isSameTree(std::unique_ptr<TreeNode> p, std::unique_ptr<TreeNode> q);
 
     // 648. Replace Words
     std::string replaceWords( std::vector< std::string > & dictionary, std::string  sentence);
@@ -438,10 +456,10 @@ public:
     int findPeakElement( std::vector<int> & nums);
 
     // 2. Add Two Numbers
-    LinkedListNode* addTwoNumbers(LinkedListNode* l1, LinkedListNode* l2);
+    std::unique_ptr<LinkedListNode> addTwoNumbers(std::unique_ptr<LinkedListNode> l1, std::unique_ptr<LinkedListNode> l2);
 
     // 83. Remove Duplicate from Sorted List
-    LinkedListNode* deleteDuplicates(LinkedListNode * head);
+    std::unique_ptr<LinkedListNode> deleteDuplicates(std::unique_ptr<LinkedListNode> head);
 
     // Interview Question
     int balancedSum( std::vector<int> arr);
@@ -456,10 +474,10 @@ public:
     std::vector< std::string> addOperators( std::string num, int target);
 
     // 110 Balanced Binary Tree
-    bool isBalanced(TreeNode* root);
+    bool isBalanced(std::unique_ptr<TreeNode> root);
 
     // 108 Convert Sorted Array to Binary Search Tree
-    TreeNode* sortedArrayToBST( std::vector<int> &nums);
+    std::unique_ptr<TreeNode> sortedArrayToBST( std::vector<int> &nums);
 
     // 130. Surrounded Regions
     std::vector< std::vector<char> > surroundedRegions( std::vector< std::vector<char> > & board );
@@ -537,9 +555,9 @@ private:
     bool isUniqieString( const std::string s);
     void checkLen( const std::vector<std::string> & arr, std::string str, int index, int& count);
     void bfs_distance(int column, int row, std::vector< std::vector<int> > &grid, std::vector< std::vector<int> > &distance, std::vector< std::vector<int> >  &visit);
-    void countGoodNode(TreeNode* node, int value, int& count);
+    void countGoodNode(std::unique_ptr<TreeNode> node, int value, int& count);
 
-    void PrintInorder(TreeNode * node);
+    void PrintInorder(std::unique_ptr<TreeNode> node);
 
     int getRandom(int low, int high, int badNum);
     int gcd (int a, int b);
@@ -547,11 +565,11 @@ private:
 
     std::vector<int> parseInts(const std::string & str);
 
-    TreeNode* getNewNode(int value);
+    std::unique_ptr<TreeNode> getNewNode(int value);
 
-    TreeNode* getMinNode(TreeNode* node);
+    std::unique_ptr<TreeNode> getMinNode(std::unique_ptr<TreeNode> node);
 
-    LinkedListNode* getNewHead(int value);
+    std::unique_ptr<LinkedListNode> getNewHead(int value);
 };
 
 

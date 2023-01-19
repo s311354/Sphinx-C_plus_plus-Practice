@@ -1,4 +1,4 @@
-[![Documentation Status](https://readthedocs.org/projects/sphinx-c-plus-plus-practice/badge/?version=latest)](https://sphinx-c-plus-plus-practice.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/sphinx-c-plus-plus-practice/badge/?version=latest)](https://sphinx-c-plus-plus-practice.readthedocs.io/en/latest/?badge=latest) ![Build](https://github.com/s311354/Sphinx-C_plus_plus-Practice/actions/workflows/cmake.yml/badge.svg)
 
 ## Sphinx C_plus_plus Practice
 
