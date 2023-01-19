@@ -33,13 +33,9 @@ release = '0.0.1'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.doctest',
-    'sphinx_mdinclude',
-    'sphinx.ext.mathjax',
     "sphinx.ext.graphviz",
     'sphinx.ext.viewcode',
-    'sphinx.ext.imgmath',
-    'sphinx.ext.todo',
-    'breathe',
+    'sphinx.ext.todo'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

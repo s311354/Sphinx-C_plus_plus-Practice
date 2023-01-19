@@ -1,3 +1,5 @@
 build
 CMakefiles
 cmake_clean.bash
+_deps
+Testing

@@ -1,4 +1,1 @@
-sphinx==5.0.2
-breathe==4.34.0
-setuptools==49.2.0
-sphinx_mdinclude==0.5.1
+sphinx==1.3.6

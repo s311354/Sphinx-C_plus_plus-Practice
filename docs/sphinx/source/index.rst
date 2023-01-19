@@ -10,10 +10,8 @@ Welcome to Leetcode Sample Project's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   readme_link
    note
    guide
-   api
 
 
 Indices and tables

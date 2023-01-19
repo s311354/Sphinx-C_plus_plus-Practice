@@ -6,8 +6,6 @@
 
 This library is the C++ version of Leetcode quiz. It is used for the Sphinx documentation tutorial specifically.
 
-It is strongly recommneded to read [Breathe](https://breathe.readthedocs.io/en/latest/)’s documentation, which providds a bridge between the Sphinx and Doxygen documentation systems.
-
 ### Plot ###
 
 This tutorial used a simple c++ project (Leetcode Sample Project) to demonstrates how to use Sphinx to generate HTML-based documents. The generatd documents look like the picture below.
@@ -19,38 +17,57 @@ This tutorial used a simple c++ project (Leetcode Sample Project) to demonstrate
 The layout of the Leetcode Sample Project after we delete the docs and build folders in [`leetcode_practice`](leetcode_practice/) look like:
 
 ```
-$ tree of leetcode_practice directory
 .
-├── CMakeLists.txt
-├── examples
-│   ├── CMakeLists.txt
-│   └── unit
-│       ├── CMakeLists.txt
-│       ├── main.cc
-│       └── unit
-├── files
-│   ├── CMakeLists.txt
-│   ├── balancedstone.txt
-│   ├── critical.txt
-│   └── input.txt
-├── include
-│   ├── config.h
-│   ├── config.h.in
-│   └── solutions.h
-├── src
-│   ├── CMakeLists.txt
-│   ├── README.md
-│   ├── libsolutions.dylib
-│   └── solutions.cc
-└── tests
-    ├── CMakeLists.txt
-    ├── README.md
-    └── leetcode_integration_test.cc
+|-- docs
+|   |-- DOCUMENTATION_STL.md
+|   |-- doxygen
+|   |   `-- Doxyfile
+|   |-- README.md
+|   |-- requirements.txt
+|   `-- sphinx
+|       |-- make.bat
+|       |-- Makefile
+|       |-- README.md
+|       `-- source
+|           |-- api.rst
+|           |-- conf.py
+|           |-- contents.rst
+|           |-- guide.rst
+|           |-- index.rst
+|           `-- readme_link.rst
+|-- images
+|   `-- layout.png
+|-- leetcode_practice
+|   |-- CMakeLists.txt
+|   |-- examples
+|   |   |-- CMakeLists.txt
+|   |   `-- unit
+|   |       |-- CMakeLists.txt
+|   |       |-- main.cc
+|   |       `-- unit
+|   |-- files
+|   |   |-- balancedstone.txt
+|   |   |-- CMakeLists.txt
+|   |   |-- critical.txt
+|   |   `-- input.txt
+|   |-- include
+|   |   |-- config.h.in
+|   |   |-- solutions.h
+|   |   `-- utils.h
+|   |-- src
+|   |   |-- CMakeLists.txt
+|   |   |-- README.md
+|   |   `-- solutions.cc
+|   `-- tests
+|       |-- CMakeLists.txt
+|       |-- leetcode_integration_test.cc
+|       `-- README.md
+`-- README.md
 ```
 
 To build the code that configurated by in CMakeLists.txt file, you can follow with the commands below in the [`leetcode_practice`](\leetcode_practice) directory:
 ```
-$ cmake -S . -B build
+$ cmake -B build
 $ cmake --build build
 ```
 
@@ -58,13 +75,13 @@ $ cmake --build build
 
 Assumptions and Requirements
 
-+ Sphinx 3.1.2
-+ C++ 14
-+ Breathe 4.34.0
-+ Doxygen 1.9.1
++ Sphinx 1.3.6
++ C++ 11
++ CMake 3.25
++ Doxygen 1.8.11
 + Boost
 
-Note: Sphinx can run on Linux, Windows and MacOS. Although this tutorial uses MacOS, the steps are the same in the Windows and Linux.
+Note: Sphinx can run on Ubuntu 16.4 LTS and MacOS. 
 
 ## Reference ##
 
