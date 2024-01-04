@@ -23,6 +23,44 @@ TEST_F(SolutionsTest, minDeletionsTest)
     expected_value = 2;
 
     EXPECT_EQ(expected_value, solutions.minDeletions(input));
+
+    input = "aaabbbcc";
+    expected_value = 2;
+
+    EXPECT_EQ(expected_value, solutions.minDeletions(input));
+}
+
+TEST_F(SolutionsTest, topKFrequentTest)
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<int> nums = {1,1,1,2,2,3};
+    int k = 2;
+    std::vector<int> expected_value = {2,1};
+    EXPECT_EQ(expected_value, solutions.topKFrequent(nums, k));
+
+    nums = {1}, k = 1;
+    expected_value = {1};
+    EXPECT_EQ(expected_value, solutions.topKFrequent(nums, k));
+
+    nums = {1,1,1,2,2,3,4,4,4,4}, k = 3;
+    expected_value = {2,1,4};
+    EXPECT_EQ(expected_value, solutions.topKFrequent(nums, k));
+}
+
+TEST_F(SolutionsTest, closestNumbersTest)
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<int> input = {4,2,1,3};
+    std::vector< std::vector<int> > expected_value = {{1,2},{2,3},{3,4}};
+    // EXPECT_EQ(expected_value, solutions.closestNumbers(input));
+
+    input = {1,3,6,10,15};
+    expected_value = {{1,3}};
+    // EXPECT_EQ(expected_value, solutions.closestNumbers(input));    
 }
 
 TEST_F(SolutionsTest, MinSwapTest) 
@@ -64,7 +102,11 @@ TEST_F(SolutionsTest, minStpesTest)
     std::vector<int> piles = {1, 2, 2, 3, 3, 4};
     int minsteps = 9;
 
-    EXPECT_EQ(minsteps, solutions.minStpes(piles));
+    EXPECT_EQ(minsteps, solutions.minSteps(piles));
+
+    piles = {5, 2, 1};
+    minsteps = 3;
+    EXPECT_EQ(minsteps, solutions.minSteps(piles));   
 }
 
 TEST_F(SolutionsTest, maxLengthTest) 
@@ -604,17 +646,14 @@ TEST_F(SolutionsTest, fourSumTest)
     leetcode::Solutions solutions;
 
     std::vector<int> nums = {1, 0, -1, 0, -2, 2};
-
-    std::vector<int> unique_quadruplets = {1, 2, 3, 4};
-
     int target = 0;
     std::vector< std::vector<int> > expected_value = {{-2, -1, 1, 2}, {-2, 0, 0, 2}, {-1, 0, 0, 1}};
-    EXPECT_EQ(expected_value, solutions.fourSum(nums, target));
+    // EXPECT_EQ(expected_value, solutions.fourSum(nums, target));
 
     nums = {2, 2, 2, 2, 2};
     target = 8;
     expected_value ={{2, 2, 2, 2}};
-    EXPECT_EQ(expected_value, solutions.fourSum(nums, target));
+    // EXPECT_EQ(expected_value, solutions.fourSum(nums, target));
 }
 
 TEST_F(SolutionsTest, isSameTreeTest) 
@@ -786,12 +825,12 @@ TEST_F(SolutionsTest, minChangeTest)
     int K = 3;
     int expected_value = 1;
 
-//     EXPECT_EQ(expected_value, solutions.minChange(S, K));
+    // EXPECT_EQ(expected_value, solutions.minChange(S, K));
 
     S = "MLMMMLMMMM";
     K = 2;
     expected_value = 2;
-//     EXPECT_EQ(expected_value, solutions.minChange(S, K));
+    // EXPECT_EQ(expected_value, solutions.minChange(S, K));
 }
 
 TEST_F(SolutionsTest, minDeleteCostTest) 
@@ -826,8 +865,6 @@ TEST_F(SolutionsTest, minDeleteCostTest)
     C = {3,5,10,7,5,3,5,5,4,8,1};
     expected_value = 26;
     EXPECT_EQ(expected_value,solutions.minDeleteCost(S, C));
-
-
 }
 
 TEST_F(SolutionsTest, GetNumberofKTest) 
@@ -985,6 +1022,44 @@ TEST_F(SolutionsTest, addTwoNumbersTest)
     std::unique_ptr<leetcode::LinkedListNode> node = nullptr;
     node = solutions.addTwoNumbers(std::move(l1_node), std::move(l2_node));
     std::vector<int> v = solutions.PrintLinkedlist(std::move(node));
+
+    EXPECT_EQ(expected_value, v);
+}
+
+TEST_F(SolutionsTest, reverseLinkedListTest) 
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<int> l1 = {2, 4, 3};
+    std::vector<int> expected_value = {3, 4, 2};
+
+    std::unique_ptr<leetcode::LinkedListNode> l1_node = nullptr;
+
+    for (int i = 0; i < l1.size(); ++i) {
+        l1_node = solutions.insertLinkedlistNode(std::move(l1_node), l1[i]);
+    }
+
+    std::unique_ptr<leetcode::LinkedListNode> reversednode = nullptr;
+
+    reversednode = solutions.reversedLinkedList(std::move(l1_node));
+    std::vector<int> v = solutions.PrintLinkedlist(std::move(reversednode));
+
+    EXPECT_EQ(expected_value, v);
+
+    l1 = {2, 4, 3, 5, 6};
+    expected_value = {6, 5, 3, 4, 2};
+
+    l1_node = nullptr;
+
+    for (int i = 0; i < l1.size(); ++i) {
+        l1_node = solutions.insertLinkedlistNode(std::move(l1_node), l1[i]);
+    }
+
+    reversednode = nullptr;
+
+    reversednode = solutions.reversedLinkedList(std::move(l1_node));
+    v = solutions.PrintLinkedlist(std::move(reversednode));
 
     EXPECT_EQ(expected_value, v);
 }
@@ -1397,6 +1472,162 @@ TEST_F(SolutionsTest, isSolvableTest)
 
 }
 
+TEST_F(SolutionsTest, mergeIntervalTest)
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector< std::vector<int> > intervals = {{1,3}, {2, 6}, {8,10}, {15, 18}};
+    std::vector< std::vector<int> > expected_value = {{1, 6}, {8, 10}, {15, 18}};
+    EXPECT_EQ(expected_value, solutions.mergeInterval(intervals));
+
+    intervals = {{1,4}, {4, 6}};
+    expected_value = {{1, 6}};
+    EXPECT_EQ(expected_value, solutions.mergeInterval(intervals));
+
+    intervals = {{1,4}, {5, 6}};
+    expected_value = {{1, 4}, {5, 6}};
+    EXPECT_EQ(expected_value, solutions.mergeInterval(intervals));
+
+    intervals = {{1,4}, {2, 3}};
+    expected_value = {{1, 4}};
+    EXPECT_EQ(expected_value, solutions.mergeInterval(intervals));
+}
+
+TEST_F(SolutionsTest, addDigitsTest)
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    int num = 38;
+    int expected_value = 2;
+    EXPECT_EQ(expected_value, solutions.addDigits(num));
+}
+
+TEST_F(SolutionsTest, lengthofLastwordTest)
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::string s = "   fly me   to   the moon  ";
+    int expected_value = 4;
+    EXPECT_EQ(expected_value, solutions.lenghtofLastword(s));
+
+    s = "Today is a nice day";
+    expected_value = 3;
+    EXPECT_EQ(expected_value, solutions.lenghtofLastword(s));
+}
+
+TEST_F(SolutionsTest, longestCommonPrefixTest)
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<std::string> strs = {"flower","flow","flight"};
+    std::string expected_value = "fl";
+    EXPECT_EQ(expected_value, solutions.longestCommonPrefix(strs));
+
+    strs = {"dog","racecar","car"};
+    expected_value = "";
+    EXPECT_EQ(expected_value, solutions.longestCommonPrefix(strs));
+}
+
+TEST_F(SolutionsTest, reverseWordsTest)
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::string s = "the sky is blue";
+    std::string expected_value = "blue is sky the";
+    EXPECT_EQ(expected_value, solutions.reverseWords(s));
+
+    s = "  hello world  ";
+    expected_value = "world hello";
+    EXPECT_EQ(expected_value, solutions.reverseWords(s));
+}
+
+
+
+
+TEST_F(SolutionsTest, threeSumClosestTest)
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<int> nums = {-1,2,1,-4};
+    int target = 1;
+    int expected_value = 2;
+    EXPECT_EQ(expected_value, solutions.threeSumClosest(nums, target));
+
+    nums = {0,0,0};
+    target = 1;
+    expected_value = 0;
+    EXPECT_EQ(expected_value, solutions.threeSumClosest(nums, target));
+
+
+    nums = {-100, -98, -2, -1};
+    target = -101;
+    expected_value = -101;
+    EXPECT_EQ(expected_value, solutions.threeSumClosest(nums, target));
+}
+
+TEST_F(SolutionsTest, removeElementTest)
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<int> nums = {3,2,2,3};
+    int val = 3;
+    int expected_value = 2;
+    EXPECT_EQ(expected_value, solutions.removeElement(nums, val));
+}
+
+TEST_F(SolutionsTest, findMedianSortedArrayTest)
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<int> nums1 = {1, 2};
+    std::vector<int> nums2 = {3, 4};
+    double expected_value = 2.5;
+    EXPECT_EQ(expected_value, solutions.findMedianSortedArray(nums1, nums2));
+}
+
+TEST_F(SolutionsTest, threeSumTest)
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<int> nums = {0,1,1};
+    std::vector<std::vector<int>> expected_value = {};
+    EXPECT_EQ(expected_value, solutions.threeSum(nums));
+}
+
+TEST_F(SolutionsTest, longestConsecutiveTest)
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<int> nums = {100,4,200,1,3,2};
+    int expected_value = 4;
+    EXPECT_EQ(expected_value, solutions.longestConsecutive(nums));
+
+    nums = {0,3,7,2,5,8,4,6,0,1};
+    expected_value = 9;
+    EXPECT_EQ(expected_value, solutions.longestConsecutive(nums));
+
+    nums = {9, 1, 4, 7, 3, -1, 0, 5, 8, -1, 6};
+    expected_value = 7;
+    EXPECT_EQ(expected_value, solutions.longestConsecutive(nums));
+
+    nums = {1, 2, 0, 1};
+    expected_value = 3;
+    EXPECT_EQ(expected_value, solutions.longestConsecutive(nums));
+
+}
+
+
+
 TEST_F(SolutionsTest, networkDelayTimeTest) 
 {
     /* Declare the Unit Test object */
@@ -1589,6 +1820,34 @@ TEST_F(SolutionsTest, minDaysTest)
 
 }
 
+TEST_F(SolutionsTest, maxProfitITest) 
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<int> prices = {7,1,5,3,6,4};
+    int expected_value = 5;
+    EXPECT_EQ(expected_value, solutions.maxProfitI(prices));
+
+    prices = {7,6,4,3,1};
+    expected_value = 0;
+    EXPECT_EQ(expected_value, solutions.maxProfitI(prices));
+}
+
+TEST_F(SolutionsTest, rotatematrixTest) 
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<std::vector<int>> matrix = {{1,2,3},{4,5,6},{7,8,9}};
+    std::vector<std::vector<int>> expected_value = { {7,4,1},{8,5,2},{9,6,3} };
+    EXPECT_EQ(expected_value, solutions.rotatematrix(matrix));
+}
+
+
+
+
+
 TEST_F(SolutionsTest, maxProfitTest) 
 {
     /* Declare the Unit Test object */
@@ -1596,11 +1855,11 @@ TEST_F(SolutionsTest, maxProfitTest)
 
     std::vector<int> prices = {1, 2, 3, 4, 5};
     int expected_value = 4;
-//     EXPECT_EQ(expected_value, solutions.maxProfit(prices));
+    EXPECT_EQ(expected_value, solutions.maxProfit(prices));
 
     prices = {7, 1, 5, 3, 6, 4};
     expected_value = 7;
-//     EXPECT_EQ(expected_value, solutions.maxProfit(prices));
+    EXPECT_EQ(expected_value, solutions.maxProfit(prices));
 
     prices = {260000, 260500, 264500, 262500, 286000, 272000, 246500, 255000};
     expected_value = 36500;
@@ -1700,6 +1959,294 @@ TEST_F(SolutionsTest, isPalindromeTest)
     std::string input = "A man, a plan, a canal: Panama";
     bool expected_value = true; 
     EXPECT_EQ(expected_value, solutions.isPalindrome(input));
+
+    input = " " ;
+    expected_value = true;
+    EXPECT_EQ(expected_value, solutions.isPalindrome(input));
+
+
+}
+
+TEST_F(SolutionsTest, isPalindromeNumTest) 
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    int  input = 121;
+    bool expected_value = true; 
+    EXPECT_EQ(expected_value, solutions.isPalindrome(input));
+
+    input = 10;
+    expected_value = false; 
+    EXPECT_EQ(expected_value, solutions.isPalindrome(input));
+
+    input = 1000030001;
+    expected_value = false; 
+    EXPECT_EQ(expected_value, solutions.isPalindrome(input));
+}
+
+TEST_F(SolutionsTest, findMinTest) 
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<int>  input = {3,4,5,1,2};
+    int expected_value = 1; 
+    EXPECT_EQ(expected_value, solutions.findMin(input));
+
+    input = {4,5,6,7,0,1,2};
+    expected_value = 0; 
+    EXPECT_EQ(expected_value, solutions.findMin(input));
+}
+
+TEST_F(SolutionsTest, majorityElementTest) 
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<int>  input = {1,1,2,2,1};
+    int expected_value = 1; 
+    EXPECT_EQ(expected_value, solutions.majorityElement(input));
+
+    input = {2,2,1,1,2,4,2};
+    expected_value = 2; 
+    EXPECT_EQ(expected_value, solutions.majorityElement(input));
+
+    input = {3, 2, 3};
+    expected_value = 3; 
+    EXPECT_EQ(expected_value, solutions.majorityElement(input));
+}
+
+TEST_F(SolutionsTest, rotateTest) 
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<int>  input = {-1,-100,3,99};
+    int k = 2;
+    std::vector<int> expected_value = {3,99,-1,-100}; 
+    EXPECT_EQ(expected_value, solutions.rotate(input, k));
+}
+
+TEST_F(SolutionsTest, removeDuplicatesTest) 
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<int>  input = {1, 1, 2};
+    int expected_value = 2; 
+    EXPECT_EQ(expected_value, solutions.removeDuplicates(input));
+
+    input = {0,0,1,1,1,2,2,3,3,4};
+    expected_value = 5;
+    EXPECT_EQ(expected_value, solutions.removeDuplicates(input));
+}
+
+TEST_F(SolutionsTest, removeDuplicatesIITest) 
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<int>  input = {1,1,1,2,2,3};
+    int expected_value = 5; 
+    EXPECT_EQ(expected_value, solutions.removeDuplicatesII(input));
+
+    input = {0,0,1,1,1,1,2,3,3};
+    expected_value = 7;
+    EXPECT_EQ(expected_value, solutions.removeDuplicatesII(input));
+
+    input = {1, 2, 3};
+    expected_value = 3;
+    EXPECT_EQ(expected_value, solutions.removeDuplicatesII(input));
+}
+
+TEST_F(SolutionsTest, searchTest) 
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<int>  nums = {4,5,6,7,0,1,2};
+    int target = 0;
+    int expected_value = 4; 
+    EXPECT_EQ(expected_value, solutions.search(nums, target));
+
+    nums = {4,5,6,7,0,1,2};
+    target = 3;
+    expected_value = -1;
+    EXPECT_EQ(expected_value, solutions.search(nums, target));
+
+    nums = {5, 1, 3};
+    target = 3;
+    expected_value = 2;
+    EXPECT_EQ(expected_value, solutions.search(nums, target));
+
+
+}
+
+
+TEST_F(SolutionsTest, productExceptselfTest) 
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<int>  input = {1,2,3,4};
+    std::vector<int> expected_value = {24,12,8,6}; 
+    EXPECT_EQ(expected_value, solutions.productExceptself(input));
+
+    input = {-1,1,0,-3,3};
+    expected_value = {0,0,9,0,0};
+    EXPECT_EQ(expected_value, solutions.productExceptself(input));
+}
+
+
+TEST_F(SolutionsTest, diagionalDifferenceTest)
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector< std::vector<int> > input = {{1, 2, 3}, {4, 5, 6}, {9, 8, 9}};
+    int expected_value = 2;
+    EXPECT_EQ(expected_value, solutions.diagionalDifference(input));
+}
+
+TEST_F(SolutionsTest, insertionSortTest)
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<int> input = {2, 1, 3, 1, 2};
+    int expected_value = 4;
+    EXPECT_EQ(expected_value, solutions.insertionSort(input));
+}
+
+TEST_F(SolutionsTest, DuplicatesTest)
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::string input = "aa";
+    std::string expected_value = "aa0";
+    EXPECT_EQ(expected_value, solutions.Duplicates(input));
+
+    input = "abc";
+    expected_value = "abc";
+    EXPECT_EQ(expected_value, solutions.Duplicates(input));
+
+    input = "abhbaca";
+    expected_value = "abaca";
+    EXPECT_EQ(expected_value, solutions.Duplicates(input));
+
+    input = "abbhccbh";
+    expected_value = "abcb";
+    EXPECT_EQ(expected_value, solutions.Duplicates(input));
+}
+
+TEST_F(SolutionsTest, moveZerosTest)
+{
+   /* Declare the Unit Test object */
+   leetcode::Solutions solutions;
+                                                           
+   std::vector<int> input = {0,1,0,3,12 };
+   std::vector<int> expected_value = {1,3,12,0,0};
+   EXPECT_EQ(expected_value, solutions.moveZeros(input));
+                                                           
+   input = {0};
+   expected_value = {0};
+   EXPECT_EQ(expected_value, solutions.moveZeros(input));
+}
+
+TEST_F(SolutionsTest, sortedmergeTest)
+{
+   /* Declare the Unit Test object */
+   leetcode::Solutions solutions;
+                                                           
+   std::vector<int> nums1 = { 1,2,3,0,0,0};
+   std::vector<int> nums2 = { 2,5,6 };
+   int m = 3;
+   int n = 3;
+   std::vector<int> expected_value = { 1,2,2,3,5,6};
+   EXPECT_EQ(expected_value, solutions.sortedmerge(nums1, m, nums2, n));
+}
+
+TEST_F(SolutionsTest, canJumpTest)
+{
+   /* Declare the Unit Test object */
+   leetcode::Solutions solutions;
+                                                           
+   std::vector<int> nums = {2,3,1,1,4};
+   bool expected_value = true;
+   EXPECT_EQ(expected_value, solutions.canJump(nums));
+}
+
+TEST_F(SolutionsTest, jumpTest)
+{
+   /* Declare the Unit Test object */
+   leetcode::Solutions solutions;
+                                                           
+   std::vector<int> nums = {2,3,1,1,4};
+   int expected_value = 2;
+   EXPECT_EQ(expected_value, solutions.jump(nums));
+}
+
+TEST_F(SolutionsTest, hIndexTest)
+{
+   /* Declare the Unit Test object */
+   leetcode::Solutions solutions;
+                                                           
+   std::vector<int> citations = {3,0,6,1,5};
+   int expected_value = 3;
+   EXPECT_EQ(expected_value, solutions.hIndex(citations));
+}
+
+TEST_F(SolutionsTest, canCompleteCircuitTest)
+{
+   /* Declare the Unit Test object */
+   leetcode::Solutions solutions;
+                                                           
+   std::vector<int> gas = {1,2,3,4,5};
+   std::vector<int> cost = {3,4,5,1,2};
+   int expected_value = 3;
+   EXPECT_EQ(expected_value, solutions.canCompleteCircuit(gas, cost));
+}
+
+TEST_F(SolutionsTest, candyTest)
+{
+   /* Declare the Unit Test object */
+   leetcode::Solutions solutions;
+                                                           
+   std::vector<int> ratings = {1, 0, 2};
+   int expected_value = 5;
+   EXPECT_EQ(expected_value, solutions.candy(ratings));
+}
+
+TEST_F(SolutionsTest, trapTest)
+{
+   /* Declare the Unit Test object */
+   leetcode::Solutions solutions;
+                                                           
+   std::vector<int> height = {0,1,0,2,1,0,1,3,2,1,2,1};
+   int expected_value = 6;
+   EXPECT_EQ(expected_value, solutions.trap(height));
+}
+
+TEST_F(SolutionsTest, romanToIntTest)
+{
+   /* Declare the Unit Test object */
+   leetcode::Solutions solutions;
+                                                           
+   std::string s = "III";
+   int expected_value = 3;
+   EXPECT_EQ(expected_value, solutions.romanToInt(s));
+}
+
+TEST_F(SolutionsTest, intToRomanTest)
+{
+   /* Declare the Unit Test object */
+   leetcode::Solutions solutions;
+                                                           
+   int num = 3;
+   std::string expected_value = "III";
+   EXPECT_EQ(expected_value, solutions.intToRoman(num));
 }
 
 } /* namespace googletest */

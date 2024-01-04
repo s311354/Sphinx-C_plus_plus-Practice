@@ -69,14 +69,18 @@ public:
     /* ========== Microsoft OA ============ */
 
     /**
-    * @brief 1647 Miniumum Deletions to Make Character Frequencies Uniqe
+    * @brief 1647 Miniumum Deletions to Make Character Frequencies Uniqe (Medium)
     *
-    * A string s is called good if there are no two different characters is s that have the same frequency.
-    * Given a string s, return the minimum number of characters you need to delete to make a good.
+    * A string s is called good if there are no two different characters is s that 
+    * have the same frequency.
+    * 
+    * Given a string s, return the minimum number of characters you need to delete
+    * to make a good.
     *
     * The frequency of a character in a string is the number of times it apears in the string.
     *
-    * For example, in the string "aab", the frequency of 'a' is 2, while the frequency of 'b' is 1.
+    * For example, in the string "aab", the frequency of 'a' is 2, while the frequency 
+    * of 'b' is 1.
     *
     * @param s a string
     * @return the minimum number of characters you need to delete to make s good
@@ -84,57 +88,117 @@ public:
     int minDeletions(std::string s);
 
     /**
-    * @brief OA 2019  Minimum Adjacent Swaps to Make Palindrome (HARD)
+     * @brief  347 Top K Frequent Elements (Medium)
+     * 
+     * Given an integer array nums and an integer k, 
+     * return the k most frequent elements. You may return the answer in any order.
+     *
+     * @param nums an integer array nums
+     * @param k the most frequent elements
+     * @return top k frequent elements
+    */
+    std::vector<int> topKFrequent(std::vector<int>& nums, int k);
+
+    /**
+    * @brief OA 2019  Minimum Adjacent Swaps to Make Palindrome (Hard) - SKIP
     *
-    * Given a string, what is the minimum number of adjacent swaps required to convert a string into a palindrome. If not possible, return -1.
+    * Given a string, what is the minimum number of adjacent swaps required to 
+    * convert a string into a palindrome. If not possible, return -1.
     *
     * @param s a string
     * @return the minimum number of adjacent swaps required to convert a string into palindrome.
-*/
+    */
     int minSwaps(std::string s);
 
     /**
     * @brief 1 Two Sum (Easy)
     * 
-    * Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
-    * You may assume that each input would have exactly one solution, and you may not use the same element twice.
+    * Given an array of integers nums and an integer target, return indices
+    * of the two numbers such that they add up to target.
+    *
+    * You may assume that each input would have exactly one solution, and 
+    * you may not use the same element twice.
+    * 
     * You can return the answer in any order.
     *
     * @param num an array of integers nums
     * @param target an integer
-    *
     * @return the indices of the two numbers such that they add up to target
     */
     std::vector<int> twoSum(std::vector<int>& num, int target);
 
     /**
-    * @brief OA 2019 Min Steps to Make Piles Equal Height
+     * @brief  1200 Minimum Absolute Difference (Easy)
+     *
+     * Given an array of distinct integers arr, find all pairs of elements with 
+     * the minimum absolute difference of any two elements.
+     * 
+     * Return a list of pairs in ascending order (with respect to pairs), each 
+     * pair [a, b] follows
+     * 
+     * - a, b are from arr
+     * - a < b
+     * - b - a equals to the minimum absolute difference of any two elements in arr
+     *
+     * @param numbers an array of distinct integers
+     * @return the minimum absolute difference of any two elements.
+    */
+    std::vector< std::vector<int> > closestNumbers(std::vector<int> &numbers);
+
+    /**
+    * @brief OA 2019 Min Steps to Make Piles Equal Height (Medium)
     *
-    *  Alex is given n piles of equal or unequal heights. In one step, Alex can remove any number of boxes from the pile which has the maximum height and try to make it equal to the one which is just lower then the maximum height of the stack. Determine the minimum number of steps required to make all of the piles equal in height.
+    *  Alex is given n piles of equal or unequal heights. In one step, Alex can remove any number 
+    *  of boxes from the pile which has the maximum height and try to make it equal to the one 
+    *  which is just lower then the maximum height of the stack.
+    * 
+    *  Determine the minimum number of steps required to make all of the piles equal in height.
     *
     * @param nums n piles of equal or unequal heights
     * @return min steps
     */
-    int minStpes( std::vector<int>& nums );
+    int minSteps( std::vector<int>& nums );
 
     /**
     * @brief 1239 Maximum length of a Concatenated String with Unique Characters. (Medium)
     *
-    * You are given an array of strings arr. A string s is formed by the concatenation of a subsequence of arr that has unique characters.
+    * You are given an array of strings arr. A string s is formed by the concatenation 
+    * of a subsequence of arr that has unique characters.
     *
     * Return the maximum possible length of s.
     *
-    * A subsequence is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.
+    * A subsequence is an array that can be derived from another array by deleting some
+    *  or no elements without changing the order of the remaining elements.
     *
     * @param arr an array of string
     * @return the maximum possible length of string formed by the concatenation of a subsequence of array
     */
     int maxLength( std::vector< std::string > & arr);
 
+     /* @brief Brief function description here
+     *
+     * Detailed description
+     *
+     * @param param Parameter description
+     * @return Detailed description
+     */
+    std::vector< std::vector<int> > mergeInterval(std::vector< std::vector<int>> &input_interval);
+
+     /* @brief 258. Add Digits
+     *
+     * Given an integer num, repeatedly add all its digits 
+     * until the result has only one digit, and return it. 
+     *
+     * @param num an integer num
+     * @return add all its digits
+     */
+     int addDigits(int num);
+
     /**
     * @brief 1304 Find N Unique Integers Sum up to Zero (Easy)
     *
-    * Given an integer n, return any array containing n unique integers such that they add up to 0.
+    * Given an integer n, return any array containing n unique integers such that they add 
+    * up to 0.
     *
     * @param n an integer
     * @return any array containing n unique integers such that they add up tp 0
@@ -145,6 +209,7 @@ public:
     * @brief 31 Next Permutation (Medium)
     *
     * A permutation of an array of integers is an arrangement of its members into a sequence or linear order.
+    *
     * For example, for arr = [1,2,3], the following are considered permutations of arr: [1,2,3], [1,3,2], [3,1,2], [2,3,1].
     *
     * The next permutation of an array of integers is the next lexicographically greater permutation of its integer. More formally, if all the permutations of the array are sorted in one container according to their lexicographical order, then the next permutation of that array is the permutation that follows it in the sorted container. If such arrangement is not possible, the array must be rearranged as the lowest possible order (i.e., sorted in ascending order).
@@ -159,11 +224,12 @@ public:
     *
     * There is a function signFunc(x) that returns:
     * 
-    * 1 if x is positive.
+    *  1 if x is positive.
     * -1 if x is negative.
     *  0 if x is equal to 0.
     * 
     * You are given an integer array nums. Let product be the product of all values in the array nums.
+    *
     * Return signFunc(product).
     *
     * @param nums an integer array nums
@@ -175,10 +241,10 @@ public:
     * @brief 1448 Count Good Nodes in Binary Tree (Medium)
     *
     * Given a binary tree root, a node X in the tree is named good if in the path from root to X there are no nodes with a value greater than X.
+    *
     * Return the number of good nodes in the binary tree.
     *
     * @param root a binary tree root
-    *
     * @return the number of good nodes in the binary tree
     */
     int goodNodes(std::unique_ptr<TreeNode> root);
@@ -203,9 +269,6 @@ public:
     * @return the maximum possible value
     */
     int maxPossible(int num, int digit);
- 
-    // OA 2019 Minimum characters required to be removed to make frequency of each character unique
-    int minCntCharDeletionfrequency(std::string & str, int N);
 
     /**
     * @brief 450 Delete Node in a BST (Medium)
@@ -282,7 +345,7 @@ public:
     int smallestInt( std::vector<int> &A);
 
     /**
-    * @brief  Maximum sequence of consecutive zeros
+    * @brief OA Maximum sequence of consecutive zeros
     *
     * A binary gap within a positive integer N is any maximum sequence of consecutive zeros that is surrounded by ones at both ends in the binary representation of N. For example, number 9 has binary representation 1001 and contains a binary gap of length 2
     *
@@ -317,20 +380,43 @@ public:
     float montyHall(int guess);
 
     /**
-    * @brief  Minimum number of letters
+    * @brief OA Minimum number of letters (HARD)
     *
-    * You are given a string S consisting of N lowercase letters. In one move you can remove any substring from S, which starts and ends with the same letter and is at least two letters long. What is the minimum number of letters that may remain in S after any any number of such moves?
+    * You are given a string S consisting of N lowercase letters. In one move you can remove any substring from S, which starts and ends with the same letter and is at least two letters long.
+    *
+    * What is the minimum number of letters that may remain in S after any number of such moves?
     *
     * @param S a string S consisting of N lowercase letters
     * @return minimum number of letters
     */
-    int lowercaseLetters( std::string &S);
+    int lowercaseLetters(std::string &S);
 
-    // Balanced Stone Heaps
+    /**
+    * @brief Codeforces Balanced Stone Heaps (Easy)
+    *
+    *  There are n heaps of stone. The i-th heap has hi stones. You want to change the number of stones in the heap by performing the following process once:
+    *
+    *  - You go through the heaps from the 3-rd heap to the n-th heap, in this order.
+    *  - Let i be the number of the current heap
+    *  - You can choose a number d, move d stones from the i-th heap to the (i-1)th heap, and 2*d stones from the i-th heap to the (i-2)th heap.
+    *  - So after that hi is decreased by 3*d, hi-1 is increased by d, and hi-2 is increased by 2*d.
+    *  - You can choose different or same d for different operations. Some heaps may become empty, but they still count as heaps.
+    *
+    * @param A heaps of stone
+    * @return the maximum number of stones in the smallest heap after the process.
+    */
     int balancedStone( std::vector<int> &A);
 
-    // Heap 
-    // Course Schedule III
+    /**
+    * @brief Course Schedule III (HARD)
+    *
+    * There are n different online courses numbered from 1 to n, You are given an array courses where courses[i] = [durationi, lastDayi] indicate that the ith course should be taken continuously for durationi days and must be finished before or on lastDayi.
+    *
+    *  You will start on the 1st day and you cannot take two or more courses simultaneously.
+    *
+    * @param courses an array courses where courses[i] = [durationi, lastDayi]
+    * @return the maximum number of courses that you can take
+    */
     int scheduleCourse( std::vector< std::vector<int> > & courses );
 
     int uniqueString( std::string &S);
@@ -429,9 +515,6 @@ public:
     std::vector<float> plusMinus( std::vector<int> arr);
 
     // Codility Test
-    int minChange(std::string &S, int k);
-
-    // Codility Test
     int minDeleteCost( std::string &S, std::vector<int> &C);
 
     // Get Number of K
@@ -457,6 +540,9 @@ public:
 
     // 2. Add Two Numbers
     std::unique_ptr<LinkedListNode> addTwoNumbers(std::unique_ptr<LinkedListNode> l1, std::unique_ptr<LinkedListNode> l2);
+
+    // Interview reverse LinkedList 
+    std::unique_ptr<LinkedListNode> reversedLinkedList(std::unique_ptr<LinkedListNode> l1);
 
     // 83. Remove Duplicate from Sorted List
     std::unique_ptr<LinkedListNode> deleteDuplicates(std::unique_ptr<LinkedListNode> head);
@@ -530,7 +616,14 @@ public:
     // 1568 Miniumum Number of Days to Disconnect Island
     int minDays( std::vector< std::vector<int> > & grid );
 
-    // 122 Best Time to Buy and Sell Stock II
+    /*! \brief 122 Best Time to Buy and Sell Stock II
+     *
+     *  You are given an integer array prices where prices[i] is the price of a given stock on the ith day.
+     *
+     *  On each day, you may decide to buy and/or sell the stock. You can only hold at most one share of the stock at any time. However, you can buy it then immediately sell it on the same day.
+     *
+     * \return the maximum profit you can achieve.
+     */
     int maxProfit( std::vector<int> & prices);
 
     // 746 Min Cost Climbing Stairs
@@ -547,6 +640,389 @@ public:
 
     // 125. Valid Palindrome
     bool isPalindrome(std::string s);
+
+    // 9. Valid Palindrome
+    bool isPalindrome(int x);
+
+    /**
+     * @brief 153. Find Minimum in Rotated Sorted Array (Medium)
+     * 
+     * Suppose an array of length n sorted in ascending order is rotated between 1 and n times.  
+     * Given the sorted rotated array nums of unique elements, return the minimum element of this array.
+     *
+     * @param nums an integer array nums
+     * @return the minumum element of this array
+    */
+    int findMin(std::vector<int> & nums); 
+
+    /**
+     * @brief 169. Majority Element
+     * 
+     * Given an array nums of size n, return the majority element. 
+     * The majority element is the element that appears more than #n / 2# times. You may assume that the majority element always exists in the array.
+     *
+     * @param nums an integer array nums
+     * @return the majority element always exists in the array
+    */
+    int majorityElement(std::vector<int> & nums); 
+
+    /**
+     * @brief 189. Rotate Array
+     * 
+     * Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
+     *
+     * @param nums an integer array nums
+     * @return rorated array
+    */
+    std::vector<int> rotate(std::vector<int> & nums, int k);
+
+    /**
+     * @brief 238. Product of Array Except Self
+     * 
+     * Given an integer array nums, return an array answer such that answer[i] is 
+     * equal to the product of all the elements of nums except nums[i]. 
+     *
+     * @param nums an integer array nums
+     * @return the product of all elements of nums except self
+    */
+    std::vector<int> productExceptself(std::vector<int> & nums); 
+
+    // NVIDIA Coding Interview
+    std::string Duplicates(std::string & str);
+
+    /* @brief Move Zeroes
+    *
+    * Given an integer array nums, move all 0's to the end of it
+    * while maintaining the relative order of the non-zero elements.
+    *
+    * @param nums an integer array nums
+    * @return the array nums, move all 0's to the end of it
+    */
+    std::vector<int> moveZeros(std::vector<int> & nums);
+
+     /* @brief hackerrank diagional Difference
+     *
+     * Given a square matrix, calculate the absolute difference between the sums of 
+     * its diagonals. 
+     *
+     * @param arr a square matrix
+     * @return the absolute diagional difference 
+     */
+    int diagionalDifference( std::vector< std::vector<int>  > arr );
+
+     /* @brief hackerrank insertion Sort
+     *
+     * Insertion Sort is a simple sorting technique which was covered in previous 
+     * challenges. Sometimes, arrays may be too large for us to wait around for 
+     * insertion sort to finish. Is there some other way we can calculate the 
+     * number of shifts an insertion sort performs when sorting an array?
+     *
+     * @param insertionSort std::vector<int> & arr 
+     * @return the number of shifts an insertion sort performs when sorting an array
+     */
+    int insertionSort(std::vector<int> & arr );
+
+     /* @brief 26. Remove Duplicates from Sorted Array
+     *
+     * Given an integer array nums sorted in non-decreasing order, remove
+     * the duplicates in-place such that each unique element appears only once.
+     * The relative order of the elements should be kept the same.
+     * Then return the number of unique elements in nums.
+     * 
+     * @param  
+     * @return the number of shifts an insertion sort performs when sorting an array
+     */
+     int removeDuplicates(std::vector<int> & nums);
+
+     /* @brief 27. Remove Element
+     *
+     * Given an integer array nums and an integer val, 
+     * remove all occurrences of val in nums in-place. 
+     * The order of the elements may be changed. 
+     * Then return the number of elements in nums which are not equal to val.
+     * 
+     * @param nums an integer array 
+     * @return the number of elements in nums which are not equal to val
+     */
+     int removeElement(std::vector<int> & nums, int val);
+
+     /* @brief 80. Remove Duplicates from Sorted Array II
+     *
+     * Given an integer array nums sorted in non-decreasing order,
+     * remove some duplicates in-place such that each unique element
+     * appears at most twice. The relative order of the elements should be kept the same.
+     * 
+     * Return k after placing the final result in the first k slots of nums.
+     *
+     * @param nums an array
+     * @return k after placing the final result in the first k slots of nums. 
+     */                                                                          
+     int removeDuplicatesII(std::vector<int> & nums);
+
+     /* @brief 33. Search in Rotated Sorted Array
+     *
+     * Given the array nums after the possible rotation and an integer target, 
+     * return the index of target if it is in nums, or -1 if it is not in nums.
+     *
+     * You must write an algorithm with O(log n) runtime complexity.
+     *
+     * @param nums an array
+     * @return the index of target if it is in nums
+     */                                                                          
+     int search(std::vector<int>& nums, int target);
+
+     /* @brief 4. Median of Two Sorted Arrays
+     *
+     * Given two sorted arrays nums1 and nums2 of size m
+     * and n respectively, return the median of the two sorted arrays.
+     *
+     * The overall run time complexity should be O(log (m+n)).
+     *
+     * @param nums1 an array
+     * @param nums2 an array
+     * @return the median of the two sorted arrays
+     */                                                                          
+     double findMedianSortedArray(std::vector<int>& nums1, std::vector<int> & nums2);
+
+     /* @brief 128. Longest Consecutive Sequence
+     *
+     * Given an unsorted array of integers nums, return 
+     * the length of the longest consecutive elements sequence.
+     *
+     * You must write an algorithm that runs in O(n) time.
+     *
+     * @param nums an array
+     * @return the length of the longest consecutive elements sequence.
+     */                                                                          
+     int longestConsecutive(std::vector<int> nums);
+
+     /* @brief 15. 3Sum
+     *
+     * Given an integer array nums, return all the triplets [nums[i], nums[j], 
+     * nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+     *
+     * Notice that the solution set must not contain duplicate triplets.
+     *
+     * @param nums an array
+     * @return all the triplets
+     */                                                                          
+     std::vector<std::vector<int>> threeSum(std::vector<int> & nums);
+
+     /* @brief 16. 3Sum Closest
+     *
+     * Given an integer array nums of length n and an integer target, 
+     * find three integers in nums such that the sum is closest to target.
+     *
+     * Return the sum of the three integers. 
+     *
+     * You may assume that each input would have exactly one solution. 
+     *
+     * @param nums an array
+     * @return the sum of the three integers
+     */                                                                          
+     int threeSumClosest(std::vector<int> & nums, int target);
+
+     /* @brief 88. Merge Sorted Array
+     *
+     * You are given two integer arrays nums1 and nums2,
+     * sorted in non-decreasing order, and two integers m and n,
+     * representing the number of elements in nums1 and nums2 respectively. 
+     *
+     * Merge nums1 and nums2 into a single array sorted in non-decreasing order.
+     *
+     * @param nums1 an integer array
+     * @param nums2 an integer array
+     * @return merged single array sorted in non-decreasing order
+     */
+     std::vector<int> sortedmerge(std::vector<int>& nums1, int m, std::vector<int>& nums2, int n);
+
+     /* @brief 121. Best Time to Buy and Sell Stock 
+     *
+     * You are given an array prices where prices[i] is the price of a given stock on the ith day.
+     *
+     * You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+     *
+     * Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+     *
+     * @param prices an array prices
+     * @return the maximum profit you can achieve from this transaction
+     */
+     int maxProfitI(std::vector<int> & prices);
+
+     /* @brief 48. Rotate Image
+     *
+     * You are given an n x n 2D matrix representing an image, 
+     * rotate the image by 90 degrees (clockwise).
+     *
+     * You have to rotate the image in-place, which means you have 
+     * to modify the input 2D matrix directly. DO NOT allocate another
+     * 2D matrix and do the rotation. 
+     *
+     * @param martix n x n matrix representing an image
+     * @return rotated image
+     */
+     std::vector<std::vector<int>> rotatematrix(std::vector<std::vector<int>> & matrix);
+
+     /* @brief 55. Jump Game 
+     *
+     * You are given an integer array nums. You are initially 
+     * positioned at the array's first index, and each element
+     * in the array represents your maximum jump length at that position. 
+     *
+     * Return true if you can reach the last index, or false otherwise.
+     *
+     * @param nums an integer array
+     * @return true if you can reach the last index, or false otherwise.
+     */
+     bool canJump(std::vector<int> & nums);
+
+     /* @brief 45. Jump Game II
+     *
+     * You are given a 0-indexed array of integers nums of
+     * length n. You are initially positioned at nums[0].
+     *
+     * Each element nums[i] represents the maximum length of
+     * a forward jump from index i. In other words, 
+     * if you are at nums[i], you can jump to any nums[i + j]
+     *
+     * Return the minimum number of jumps to reach nums[n - 1]. 
+     * The test cases are generated such that you can reach nums[n - 1].
+     *
+     * @param nums a 0-indexed array of integers nums of length n
+     * @return the minimum number of jumps to reach nums[n -1]
+     */
+     int jump(std::vector<int> & nums);
+
+     /* @brief 274. H-Index
+     *
+     * Given an array of integers citations where citations[i]
+     * is the number of citations a researcher received for their ith paper,
+     * return the researcher's h-index.
+     *
+     * @param citations an array of integers
+     * @return the researcher's h-index
+     */
+     int hIndex(std::vector<int> & citations); 
+
+     /* @brief 134. Gas Station
+     *
+     * There are n gas stations along a circular route,
+     * where the amount of gas at the ith station is gas[i].
+     *
+     * You have a car with an unlimited gas tank and it costs cost[i] of gas
+     * to travel from the ith station to its next (i + 1)th station.
+     * You begin the journey with an empty tank at one of the gas stations.
+     *
+     * Given two integer arrays gas and cost, return the starting gas station's
+     * index if you can travel around the circuit once in the clockwise direction,
+     * otherwise return -1. If there exists a solution, it is guaranteed to be unique
+     *
+     * @param costs cost of gas to travel from the ithe station to its next station 
+     * @param gas gas station
+     * @return the starting gas station's index
+     */
+     int canCompleteCircuit(std::vector<int> & gas, std::vector<int> & cost);
+
+     /* @brief 135. Candy 
+     *
+     * There are n children standing in a line. Each child is assigned a rating value given in the integer array ratings.
+     *
+     * You are giving candies to these children subjected to the following requirements:
+     *
+     * Each child must have at least one candy.
+     * Children with a higher rating get more candies than their neighbors.
+     *
+     * Return the minimum number of candies you need to have to distribute the candies to the children.
+     *
+     * @param rating the integer array ratings
+     * @return the minimum number of candies you need to have to distribute the candies to the children
+     */
+     int candy(std::vector<int>& ratings);
+
+     /* @brief 42. Trapping Rain Water 
+     *
+     * Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.
+     *
+     * @param height n non-negative integers
+     * @return how much water it can trap after raining
+     */
+     int trap(std::vector<int>& height);
+
+     /* @brief 13. Roman to Integer 
+     *
+     * Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+     * Roman numerals are usually written largest to smallest from left to right.
+     * However, the numeral for four is not IIII. Instead, the number four is written as IV.
+     * Because the one is before the five we subtract it making four.
+     *
+     * The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
+     * I can be placed before V (5) and X (10) to make 4 and 9.
+     * X can be placed before L (50) and C (100) to make 40 and 90. 
+     * C can be placed before D (500) and M (1000) to make 400 and 900. 
+     *
+     * @param s a roman numeral
+     * @return integer
+     */
+     int romanToInt(std::string s);
+
+     /* @brief 12. Integer to Roman 
+     *
+     * Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+     *
+     * Roman numerals are usually written largest to smallest from left to right. However,
+     * the numeral for four is not IIII. Instead, the number four is written as IV.
+     * Because the one is before the five we subtract it making four. The same principle 
+     * applies to the number nine, which is written as IX. There are six instances where subtraction is used:
+     *
+     * Given an integer, convert it to a roman numeral.
+     *
+     * @param num an integer
+     * @return a roman numeral
+     */
+     std::string intToRoman(int num);
+
+     /* @brief 58. Length of Last Word 
+     *
+     * Given a string s consisting of words and spaces, return the length of the last word in the string.
+     *
+     * A word is a maximal substring consisting of non-space characters only.
+     *
+     * @param s a string consisting of words and spaces
+     * @return the length of the last word in the string
+     */
+     int lenghtofLastword(std::string s);
+
+     /* @brief 14. Longest Common Prefix
+     *
+     * Write a function to find the longest common prefix string amongst an array of strings.
+     *
+     * If there is no common prefix, return an empty string "".
+     *
+     * @param strs an array of strings
+     * @return the longest common prefix string
+     */
+     std::string longestCommonPrefix(std::vector<std::string> & strs);
+
+     /* @brief 151. Reverse Words in a String
+     *
+     * Given an input string s, reverse the order of the words.
+     * 
+     * A word is defined as a sequence of non-space characters. The words in s will be separated by at least one space.
+     * 
+     * Return a string of the words in reverse order concatenated by a single space.
+     * 
+     * Note that s may contain leading or trailing spaces or multiple spaces between two words. The returned string should only have a single space separating the words. Do not include any extra spaces.
+     *
+     * @param s string
+     * @return a string of the words in reverse order concatenated by a single space
+     */
+     std::string reverseWords(std::string s);
+
+
+
+
+
+
 
 private:
 
@@ -571,46 +1047,6 @@ private:
 
     std::unique_ptr<LinkedListNode> getNewHead(int value);
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 } /* namespace leetcode */
 
