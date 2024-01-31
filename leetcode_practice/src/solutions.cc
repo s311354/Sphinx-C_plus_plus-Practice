@@ -12,56 +12,65 @@ Solutions::Solutions() {};
 Solutions::Solutions(std::istream& s) {};
 Solutions::~Solutions() {};
 
-bool Solutions::isPalindrome(std::string s)
-{
-    std::string str("");
-    for(auto & chr: s) {
-        if(isalnum(chr)) str.push_back(tolower(chr));
-    }
 
-    // std::cout << str << std::endl;
-    int start = 0; int end = str.length() - 1;
-    while (start <= end) {
-        // std::cout << str[start] << " " << str[end] << std::endl; 
-        if(str[start] == str[end]){ 
-            start ++;
-            end --;
-        } else return false;
-    }
+/**
+* @brief Implementation of Leetcode quiz.
+* @author Shelton Liu
+* @date 01/20/2024
+* @version 0.0.2
+* @note Hello God!
+*/
 
-    return true;
 
-    /*
-    // time: O(N) space: O(N)
-    std::string str("");
 
-    for(int i = 0; i < s.size(); i++) {
-        if(isalnum(s[i])) str.push_back(tolower(s[i]));
-    }
 
-    for(int i=0; i<str.size()/2; i++) {
-        if(str[i]!=str[str.size()-1-i]) return false;
-    }
 
-    return true;
-    */
-    /*
-    int start = 0, end = s.length() - 1;
 
-    while (start <= end) {
-        if (!isalnum(s[start])) {
-            start ++;
-        } else if (!isalnum(s[end])) {
-            end --;
-        } else if (toupper(s[start]) != toupper(s[end])) {
-            return false;
-        } else {
-            start ++; end --;
-        }
-    }
-    return true;
-    */
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 bool Solutions::isPalindrome(int x)
 {
@@ -327,44 +336,44 @@ int Solutions::minSwaps(std::string s) {
     return ans;
 }
 
-std::vector<int> Solutions::twoSum(std::vector<int>& num, int target) {
 
-    /*
-    // time: O(N^2) space: O(1)
 
-    for (int i = 0; i < num.size(); i++) {
-        for (int j = i + 1; j < num.size(); j++) {
-            if (num[i] + num[j] == target) {
-                return {i, j};
-            }
-        }
-    }
 
-    return {};
-    */
 
-  
-    // time: O(N) space: O(N)
 
-    // key: target - number ; value: index of the number
-    std::map<int, int> hashmap;
-    std::vector<int> indices_two_sum;
 
-    for (int i = 0; i < num.capacity() ; i++)
-    {
-        const int diff = target - num[i];
 
-        if ( hashmap.find(diff) != hashmap.end() ) {
-            indices_two_sum.push_back(hashmap[diff]);
-            indices_two_sum.push_back(i);
-            return indices_two_sum;
-        }
 
-        hashmap[num[i]] = i;
-    }
 
-    return indices_two_sum;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 int Solutions::shortestDistance( std::vector< std::vector<int> > & grid ) {
     int row = grid.size();
@@ -1654,34 +1663,6 @@ std::vector< std::vector<int> > Solutions::fourSum( std::vector<int>& nums, int 
     return ans;
 }
 
-std::vector<int> Solutions::sortedmerge(std::vector<int> & nums1, int m , std::vector<int> & nums2, int n)
-{
-    /*
-    int i = m - 1, j = n - 1, k = m + n - 1;
-
-    while ( i != 0 && j != 0 ) {
-        nums1[k--] = nums1[i] > nums2[j] ? nums1[i--] : nums2[j--];
-    }
-
-    while ( j >= 0) {
-        nums1[k--] = nums2[j--];
-    }
-
-    return nums1;
-
-    */
-
-    int i = m-1, j = n-1, k = m+n-1;
-    while(i>=0 && j>=0){
-        nums1[k--] = nums1[i] > nums2[j] ? nums1[i--] : nums2[j--];
-    }
-    while( j>=0 ){
-        nums1[k--] = nums2[j--];
-    }
-
-    return nums1;
-}
-
 /*! \brief Same Tree
  *
  * Given the roots of two binary trees p and q, write a function to check if they are the same of not.
@@ -2371,16 +2352,7 @@ int Solutions::addDigits(int num)
     return num;
 }
 
-int Solutions::removeElement(std::vector<int> & nums, int val)
-{
-    int count = 0;
-    for(int i = 0; i < nums.size(); i++) {
-        if (nums[i] == val) {
-            nums[count++] = nums[i];
-        }
-    }
-    return count;
-}
+
 
 double Solutions::findMedianSortedArray(std::vector<int> & nums1, std::vector<int> & nums2)
 {
@@ -2438,37 +2410,37 @@ int Solutions::longestConsecutive(std::vector<int> nums)
     return longest;
 }
 
-std::vector< std::vector<int>> Solutions::threeSum(std::vector<int> & nums)
-{
-    std::sort(nums.begin(), nums.end());
 
-    if (nums[0] > 0) return {};
-    if (nums.size() < 3) return {};
 
-    // 
-    std::unordered_map<int, int> hashmap;
 
-    for (int i = 0; i < nums.size(); ++i) {
-        hashmap[nums[i]] = i;
-    }
- 
-    std::vector<std::vector<int>> ans;
 
-    for (int i = 0; i< nums.size() -2; ++i) {
-        if (nums[i] > 0) break;
 
-        for (int j = i + 1; j < nums.size() - 1; ++j) {
-            int required = -1 *(nums[i] + nums[j]);
-            if (hashmap.count(required) && hashmap.find(required)->second > j) {
-                ans.push_back({nums[i], nums[j], required});
-            }
-           // avoid duplicate
-           j = hashmap.find(nums[j])->second;
-        }
-        i = hashmap.find(nums[i])->second;
-    }
-    return ans;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 int Solutions::threeSumClosest(std::vector<int> & nums, int target)
 {
@@ -3034,6 +3006,7 @@ bool isUniqe(std::string s, std::vector< std::string> & palindrome, std::vector<
 
 bool isPalindrome(std::string &s)
 {
+/*
     int start = 0, end = s.length() - 1;
 
     while (start < s.length() / 2) {
@@ -3045,8 +3018,7 @@ bool isPalindrome(std::string &s)
     }
 
     return true;
-
-/*
+*/
     int start = 0, end = s.length() - 1;
 
     while (start <= end) {
@@ -3062,8 +3034,34 @@ bool isPalindrome(std::string &s)
     }
 
     return true;
-*/
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void checkUniqueLen( std::vector<std::string> & arr, std::string graphstr, int curindex, int index, int& count, std::vector< std::string>  & palindrome, int size)
 {
@@ -3171,39 +3169,39 @@ int Solutions::findMin(std::vector<int> & nums)
     return nums[0];
 }
 
-int Solutions::majorityElement(std::vector<int> & nums)
-{
-    /*
-    std::map<int, int> mp;
-    for(auto & num : nums) {
-        mp[num] ++;
-    }
 
-    int max = 0 ; int major = 0;
 
-    for (auto it = mp.begin(); it != mp.end(); ++it) {
 
-        if( it->second > max ) {
-            max = it->second;
-            major = it->first;
-        }
-        // std::cout << it->first << " " << it->second << " : " << major << std::endl;
-    }
-    return major;
-    */
 
-    int major = 0, count = 0;
 
-    for(auto & num : nums) {
-        if (count == 0) {
-            major = num;
-        }
 
-        count = major == num ? count + 1 : count - 1;
-    }
 
-    return major;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 std::vector<std::vector<int>> Solutions::rotatematrix(std::vector<std::vector<int>> & matrix)
@@ -3229,198 +3227,6 @@ std::vector<std::vector<int>> Solutions::rotatematrix(std::vector<std::vector<in
 }
 
 
-std::vector<int> Solutions::rotate(std::vector<int> & nums, int k)
-{
-    std::vector<int> ans = nums;
-    for(int i = 0; i < nums.size() ; i++) {
-        ans[(i+k)%nums.size()] = nums[i];
-    }
-
-    return ans;
-}
-
-std::vector<int> Solutions::productExceptself(std::vector<int> & nums)
-{
-    std::vector<int> ans(nums.size());
-
-    int back = 1;
-    for(int i = 0; i < nums.size(); ++i) {
-        ans[i]=back;
-        back*=nums[i];
-    }
-
-    int front = 1;
-    for(int i = nums.size() - 1; i >= 0; --i) {
-        ans[i]*=front;
-        front*=nums[i];
-    }
-
-    return ans;
-}
-
-int Solutions::canCompleteCircuit(std::vector<int> & gas, std::vector<int>& cost)
-{
-    int total_gas = 0, total_cost = 0, cur_cost = 0, index = 0;
-
-    for(int i = 0; i < gas.size(); i ++) {
-        total_gas += gas[i];
-        total_cost += cost[i];
-
-        cur_cost += gas[i] - cost[i];
-
-        if (cur_cost < 0){
-            cur_cost = 0;
-            index = i + 1;
-        }
-    }
-
-    return index;
-}
-
-int Solutions::candy(std::vector<int>& ratings)
-{
-    std::vector<int> candies(ratings.size(), 1);
-
-    for(int i = 1; i < ratings.size(); i ++) {
-        if(ratings[i-1] < ratings[i]) candies[i] = candies[i-1] + 1;
-    }
-
-    for(int i = ratings.size() - 2; i >= 0; i -- ) {
-        if (ratings[i] > ratings[i+1]) candies[i] = std::max(candies[i], candies[i+1] + 1);
-    }
-
-    int ans = 0;
-    for(auto & candy: candies) ans += candy;
-
-    return ans;
-}
-
-int Solutions::trap(std::vector<int>& height)
-{
-    int left = 0, right = height.size() -1;
-    int level = 0, water = 0;
-
-    while(left < right) {
-        int lower = height[height[left] < height[right] ? left ++ : right --];
-        level = std::max(level, lower);
-        water += level - lower;
-    }
-
-    return water;
-}
-
-int Solutions::romanToInt(std::string s)
-{
-    std::map<char, int> mp{{'I', 1}, {'V', 5}, {'X', 10},
-                           {'L', 50}, {'C', 100}, {'D', 500},
-                           {'M', 1000}};
-    int ans = 0;
-    for(int i = 0; i < s.size(); i++) {
-        if(mp[s[i]] < mp[s[i + 1]]) ans -= mp[s[i]];
-        else ans += mp[s[i]];
-    }
-    return ans;
-}
-
-std::string Solutions::intToRoman(int num)
-{
-    std::vector<std::pair<int, std::string>> mp{ {1000, "M"}, {900, "D"}, {500, "D"},
-                                                 {400, "CD"}, {100, "C"}, {90, "XC"},
-                                                 {50, "L"}, {40, "XL"}, {10, "X"},
-                                                 {9, "IX"}, {5, "V"}, {4, "IV"},
-                                                 {1, "I"} };                           
-    std::string ans = "";
-    for(auto & it : mp) {
-        while(num >= it.first) {
-            ans += it.second;
-            num -= it.first;
-        } 
-
-    }
-
-    return ans;
-}
-
-int Solutions::lenghtofLastword(std::string s)
-{
-    int count = 0;
-
-    for(int i = s.length() - 1; i >= 0; i --) {
-        if (s[i] == ' ' && count == 0) continue;
-        else if (s[i] != ' ') ++count;
-        else break;
-    }    
-
-    return count;
-}
-
-std::string Solutions::longestCommonPrefix(std::vector<std::string> & strs)
-{
-    /*
-    if(strs.size() == 1) return strs[0];
-
-    sort(strs.begin(), strs.end());
-
-    std::string ans = "";
-    for(int i = 0; i < strs.size(); i ++) {
-        if (strs[0][i] != strs[strs.size()-1][i]) break;
-        ans += strs[0][i];
-    }
-
-    return ans;
-    */
-
-    std::set<std::string> s(strs.begin(), strs.end());
-
-    if(strs.size() == 1 || s.size() == 1) return strs[0];
-
-    std::string prefix = "";
-    int j = 0;
-
-    while(true) {
-        prefix += strs[0][j];
-        for(int i = 0; i < strs.size(); i++) {
-            if(prefix[j] != strs[i][j]) {
-                prefix.pop_back();
-                return prefix;
-            }
-        }
-        ++j;
-    }
-
-    return prefix;
-}
-
-std::string Solutions::reverseWords(std::string s)
-{
-    std::string ans = "";
-
-    for(int i = s.size() - 1; i >= 0; i--) {
-        std::string word = "";
-        while(s[i] != ' ' && i >= 0) {
-            word += s[i];
-            --i;
-        }
-        std::reverse(word.begin(), word.end());
-        if(word != "") ans += word + " ";
-    }
-
-    ans.pop_back();
-    return ans;
-}
-
-
-int Solutions::maxProfitI(std::vector<int> & prices)
-{
-    if(prices.size() < 2) return 0;
-    int profit = 0, min = prices[0];
-
-    for (int i = 1; i < prices.size(); i ++) {
-        profit = std::max(profit, prices[i] - min);
-        min = std::min(min, prices[i]);
-    }
-    return profit;
-}
 
 
 
@@ -3429,34 +3235,243 @@ int Solutions::maxProfitI(std::vector<int> & prices)
 
 
 
-int Solutions::removeDuplicates(std::vector<int> & nums)
-{
-    if (!nums.size()) return 0;
 
-    int count = 1;
-    for(int i = 0; i < nums.size() - 1; ++i) {
-        if (nums[i] != nums[i + 1]) {
-            nums[count] = nums[i + 1];
-            count ++;
-        }
-    }
 
-    return count;
-}
 
-int Solutions::removeDuplicatesII(std::vector<int> & nums)
-{
-    if (nums.size() <= 2) return nums.size();
-    int count = 2;
-    for(int i = 2; i < nums.size(); ++i) {
-        if(nums[i] != nums[count -2]) {
-            nums[count] = nums[i];
-            count ++;
-        }
-    }
 
-   return count;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 int Solutions::search(std::vector<int>& nums, int target)
 {
@@ -4328,22 +4343,22 @@ int Solutions::minDays( std::vector< std::vector<int> > & grid) {
     return 2; // An island is a maximal 4-directionally (horizontal or vertical) connected group of 1's.
 }
 
-int Solutions::maxProfit( std::vector<int> & prices) {
-    int curHold = INT_MIN, curProfit = 0;
 
-    for (const int stockprice: prices) {
-        int prevHold = curHold, preProfit = curProfit;
 
-        // either keep having no stock in hand, or sell out the stock today at stock price
-        curProfit = std::max(curProfit, prevHold + stockprice);
 
-        // either keep holding stock in hand, or buy in new stock today at stock price
-        curHold = std::max(curHold, preProfit - stockprice);
-    }
 
-    // Max profit must come from notHold
-    return curProfit;
-}
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*! \brief Min Cost Climbing Stairs
  *
@@ -4541,59 +4556,6 @@ std::vector<int> Solutions::moveZeros(std::vector<int> & nums) {
 
     return nums;
 }
-
-bool Solutions::canJump(std::vector<int> & nums)
-{
-    int max_reach = 0;
-
-    for(int i = 0; i < nums.size(); i++) {
-        if (max_reach < i) return false;
-        max_reach = std::max(max_reach, i + nums[i]);
-    }
-
-    return true;
-}
-
-int Solutions::jump(std::vector<int> & nums)
-{
-    int step = 0, max_reach = 0, cur_reach = 0;
-
-    for(int i = 0; i < nums.size() - 1; i++) {
-        max_reach = std::max(max_reach, i + nums[i]);
-        
-        if ( cur_reach == i) {
-            step++;
-            cur_reach = max_reach;
-        }
-    }
-
-    return step;
-}
-
-int Solutions::hIndex(std::vector<int> & citations)
-{
-   std::priority_queue<int> pq(citations.begin(), citations.end());
-
-   int h;
-
-   for(h = 0; !pq.empty() && h < pq.top(); h++) {
-        pq.pop();
-   }
-
-   return h;
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 } /* namespace leetcode */

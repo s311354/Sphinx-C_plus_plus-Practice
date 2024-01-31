@@ -28,9 +28,9 @@
 
 /**
  * @brief Solutions of Leetcode quiz library namespace.
- * @author Louis Liu
+ * @author Shelton Liu
  * @date 07/12/2022
- * @version 0.0.1
+ * @version 0.0.2
  * @note Hello God!
  */
 namespace leetcode {
@@ -808,6 +808,21 @@ public:
      */                                                                          
      std::vector<std::vector<int>> threeSum(std::vector<int> & nums);
 
+     /* @brief 11. Container With Most Water 
+     *
+     * You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+     * 
+     * Find two lines that together with the x-axis form a container, such that the container contains the most water.
+     * 
+     * Return the maximum amount of water a container can store.
+     * 
+     * Notice that you may not slant the container. 
+     *
+     * @param height an integer array
+     * @return the maximum amount of water of a container can store
+     */                                                                          
+     int maxArea(std::vector<int>& height);
+
      /* @brief 16. 3Sum Closest
      *
      * Given an integer array nums of length n and an integer target, 
@@ -955,6 +970,14 @@ public:
      * However, the numeral for four is not IIII. Instead, the number four is written as IV.
      * Because the one is before the five we subtract it making four.
      *
+        Symbol       Value
+        I             1
+        V             5
+        X             10
+        L             50
+        C             100
+        D             500
+        M             1000
      * The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
      * I can be placed before V (5) and X (10) to make 4 and 9.
      * X can be placed before L (50) and C (100) to make 40 and 90. 
@@ -1017,6 +1040,62 @@ public:
      * @return a string of the words in reverse order concatenated by a single space
      */
      std::string reverseWords(std::string s);
+
+     /* @brief 6. Zigzag Conversion
+     *
+     * The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+     * 
+     * And then read line by line: "PAHNAPLSIIGYIR"
+     *
+     * @param s string
+     * @return a string of the words in reverse order concatenated by a single space
+     */
+     std::string convert(std::string s, int numRows);
+
+     /* @brief 28. Find the Index of the First Occurrence in a String
+     *
+     * Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+     *
+     * @param heystack
+     * @param needle
+     * @return the index of the first occurrence of needle in haytack
+     */
+     int strStr(std::string haystack, std::string needle);
+
+     /* @brief 68. Text Justification
+     *
+     * Given an array of strings words and a width maxWidth, format the text such that each line has exactly maxWidth characters and is fully (left and right) justified.
+     *
+     * You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces ' ' when necessary so that each line has exactly maxWidth characters.
+     *
+     * Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line does not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right.
+     *
+     * For the last line of text, it should be left-justified, and no extra space is inserted between words
+     *
+     * @param words an array of strings words
+     * @param maxWidth Each word's length is guaranteed to be greater than 0 and not exceed maxWidth
+     * @return extra spaces between words should be distributed as evenly as possible
+     */
+     std::vector<std::string> fullyJustify(std::vector<std::string> & words, int maxWidth);
+
+     /* @brief 392. Is Subsequence
+     *
+     * Given two strings s and t, return true if s is a subsequence of t, or false otherwise.
+     *
+     * A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
+     *
+     * @param s string
+     * @param t string
+     * @return if s is a subsequence of t
+     */
+     bool isSubsequence(std::string s, std::string t);
+
+
+
+
+                                                                  
+
+
 
 
 

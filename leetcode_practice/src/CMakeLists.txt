@@ -12,7 +12,7 @@ IF (Boost_FOUND)
     ADD_DEFINITIONS( "-DHAS_BOOST" )
 ENDIF()
 
-set(SOURCE_FILES solutions.cc)
+set(SOURCE_FILES solutions.cc arrays.cc twopointers.cc)
 find_path(SOLUTIONS_INCLUDE_DIRS solutions.h HINTS ${CMAKE_SOURCE_DIR}/include)
 
 message(${SOLUTIONS_INCLUDE_DIRS})
