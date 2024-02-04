@@ -1551,35 +1551,32 @@ std::vector<int> Solutions::intersection( std::vector<int> & nums1, std::vector<
 
 
 
-/*! \brief Happy Number
- *
- *  Write an algorithm to determine if a number n is happy.
- *
- *  Starting with any positive integer, replace the number by the sum of the squares of its digits.
- *  Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
- *  Those numbers for which this process ends in 1 are happy.
- *
- *  Runtime: 3 ms, faster than 55.97% of C++ online submissions for Happy Number.
- *
- *  Memory Usage: 5.9 MB, less than 62.07% of C++ online submissions for Happy Number.
- *
- * \return true if n is a happy number, and false if not
- */
-bool Solutions::isHappy(int n)
-{   
-    
-    while ( n != 1 and n != 4 ) {
-        int sum = 0, digit = 0;
-        while (n > 0) {
-            digit = n%10;
-            sum += digit*digit;
-            n = n/10;
-        }
-        n = sum;
-    }
 
-    return n == 1 ? true: false;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2379,36 +2376,6 @@ double Solutions::findMedianSortedArray(std::vector<int> & nums1, std::vector<in
     }
 }
 
-int Solutions::longestConsecutive(std::vector<int> nums)
-{
-    if (!nums.size()) return 0;
-
-    std::priority_queue<int, std::vector<int>, std::greater<int>> pq;
-
-    for(auto & num : nums) {
-        pq.push(num);
-    }
-
-    int count = 1, longest = 1;
-    int order = pq.top();
-    pq.pop();
-    while(!pq.empty()) {
-        int tmp = pq.top();
-        // std::cout << tmp << std::endl;
-        if (tmp == order) {
-            pq.pop();
-            continue;
-        }
-        if ( tmp == order + 1 && tmp != order) count ++;
-        else count = 1;
-        // std::cout << tmp << " " << count<< std::endl;
-        longest = longest > count ? longest : count;
-        order = tmp;
-        pq.pop();
-    }
-
-    return longest;
-}
 
 
 
@@ -3204,27 +3171,27 @@ int Solutions::findMin(std::vector<int> & nums)
 
 
 
-std::vector<std::vector<int>> Solutions::rotatematrix(std::vector<std::vector<int>> & matrix)
-{
-    int n = matrix.size();
 
-    // Diagonal
-    for(int i = 0; i < n ; i ++) {
-        for(int j = 0; j < n - i ; j++) {
-            std::swap(matrix[i][j], matrix[n - 1 - j][n - 1 - i]);        
-    
-        }
-    }
 
-    // Level
-    for(int i = 0; i < n/2; i ++) {
-        for(int j = 0; j < n ; j ++) {
-            std::swap(matrix[i][j], matrix[n - 1 - i][j]);
-        }
-    }
 
-    return matrix;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -4376,27 +4343,6 @@ int Solutions::minCostClimbingStairs( std::vector<int> & cost) {
     }
 
     return std::min(dp[n-2], dp[n-1]);
-}
-
-/*! \brief Longest Substring Without Repeating Character
- *
- *  Given a string s, find the length of the longest substring without repeating characters.
- *
- * \param  std::vector<int> v; string
- * \return Return parameter description
- */
-int Solutions::lengthOfLongestSubstring(std::string s) {
-    std::unordered_set<char> substring;
-    int len = 0, start = 0;
-
-    for (int i = 0; i < s.size(); ++i) {
-        while (!substring.insert(s[i]).second) {
-            substring.erase(s[start]);
-            start ++;
-        }
-        len = len > substring.size() ? len : substring.size();
-    }
-    return len;
 }
 
 /*! \brief Excel Sheet Column Title

@@ -173,7 +173,6 @@ int Solutions::canCompleteCircuit(std::vector<int> & gas, std::vector<int>& cost
     for(int i = 0; i < gas.size(); i ++) {
         total_gas += gas[i];
         total_cost += cost[i];
-
         count += gas[i] - cost[i];
 
         if (count < 0) {

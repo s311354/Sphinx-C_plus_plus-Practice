@@ -486,7 +486,20 @@ public:
     */
     std::vector<int> intersection( std::vector<int> & nums1, std::vector<int> & nums2);
 
-    // 202. Happy Number
+    /*! \brief 202. Happy Number
+     *
+     *  Write an algorithm to determine if a number n is happy.
+     *
+     *  Starting with any positive integer, replace the number by the sum of the squares of its digits.
+     *  Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
+     *  Those numbers for which this process ends in 1 are happy.
+     *
+     *  Runtime: 3 ms, faster than 55.97% of C++ online submissions for Happy Number.
+     *
+     *  Memory Usage: 5.9 MB, less than 62.07% of C++ online submissions for Happy Number.
+     *
+     * \return true if n is a happy number, and false if not
+     */
     bool isHappy(int n);
 
     void dictionaries();
@@ -628,9 +641,6 @@ public:
 
     // 746 Min Cost Climbing Stairs
     int minCostClimbingStairs( std::vector<int> & cost);
-
-    // 3. Longest Substring Without Repeating Character
-    int lengthOfLongestSubstring(std::string s);
 
     // 168. Excel Sheet Column Title
     std::string converToTitle(int columnNumber);
@@ -794,7 +804,7 @@ public:
      * @param nums an array
      * @return the length of the longest consecutive elements sequence.
      */                                                                          
-     int longestConsecutive(std::vector<int> nums);
+     int longestConsecutive(std::vector<int>& nums);
 
      /* @brief 15. 3Sum
      *
@@ -877,6 +887,35 @@ public:
      * @return rotated image
      */
      std::vector<std::vector<int>> rotatematrix(std::vector<std::vector<int>> & matrix);
+
+     /* @brief 73. Set Matrix Zeroes
+     *
+     * Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0's.
+
+     *
+     * @param matrix m x n integer matrix
+     * @return matrix which set its entire row and column to 0's
+     */
+     std::vector<std::vector<int>> setZeroes(std::vector<std::vector<int>>& matrix);
+
+     /* @brief 289. Game of Life
+     *
+     * According to Wikipedia's article: "The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970."
+     * 
+     * The board is made up of an m x n grid of cells, where each cell has an initial state: live (represented by a 1) or dead (represented by a 0). Each cell interacts with its eight neighbors (horizontal, vertical, diagonal) using the following four rules (taken from the above Wikipedia article):
+     * 
+     * Any live cell with fewer than two live neighbors dies as if caused by under-population.
+     * Any live cell with two or three live neighbors lives on to the next generation.
+     * Any live cell with more than three live neighbors dies, as if by over-population.
+     * Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
+     * The next state is created by applying the above rules simultaneously to every cell in the current state, where births and deaths occur simultaneously. Given the current state of the m x n grid board, return the next state.
+     * 
+     * The next state is created by applying the above rules simultaneously to every cell in the current state, where births and deaths occur simultaneously. Given the current state of the m x n grid board, return the next state.
+     *
+     * @param board made up od an m x n grid of cells
+     * @return the next state 
+     */
+     std::vector<std::vector<int>> gameOfLife(std::vector<std::vector<int>>& board);
 
      /* @brief 55. Jump Game 
      *
@@ -1090,10 +1129,153 @@ public:
      */
      bool isSubsequence(std::string s, std::string t);
 
+     /* @brief 209. Minimum Size Subarray Sum
+     *
+     * Given an array of positive integers nums and a positive integer target, return the minimal length of a subarray
+     * whose sum is greater than or equal to target. If there is no such subarray, return 0 instead.
+     *
+     * @param nums an array of positive integers
+     * @param target a positive
+     * @return the minimal length of a subarray
+     */
+     int minSubArrayLen(int target, std::vector<int> nums);
+
+     /* @brief 3. Longest Substring Without Repeating Characters
+     *
+     * Given a string s, find the length of the longest substring without repeating characters.
+     *
+     * @param s string
+     * @return the length of the longest substring without repeating characters.
+     */
+     int lengthOfLongestSubstring(std::string s);
+
+     /* @brief 30. Substring with Concatenation of All Words
+     *
+     * You are given a string s and an array of strings words. All the strings of words are of the same length.
+     * 
+     * A concatenated substring in s is a substring that contains all the strings of any permutation of words concatenated.
+     *
+     * Return the starting indices of all the concatenated substrings in s. You can return the answer in any order.
+     *
+     * @param s a string
+     * @param words an array of strings
+     * @return the starting indices of all the concatenated substrings in s.
+     */
+     std::vector<int> findSubstring(std::string s, std::vector<std::string>& words);
+
+     /* @brief 76. Minimum Window Substring
+     *
+     * Given two strings s and t of lengths m and n respectively, return the minimum window 
+substring of s such that every character in t (including duplicates) is included in the window.
+     * If there is no such substring, return the empty string "".
+     *
+     * @param s string of length m
+     * @param t string of length n
+     * @return the minimum window substring of s such that every character in t is included in the window.
+     */
+     std::string minWindow(std::string s, std::string t);
+
+     /* @brief 36. Valid Sudoku
+     *
+     * Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+     * 
+     * Each row must contain the digits 1-9 without repetition.
+     * Each column must contain the digits 1-9 without repetition.
+     * Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
+     *
+     * @param 
+     * @param t string of length n
+     * @return the minimum window substring of s such that every character in t is included in the window.
+     */
+     bool isValidSudoku(std::vector<std::vector<char>>& board);
+
+     /* @brief 54. Spiral Matrix
+     *
+     * Given an m x n matrix, return all elements of the matrix in spiral order.
+     *
+     * @param matrix
+     * @return all elements of the matrix in spiral order
+     */
+     std::vector<int> spiralOrder(std::vector<std::vector<int>>& matrix);
+
+     /* @brief 383. Ransom Note
+     *
+     * Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
+     * 
+     * Each letter in magazine can only be used once in ransomNote.
+     *
+     * @param ransomNote a string
+     * @param magazine a string
+     * @return true if ransomNote can be constructed by using the letters from magazine and false otherwise
+     */
+     bool canConstruct(std::string ransomNote, std::string magazine);
+
+     /* @brief 205. Isomorphic Strings
+     *
+     * Given two strings s and t, determine if they are isomorphic.
+     * 
+     * Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+     * 
+     * All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.
+     * 
+     * @param s a string
+     * @param t a string
+     * @return determine if they are isomorphic
+     */
+     bool isIsomorphic(std::string s, std::string t);
+
+     /* @brief 290. Word Pattern
+     *
+     * Given a pattern and a string s, find if s follows the same pattern.
+     * 
+     * Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in s.
+     * 
+     * @param s a string
+     * @param pattern a string
+     * @return if s follows the same pattern
+     */
+     bool wordPattern(std::string pattern, std::string s);
+
+     /* @brief 242. Valid Anagram
+     *
+     * Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+     * 
+     * An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+     * 
+     * @param s a string
+     * @param t a string
+     * @return if t is an anagram of s, and false otherwise
+     */
+     bool isAnagram(std::string s, std::string t);
+
+     /* @brief 49. Group Anagrams 
+     *
+     * Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+     * 
+     * An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+     * 
+     * @param strs a string
+     * @return the group the anagrams in any order.
+     */
+     std::vector<std::vector<std::string>> groupAnagrams(std::vector<std::string>& strs);
+
+     /* @brief 219. Contains Duplicate II 
+     *
+     * Given an integer array nums and an integer k, return true if there are two distinct indices i and j in the array such that nums[i] == nums[j] and abs(i - j) <= k. 
+     * 
+     * @param nums an integer array
+     * @param k an integer
+     * @return true if there are two distinct indices i and j in the array such that nums[i] == nunms[j]
+     */
+     bool containsNearbyDuplicate(std::vector<int>& nums, int k);
 
 
 
-                                                                  
+
+
+
+
+
 
 
 
