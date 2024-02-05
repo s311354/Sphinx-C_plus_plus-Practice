@@ -1511,6 +1511,19 @@ TEST_F(SolutionsTest, addDigitsTest)
     EXPECT_EQ(expected_value, solutions.addDigits(num));
 }
 
+TEST_F(SolutionsTest, insertTest)
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<std::vector<int>> intervals = {{1,3},{6,9}};
+    std::vector<int> newInterval = {2,5};
+    std::vector<std::vector<int>> expected_value = {{1,5},{6,9}};
+    EXPECT_EQ(expected_value, solutions.insert(intervals, newInterval));
+}
+
+
+
 TEST_F(SolutionsTest, lengthofLastwordTest)
 {
     /* Declare the Unit Test object */
@@ -2451,6 +2464,47 @@ TEST_F(SolutionsTest, spiralOrderTest)
    EXPECT_EQ(expected_value, solutions.spiralOrder(matrix));
 }
 
+TEST_F(SolutionsTest, isValidTest)
+{
+   /* Declare the Unit Test object */
+   leetcode::Solutions solutions;
+                                                           
+   std::string s = "()[]{}";
+   bool expected_value = true;
+   EXPECT_EQ(expected_value, solutions.isValid(s));
+}
+
+TEST_F(SolutionsTest, simplifyPathTest)
+{
+   /* Declare the Unit Test object */
+   leetcode::Solutions solutions;
+                                                           
+   std::string s = "/home/";
+   std::string expected_value = "/home";
+   EXPECT_EQ(expected_value, solutions.simplifyPath(s));
+}
+
+TEST_F(SolutionsTest, evalRPNTest)
+{
+   /* Declare the Unit Test object */
+   leetcode::Solutions solutions;
+                                                           
+   std::vector<std::string> tokens = {"2","1","+","3","*"};
+   int expected_value = 9;
+   EXPECT_EQ(expected_value, solutions.evalRPN(tokens));
+}
+
+TEST_F(SolutionsTest, calculateTest)
+{
+   /* Declare the Unit Test object */
+   leetcode::Solutions solutions;
+                                                           
+   std::string tokens = "(1+(4+5+2)-3)+(6+8)";
+   int expected_value = 23;
+   EXPECT_EQ(expected_value, solutions.calculate(tokens));
+}
+
+
 TEST_F(SolutionsTest, setZerosTest)
 {
    /* Declare the Unit Test object */
@@ -2524,6 +2578,18 @@ TEST_F(SolutionsTest, groupAnagramsTest)
    std::vector<std::vector<std::string>> expected_value = {{"bat"},{"tan", "nat"},{"eat","tea", "ate"}};
    EXPECT_EQ(expected_value, solutions.groupAnagrams(s));
 }
+
+TEST_F(SolutionsTest, summaryRangesTest)
+{
+   /* Declare the Unit Test object */
+   leetcode::Solutions solutions;
+                                                           
+   std::vector<int> nums = {0,1,2,4,5,7};
+   std::vector<std::string> expected_value = {"0->2","4->5","7"};
+   EXPECT_EQ(expected_value, solutions.summaryRanges(nums));
+}
+
+
 
 
 

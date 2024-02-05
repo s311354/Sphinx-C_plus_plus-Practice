@@ -175,14 +175,14 @@ public:
     */
     int maxLength( std::vector< std::string > & arr);
 
-     /* @brief Brief function description here
+     /* @brief 56. Merge Intervals
      *
-     * Detailed description
+     * Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals, and return an array of the non-overlapping intervals that cover all the intervals in the input.
      *
-     * @param param Parameter description
-     * @return Detailed description
+     * @param intervals an array
+     * @return an array of the non-overlapping intervals that cover all the intervals in the input.
      */
-    std::vector< std::vector<int> > mergeInterval(std::vector< std::vector<int>> &input_interval);
+     std::vector< std::vector<int> > mergeInterval(std::vector< std::vector<int>> &input_interval);
 
      /* @brief 258. Add Digits
      *
@@ -308,6 +308,20 @@ public:
     * @return the minimum time Bob needs to make the rope colorful
     */
     int minCost( std::string colors, std::vector<int> & neededTime );
+
+    /**
+    * @brief 57. Insert Interval
+    *
+    * You are given an array of non-overlapping intervals intervals where intervals[i] = [starti, endi] represent the start and the end of the ith interval and intervals is sorted in ascending order by starti. You are also given an interval newInterval = [start, end] that represents the start and end of another interval.
+    * 
+    * Insert newInterval into intervals such that intervals is still sorted in ascending order by starti and intervals still does not have any overlapping intervals (merge overlapping intervals if necessary).
+    * 
+    * Return intervals after the insertion.
+    *
+    * @param intervals an array of non-overlapping intervals
+    * @return intervals after the insertion
+    */
+    std::vector<std::vector<int>> insert(std::vector<std::vector<int>>& intervals, std::vector<int>& newInterval);
 
     /**
     * @brief 14 Longest Common Prefix (Easy)
@@ -544,6 +558,14 @@ public:
 
     // 657. Robot Return to Origin
     bool judgeCircle( std::string moves);
+
+
+
+
+
+
+
+
 
     // 1192. Critical Connections in a Network
     std::vector< std::vector<int> > criticalConnections(int n, std::vector< std::vector<int> > & connections);
@@ -1189,6 +1211,83 @@ substring of s such that every character in t (including duplicates) is included
      */
      bool isValidSudoku(std::vector<std::vector<char>>& board);
 
+     /* @brief 20. Valid Parentheses
+     *
+     * Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+     * 
+     * An input string is valid if:
+     * 
+     * Open brackets must be closed by the same type of brackets.
+     * Open brackets must be closed in the correct order.
+     * Every close bracket has a corresponding open bracket of the same type.
+     *
+     * @param s a string 
+     * @return determine if the input string is valid
+     */
+     bool isValid(std::string s);
+
+     /* @brief 71. Simplify Path
+     *
+     * Given a string path, which is an absolute path (starting with a slash '/') to a file or directory in a Unix-style file system, convert it to the simplified canonical path.
+     * 
+     * In a Unix-style file system, a period '.' refers to the current directory, a double period '..' refers to the directory up a level, and any multiple consecutive slashes (i.e. '//') are treated as a single slash '/'. For this problem, any other format of periods such as '...' are treated as file/directory names.
+     * 
+     * The canonical path should have the following format:
+     * 
+     * The path starts with a single slash '/'.
+     * Any two directories are separated by a single slash '/'.
+     * The path does not end with a trailing '/'.
+     * The path only contains the directories on the path from the root directory to the target file or directory (i.e., no period '.' or double period '..')
+     * Return the simplified canonical path.
+     *
+     * @param path a string path 
+     * @return the simplified canonical path
+     */
+     std::string simplifyPath(std::string path);
+
+     /* @brief 150. Evaluate Reverse Polish Notation
+     *
+     * You are given an array of strings tokens that represents an arithmetic expression in a Reverse Polish Notation.
+     * 
+     * Evaluate the expression. Return an integer that represents the value of the expression.
+     * 
+     * Note that:
+     * 
+     * The valid operators are '+', '-', '*', and '/'.
+     * Each operand may be an integer or another expression.
+     * The division between two integers always truncates toward zero.
+     * There will not be any division by zero.
+     * The input represents a valid arithmetic expression in a reverse polish notation.
+     * The answer and all the intermediate calculations can be represented in a 32-bit integer.
+     *
+     * @param tokens an array of strings
+     * @return an integer that represents the value of the expression
+     */
+     int evalRPN(std::vector<std::string>& tokens);
+
+     /* @brief 224. Basic Calculator
+     *
+     * Given a string s representing a valid expression, implement a basic calculator to evaluate it, and return the result of the evaluation.
+     * 
+     * Note: You are not allowed to use any built-in function which evaluates strings as mathematical expressions, such as eval(). 
+     *
+     * @param s a string representing a valid expression
+     * @return the result of the evaluation
+     */
+     int calculate(std::string s);
+
+
+
+
+
+
+
+
+
+
+
+
+
      /* @brief 54. Spiral Matrix
      *
      * Given an m x n matrix, return all elements of the matrix in spiral order.
@@ -1235,6 +1334,25 @@ substring of s such that every character in t (including duplicates) is included
      * @return if s follows the same pattern
      */
      bool wordPattern(std::string pattern, std::string s);
+
+     /* @brief 228. Summary Ranges
+     *
+     * You are given a sorted unique integer array nums.
+     * 
+     * A range [a,b] is the set of all integers from a to b (inclusive).
+     * 
+     * Return the smallest sorted list of ranges that cover all the numbers in the array exactly. That is, each element of nums is covered by exactly one of the ranges, and there is no integer x such that x is in one of the ranges but not in nums.
+     * 
+     * Each range [a,b] in the list should be output as:
+     * 
+     * "a->b" if a != b
+     * "a" if a == b
+     *
+     * @param nums a sorted unique integer array
+     * @return the smallest sorted list of ranges that cover all the numbers in the array exactly.
+     */
+     std::vector<std::string> summaryRanges(std::vector<int>& nums);
+
 
      /* @brief 242. Valid Anagram
      *

@@ -1194,35 +1194,21 @@ int Solutions::storeMeetingrooms( std::vector< std::vector<int> > & rooms)
     return room;
 }
 
-/*! \brief Minimum Number of Arrows to Burst Balloons
- *
- *  There are some spherical balloons taped onto a flat wall that represents the XY-plane. The balloons are represented as a 2D integer array points where points[i] = [xstart, xend] denotes a balloon whose horizontal diameter stretches between xstart and xend. You do not know the exact y-coordinates of the balloons.
- *
- *  Arrows can be shot up directly vertically (in the positive y-direction) from different points along the x-axis. A balloon with xstart and xend is burst by an arrow shot at x if xstart <= x <= xend. There is no limit to the number of arrows that can be shot. A shot arrow keeps traveling up infinitely, bursting any balloons in its path.
- *  Given the array points, return the minimum number of arrows that must be shot to burst all balloons.
- *
- * Runtime: 555 ms, faster than 66.04% of C++ online submissions for Minimum Number of Arrows to Burst Balloons.
- *
- * Memory Usage: 89.7 MB, less than 67.65% of C++ online submissions for Minimum Number of Arrows to Burst Balloons.
- *
- *
- * \return minimum number of arrows that must be shot to burst all balloons
- */
-static bool cmp ( std::vector<int> &a, std::vector<int> &b) { return a.at(1) < b.at(1); }
 
-int Solutions::findMinArrowShots( std::vector< std::vector<int> > & points)
-{
-    int ans = 0, arrow = 0;
 
-    std::sort(points.begin(), points.end(), cmp);
-    for (int i = 0; i < points.size(); ++i) {
-        if( ans == 0 or points.at(i)[0] > arrow) {
-            ans ++;
-            arrow = points.at(i)[1];
-        }
-    }
-    return ans;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*! \brief The Maximum Number of Full Rounds
  *
@@ -2300,38 +2286,38 @@ std::unique_ptr<LinkedListNode> Solutions::reversedLinkedList(std::unique_ptr<Li
     return prev;
 }
 
-std::vector< std::vector<int> > Solutions::mergeInterval( std::vector< std::vector<int> > &intervals)
-{
-    if (intervals.size() == 1 ) return intervals;
 
-    std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, \
-    std::greater<std::pair<int, int>>> pq;
 
-    for(auto& interval : intervals) {
-        pq.push({interval[0], interval[1]});
-    }
 
-    std::vector<std::vector<int>> ans;
 
-    std::pair<int, int> top = pq.top();
-    ans.push_back({top.first, top.second});
-    pq.pop();
 
-    while(!pq.empty()) {
-        std::pair<int, int> next = pq.top();
 
-        if(ans.back()[1] >= next.first) {
-            if (ans.back()[1] <= next.second)
-              ans.back()[1] = next.second;
-        } else {
-            ans.push_back({next.first, next.second});
-        }
 
-        pq.pop();
-    }
-    
-    return ans;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 int Solutions::addDigits(int num)
