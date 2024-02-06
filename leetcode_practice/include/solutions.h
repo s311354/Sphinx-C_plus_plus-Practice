@@ -573,13 +573,25 @@ public:
     // 162. Find Peak Element
     int findPeakElement( std::vector<int> & nums);
 
-    // 2. Add Two Numbers
+    /*! \brief 2. Add Two Numbers
+     *
+     *  You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+     *
+     *  You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+     *
+     * \return the sum as a linked list.
+     */
     std::unique_ptr<LinkedListNode> addTwoNumbers(std::unique_ptr<LinkedListNode> l1, std::unique_ptr<LinkedListNode> l2);
 
     // Interview reverse LinkedList 
     std::unique_ptr<LinkedListNode> reversedLinkedList(std::unique_ptr<LinkedListNode> l1);
 
-    // 83. Remove Duplicate from Sorted List
+    /*! \brief 83 Remove Duplicates from Sorted List
+     *
+     *  Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
+     *
+     * \return Return parameter description
+     */
     std::unique_ptr<LinkedListNode> deleteDuplicates(std::unique_ptr<LinkedListNode> head);
 
     // Interview Question
@@ -1276,16 +1288,19 @@ substring of s such that every character in t (including duplicates) is included
      */
      int calculate(std::string s);
 
-
-
-
-
-
-
-
-
-
-
+     /* @brief 141. Linked List Cycle
+     *
+     * Given head, the head of a linked list, determine if the linked list has a cycle in it.
+     * 
+     * There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter.
+     * 
+     * Return true if there is a cycle in the linked list. Otherwise, return false.
+     *
+     * @param head the head of a linked list
+     * @param pos used to denote the index of the node that tail's next pointer is connected to.
+     * @return true if there is a cycle in the linked list
+     */
+     bool hasCycle(std::unique_ptr<leetcode::LinkedListNode> *head, int pos);
 
 
      /* @brief 54. Spiral Matrix

@@ -1034,6 +1034,24 @@ TEST_F(SolutionsTest, addTwoNumbersTest)
     EXPECT_EQ(expected_value, v);
 }
 
+TEST_F(SolutionsTest, hasCycleTest) 
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+
+    std::vector<int> head = {3,2,0,-4};
+    int pos = 1;
+    bool expected_value = true;
+
+    std::unique_ptr<leetcode::LinkedListNode> head_node = nullptr;
+
+    for (int i = 0; i < head.size(); ++i) {
+        head_node = solutions.insertLinkedlistNode(std::move(head_node), head[i]);
+    }
+
+    //EXPECT_EQ(expected_value, solutions.hasCycle(std::move(head_node), pos));
+}
+
 TEST_F(SolutionsTest, reverseLinkedListTest) 
 {
     /* Declare the Unit Test object */
@@ -1083,7 +1101,6 @@ TEST_F(SolutionsTest, deleteDuplicatesTest)
         node = solutions.insertLinkedlistNode(std::move(node), head[i]);
     }
 
-    // node = solutions.deleteDuplicates(std::move(node));
     // std::vector<int> v = solutions.PrintLinkedlist(std::move(node));
 
     // std::vector<int> expected_value = {1, 2, 3};

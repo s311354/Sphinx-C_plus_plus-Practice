@@ -640,25 +640,25 @@ std::unique_ptr<TreeNode> Solutions::getNewNode(int value)
     return node;
 }
 
-std::unique_ptr<LinkedListNode> Solutions::getNewHead(int value)
-{
-    std::unique_ptr<LinkedListNode> node(new LinkedListNode(value, nullptr));
 
-    return node;
-}
 
-std::unique_ptr<LinkedListNode> Solutions::insertLinkedlistNode(std::unique_ptr<LinkedListNode> node, int value)
-{
-    if (node == nullptr) {
 
-        if (value != -1) node = getNewHead(value);
-        return node;
-    }
 
-    node->next = insertLinkedlistNode(std::move(node->next), value);
 
-    return node;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 std::vector<int> Solutions::PrintBFS(std::unique_ptr<TreeNode> node)
 {
@@ -2239,52 +2239,51 @@ int Solutions::findPeakElement( std::vector<int> & nums)
 */
 }
 
-/*! \brief Add Two Numbers
- *
- *  You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
- *
- *  You may assume the two numbers do not contain any leading zero, except the number 0 itself.
- *
- * \return the sum as a linked list.
- */
-std::unique_ptr<LinkedListNode> Solutions::addTwoNumbers(std::unique_ptr<LinkedListNode> l1, std::unique_ptr<LinkedListNode> l2)
-{
-    int sum = 0;
 
-    std::unique_ptr<LinkedListNode> node (new LinkedListNode(-1));
-    std::unique_ptr<LinkedListNode> temp = std::move(node);
 
-    while (sum || l1 || l2) {
-        sum += (l1 ? l1->val : 0) + (l2 ? l2->val : 0);
 
-        temp = insertLinkedlistNode(std::move(temp), sum%10);
 
-        sum /= 10;
 
-        if (l1) l1 = std::move(l1->next);
-        if (l2) l2 = std::move(l2->next);
-    }
 
-    node = std::move(temp->next);
 
-    return node;
-}
 
-std::unique_ptr<LinkedListNode> Solutions::reversedLinkedList(std::unique_ptr<LinkedListNode> l1)
-{
-    if (l1 == nullptr) return getNewHead(0);
 
-    std::unique_ptr<LinkedListNode> prev, next = nullptr;
 
-    while (l1 != nullptr) {
-        next = std::move(l1->next);
-        l1->next = std::move(prev);
-        prev = std::move(l1);
-        l1 = std::move(next);
-    }
 
-    return prev;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2512,27 +2511,27 @@ std::vector<std::vector<int>> Solutions::fourSum(std::vector<int> & nums, int ta
 
 
 
-/*! \brief Remove Duplicates from Sorted List
- *
- *  Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
- *
- * \return Return parameter description
- */
-std::unique_ptr<LinkedListNode> Solutions::deleteDuplicates(std::unique_ptr<LinkedListNode> head)
-{
-    if (!head) return head;
 
-    std::unique_ptr<LinkedListNode> tmp(std::move(head));
 
-    while (tmp && tmp->next) {
-        if (tmp->val == tmp->next->val)
-            tmp->next = std::move(tmp->next->next);
-        else tmp = std::move(tmp->next);
-        head = insertLinkedlistNode(std::move(head), tmp->val);
-    }
 
-    return head;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 int Solutions::balancedSum( std::vector<int> arr)
 {
