@@ -8,6 +8,7 @@
 
 namespace leetcode {
 
+using namespace std;
 
 bool Solutions::canConstruct(std::string ransomNote, std::string magazine)
 {
@@ -158,6 +159,45 @@ int Solutions::longestConsecutive(std::vector<int>& nums)
     }
  
     return longest;
+}
+
+// Hard!!
+std::vector<std::vector<std::string>> Solutions::word_count_engine(std::string document)
+{
+    unordered_map<string, int> mp;
+
+    for(int i = 0; i < document.length(); i++) {
+        string word = "";
+        
+        while(i < document.length() && document[i] != ' ') { 
+            if((document[i] >= 'a' && document[i] <= 'z') || (document[i] >= 'A' && document[i] <= 'Z'))
+                word += tolower(document[i++]);
+            else i++;
+        }
+        
+        if(word != "") mp[word] ++;
+    }
+
+    priority_queue<pair<int, std::string>> pq;
+
+    for(auto& it: mp) {
+        pq.push({it.second, it.first});
+    }
+
+    vector<vector<string>> ans;
+    while(!pq.empty()) {
+
+        pair<int, string> node = pq.top(); pq.pop();
+
+        vector<string> wcnt;
+
+        wcnt.push_back(node.second);
+        wcnt.push_back(to_string(node.first));
+        ans.push_back(wcnt);
+    }
+
+    return ans;
+
 }
 
 

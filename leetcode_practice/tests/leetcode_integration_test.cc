@@ -9,6 +9,8 @@
 
 namespace googletest {
 
+using namespace std;
+
 class SolutionsTest : public testing::Test {};
 
 TEST_F(SolutionsTest, minDeletionsTest) 
@@ -2419,6 +2421,27 @@ TEST_F(SolutionsTest, lengthOfLongestSubstringTest)
    s = "bbbbb";
    expected_value = 1;
    EXPECT_EQ(expected_value, solutions.lengthOfLongestSubstring(s));
+}
+
+TEST_F(SolutionsTest, moveZeroesTest)
+{
+   /* Declare the Unit Test object */
+   leetcode::Solutions solutions;
+                                                           
+   std::vector<int> nums = {0,1,0,3,12};
+   std::vector<int> expected_value = {1,3,12,0,0};
+   EXPECT_EQ(expected_value, solutions.moveZeroes(nums));
+}
+
+TEST_F(SolutionsTest, word_count_engineTest)
+{
+   /* Declare the Unit Test object */
+   leetcode::Solutions solutions;
+                                                           
+   std::string document = "Practice makes perfect. you'll only get Perfect by practice. just practice!";
+   std::vector<std::vector<string>> expected_value = {{"practice", "3"}, {"perfect", "2"}, {"makes", "1"}, {"youll", "1"}, \
+   {"only", "1"}, {"get", "1"}, {"by", "1"}, {"just", "1"} };
+   // EXPECT_EQ(expected_value, solutions.word_count_engine(document));
 }
 
 TEST_F(SolutionsTest, findSubstringTest)

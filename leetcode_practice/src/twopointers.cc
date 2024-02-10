@@ -97,6 +97,21 @@ int Solutions::maxArea(std::vector<int>& height)
     return ans;
 }
 
+std::vector<int> Solutions::moveZeroes(vector<int>& nums)
+{
+    int fast = 0, slow = 0;
+    while( slow < nums.size() && fast < nums.size() ) {
+        
+        if(nums[fast] != 0){
+            swap(nums[slow++], nums[fast++]);
+        }
+        else{
+            fast++;
+        }
+    }
+
+    return nums;
+}
 
 
 } /* namespace leetcode */

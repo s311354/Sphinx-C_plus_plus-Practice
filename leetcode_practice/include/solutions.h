@@ -35,6 +35,8 @@
  */
 namespace leetcode {
 
+using namespace std;
+
 /**
  * @brief Solutions class used for leetcode quizs.
  */
@@ -1381,6 +1383,19 @@ substring of s such that every character in t (including duplicates) is included
      */
      bool isAnagram(std::string s, std::string t);
 
+     /* @brief Word Count Engine
+     *
+     * Implement a document scanning function wordCountEngine, which receives a string document and returns a list of all unique 
+     * words in it and their number of occurrences, sorted by the number of occurrences in a descending order. If two or more words 
+     * have the same count, they should be sorted according to their order in the original sentence. Assume that all letters are in english alphabet. You function 
+     * should be case-insensitive, so for instance, the words “Perfect” and “perfect” should be considered the same word.
+     * 
+     * @param s a string
+     * @param t a string
+     * @return if t is an anagram of s, and false otherwise
+     */
+     std::vector<std::vector<std::string>> word_count_engine(std::string document);
+
      /* @brief 49. Group Anagrams 
      *
      * Given an array of strings strs, group the anagrams together. You can return the answer in any order.
@@ -1402,20 +1417,16 @@ substring of s such that every character in t (including duplicates) is included
      */
      bool containsNearbyDuplicate(std::vector<int>& nums, int k);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /* @brief 283. Move Zeroes
+     *
+     * Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+     *
+     * Note that you must do this in-place without making a copy of the array.
+     *
+     * @param nums an integer array
+     * @return move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+     */
+     std::vector<int> moveZeroes(vector<int>& nums);
 
 
 private:

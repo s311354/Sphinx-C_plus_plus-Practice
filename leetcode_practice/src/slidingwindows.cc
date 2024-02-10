@@ -90,6 +90,8 @@ std::string Solutions::minWindow(std::string s, std::string t)
             }
             ++left;
         }
+
+        left ++;
     }
 
     return minwin == INT_MAX ? "" : s.substr(start, minwin);

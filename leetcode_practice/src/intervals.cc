@@ -92,7 +92,7 @@ std::vector<std::vector<int>> Solutions::insert(std::vector<std::vector<int>>& i
     return ans;
 }
 
-static bool cmp ( std::vector<int> &a, std::vector<int> &b) { return a.at(1) < b.at(1); }
+static bool cmp ( std::vector<int> &a, std::vector<int> &b) { return a[1] < b[1]; }
 
 int Solutions::findMinArrowShots( std::vector< std::vector<int> > & points)
 {
@@ -100,11 +100,12 @@ int Solutions::findMinArrowShots( std::vector< std::vector<int> > & points)
 
     std::sort(points.begin(), points.end(), cmp);
     for (int i = 0; i < points.size(); ++i) {
-        if( ans == 0 or points.at(i)[0] > arrow) {
+        if( ans == 0 or points[i][0] > arrow) {
             ans ++;
-            arrow = points.at(i)[1];
+            arrow = points[i][1];
         }
     }
+
     return ans;
 }
 
