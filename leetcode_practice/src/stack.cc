@@ -8,6 +8,8 @@
 
 namespace leetcode {
 
+using namespace std;
+
 bool Solutions::isValid(std::string s)
 {
     std::stack<char> st; 

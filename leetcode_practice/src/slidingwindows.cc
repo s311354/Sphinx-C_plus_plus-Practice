@@ -8,6 +8,8 @@
 
 namespace leetcode {
 
+using namespace std;
+
 int Solutions::minSubArrayLen(int target, std::vector<int> nums)
 {
     int slow = 0, fast= 0, sum = 0, ans = INT_MAX;
@@ -90,8 +92,6 @@ std::string Solutions::minWindow(std::string s, std::string t)
             }
             ++left;
         }
-
-        left ++;
     }
 
     return minwin == INT_MAX ? "" : s.substr(start, minwin);

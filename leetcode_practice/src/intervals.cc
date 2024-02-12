@@ -8,6 +8,8 @@
 
 namespace leetcode {
 
+using namespace std;
+
 std::vector<std::string> Solutions::summaryRanges(std::vector<int>& nums)
 {
     std::vector<std::string> ans;

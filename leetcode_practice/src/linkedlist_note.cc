@@ -8,6 +8,8 @@
 
 namespace leetcode {
 
+using namespace std;
+
 bool hasCycle(ListNode *head) {
     if (head == NULL) return false;
 

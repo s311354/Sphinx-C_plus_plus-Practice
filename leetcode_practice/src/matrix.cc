@@ -8,6 +8,8 @@
 
 namespace leetcode {
 
+using namespace std;
+
 bool Solutions::isValidSudoku(std::vector<std::vector<char>>& board)
 {
     for(int row = 0; row < 9; row ++) {

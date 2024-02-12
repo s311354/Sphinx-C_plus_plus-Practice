@@ -9,6 +9,8 @@
 
 namespace leetcode {
 
+using namespace std;
+
 std::vector<int> Solutions::sortedmerge(std::vector<int> & nums1, int m , std::vector<int> & nums2, int n)
 {
     int i = m - 1, j = n - 1, k = m + n - 1;
