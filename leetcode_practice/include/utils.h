@@ -39,6 +39,14 @@ struct LinkedListNode {
     std::unique_ptr<LinkedListNode> next;
 };
 
+
+struct Node {
+  int val;
+  Node *left;
+  Node *right;
+  Node *next;
+};
+
 } /* leetcode */ 
 
 #endif /* UTILS_H */
