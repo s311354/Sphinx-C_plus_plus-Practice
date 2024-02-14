@@ -138,4 +138,115 @@ Input: root = [1,2,3,4,5,null,7]
 Output: [1,#,2,3,#,4,5,7,#]
 */
 
+
+void flatten(TreeNode* root) {
+    if (root == nullptr) return;
+
+    flatten(root->left);
+    flatten(root->right);
+
+    if(root->left) {
+        TreeNode * right = root->right;
+        root->right = root->left;
+        root->left = nullptr;
+
+        while (root->right) root = root->right;
+        root->right = right;
+    }
+}
+/*
+Input: root = [1,2,5,3,4,null,6]
+Output: [1,null,2,null,3,null,4,null,5,null,6]
+*/
+
+
+bool hasPathSum(TreeNode* root, int targetSum) {
+    if(!root) return false;
+
+    targetSum = targetSum - root->val;
+
+    if(targetSum == 0 && !root->left && !root->right) return true;
+
+    return hasPathSum(root->left, targetSum) || hasPathSum(root->right, targetSum);
+}
+/*
+Input: root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
+Output: true
+Explanation: The root-to-leaf path with the target sum is shown.
+*/
+
+
+int solve(TreeNode* root, int & ans) {
+    if (!root) return 0;
+
+    int left = std::max(0, solve(root->left, ans));
+    int right = std::max(0, solve(root->right, ans));
+    int val = root->val;
+
+    ans = std::max(ans, left + right + val);
+    return std::max(left, right) + val;
+}
+
+int maxPathSum(TreeNode* root) {
+    int ans = INT_MIN;
+    solve(root, ans);
+    return ans;
+}
+/*
+Input: root = [1,2,3]
+Output: 6
+Explanation: The optimal path is 2 -> 1 -> 3 with a path sum of 2 + 1 + 3 = 6.
+*/
+
+
+class BSTIterator {
+public:
+    std::stack<TreeNode*> stack;
+
+    void push(TreeNode* root) {
+        // in-order traversal of binary search tree
+        while(root) {
+            stack.push(root);
+            root = root->left;
+        }
+    }
+    BSTIterator(TreeNode* root) {
+        push(root);
+    }
+    
+    int next() {
+        auto node = stack.top();
+        stack.pop();
+        push(node->right);
+        return node->val;
+    }
+    
+    bool hasNext() {
+        return !stack.empty();
+    }
+};
+
+
+int countNodes(TreeNode* root) {
+    return root == nullptr ? 0 : countNodes(root->left) + countNodes(root->right) + 1;
+}
+/*
+Input: root = [1,2,3,4,5,6]
+Output: 6
+*/
+
+
+TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+    if(!root || root == p || root == q) return root;
+
+    TreeNode* left = lowestCommonAncestor(root->left, p, q);
+    TreeNode* right = lowestCommonAncestor(root->right, p, q);
+
+    return !left ? right : ! right ? left : root;
+}
+/*
+Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
+Output: 3
+*/
+
 } /* namespace leetcode */
