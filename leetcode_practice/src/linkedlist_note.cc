@@ -25,6 +25,11 @@ bool hasCycle(ListNode *head) {
 
     return false;
 }
+/*
+Input: head = [3,2,0,-4], pos = 1
+Output: true
+*/
+
 
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
     if (l1 == NULL && l2 == NULL) return l2;
@@ -40,6 +45,12 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
 
     return p;
 }
+/*
+Input: l1 = [2,4,3], l2 = [5,6,4]
+Output: [7,0,8]
+Explanation: 342 + 465 = 807.
+*/
+
 
 ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
     if (list1 != NULL && list2 != NULL) {
@@ -55,48 +66,88 @@ ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
     if(list1 == NULL) return list2;
     return list1;
 }
+/*
+Input: list1 = [1,2,4], list2 = [1,3,4]
+Output: [1,1,2,3,4,4]
+*/
+
+
+ListNode* reverseList(ListNode* head) {
+    ListNode *next, *prev = NULL;
+
+    while (head) {
+        next = head->next;
+        head->next = prev;
+        prev = head;
+        head = next;
+    }
+    return prev;
+}
+/*
+Input: head = [1,2,3,4,5]
+Output: [5,4,3,2,1]
+*/
+
 
 ListNode* reverseBetween(ListNode* head, int left, int right) {
-    ListNode *loc = new ListNode(0), *pre = loc, *cur;
-    loc->next = head;
 
-    for(int i = 0; i < left - 1; i++) {
-        pre = pre->next;
+    if (!head || left == right) return head;
+    
+    ListNode loc(0);
+    loc.next = head;
+    ListNode* prev = &loc;
+    
+    for (int i = 0; i < left - 1; ++i) {
+        prev = prev->next;
     }
-    cur = pre->next;
-
-    for(int i = 0; i < right - left; i++) {
-        ListNode* temp = pre->next;
-        pre->next = cur->next;
-        cur->next = cur->next->next;
-        pre->next->next = temp;
+    
+    ListNode* current = prev->next;
+    
+    for (int i = 0; i < right - left; ++i) {
+        ListNode* next = current->next;
+        current->next = temp->next;
+        temp->next = prev->next;
+        prev->next = next;
     }
-
-    return loc->next;
+    
+    return loc.next;
 }
+/*
+Input: head = [1,2,3,4,5], left = 2, right = 4
+Output: [1,4,3,2,5]
+*/
+
 
 ListNode* reverseKGroup(ListNode* head, int k) {
+
+    if (!head || k == 0) return head;
+
+    // Checker 
     ListNode * loc = head;
     for(int i = 0; i < k; i++) {
-        if(loc == nullptr) return head;
+        if( loc == nullptr ) return head;
         loc = loc->next;
     }
 
     ListNode* pre = nullptr;
     ListNode* cur = head;
-    ListNode* tmp = nullptr;
 
     for(int i = 0; i < k ; i ++) {
-        tmp = cur->next;
+        ListNode* next = cur->next;
         cur->next = pre;
         pre = cur;
-        cur = tmp;
+        cur = next;
     }
 
     head->next = reverseKGroup(cur, k);
 
     return pre;
 }
+/*
+Input: head = [1,2,3,4,5], k = 2
+Output: [2,1,4,3,5]
+*/
+
 
 ListNode* removeNthFromEnd(ListNode* head, int n) {
     ListNode *fast = head, *slow = head;
@@ -114,6 +165,11 @@ ListNode* removeNthFromEnd(ListNode* head, int n) {
 
     return head;
 }
+/*
+Input: head = [1,2,3,4,5], n = 2
+Output: [1,2,3,5]
+*/
+
 
 ListNode* deleteDuplicates(ListNode* head) {
     if(head == nullptr || head->next == nullptr) return head;
@@ -138,6 +194,12 @@ ListNode* deleteDuplicates(ListNode* head) {
 
     return head;
 }
+/*
+Input: head = [1,2,3,3,4,4,5]
+Output: [1,2,5]
+*/
+
+
 
 ListNode* rotateRight(ListNode* head, int k) {
     if(head == nullptr || head->next == nullptr || k == 0)
@@ -162,6 +224,11 @@ ListNode* rotateRight(ListNode* head, int k) {
 
     return head;
 }
+/*
+Input: head = [1,2,3,4,5], k = 2
+Output: [4,5,1,2,3]
+*/
+
 
 ListNode* partition(ListNode* head, int x) {
     ListNode* small = new ListNode(0);
@@ -188,6 +255,11 @@ ListNode* partition(ListNode* head, int x) {
 
     return small_head->next;
 }
+/*
+Input: head = [1,4,3,2,5,2], x = 3
+Output: [1,2,2,4,3,5]
+*/
+
 
 /*
 // Definition for a Node.
@@ -227,21 +299,9 @@ Node* copyRandomList(Node* head) {
 
     return orig_to_copy[head];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
+Input: head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
+Output: [[7,null],[13,0],[11,4],[10,2],[1,0]]
+*/
 
 } /* namespace leetcode */
