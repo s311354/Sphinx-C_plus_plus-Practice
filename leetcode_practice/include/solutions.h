@@ -506,13 +506,17 @@ public:
      *
      *  Write an algorithm to determine if a number n is happy.
      *
-     *  Starting with any positive integer, replace the number by the sum of the squares of its digits.
-     *  Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
+     *  Starting with any positive integer, replace the number by the
+     *  sum of the squares of its digits.
+     *  Repeat the process until the number equals 1 (where it will stay), 
+     * or it loops endlessly in a cycle which does not include 1.
      *  Those numbers for which this process ends in 1 are happy.
      *
-     *  Runtime: 3 ms, faster than 55.97% of C++ online submissions for Happy Number.
+     *  Runtime: 3 ms, faster than 55.97% of C++ online submissions for 
+     * Happy Number.
      *
-     *  Memory Usage: 5.9 MB, less than 62.07% of C++ online submissions for Happy Number.
+     *  Memory Usage: 5.9 MB, less than 62.07% of C++ online submissions 
+     * for Happy Number.
      *
      * \return true if n is a happy number, and false if not
      */
@@ -705,7 +709,9 @@ public:
      * @brief 169. Majority Element
      * 
      * Given an array nums of size n, return the majority element. 
-     * The majority element is the element that appears more than #n / 2# times. You may assume that the majority element always exists in the array.
+     * The majority element is the element that appears more 
+     * than #n / 2# times. You may assume that the 
+     * majority element always exists in the array.
      *
      * @param nums an integer array nums
      * @return the majority element always exists in the array
@@ -957,9 +963,11 @@ public:
      *
      * You are given an integer array nums. You are initially 
      * positioned at the array's first index, and each element
-     * in the array represents your maximum jump length at that position. 
+     * in the array represents your maximum jump length at that 
+     * position. 
      *
-     * Return true if you can reach the last index, or false otherwise.
+     * Return true if you can reach the last index, or false 
+     * otherwise.
      *
      * @param nums an integer array
      * @return true if you can reach the last index, or false otherwise.
@@ -976,7 +984,8 @@ public:
      * if you are at nums[i], you can jump to any nums[i + j]
      *
      * Return the minimum number of jumps to reach nums[n - 1]. 
-     * The test cases are generated such that you can reach nums[n - 1].
+     * The test cases are generated such that you can
+     *  reach nums[n - 1].
      *
      * @param nums a 0-indexed array of integers nums of length n
      * @return the minimum number of jumps to reach nums[n -1]
@@ -1031,7 +1040,9 @@ public:
 
      /* @brief 42. Trapping Rain Water 
      *
-     * Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.
+     * Given n non-negative integers representing an elevation
+     *  map where the width of each bar is 1, compute 
+     * how much water it can trap after raining.
      *
      * @param height n non-negative integers
      * @return how much water it can trap after raining
@@ -1053,7 +1064,8 @@ public:
         C             100
         D             500
         M             1000
-     * The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
+     * The same principle applies to the number nine, which is written as IX. 
+     * There are six instances where subtraction is used:
      * I can be placed before V (5) and X (10) to make 4 and 9.
      * X can be placed before L (50) and C (100) to make 40 and 90. 
      * C can be placed before D (500) and M (1000) to make 400 and 900. 
@@ -1081,7 +1093,8 @@ public:
 
      /* @brief 58. Length of Last Word 
      *
-     * Given a string s consisting of words and spaces, return the length of the last word in the string.
+     * Given a string s consisting of words and spaces, return 
+     * the length of the last word in the string.
      *
      * A word is a maximal substring consisting of non-space characters only.
      *
@@ -1105,11 +1118,13 @@ public:
      *
      * Given an input string s, reverse the order of the words.
      * 
-     * A word is defined as a sequence of non-space characters. The words in s will be separated by at least one space.
+     * A word is defined as a sequence of non-space characters. 
+     * The words in s will be separated by at least one space.
      * 
      * Return a string of the words in reverse order concatenated by a single space.
      * 
-     * Note that s may contain leading or trailing spaces or multiple spaces between two words. The returned string should only have a single space separating the words. Do not include any extra spaces.
+     * Note that s may contain leading or trailing spaces or multiple 
+     * spaces between two words. The returned string should only have a single space separating the words. Do not include any extra spaces.
      *
      * @param s string
      * @return a string of the words in reverse order concatenated by a single space
@@ -1292,11 +1307,17 @@ substring of s such that every character in t (including duplicates) is included
 
      /* @brief 141. Linked List Cycle
      *
-     * Given head, the head of a linked list, determine if the linked list has a cycle in it.
+     * Given head, the head of a linked list, determine if the 
+     * linked list has a cycle in it.
      * 
-     * There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter.
+     * There is a cycle in a linked list if there is some 
+     * node in the list that can be reached again by continuously 
+     * following the next pointer. Internally, pos is used to denote
+     *  the index of the node that tail's next pointer is connected to.
+     *  Note that pos is not passed as a parameter.
      * 
-     * Return true if there is a cycle in the linked list. Otherwise, return false.
+     * Return true if there is a cycle in the linked list. 
+     * Otherwise, return false.
      *
      * @param head the head of a linked list
      * @param pos used to denote the index of the node that tail's next pointer is connected to.
@@ -1304,6 +1325,80 @@ substring of s such that every character in t (including duplicates) is included
      */
      bool hasCycle(std::unique_ptr<leetcode::LinkedListNode> *head, int pos);
 
+     /* @brief 199. Binary Tree Right Side View
+     *
+     * Given the root of a binary tree, imagine yourself standing on the right side of it, 
+     * return the values of the nodes you can see ordered from top to bottom.
+     * 
+     * @param root the root of a binary tree
+     * @return the values of the nodes you can see ordered from top to bottom.
+     */
+     vector<int> rightSideView(TreeNode* root);
+
+    /* @brief 637. Average of Levels in Binary Tree
+     *
+     * Given the root of a binary tree, return the average value of the nodes on each level in the form of an array. 
+     * Answers within 10-5 of the actual answer will be accepted.
+     * 
+     * @param root the root of a binary tree
+     * @return the average value of the nodes on each level in the form of an array.
+     */
+     vector<double> averageOfLevels(TreeNode* root);
+
+    /* @brief 102. Binary Tree Level Order Traversal
+     *
+     * Given the root of a binary tree, return the level order traversal 
+     * of its nodes' values. (i.e., from left to right, level by level).
+     * 
+     * @param root the root of a binary tree
+     * @return the level order traversal of its nodes' values.
+     */
+     vector<vector<int>> levelOrder(TreeNode* root);
+
+    /* @brief 103. Binary Tree Zigzag Level Order Traversal
+     *
+     * Given the root of a binary tree, return the zigzag level order traversal of its nodes' values. (i.e., from left to right,
+     *  then right to left for the next level and alternate between).
+     * 
+     * @param root the root of a binary tree
+     * @return the zigzag level order traversal of its nodes' values.
+     */
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root);
+
+    /* @brief 530. Minimum Absolute Difference in BST
+     *
+     * Given the root of a Binary Search Tree (BST), return the minimum absolute difference 
+     * between the values of any two different nodes in the tree.
+     * 
+     * @param root the root of a binary tree
+     * @return the minimum absolute difference between the values of any two different nodes in the tree.
+     */
+    int getMinimumDifference(TreeNode* root);
+
+    /* @brief 230. Kth Smallest Element in a BST
+     *
+     * Given the root of a binary search tree, and an integer k, return the kth smallest value 
+     * (1-indexed) of all the values of the nodes in the tree.
+     * 
+     * @param root the root of a binary tree
+     * @return  the kth smallest value (1-indexed) of all the values of the nodes in the tree.
+     */
+    int kthSmallest(TreeNode* root, int k);
+
+    /* @brief 98. Validate Binary Search Tree
+     *
+     * Given the root of a binary tree, determine if it is a valid binary search tree (BST).
+     * 
+     * A valid BST is defined as follows:
+     * 
+     * The left subtree of a node contains only nodes with keys less than the node's key.
+     * The right subtree of a node contains only nodes with keys greater than the node's key.
+     * Both the left and right subtrees must also be binary search trees.
+     * 
+     * @param root the root of a binary tree
+     * @return determine if it is a valid binary search tree
+     */
+    int kthSmallest(TreeNode* root, int k);
 
      /* @brief 54. Spiral Matrix
      *
@@ -1316,13 +1411,16 @@ substring of s such that every character in t (including duplicates) is included
 
      /* @brief 383. Ransom Note
      *
-     * Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
+     * Given two strings ransomNote and magazine, return true if
+     *  ransomNote can be constructed by using the letters from 
+     * magazine and false otherwise.
      * 
      * Each letter in magazine can only be used once in ransomNote.
      *
      * @param ransomNote a string
      * @param magazine a string
-     * @return true if ransomNote can be constructed by using the letters from magazine and false otherwise
+     * @return true if ransomNote can be constructed by using the letters
+     *  from magazine and false otherwise
      */
      bool canConstruct(std::string ransomNote, std::string magazine);
 
@@ -1330,9 +1428,13 @@ substring of s such that every character in t (including duplicates) is included
      *
      * Given two strings s and t, determine if they are isomorphic.
      * 
-     * Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+     * Two strings s and t are isomorphic if the characters in s can be 
+     * replaced to get t.
      * 
-     * All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.
+     * All occurrences of a character must be replaced with another 
+     * character while preserving the order of characters. No two 
+     * characters may map to the same character, but a character 
+     * may map to itself.
      * 
      * @param s a string
      * @param t a string
@@ -1340,11 +1442,189 @@ substring of s such that every character in t (including duplicates) is included
      */
      bool isIsomorphic(std::string s, std::string t);
 
+    /* @brief 104. Maximum Depth of Binary Tree
+     *
+     * Given the root of a binary tree, return its maximum depth.
+     * 
+     * A binary tree's maximum depth is the number of nodes along the longest path from
+     *  the root node down to the farthest leaf node.
+     * 
+     * @param root the root of a binary tree
+     * @return its maximum depth
+     */
+    int maxDepth(TreeNode* root);
+
+    /* @brief 100. Same Tree
+     *
+     * Given the roots of two binary trees p and q, write a function to 
+     * check if they are the same or not.
+     * 
+     * Two binary trees are considered the same if they are structurally 
+     * identical, and the nodes have the same value.
+     * 
+     * @param p binary trees
+     * @param q binary trees
+     * @return if two binary trees are structurally identical, and the nodes have the same value
+     */
+    bool isSameTree(TreeNode* p, TreeNode* q);
+
+    /* @brief 226. Invert Binary Tree
+     *
+     * Given the root of a binary tree, invert the tree, and 
+     * return its root.
+     * 
+     * @param root binary tree
+     * @return its root
+     */
+    TreeNode* invertTree(TreeNode* root);
+
+    /* @brief 101. Symmetric Tree
+     *
+     * Given the root of a binary tree, check whether it is 
+     * a mirror of itself (i.e., symmetric around its center).
+     * 
+     * @param root the root of a binary tree
+     * @return check whether it is a mirror of itself
+     */
+    bool isSymmetric(TreeNode* root);
+
+    /* @brief 105. Construct Binary Tree from Preorder and Inorder Traversal
+     *
+     * Given two integer arrays preorder and inorder where preorder is the preorder traversal of a binary tree and inorder is the inorder 
+     * traversal of the same tree, construct and return the binary tree.
+     * 
+     * @param preorder the preorder traversal of a binary tree
+     * @param inorder the inorder traversal of a binary tree
+     * @return the binary tree
+     */
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder);
+
+    /* @brief 106. Construct Binary Tree from Inorder and Postorder Traversal
+     *
+     * Given two integer arrays preorder and inorder where preorder is the preorder traversal of a binary tree and inorder is the inorder 
+     * traversal of the same tree, construct and return the binary tree.
+     * 
+     * @param inorder the inorder traversal of a binary tree
+     * @param postorder the postorder traversal of a binary tree
+     * @return the binary tree
+     */
+    TreeNode* buildTreeII(vector<int>& inorder, vector<int>& postorder);
+
+    /* @brief 117. Populating Next Right Pointers in Each Node II
+     *
+     * Populate each next pointer to point to its next right node. If there is
+     *  no next right node, the next pointer should be set to NULL.
+     * 
+     * Initially, all next pointers are set to NULL.
+     * 
+     * @param root the root of a binary tree
+     * @return t Populate each next pointer to point to its next right node
+     */
+    Node* connect(Node* root);
+
+    /* @brief 114. Flatten Binary Tree to Linked List
+     *
+     * Given the root of a binary tree, flatten the tree into a "linked list":
+     * 
+     * The "linked list" should use the same TreeNode class where the right child pointer points to the next node in the list and the left child pointer is always null.
+     * The "linked list" should be in the same order as a pre-order traversal of the binary tree.
+     * 
+     * @param root the root of a binary tree
+     * @return The "linked list" should be in the same order as a pre-order traversal of the binary tree.
+     */
+    void flatten(TreeNode* root);
+
+    /* @brief 112. Path Sum
+     *
+     * Given the root of a binary tree and an integer targetSum, return true if the tree has a root-to-leaf path such that adding up all the values along the path equals targetSum.
+     * 
+     * A leaf is a node with no children.
+     * 
+     * @param root the root of a binary tree
+     * @param targetSum an integer
+     * @return true if the tree has a root-to-leaf path such that adding up all the values along the path equals targetSum.
+     */
+    bool hasPathSum(TreeNode* root, int targetSum);
+
+    /* @brief 129. Sum Root to Leaf Numbers
+     *
+     * You are given the root of a binary tree containing digits from 0 to 9 only.
+     * 
+     * Each root-to-leaf path in the tree represents a number.
+     * 
+     * For example, the root-to-leaf path 1 -> 2 -> 3 represents the number 123.
+     * Return the total sum of all root-to-leaf numbers. Test cases are generated so that the answer will fit in a 32-bit integer.
+     * 
+     * A leaf node is a node with no children.
+     * 
+     * @param root the root of a binary tree
+     * @return the total sum of all root-to-leaf numbers. 
+     */
+    int sumNumbers(TreeNode* root);
+
+    /* @brief 124. Binary Tree Maximum Path Sum
+     *
+     * A path in a binary tree is a sequence of nodes where each pair of adjacent nodes in the sequence has an edge connecting them. A node can only appear in the sequence at most once. Note that the path does not need to pass through the root.
+     * 
+     * The path sum of a path is the sum of the node's values in the path.
+     * 
+     * Given the root of a binary tree, return the maximum path sum of any non-empty path.
+     * 
+     * @param root the root of a binary tree
+     * @return the maximum path sum of any non-empty path.
+     */
+    int maxPathSum(TreeNode* root);
+
+    /* @brief 173. Binary Search Tree Iterator
+     *
+     * Implement the BSTIterator class that represents an iterator over the in-order traversal of a binary search tree (BST):
+     * 
+     * BSTIterator(TreeNode root) Initializes an object of the BSTIterator class. The root of the BST is given as part of the constructor. The pointer should be initialized to a non-existent number smaller than any element in the BST.
+     * boolean hasNext() Returns true if there exists a number in the traversal to the right of the pointer, otherwise returns false.
+     * int next() Moves the pointer to the right, then returns the number at the pointer.
+     * Notice that by initializing the pointer to a non-existent smallest number, the first call to next() will return the smallest element in the BST.
+     * 
+     * You may assume that next() calls will always be valid. That is, there will be at least a next number in the in-order traversal when next() is called.
+     * 
+     * @param root the root of a binary tree
+     * @return the maximum path sum of any non-empty path.
+     */
+    // class BSTIterator{};
+
+    /* @brief 222. Count Complete Tree Nodes
+     *
+     * Given the root of a complete binary tree, return the number of the nodes in the tree.
+     * 
+     * According to Wikipedia, every level, except possibly the last, is completely filled in a complete binary tree, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h.
+     * 
+     * Design an algorithm that runs in less than O(n) time complexity.
+     * 
+     * @param root the root of a complete binary tree
+     * @return the number of the nodes in the tree.
+     */
+    int countNodes(TreeNode* root);
+
+    /* @brief 236. Lowest Common Ancestor of a Binary Tree
+     *
+     * Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
+     * 
+     * According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).”
+     * 
+     * @param root the root of a complete binary tree
+     * @param p node
+     * @param q node
+     * @return the lowest common ancestor
+     */
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q);
+
      /* @brief 290. Word Pattern
      *
-     * Given a pattern and a string s, find if s follows the same pattern.
+     * Given a pattern and a string s, find if s follows 
+     * the same pattern.
      * 
-     * Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in s.
+     * Here follow means a full match, such that there is 
+     * a bijection between a letter in pattern and a non-empty 
+     * word in s.
      * 
      * @param s a string
      * @param pattern a string
@@ -1373,9 +1653,12 @@ substring of s such that every character in t (including duplicates) is included
 
      /* @brief 242. Valid Anagram
      *
-     * Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+     * Given two strings s and t, return true if t is an anagram of s, 
+     * and false otherwise.
      * 
-     * An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+     * An Anagram is a word or phrase formed by rearranging the 
+     * letters of a different word or phrase, typically using all 
+     * the original letters exactly once.
      * 
      * @param s a string
      * @param t a string
@@ -1398,9 +1681,12 @@ substring of s such that every character in t (including duplicates) is included
 
      /* @brief 49. Group Anagrams 
      *
-     * Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+     * Given an array of strings strs, group the anagrams together. You can 
+     * return the answer in any order.
      * 
-     * An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+     * An Anagram is a word or phrase formed by rearranging the letters of a 
+     * different word or phrase, typically using all the original letters 
+     * exactly once.
      * 
      * @param strs a string
      * @return the group the anagrams in any order.
@@ -1409,11 +1695,14 @@ substring of s such that every character in t (including duplicates) is included
 
      /* @brief 219. Contains Duplicate II 
      *
-     * Given an integer array nums and an integer k, return true if there are two distinct indices i and j in the array such that nums[i] == nums[j] and abs(i - j) <= k. 
+     * Given an integer array nums and an integer k, return true if there
+     *  are two distinct indices i and j in the array such that nums[i] == 
+     * nums[j] and abs(i - j) <= k. 
      * 
      * @param nums an integer array
      * @param k an integer
-     * @return true if there are two distinct indices i and j in the array such that nums[i] == nunms[j]
+     * @return true if there are two distinct indices i and j in the 
+     * array such that nums[i] == nunms[j]
      */
      bool containsNearbyDuplicate(std::vector<int>& nums, int k);
 
