@@ -503,6 +503,12 @@ TEST_F(SolutionsTest, findMinArrowShotsTest)
     points = {{1,2}, {2,3}, {3,4}, {4,5}};
     expected_value = 2;
     EXPECT_EQ(expected_value, solutions.findMinArrowShots(points));
+
+
+    points = {{9, 12}, {1, 10}, {4, 11}, {8, 12}, {3, 9}, {6, 9}, {6, 7}};
+    expected_value = 2;
+    EXPECT_EQ(expected_value, solutions.findMinArrowShots(points));
+
 }
 
 TEST_F(SolutionsTest, maxFullRoundTest) 

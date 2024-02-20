@@ -1398,7 +1398,7 @@ substring of s such that every character in t (including duplicates) is included
      * @param root the root of a binary tree
      * @return determine if it is a valid binary search tree
      */
-    int kthSmallest(TreeNode* root, int k);
+     bool isValidBST(TreeNode* root);
 
      /* @brief 54. Spiral Matrix
      *
