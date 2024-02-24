@@ -28,6 +28,11 @@ bool Solutions::isValid(std::string s)
 
     return st.empty(); 
 }
+/*
+Input: s = "()"
+Output: true
+*/
+
 
 std::string Solutions::simplifyPath(std::string path)
 {
@@ -61,6 +66,12 @@ std::string Solutions::simplifyPath(std::string path)
 
     return ans;
 }
+/*
+Input: path = "/home/"
+Output: "/home"
+Explanation: Note that there is no trailing slash after the last directory name.
+*/
+
 
 int Solutions::evalRPN(std::vector<std::string>& tokens)
 {
@@ -89,6 +100,12 @@ int Solutions::evalRPN(std::vector<std::string>& tokens)
     }
     return st.top();  
 }
+/*
+Input: tokens = ["2","1","+","3","*"]
+Output: 9
+Explanation: ((2 + 1) * 3) = 9
+*/
+
 
 int Solutions::calculate(std::string s) {
     int res = 0, sum = 0, sign = 1;
@@ -111,5 +128,10 @@ int Solutions::calculate(std::string s) {
     return res += (sum * sign);
 
 }
+/*
+Input: s = "(1+(4+5+2)-3)+(6+8)"
+Output: 23
+*/
+
 
 } /* namespace leetcode */

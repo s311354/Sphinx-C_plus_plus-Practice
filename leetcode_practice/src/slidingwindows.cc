@@ -24,6 +24,12 @@ int Solutions::minSubArrayLen(int target, std::vector<int> nums)
 
     return ans == INT_MAX ? 0 : ans;
 }
+/*
+Input: target = 7, nums = [2,3,1,2,4,3]
+Output: 2
+Explanation: The subarray [4,3] has the minimal length under the problem constraint.
+*/
+
 
 int Solutions::lengthOfLongestSubstring(std::string s)
 {
@@ -42,6 +48,11 @@ int Solutions::lengthOfLongestSubstring(std::string s)
 
     return ans;
 }
+/*
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+*/
 
 std::vector<int> Solutions::findSubstring(std::string s, std::vector<std::string>& words)
 {
@@ -67,6 +78,15 @@ std::vector<int> Solutions::findSubstring(std::string s, std::vector<std::string
 
     return ans;
 }
+/*
+Input: s = "barfoothefoobarman", words = ["foo","bar"]
+Output: [0,9]
+Explanation: Since words.length == 2 and words[i].length == 3, the concatenated substring has to be of length 6.
+The substring starting at 0 is "barfoo". It is the concatenation of ["bar","foo"] which is a permutation of words.
+The substring starting at 9 is "foobar". It is the concatenation of ["foo","bar"] which is a permutation of words.
+The output order does not matter. Returning [9,0] is fine too.
+*/
+
 
 std::string Solutions::minWindow(std::string s, std::string t)
 {
@@ -96,5 +116,10 @@ std::string Solutions::minWindow(std::string s, std::string t)
 
     return minwin == INT_MAX ? "" : s.substr(start, minwin);
 }
+/*
+Input: s = "ADOBECODEBANC", t = "ABC"
+Output: "BANC"
+Explanation: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
+*/
 
 } /* namespace leetcode */

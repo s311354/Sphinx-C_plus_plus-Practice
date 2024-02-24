@@ -385,9 +385,8 @@ std::string Solutions::longestCommonPrefix(std::vector<std::string> & strs)
     return ans;
 }
 /*
-Input: s = "Hello World"
-Output: 5
-Explanation: The last word is "World" with length 5.
+Input: strs = ["flower","flow","flight"]
+Output: "fl"
 */
 
 std::string Solutions::reverseWords(std::string s)
