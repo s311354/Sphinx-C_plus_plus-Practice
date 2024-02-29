@@ -589,6 +589,121 @@ public:
      */
     std::unique_ptr<LinkedListNode> addTwoNumbers(std::unique_ptr<LinkedListNode> l1, std::unique_ptr<LinkedListNode> l2);
 
+    /*! \brief 2. Add Two Numbers
+     *
+     *  You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+     *
+     *  You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+     *
+     * \return the sum as a linked list.
+     */
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2);
+
+    /**
+     * @brief 21. Merge Two Sorted Lists
+     * 
+     * You are given the heads of two sorted linked lists list1 and list2.
+     * 
+     * Merge the two lists into one sorted list. The list should be made by splicing together the nodes of the first two lists.
+     * 
+     * Return the head of the merged linked list.
+     * 
+     * @param list1 sorted linked list
+     * @param list2 sorted linked list
+     * @return the head of the merged linked list
+    */
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2);
+
+    /**
+     * @brief 92. Reverse Linked List II
+     * 
+     * Given the head of a singly linked list and two integers left 
+     * and right where left <= right, reverse the nodes of the list 
+     * from position left to position right, and return the reversed list.
+     * 
+     * @param head singly linked list
+     * @param left integer
+     * @param right integer
+     * @return the reversed list
+    */
+    ListNode* reverseBetween(ListNode* head, int left, int right);
+
+    /**
+     * @brief 25. Reverse Nodes in k-Group
+     * 
+     * Given the head of a linked list, reverse the nodes of the list k at a time, and return the modified list.
+     * 
+     * k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes, in the end, should remain as it is.
+     * 
+     * You may not alter the values in the list's nodes, only nodes themselves may be changed.
+
+     * @param head the head of a linked list
+     * @param k positive integer
+     * @return the modified list
+    */
+    ListNode* reverseKGroup(ListNode* head, int k);    
+
+    /**
+     * @brief 19. Remove Nth Node From End of List
+     * 
+     * Given the head of a linked list, remove the nth node from the end of the list and return its head.
+     * 
+     * @param head the head of a linked list
+     * @param n  the nth node from the end of the list
+     * @return its head
+    */
+    ListNode* removeNthFromEnd(ListNode* head, int n);
+
+    /**
+     * @brief 82. Remove Duplicates from Sorted List II
+     * 
+     * Given the head of a sorted linked list, delete all nodes
+     * that have duplicate numbers, leaving only distinct numbers from the original list. Return the linked list sorted as well.     * 
+     * 
+     * @param head the head of a sorted linked list
+     * @return the linked list sorted as well
+    */
+    ListNode* deleteDuplicates(ListNode* head);
+
+    /**
+     * @brief 61. Rotate List
+     * 
+     * Given the head of a linked list, rotate the list to the right by k places.
+     * 
+     * @param head the head of a linked list
+     * @param k places
+     * @return rotate the list to the right by k places
+    */
+    ListNode* rotateRight(ListNode* head, int k);
+
+    /**
+     * @brief 138. Copy List with Random Pointer
+     * 
+     * A linked list of length n is given such that each node contains an additional random pointer, which could point to any node in the list, or null.
+     * Construct a deep copy of the list. The deep copy should consist of exactly n brand new nodes, where each new node has its value set to the value of its corresponding original node. 
+     * Both the next and random pointer of the new nodes should point to new nodes in the copied list such that the pointers in the original list and copied list represent the same list state. None of the
+     * pointers in the new list should point to nodes in the original list.
+     *      * 
+     * @param head brand new nodes
+     * @param k places
+     * @return the head of the copied linked list
+    */
+    Node* copyRandomList(Node* head);
+
+    /**
+     * @brief 86. Partition List
+     * 
+     * Given the head of a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
+     * 
+     * You should preserve the original relative order of the nodes in each of the two partitions.
+     *
+     * @param head the head of a linked list
+     * @param x value
+     * @return preserve the original relative order of the nodes in each of the two partitions.
+    */
+    ListNode* partition(ListNode* head, int x);
+
+
     // Interview reverse LinkedList 
     std::unique_ptr<LinkedListNode> reversedLinkedList(std::unique_ptr<LinkedListNode> l1);
 
@@ -1324,6 +1439,29 @@ substring of s such that every character in t (including duplicates) is included
      * @return true if there is a cycle in the linked list
      */
      bool hasCycle(std::unique_ptr<leetcode::LinkedListNode> *head, int pos);
+
+     /* @brief 141. Linked List Cycle
+     *
+     * Given head, the head of a linked list, determine if the linked list has a cycle in it.
+     * 
+     * There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter.
+     * 
+     * Return true if there is a cycle in the linked list. Otherwise, return false.
+     *
+     * @param head the head of a linked list
+     * @return true if there is a cycle in the linked list
+     */
+     bool hasCycle(ListNode *head);
+
+     /* @brief 206. Reverse Linked List
+     *
+     * Given the head of a singly linked list, reverse the list, and 
+     * return the reversed list.
+     * 
+     * @param the head of a singly linked list
+     * @return the reversed list
+     */
+     ListNode* reverseList(ListNode* head);
 
      /* @brief 199. Binary Tree Right Side View
      *

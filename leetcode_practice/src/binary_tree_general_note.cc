@@ -20,7 +20,7 @@ namespace leetcode {
  * };
  */
 
-int maxDepth(TreeNode* root) {
+int Solutions::maxDepth(TreeNode* root) {
     if(root == nullptr) return 0;
     return 1 + std::max(maxDepth(root->left), maxDepth(root->right));
 }
@@ -30,7 +30,7 @@ Output: 3
 */
 
 
-bool isSameTree(TreeNode* p, TreeNode* q) {
+bool Solutions::isSameTree(TreeNode* p, TreeNode* q) {
     if(p == nullptr && q == nullptr) return true;
 
     if(p == nullptr || q == nullptr) return false;
@@ -45,7 +45,7 @@ Output: true
 */
 
 
-TreeNode* invertTree(TreeNode* root) {
+TreeNode* Solutions::invertTree(TreeNode* root) {
     if(root) {
         invertTree(root->left);
         invertTree(root->right);
@@ -59,7 +59,7 @@ Output: [4,7,2,9,6,3,1]
 */
 
 
-TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+TreeNode* Solutions::buildTree(vector<int>& preorder, vector<int>& inorder) {
     int index = 0;
     return helper(preorder, inorder, index, 0, inorder.size() - 1);
 }
@@ -81,13 +81,6 @@ Input: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
 Output: [3,9,20,null,null,15,7]
 */
 
-
-TreeNode* buildTreeII(vector<int>& inorder, vector<int>& postorder) {
-    //std::reverse(postorder.begin(), postorder.end());
-    int index = postorder.size() - 1;
-    return helper(inorder, postorder, index, 0, inorder.size() - 1);
-}
-
 TreeNode* helper(const std::vector<int>& inorder, const std::vector<int>& postorder, int& index, int left, int right) {
     if(left > right) return nullptr;
 
@@ -104,13 +97,19 @@ TreeNode* helper(const std::vector<int>& inorder, const std::vector<int>& postor
 
     return node;
 }
+
+TreeNode* Solutions::buildTreeII(vector<int>& inorder, vector<int>& postorder) {
+    //std::reverse(postorder.begin(), postorder.end());
+    int index = postorder.size() - 1;
+    return helper(inorder, postorder, index, 0, inorder.size() - 1);
+}
 /*
 Input: inorder = [9,3,15,20,7], postorder = [9,15,7,20,3]
 Output: [3,9,20,null,null,15,7]
 */
 
 
-Node* connect(Node* root) {
+Node* Solutions::connect(Node* root) {
     if (!root) return root;
 
     std::queue<Node*> q;
@@ -139,7 +138,7 @@ Output: [1,#,2,3,#,4,5,7,#]
 */
 
 
-void flatten(TreeNode* root) {
+void Solutions::flatten(TreeNode* root) {
     if (root == nullptr) return;
 
     flatten(root->left);
@@ -160,7 +159,7 @@ Output: [1,null,2,null,3,null,4,null,5,null,6]
 */
 
 
-bool hasPathSum(TreeNode* root, int targetSum) {
+bool Solutions::hasPathSum(TreeNode* root, int targetSum) {
     if(!root) return false;
 
     targetSum = targetSum - root->val;
@@ -187,7 +186,7 @@ int solve(TreeNode* root, int & ans) {
     return std::max(left, right) + val;
 }
 
-int maxPathSum(TreeNode* root) {
+int Solutions::maxPathSum(TreeNode* root) {
     int ans = INT_MIN;
     solve(root, ans);
     return ans;
@@ -227,7 +226,7 @@ public:
 };
 
 
-int countNodes(TreeNode* root) {
+int Solutions::countNodes(TreeNode* root) {
     return root == nullptr ? 0 : countNodes(root->left) + countNodes(root->right) + 1;
 }
 /*
@@ -236,7 +235,7 @@ Output: 6
 */
 
 
-TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+TreeNode* Solutions::lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
     if(!root || root == p || root == q) return root;
 
     TreeNode* left = lowestCommonAncestor(root->left, p, q);

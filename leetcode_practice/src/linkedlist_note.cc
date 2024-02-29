@@ -10,7 +10,7 @@ namespace leetcode {
 
 using namespace std;
 
-bool hasCycle(ListNode *head) {
+bool Solutions::hasCycle(ListNode *head) {
     if (head == NULL) return false;
 
     ListNode *fast = head;
@@ -31,7 +31,7 @@ Output: true
 */
 
 
-ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+ListNode* Solutions::addTwoNumbers(ListNode* l1, ListNode* l2) {
     if (l1 == NULL && l2 == NULL) return l2;
     else if (l1 == NULL) return l2;
     else if (l2 == NULL) return l1;
@@ -52,7 +52,7 @@ Explanation: 342 + 465 = 807.
 */
 
 
-ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+ListNode* Solutions::mergeTwoLists(ListNode* list1, ListNode* list2) {
     if (list1 != NULL && list2 != NULL) {
         if(list1->val < list2->val) {
             list1->next = mergeTwoLists(list1->next, list2);
@@ -72,7 +72,7 @@ Output: [1,1,2,3,4,4]
 */
 
 
-ListNode* reverseList(ListNode* head) {
+ListNode* Solutions::reverseList(ListNode* head) {
     ListNode *next, *prev = NULL;
 
     while (head) {
@@ -89,7 +89,7 @@ Output: [5,4,3,2,1]
 */
 
 
-ListNode* reverseBetween(ListNode* head, int left, int right) {
+ListNode* Solutions::reverseBetween(ListNode* head, int left, int right) {
 
     if (!head || left == right) return head;
     
@@ -118,7 +118,7 @@ Output: [1,4,3,2,5]
 */
 
 
-ListNode* reverseKGroup(ListNode* head, int k) {
+ListNode* Solutions::reverseKGroup(ListNode* head, int k) {
 
     if (!head || k == 0) return head;
 
@@ -149,7 +149,7 @@ Output: [2,1,4,3,5]
 */
 
 
-ListNode* removeNthFromEnd(ListNode* head, int n) {
+ListNode* Solutions::removeNthFromEnd(ListNode* head, int n) {
     ListNode *fast = head, *slow = head;
 
     for(int i = 0; i < n ; i ++) fast = fast->next;
@@ -171,7 +171,7 @@ Output: [1,2,3,5]
 */
 
 
-ListNode* deleteDuplicates(ListNode* head) {
+ListNode* Solutions::deleteDuplicates(ListNode* head) {
     if(head == nullptr || head->next == nullptr) return head;
 
     ListNode *cur = head, *prev = nullptr;
@@ -201,7 +201,7 @@ Output: [1,2,5]
 
 
 
-ListNode* rotateRight(ListNode* head, int k) {
+ListNode* Solutions::rotateRight(ListNode* head, int k) {
     if(head == nullptr || head->next == nullptr || k == 0)
         return head;
 
@@ -230,7 +230,7 @@ Output: [4,5,1,2,3]
 */
 
 
-ListNode* partition(ListNode* head, int x) {
+ListNode* Solutios::partition(ListNode* head, int x) {
     ListNode* small = new ListNode(0);
     ListNode* large = new ListNode(0);
     ListNode* small_head = small;
@@ -277,7 +277,7 @@ public:
 };
 */
 
-Node* copyRandomList(Node* head) {
+Node* Solutions::copyRandomList(Node* head) {
     if(!head) return nullptr;
 
     std::unordered_map<Node*, Node*> orig_to_copy;
