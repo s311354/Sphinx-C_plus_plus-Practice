@@ -833,6 +833,101 @@ public:
     */
     int majorityElement(std::vector<int> & nums); 
 
+   /**
+     * @brief 130. Surrounded Regions
+     * 
+     * Given an m x n matrix board containing 'X' and 'O', capture all regions that are 4-directionally surrounded by 'X'.
+     * 
+     * A region is captured by flipping all 'O's into 'X's in that surrounded region.
+     *
+     * @param nums an integer array nums
+     * @return the majority element always exists in the array
+    */
+    void solve(vector<vector<char>>& board);
+
+   /**
+     * @brief 399. Evaluate Division
+     * 
+     * You are given an array of variable pairs equations and an array of real numbers values, 
+     * where equations[i] = [Ai, Bi] and values[i] represent the equation Ai / Bi = values[i]. 
+     * Each Ai or Bi is a string that represents a single variable.
+     * 
+     * You are also given some queries, where queries[j] = [Cj, Dj] represents the jth query 
+     * where you must find the answer for Cj / Dj = ?.
+     * 
+     * Return the answers to all queries. If a single answer cannot be determined, return -1.0.
+     * 
+     * @param equations an array of variable pairs
+     * @param values values[i] represent the equation Ai / Bi = values[i].
+     * @param queries queries[j] = [Cj, Dj] represents the jth query 
+     * @return all queries
+    */
+    vector<double> calcEquation(vector<vector<string>>& equations, vector<double>& values, vector<vector<string>>& queries);
+
+   /**
+     * @brief 207. Course Schedule
+     * 
+     * There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. 
+     * You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai.
+     * 
+     * For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
+     * 
+     * Return true if you can finish all courses. Otherwise, return false.
+     * 
+     * @param numCourses a total of numCourses courses you have to take
+     * @param prerequisites an array prerequisites].
+     * @return true if you can finish all courses. Otherwise, return false.
+    */
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites);
+
+   /**
+     * @brief 210. Course Schedule II
+     * 
+     * There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. 
+     * You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai.
+     * 
+     * For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
+     * 
+     * Return the ordering of courses you should take to finish all courses. 
+     * 
+     * If there are many valid answers, return any of them. If it is impossible to finish all courses, return an empty array.
+     * 
+     * @param numCourses a total of numCourses courses you have to take
+     * @param prerequisites an array prerequisites].
+     * @return the ordering of courses you should take to finish all courses. 
+    */
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites);
+
+  /**
+     * @brief 399. Evaluate Division
+     * 
+     * You are given an array of variable pairs equations and an array of real numbers values, where equations[i] = [Ai, Bi] and values[i] represent the equation Ai / Bi = values[i]. Each Ai or Bi is a string that represents a single variable.
+     * 
+     * You are also given some queries, where queries[j] = [Cj, Dj] represents the jth query where you must find the answer for Cj / Dj = ?.
+     * 
+     * Return the answers to all queries. If a single answer cannot be determined, return -1.0.
+     * 
+     * @param equations an array of variable pairs
+     * @param equations an array of variable pairs
+
+     * @return the majority element always exists in the array
+    */
+    vector<double> calcEquation(vector<vector<string>>& equations, vector<double>& values, vector<vector<string>>& queries);
+
+
+    /**
+     * @brief 200. Number of Islands
+     * 
+     * Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), 
+     * return the number of islands.
+     * 
+     * An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+     *
+     * @param grid an m x n 2D binary grid
+     * @return the number of islands
+    */
+    int numIslands(vector<vector<char>>& grid);
+
     /**
      * @brief 189. Rotate Array
      * 
