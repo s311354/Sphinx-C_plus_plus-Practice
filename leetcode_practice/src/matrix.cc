@@ -43,6 +43,19 @@ bool Solutions::isValidSudoku(std::vector<std::vector<char>>& board)
 
     return true;
 }
+/*
+Input: board = 
+[["5","3",".",".","7",".",".",".","."]
+,["6",".",".","1","9","5",".",".","."]
+,[".","9","8",".",".",".",".","6","."]
+,["8",".",".",".","6",".",".",".","3"]
+,["4",".",".","8",".","3",".",".","1"]
+,["7",".",".",".","2",".",".",".","6"]
+,[".","6",".",".",".",".","2","8","."]
+,[".",".",".","4","1","9",".",".","5"]
+,[".",".",".",".","8",".",".","7","9"]]
+Output: true
+*/
 
 std::vector<int> Solutions::spiralOrder(std::vector<std::vector<int>>& matrix)
 {
@@ -76,6 +89,10 @@ std::vector<int> Solutions::spiralOrder(std::vector<std::vector<int>>& matrix)
 
     return ans;
 }
+/*
+Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+Output: [1,2,3,6,9,8,7,4,5]
+*/
 
 std::vector<std::vector<int>> Solutions::rotatematrix(std::vector<std::vector<int>> & matrix)
 {
@@ -98,6 +115,11 @@ std::vector<std::vector<int>> Solutions::rotatematrix(std::vector<std::vector<in
 
     return matrix;
 }
+/*
+Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+Output: [[7,4,1],[8,5,2],[9,6,3]]
+*/
+
 
 std::vector<std::vector<int>> Solutions::setZeroes(std::vector<std::vector<int>>& matrix)
 {
@@ -129,6 +151,10 @@ std::vector<std::vector<int>> Solutions::setZeroes(std::vector<std::vector<int>>
 
     return matrix;
 }
+/*
+Input: matrix = [[1,1,1],[1,0,1],[1,1,1]]
+Output: [[1,0,1],[0,0,0],[1,0,1]]
+*/
 
 std::vector<std::vector<int>> Solutions::gameOfLife(std::vector<std::vector<int>>& board)
 {
@@ -161,6 +187,9 @@ std::vector<std::vector<int>> Solutions::gameOfLife(std::vector<std::vector<int>
 
     return board;
 }
-
+/*
+Input: board = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]
+Output: [[0,0,0],[1,0,1],[0,1,1],[0,1,0]]
+*/
 
 } /* namespace leetcode */

@@ -23,6 +23,12 @@ bool Solutions::canConstruct(std::string ransomNote, std::string magazine)
 
     return true;
 }
+/*
+Example 1:
+
+Input: ransomNote = "a", magazine = "b"
+Output: false
+*/
 
 bool Solutions::isIsomorphic(std::string s, std::string t)
 {
@@ -38,6 +44,12 @@ bool Solutions::isIsomorphic(std::string s, std::string t)
 
     return true;
 }
+/*
+Example 1:
+
+Input: s = "egg", t = "add"
+Output: true
+*/
 
 bool Solutions::wordPattern(std::string pattern, std::string s)
 {
@@ -68,6 +80,12 @@ bool Solutions::wordPattern(std::string pattern, std::string s)
 
     return true;
 }
+/*
+Example 1:
+
+Input: pattern = "abba", s = "dog cat cat dog"
+Output: true
+*/
 
 bool Solutions::isAnagram(std::string s, std::string t)
 {
@@ -86,6 +104,12 @@ bool Solutions::isAnagram(std::string s, std::string t)
 
     return true;
 }
+/*
+Example 1:
+
+Input: s = "anagram", t = "nagaram"
+Output: true
+*/
 
 std::vector<std::vector<std::string>> Solutions::groupAnagrams(std::vector<std::string>& strs)
 {
@@ -105,6 +129,12 @@ std::vector<std::vector<std::string>> Solutions::groupAnagrams(std::vector<std::
 
     return ans;
 }
+/*
+Example 1:
+
+Input: strs = ["eat","tea","tan","ate","nat","bat"]
+Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+*/
 
 bool Solutions::isHappy(int n)
 {   
@@ -120,6 +150,17 @@ bool Solutions::isHappy(int n)
 
     return n == 1 ? true: false;
 }
+/*
+Example 1:
+
+Input: n = 19
+Output: true
+Explanation:
+12 + 92 = 82
+82 + 22 = 68
+62 + 82 = 100
+12 + 02 + 02 = 1
+*/
 
 bool Solutions::containsNearbyDuplicate(std::vector<int>& nums, int k)
 {
@@ -134,6 +175,12 @@ bool Solutions::containsNearbyDuplicate(std::vector<int>& nums, int k)
 
     return false;
 }
+/*
+Example 1:
+
+Input: nums = [1,2,3,1], k = 3
+Output: true
+*/
 
 int Solutions::longestConsecutive(std::vector<int>& nums)
 {
@@ -160,6 +207,13 @@ int Solutions::longestConsecutive(std::vector<int>& nums)
  
     return longest;
 }
+/*
+Example 1:
+
+Input: nums = [100,4,200,1,3,2]
+Output: 4
+Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
+*/
 
 // Hard!!
 std::vector<std::vector<std::string>> Solutions::word_count_engine(std::string document)
