@@ -770,7 +770,7 @@ public:
     std::vector< std::vector<int> > isPairWithSum(int mat[ROW][COLUMN], int sum);
 
     // 207. Course Schedule
-    bool canFinish(int numCourse, std::vector< std::vector<int> > & prerequisities);
+    //bool canFinish(int numCourse, std::vector< std::vector<int> > & prerequisities);
 
     // 1136. Parallel Courses
     int minimumSemesters(int courses, std::vector< std::vector<int> > &relations);
@@ -897,23 +897,6 @@ public:
      * @return the ordering of courses you should take to finish all courses. 
     */
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites);
-
-  /**
-     * @brief 399. Evaluate Division
-     * 
-     * You are given an array of variable pairs equations and an array of real numbers values, where equations[i] = [Ai, Bi] and values[i] represent the equation Ai / Bi = values[i]. Each Ai or Bi is a string that represents a single variable.
-     * 
-     * You are also given some queries, where queries[j] = [Cj, Dj] represents the jth query where you must find the answer for Cj / Dj = ?.
-     * 
-     * Return the answers to all queries. If a single answer cannot be determined, return -1.0.
-     * 
-     * @param equations an array of variable pairs
-     * @param equations an array of variable pairs
-
-     * @return the majority element always exists in the array
-    */
-    vector<double> calcEquation(vector<vector<string>>& equations, vector<double>& values, vector<vector<string>>& queries);
-
 
     /**
      * @brief 200. Number of Islands
