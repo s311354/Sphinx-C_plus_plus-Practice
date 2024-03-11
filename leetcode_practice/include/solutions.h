@@ -912,6 +912,19 @@ public:
     int numIslands(vector<vector<char>>& grid);
 
     /**
+     * @brief Array Quadruplet
+     * 
+     * Given an unsorted array of integers arr and a number s, write a function findArrayQuadruplet that finds four numbers (quadruplet) in arr that sum up to s. Your function should return an array of these numbers in an ascending order. 
+     * If such a quadruplet doesn’t exist, return an empty array.
+     * 
+     * Note that there may be more than one quadruplet in arr whose sum is s. You’re asked to return the first one you encounter (considering the results are sorted).
+     * 
+     * @param grid an m x n 2D binary grid
+     * @return the number of islands
+    */
+    vector<int> findArrayQuadruplet(const vector<int> &arr, int s);
+
+    /**
      * @brief 189. Rotate Array
      * 
      * Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.

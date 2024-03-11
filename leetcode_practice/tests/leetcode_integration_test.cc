@@ -2399,6 +2399,17 @@ TEST_F(SolutionsTest, intToRomanTest)
    // EXPECT_EQ(expected_value, solutions.intToRoman(num));
 }
 
+TEST_F(SolutionsTest, findArrayQuadruplet)
+{
+   /* Declare the Unit Test object */
+   leetcode::Solutions solutions;
+                                                           
+   vector<int> arr = {2, 7, 4, 0, 9, 5, 1, 3};
+   int s = 20;
+   vector<int>  expected_value = {0, 4, 7, 9};
+   EXPECT_EQ(expected_value, solutions.findArrayQuadruplet(arr, s));
+}
+
 TEST_F(SolutionsTest, minSubArrayLenTest)
 {
    /* Declare the Unit Test object */

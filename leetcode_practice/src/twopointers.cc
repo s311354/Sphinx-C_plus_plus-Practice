@@ -151,4 +151,33 @@ Input: nums = [0,1,0,3,12]
 Output: [1,3,12,0,0]
 */
 
+
+vector<int> Solutions::findArrayQuadruplet(const vector<int> &arr, int s) 
+{
+  vector<int> tmp = arr;
+  sort(tmp.begin(), tmp.end());
+  int n = arr.size() - 1;
+
+  for(int i = 0; i <= n - 3; i ++) {
+    for(int j = i + 1; j <= n - 2; j ++) {
+      
+      int target = s - tmp[i] - tmp[j], start = j + 1, end = n;
+      
+      while (start < end) {
+        int sum = tmp[start] + tmp[end];  
+        if ( sum == target) {
+            return {tmp[i], tmp[j], tmp[start], tmp[end]};
+        } else if ( sum >= target) end --;
+        else start ++;
+      }
+    }
+  }
+  
+  return {};
+}
+/*
+input:  arr = [2, 7, 4, 0, 9, 5, 1, 3], s = 20
+output: [0, 4, 7, 9] 
+*/
+
 } /* namespace leetcode */
