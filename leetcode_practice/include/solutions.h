@@ -715,6 +715,16 @@ public:
      */
     std::unique_ptr<LinkedListNode> deleteDuplicates(std::unique_ptr<LinkedListNode> head);
 
+    /*! \brief 1456. Maximum Number of Vowels in a Substring of Given Length
+     *
+     *  Given a string s and an integer k, return the maximum number of vowel
+     *  letters in any substring of s with length k.
+     * 
+     * @param nums an integer array nums
+     * @return the minumum element of this array
+     */
+    int maxVowels(string s, int k);
+
     // Interview Question
     int balancedSum( std::vector<int> arr);
 

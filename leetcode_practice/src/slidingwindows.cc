@@ -122,4 +122,38 @@ Output: "BANC"
 Explanation: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
 */
 
+bool checkvol(char c) {
+    if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') return true;
+
+    return false;
+}
+
+int Solutions::maxVowels(string s, int k) {
+    int count = 0;
+    for(int i = 0; i < k ; i ++) {
+        if(checkvol(s[i])) count++;
+    }
+    
+    int ans = count;
+
+    int slow = 0, fast = k;
+
+    while(slow < s.length() && fast < s.length()) {
+        if(checkvol(s[fast++])) count++;
+        if(checkvol(s[slow++])) count--;
+    
+        ans = max(ans, count);
+    }
+
+    return ans;
+
+}
+/*
+Example 1:
+
+Input: s = "abciiidef", k = 3
+Output: 3
+Explanation: The substring "iii" contains 3 vowel letters.
+*/
+
 } /* namespace leetcode */

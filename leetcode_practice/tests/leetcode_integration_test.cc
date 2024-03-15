@@ -74,6 +74,22 @@ TEST_F(SolutionsTest, MinSwapTest)
     //EXPECT_EQ(3, solutions.minSwaps(input));
 }
 
+TEST_F(SolutionsTest, maxVowelsTest) 
+{
+    /* Declare the Unit Test object */
+    leetcode::Solutions solutions;
+    std::string s = "weallloveyou";
+    int k = 7;
+    int expected = 4;
+    EXPECT_EQ(expected, solutions.maxVowels(s, k));
+
+    /* Declare the Unit Test object */
+    s = "ibpbhixfiouhdljnjfflpapptrxgcomvnb";
+    k = 33;
+    expected = 7;
+    EXPECT_EQ(expected, solutions.maxVowels(s, k));
+}
+
 TEST_F(SolutionsTest, TwoSumTest) 
 {
     /* Declare the Unit Test object */
