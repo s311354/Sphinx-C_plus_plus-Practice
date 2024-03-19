@@ -102,7 +102,7 @@ void dfsTravel(TreeNode* root, int depth, std::vector<std::vector<int>> & ans) {
 
     if (root == nullptr) return;
 
-    if ( depth >= ans.size()) ans.push_back({});
+    if (ans.size() <= depth) ans.push_back({});
 
     ans[depth].push_back(root->val);
 
@@ -110,7 +110,7 @@ void dfsTravel(TreeNode* root, int depth, std::vector<std::vector<int>> & ans) {
     dfsTravel(root->right, depth + 1, ans);
 }
 
-vector<vector<int>> Solutions::igzagLevelOrder(TreeNode* root) {
+vector<vector<int>> Solutions::zigzagLevelOrder(TreeNode* root) {
     std::vector<std::vector<int>> ans;
 
     dfsTravel(root, 0, ans);
