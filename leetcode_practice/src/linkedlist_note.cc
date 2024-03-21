@@ -32,7 +32,7 @@ Output: true
 
 
 ListNode* Solutions::addTwoNumbers(ListNode* l1, ListNode* l2) {
-    if (l1 == NULL && l2 == NULL) return l2;
+    if (l1 == NULL && l2 == NULL) return NULL;
     else if (l1 == NULL) return l2;
     else if (l2 == NULL) return l1;
 
@@ -88,6 +88,18 @@ Input: head = [1,2,3,4,5]
 Output: [5,4,3,2,1]
 */
 
+/*
+
+      head
+      [1, 2, 3, 4, 5]
+pre       next
+
+         head
+   [1]  [2, 3, 4, 5] 
+       prev next
+  
+
+*/
 
 ListNode* Solutions::reverseBetween(ListNode* head, int left, int right) {
 

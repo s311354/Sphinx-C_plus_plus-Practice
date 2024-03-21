@@ -58,12 +58,7 @@ Input: root = [4,2,7,1,3,6,9]
 Output: [4,7,2,9,6,3,1]
 */
 
-
-TreeNode* Solutions::buildTree(vector<int>& preorder, vector<int>& inorder) {
-    int index = 0;
-    return helper(preorder, inorder, index, 0, inorder.size() - 1);
-}
-
+/* HARD */
 TreeNode* helper(const std::vector<int>& preorder, const std::vector<int>& inorder, int& index, int left, int right) {
     if(left > right) return nullptr;
 
@@ -76,6 +71,11 @@ TreeNode* helper(const std::vector<int>& preorder, const std::vector<int>& inord
     root->right = helper(preorder, inorder, index, pivot+1, right);
     return root;
 }
+
+TreeNode* Solutions::buildTree(vector<int>& preorder, vector<int>& inorder) {
+    int index = 0;
+    return helper(preorder, inorder, index, 0, inorder.size() - 1);
+}
 /*
 Input: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
 Output: [3,9,20,null,null,15,7]
@@ -86,7 +86,7 @@ TreeNode* helper(const std::vector<int>& inorder, const std::vector<int>& postor
 
     TreeNode* node = new TreeNode(postorder[index--]);
     int pivot = left;
-    for(pivot = left; pivot <= right; pivot++){
+    for(int pivot = left; pivot <= right; pivot++){
         if(node->val == inorder[pivot]){
             break;
         }

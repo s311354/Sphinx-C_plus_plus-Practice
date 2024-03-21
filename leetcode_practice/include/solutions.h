@@ -1604,6 +1604,69 @@ substring of s such that every character in t (including duplicates) is included
      */
     vector<vector<int>> zigzagLevelOrder(TreeNode* root);
 
+    /* @brief 909. Snakes and Ladders
+     *
+     * You are given an n x n integer matrix board where the cells are labeled 
+     * from 1 to n2 in a Boustrophedon style starting from the bottom left 
+     * of the board (i.e. board[n - 1][0]) and alternating direction each row.
+     * 
+     * You start on square 1 of the board. In each move, starting from square curr, do the following:
+     * 
+     * Choose a destination square next with a label in the range [curr + 1, min(curr + 6, n2)].
+     * 
+     * This choice simulates the result of a standard 6-sided die roll: i.e., there are always at most 6 destinations, regardless of the size of the board.
+     * 
+     * If next has a snake or ladder, you must move to the destination of that snake or ladder. Otherwise, you move to next.
+     * 
+     * The game ends when you reach the square n2.
+     * 
+     * @param board an n x n integer matrix board
+     * @return the least number of moves required to reach the square n2. If it is not possible to reach the square, return -1.
+     */
+    int snakesAndLadders(vector<vector<int>>& board);
+
+    /* @brief 433. Minimum Genetic Mutation
+     *
+     * A gene string can be represented by an 8-character long string, with choices from 'A', 'C', 'G', and 'T'.
+     * 
+     * Suppose we need to investigate a mutation from a gene string startGene to a gene string endGene where one 
+     * mutation is defined as one single character changed in the gene string.
+     * 
+     * There is also a gene bank bank that records all the valid gene mutations. 
+     * A gene must be in bank to make it a valid gene string.
+     * 
+     * Given the two gene strings startGene and endGene and the gene bank bank, return
+     * the minimum number of mutations needed to mutate from startGene to endGene. 
+     * If there is no such a mutation, return -1.
+     * 
+     * @param startGene a gene string
+     * @param endGene a gene string
+     * @param bank the gene bank
+     * @return the minimum number of mutations needed to mutate from startGene to endGene
+     */
+    int minMutation(string startGene, string endGene, vector<string>& bank);
+
+    /* @brief 127. Word Ladder
+     *
+     * A transformation sequence from word beginWord to word endWord using a dictionary wordList is 
+     * a sequence of words beginWord -> s1 -> s2 -> ... -> sk such that:
+     * 
+     * Every adjacent pair of words differs by a single letter
+     * 
+     * Every si for 1 <= i <= k is in wordList. Note that beginWord does not need to be in wordList.
+     * 
+     * sk == endWord
+     * 
+     * Given two words, beginWord and endWord, and a dictionary wordList, return the number of words
+     * in the shortest transformation sequence from beginWord to endWord, or 0 if no such sequence exists.
+     * 
+     * @param beginWord a word
+     * @param endWord a word
+     * @param wordList a dictionary
+     * @return the number of words in the shortest transformation sequence from beginWord to endWord, or 0 if no such sequence exists.
+     */
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList);
+
     /* @brief 530. Minimum Absolute Difference in BST
      *
      * Given the root of a Binary Search Tree (BST), return the minimum absolute difference 

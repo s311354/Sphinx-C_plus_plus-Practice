@@ -90,7 +90,7 @@ std::vector<std::vector<int>> Solutions::threeSum(std::vector<int> & nums)
                 ans.push_back({nums[i],nums[start], nums[end]});
 
                 while (start < end && nums[start] == nums[start + 1]) start ++;
-		while (start < end && nums[end] == nums[end - 1]) end --; 
+		        while (start < end && nums[end] == nums[end - 1]) end --; 
                 start ++; end --;
             } else if (sum > target) end --;
             else start ++;

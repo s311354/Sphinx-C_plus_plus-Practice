@@ -49,15 +49,15 @@ Input: grid = [
 Output: 1
 */
 
-void dfsTravel(std::vector<std::vector<char>>& board, int row, int col) {
+void dfsSurroundedTravel(std::vector<std::vector<char>>& board, int row, int col) {
     if (row < 0 || row == board.size() || col < 0 || col == board[0].size() || board[row][col] != 'O') return;
 
     board[row][col]='#';
 
-    dfsTravel(board, row + 1, col);
-    dfsTravel(board, row, col + 1);
-    dfsTravel(board, row - 1, col);
-    dfsTravel(board, row, col - 1);
+    dfsSurroundedTravel(board, row + 1, col);
+    dfsSurroundedTravel(board, row, col + 1);
+    dfsSurroundedTravel(board, row - 1, col);
+    dfsSurroundedTravel(board, row, col - 1);
 }
 
 void Solutions::solve(vector<vector<char>>& board) {
