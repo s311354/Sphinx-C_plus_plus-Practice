@@ -761,7 +761,19 @@ public:
     // 877. Stone Game
     bool stoneGame( std::vector<int> piles);
 
-    // 51. N-Queens
+    /*! \brief 51. N-Queens
+    *
+    *  The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other.
+    *
+    *  Given an integer n, return all distinct solutions to the n-queens puzzle. You may return the answer in any order.
+    *
+    * Runtime: 9 ms, faster than 58.05% of C++ online submissions for N-Queens.
+    *
+    *
+    * Memory Usage: 7 MB, less than 95.04% of C++ online submissions for N-Queens.
+    *
+    * \return Each solution contains a distinct board configuration of the n-queens' placement, where 'Q' and '.' both indicate a queen and an empty space, respectively.
+    */
     std::vector< std::vector< std::string> > solveNQueens(int n);
 
     // 1307.Verbal Arithmetic Puzzle
@@ -1666,6 +1678,116 @@ substring of s such that every character in t (including duplicates) is included
      * @return the number of words in the shortest transformation sequence from beginWord to endWord, or 0 if no such sequence exists.
      */
     int ladderLength(string beginWord, string endWord, vector<string>& wordList);
+
+    /* @brief 212. Word Search II
+     *
+     * Given an m x n board of characters and a list of strings words, 
+     * return all words on the board.
+     * 
+     * Each word must be constructed from letters of sequentially adjacent cells, 
+     * where adjacent cells are horizontally or vertically neighboring. The same 
+     * letter cell may not be used more than once in a word.
+     * 
+     * @param board an m x n board of characters
+     * @param words a list of strings words
+     * @return all words on the board.
+     */
+    vector<string> findWords(vector<vector<char>>& board, vector<string>& words);
+
+    /* @brief 17. Letter Combinations of a Phone Number
+     *
+     * Give a string containing digitals from 2-9 inclusive, return all possible letter combinations that
+     * the number could represent. Return the answer in any order.
+     * 
+     * A mapping of digits to letters (just like on the telephone button) is given below.
+     * Note that 1 dose not map to any letters.
+     * 
+     * @param digits a mapping of digits to letters
+     * @return the answer in any order
+     */
+    vector<string> letterCombinations(string digits);
+
+    /* @brief 77. Combinations
+     *
+     * Give two integers n and k, return all possbile combinations of k numbers chosen from 
+     * the range [1, n]
+     * 
+     * You may return the answer in any order.
+     * 
+     * @param n integer
+     * @param k integer
+     * @return the answer in any order
+     */
+    vector<vector<int>> combine(int n, int k);
+
+    /* @brief 46. Permutations
+     *
+     * Given an array nums of distinct integers, return all the possible permutations.
+     * 
+     * You can return the answer in any order.
+     * 
+     * @param nums an array nums of distinct integers
+     * @return all the possible permutations
+     */
+    vector<vector<int>> permute(vector<int>& nums);
+
+    /* @brief 39. Combination Sum
+     *
+     * Given an array of distinct integers candidates and a target integer target, return
+     * a list of all unique combinations of candidates where the chosen numbers sum to target. 
+     * 
+     * You may return the combinations in any order.
+     * 
+     * The same number may be chosen from candidates an umlimited number of times.
+     * Two combinations are unique if the frequency of at least one of the chosen numbers is 
+     * different.
+     * 
+     * @param candidates an array of distinct integers
+     * @param target a target integer
+     * @return a list of all unique combinations of candidates where the chosen numbers sum to target
+     */
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target);
+  
+    /* @brief 52. N-Queens II
+     *
+     * The n-queens puzzle is the problem of place n queens on an n x n chessboard such that 
+     * no two queens attack each other.
+     * 
+     * Given an integer n, return the number of distinct solutions to the n-queens puzzle.
+     * 
+     * The same number may be chosen from candidates an umlimited number of times.
+     * Two combinations are unique if the frequency of at least one of the chosen numbers is 
+     * different.
+     * 
+     * @param n queens on an n x n chessboard
+     * @return  the number of distinct solutions to the n-queens puzzle.
+     */
+    int totalNQueens(int n);
+
+    /* @brief 22. Generate Parentheses
+     *
+     * Given n pairs of parenthese, write a function to generate all combinations of well-formed parentheses
+     * 
+     * @param n pairs of parenthese
+     * @return well-formed parentheses
+     */
+    vector<string> generateParenthesis(int n);
+
+    /* @brief 79. Word Search
+     *
+     * Given an mxn grid of characters board and a string word, return 
+     * true if word exists in the grid.
+     * 
+     * The word can be constructed from letters of sequentially adjacent cells,
+     * where adjacent cells are horizontally or vertically neighboring.
+     * 
+     * The same letter cell may not be used more than once.
+     * 
+     * @param board an mxn grid of characters
+     * @param word a string
+     * @return true if word exists in the grid.
+     */
+    bool exist(vector<vector<char>>& board, string word);
 
     /* @brief 530. Minimum Absolute Difference in BST
      *

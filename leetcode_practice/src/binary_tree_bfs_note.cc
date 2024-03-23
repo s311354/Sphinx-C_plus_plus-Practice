@@ -36,6 +36,7 @@ void dfsTravel(TreeNode* root,int depth, std::vector<int>& ans) {
 
 vector<int> Solutions::rightSideView(TreeNode* root) {
     std::vector<int> ans;
+
     dfsTravel(root, 0, ans);
 
     return ans;
@@ -61,6 +62,7 @@ void dfsTravel(TreeNode* root, int depth, std::vector<int>& count,std::vector<do
 vector<double> Solutions::averageOfLevels(TreeNode* root) {
     std::vector<int> count;
     std::vector<double> ans;
+
     dfsTravel(root, 0, count, ans);
 
     for(int i = 0; i < count.size(); i++) {
@@ -89,6 +91,7 @@ void dfsTravel(TreeNode* root, int depth, std::vector<std::vector<int>>& nodes) 
 
 vector<vector<int>> Solutions::levelOrder(TreeNode* root) {
     std::vector<std::vector<int>> ans;
+
     dfsTravel(root, 0, ans);
     return ans;
 }

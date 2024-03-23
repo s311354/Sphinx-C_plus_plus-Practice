@@ -18,13 +18,14 @@ void dfsTravel(TreeNode* root, int& prev, int& ans){
     dfsTravel(root->left, prev, ans);
 
     if (prev != -1) ans = std::min(ans, root->val - prev);
-
     prev = root->val;
+
     dfsTravel(root->right, prev, ans);
 }
 
 int Solutions::getMinimumDifference(TreeNode* root) {
     int ans = INT_MAX, prev = -1;
+
     dfsTravel(root, prev, ans);
 
     return ans;
@@ -34,17 +35,18 @@ Input: root = [4,2,6,1,3]
 Output: 1
 */
 
-void dfsTravel(TreeNode* root, int k, std::vector<int>& smallnodes) {
+void dfsTravel(TreeNode* root, std::vector<int>& smallnodes) {
     if (root == nullptr) return;
     
-    dfsTravel(root->left, k, smallnodes);
+    dfsTravel(root->left, smallnodes);
     smallnodes.push_back(root->val);
-    dfsTravel(root->right, k, smallnodes);
+    dfsTravel(root->right, smallnodes);
 }
 
 int Solutions::kthSmallest(TreeNode* root, int k) {
     std::vector<int> smallnodes;
-    dfsTravel(root, k, smallnodes);
+
+    dfsTravel(root, smallnodes);
     return smallnodes[k-1];
 }
 /*
