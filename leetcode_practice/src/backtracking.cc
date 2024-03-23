@@ -188,6 +188,42 @@ Output: 2
 Explanation: There are two distinct solutions to the 4-queens puzzle as shown.
 */
 
+void backtracking_dfs( std::vector< std::string> & board, int row, std::vector< std::vector< std::string> > & result)
+{
+    if ( row == board.size()) {
+        result.push_back(board);
+        return;
+    }
+
+    for (int i = 0; i < board.size(); ++i) {
+        if(is_safe(board, row, i)) {
+            // make decision
+            board[row][i] = 'Q';
+            backtracking_dfs(board, row + 1, result);
+            // backtrack to move our queen to next col within same row to get other combinations.
+            board[row][i] = '.';
+        }
+
+    } 
+}
+
+std::vector< std::vector< std::string> > Solutions::solveNQueens(int n) {
+
+    if ( n <= 0 ) return {{}};
+
+    std::vector< std::vector< std::string> > result;
+    std::vector< std::string> board(n, std::string(n, '.'));
+
+    backtracking_dfs(board, 0, result);
+
+    return result;
+}
+/*
+Input: n = 4
+Output: [[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]]
+Explanation: There exist two distinct solutions to the 4-queens puzzle as shown above
+*/
+
 void backtrack(int n, int left, int right, string combination, vector<string>& result) {
     if(combination.length() == 2*n) {
         result.push_back(combination);
@@ -249,42 +285,6 @@ bool Solutions::exist(vector<vector<char>>& board, string word) {
 /*
 Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
 Output: true
-*/
-
-void backtracking_dfs( std::vector< std::string> & board, int row, std::vector< std::vector< std::string> > & result)
-{
-    if ( row == board.size()) {
-        result.push_back(board);
-        return;
-    }
-
-    for (int i = 0; i < board.size(); ++i) {
-        if(is_safe(board, row, i)) {
-            // make decision
-            board[row][i] = 'Q';
-            backtracking_dfs(board, row + 1, result);
-            // backtrack to move our queen to next col within same row to get other combinations.
-            board[row][i] = '.';
-        }
-
-    } 
-}
-
-std::vector< std::vector< std::string> > Solutions::solveNQueens(int n) {
-
-    if ( n <= 0 ) return {{}};
-
-    std::vector< std::vector< std::string> > result;
-    std::vector< std::string> board(n, std::string(n, '.'));
-
-    backtracking_dfs(board, 0, result);
-
-    return result;
-}
-/*
-Input: n = 4
-Output: [[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]]
-Explanation: There exist two distinct solutions to the 4-queens puzzle as shown above
 */
 
 } /* namespace leetcode */
