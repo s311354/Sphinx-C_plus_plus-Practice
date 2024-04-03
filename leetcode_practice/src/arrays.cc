@@ -516,4 +516,160 @@ Output:
 ]
 */
 
+string Solutions::mergeAlternately(string word1, string word2)
+{
+    string ans = "";
+
+    int n = word1.size(), m = word2.size();
+
+    for(int i = 0; i < n || i < m; i++) {
+        if(i < n) ans += word1[i];
+        if(i < m) ans += word2[i]; 
+    }
+
+    return ans;
+}
+/*
+Example 1:
+Input: word1 = "abc", word2 = "pqr"
+Output: "apbqcr"
+Explanation: The merged string will be merged as so:
+word1:  a   b   c
+word2:    p   q   r
+merged: a p b q c r
+*/
+
+string Solutions::gcdOfStrings(string str1, string str2) {
+    if(str1 + str2 != str2 + str1) return "";
+
+    return str1.substr(0, gcd(str1.length(), str2.length()));
+}
+/*
+Example 1:
+
+Input: str1 = "ABCABC", str2 = "ABC"
+Output: "ABC"
+*/
+
+vector<bool> Solutions::kidsWithCandies(vector<int>& candies, int extraCandies) {
+    int maxcandy = 0;
+
+    vector<bool> ans;
+
+    for(auto& candy: candies) maxcandy = max(maxcandy, candy);
+
+    for(auto& candy: candies) {
+        if(candy + extraCandies >= maxcandy) ans.push_back(true);
+        else ans.push_back(false); 
+    } 
+
+    return ans;
+}
+/*
+Example 1:
+
+Input: candies = [2,3,5,1,3], extraCandies = 3
+Output: [true,true,true,false,true] 
+Explanation: If you give all extraCandies to:
+- Kid 1, they will have 2 + 3 = 5 candies, which is the greatest among the kids.
+- Kid 2, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
+- Kid 3, they will have 5 + 3 = 8 candies, which is the greatest among the kids.
+- Kid 4, they will have 1 + 3 = 4 candies, which is not the greatest among the kids.
+- Kid 5, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
+*/
+
+bool Solutions::canPlaceFlowers(vectro<int>& flowerbed, int n) {
+
+    for(int i = 0; i < flowerbed.size(); i ++) {
+        if (flowerbed[i] == 1 || ( (i-1) >= 0 && flowerbed[i-1] != 0 ) || ( (i + 1) < flowerbed.size() && flowerbed[i+1] != 0)) 
+            continue;
+
+        flowerbed[i] = 1;
+        --n;
+    }
+
+    return n <= 0;
+}
+/*
+Example 1:
+
+Input: flowerbed = [1,0,0,0,1], n = 1
+Output: true
+*/
+
+string Solutions::reverseVowels(string s) {
+    unordered_set<char> vowels = {'a', 'e', 'i', 'o', 'u'};
+
+    int start = 0, end = s.size() - 1;
+
+    while(start < end) {
+        while( start < end && vowels.find(tolower(s[start])) == vowels.end()) {
+            start ++;
+        }
+
+        while( start < end && vowels.find(tolower(s[end])) == vowels.end()) {
+            end --;
+        }
+
+        if(start < end) swap(s[start++], s[end--]);
+    }
+
+    return s;
+}
+/*
+Example 1:
+
+Input: s = "hello"
+Output: "holle"
+*/
+
+bool Solutions::increasingTriplet(vector<int>& nums) {
+    int a = INT_MAX, b = INT_MAX;
+
+    for(auto& num: nums) {
+        if(num <= a) a = num;
+        else if (num <= b) b = num;
+        else return true;
+    }
+
+    return false;
+}
+/*
+Example 1:
+
+Input: nums = [1,2,3,4,5]
+Output: true
+Explanation: Any triplet where i < j < k is valid.
+*/
+
+int Solutions::compress(vector<char>& chars) {
+    int i = 0, index = 0;
+
+    while (i < chars.size()) {
+        char cur = chars[i];
+        int count = 0;
+
+        while (i < chars.size() && chars[i] == cur) {
+            ++count;
+            ++i;
+        }
+
+        chars[index++] = cur;
+
+        if(count > 1) {
+            for(auto& num : to_string(count)) {
+                chars[index++] = num;
+            }
+        }
+    }
+
+    return index;
+}
+/*
+Example 1:
+Input: chars = ["a","a","b","b","c","c","c"]
+Output: Return 6, and the first 6 characters of the input array should be: ["a","2","b","2","c","3"]
+Explanation: The groups are "aa", "bb", and "ccc". This compresses to "a2b2c3".
+*/
+
 } /* namespace leetcode */

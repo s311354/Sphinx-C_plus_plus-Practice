@@ -102,6 +102,106 @@ public:
     std::vector<int> topKFrequent(std::vector<int>& nums, int k);
 
     /**
+     * @brief  1768. Merge Strings Alternately
+     * 
+     * You are given two strings word1 and word2. Merge the strings by adding letters
+     * in alternating order, starting with word1. If a string is longer than the other,
+     * append the additional letters onto the end of the merged string.
+     * Return the merged string.
+
+     * @param word1 a string 
+     * @param word2 a string
+     * @return the merged string
+    */
+    string mergeAlternately(string word1, string word2);
+
+    /**
+     * @brief  1071. Greatest Common Divisor of Strings
+     * 
+     * For two strings s and t, we say "t divides s" if and only 
+     * if s = t + t + t + ... + t + t (i.e., t is concatenated with itself one or more times).
+     *
+     * Given two strings str1 and str2, return the largest string x such that x divides both str1 and str2.
+     *
+     * @param str1 a string 
+     * @param str2 a string
+     * @return the merged string
+    */
+    string gcdOfStrings(string str1, string str2);
+
+    /**
+     * @brief  1431. Kids With the Greatest Number of Candies
+     * 
+     * There are n kids with candies. You are given an integer array candies,
+     * where each candies[i] represents the number of candies the ith kid has, and an integer extraCandies,
+     * denoting the number of extra candies that you have.
+     * 
+     * Return a boolean array result of length n, where result[i] is true if, after 
+     * giving the ith kid all the extraCandies, they will have the greatest number of candies among all the kids, or false otherwise.
+     *
+     * Note that multiple kids can have the greatest number of candies.
+     * @param str1 a string 
+     * @param str2 a string
+     * @return the merged string
+    */
+    vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies);
+
+    /**
+     * @brief  605. Can Place Flowers
+     * 
+     * You have a long flowerbed in which some of the plots are planted, and some are not. However, 
+     * flowers cannot be planted in adjacent plots.
+     *
+     * Given an integer array flowerbed containing 0's and 1's, where 0 means empty and 1 means
+     *  not empty, and an integer n, return true if n new flowers can be planted in the flowerbed without violating the no-adjacent-flowers rule and false otherwise.
+     * @param flowered an integer array flowered containing 0's and 1's 
+     * @param n a integer
+     * @return true if n new flowers can be planted in the flowerbed without violating the no-adjacent-flowers rule and false otherwise.
+    */
+    bool canPlaceFlowers(vector<int>& flowerbed, int n);
+
+    /**
+     * @brief  345. Reverse Vowels of a String
+     * 
+     * Given a string s, reverse only all the vowels in the string and return it.
+     *
+     * The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower
+     * and upper cases, more than once.
+     * @param s a string 
+     * @return the reverse vowels of a string
+    */
+    string reverseVowels(string s);
+
+    /**
+     * @brief  334. Increasing Triplet Subsequence
+     * 
+     * Given an integer array nums, return true if there exists a triple of indices (i, j, k) such that i < j < k and nums[i] < nums[j] < nums[k].
+     * If no such indices exists, return false.
+     * @param nums an integer arrays 
+     * @return true if there exists a triple of indices
+    */
+    bool increasingTriplet(vector<int>& nums);
+
+    /**
+     * @brief  443. String Compression
+     * 
+     * Given an array of characters chars, compress it using the following algorithm:
+     * Begin with an empty string s. For each group of consecutive repeating characters in chars:
+     *
+     * If the group's length is 1, append the character to s.
+     * Otherwise, append the character followed by the group's length.
+     * 
+     * The compressed string s should not be returned separately, but instead, be stored in the input character array chars. Note that group lengths that are 10 or longer will be split into multiple characters in chars.
+     *
+     * After you are done modifying the input array, return the new length of the array.
+     * 
+     * You must write an algorithm that uses only constant extra space.
+     * @param nums an integer arrays 
+     * @return true if there exists a triple of indices
+    */
+    int compress(vector<char>& chars);
+
+    /**
     * @brief OA 2019  Minimum Adjacent Swaps to Make Palindrome (Hard) - SKIP
     *
     * Given a string, what is the minimum number of adjacent swaps required to 
