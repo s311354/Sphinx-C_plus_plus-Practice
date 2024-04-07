@@ -676,9 +676,6 @@ public:
     // 1192. Critical Connections in a Network
     std::vector< std::vector<int> > criticalConnections(int n, std::vector< std::vector<int> > & connections);
 
-    // 162. Find Peak Element
-    int findPeakElement( std::vector<int> & nums);
-
     /*! \brief 2. Add Two Numbers
      *
      *  You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
@@ -1671,10 +1668,124 @@ substring of s such that every character in t (including duplicates) is included
      * Given the head of a singly linked list, reverse the list, and 
      * return the reversed list.
      * 
-     * @param the head of a singly linked list
+     * @param head the head of a singly linked list
      * @return the reversed list
      */
      ListNode* reverseList(ListNode* head);
+
+     /* @brief 35. Search Insert Position
+     *
+     * Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, 
+     * return the index where it would be if it were inserted in order.
+     * 
+     * You must write an algorithm with O(log n) runtime complexity.
+     * 
+     * @param nums a sorted array of distinct integers
+     * @param target a target value
+     * @return the index where it would be if it were inserted in order
+     */
+    int searchInsert(vector<int>& nums, int target);
+
+     /* @brief 74. Search a 2D Matrix
+     *
+     * You are given an m x n integer matrix matrix with the following two 
+     * properties:
+     * 
+     * Each row is sorted in non-decreasing order.
+     * 
+     * The first integer of each row is greater than the last integer of the previous row.
+     * 
+     * Given an integer target, return true if target is in matrix or 
+     * false otherwise.
+     * 
+     * You must write a solution in O(log(m * n)) time complexity.
+     * 
+     * @param matrix m x n integer matrix
+     * @param target a target value
+     * @return true if target is in matrix or false otherwise.
+     */
+    bool searchMatrix(vector<vector<int>>& matrix, int target);
+
+     /* @brief 162. Find Peak Element
+     *
+     * A peak element is an element that is strictly greater than its neighbors.
+     * 
+     * Given a 0-indexed integer array nums, find a peak element, and return its index. If the array
+     * contains multiple peaks, return the index to any of the peaks.
+     * 
+     * You may imagine that nums[-1] = nums[n] = -∞. In other words, an element is always considered 
+     * to be strictly greater than a neighbor that is outside the array.
+     * 
+     * You must write an algorithm that runs in O(log n) time.
+     * 
+     * @param nums a 0-indexed integer array
+     * @return the index to any of the peaks
+     */
+    int findPeakElement( std::vector<int> & nums);
+
+     /* @brief 33. Search in Rotated Sorted Array
+     *
+     * There is an integer array nums sorted in ascending order (with distinct values).
+     * 
+     * Prior to being passed to your function, nums is possibly rotated at an unknown pivot index k (1 <= k < nums.length) such that the resulting array is [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]] (0-indexed). For example, [0,1,2,4,5,6,7] might be rotated at pivot index 3 and become [4,5,6,7,0,1,2].
+     * 
+     * Given the array nums after the possible rotation and an integer target, return the index of target if it is in nums, or -1 if it is not in nums.
+     * 
+     * You must write an algorithm with O(log n) runtime complexity.
+     * 
+     * @param nums an integer array nums sorted in ascending order
+     * @param target an integer
+     * @return the index of target if it is in nums, or -1 if it is not in nums
+     */
+    int search(vector<int>& nums, int target);
+
+     /* @brief 34. Find First and Last Position of Element in Sorted Array
+     *
+     * Given an array of integers nums sorted in non-decreasing order, 
+     * find the starting and ending position of a given target value.
+     * 
+     * If target is not found in the array, return [-1, -1].
+     * 
+     * You must write an algorithm with O(log n) runtime complexity.
+     * 
+     * @param nums an array of integers nums sorted in non-decreasing order
+     * @param target an integer
+     * @return the starting and ending position of a given target value
+     */
+    vector<int> searchRange(vector<int>& nums, int target);
+
+     /* @brief 153. Find Minimum in Rotated Sorted Array
+     *
+     * Suppose an array of length n sorted in ascending order is rotated between 1 and n times. For example, 
+     * the array nums = [0,1,2,4,5,6,7] might become:
+     * 
+     * [4,5,6,7,0,1,2] if it was rotated 4 times.
+     * [0,1,2,4,5,6,7] if it was rotated 7 times.
+     * 
+     * Notice that rotating an array [a[0], a[1], a[2], ..., a[n-1]] 1 time results in 
+     * the array [a[n-1], a[0], a[1], a[2], ..., a[n-2]].
+     * 
+     * Given the sorted rotated array nums of unique elements, return the minimum element of this array.
+     * 
+     * You must write an algorithm that runs in O(log n) time.
+     * 
+     * @param nums an array of length n sorted in ascending order is rotated between 1 and n times.
+     * @return the minimum element of this array.
+     */
+    int findMin(vector<int>& nums);
+
+     /* @brief 4. Median of Two Sorted Arrays
+     *
+     * Given two sorted arrays nums1 and nums2 of size m and n respectively, 
+     * return the median of the two sorted arrays.
+     * 
+     * The overall run time complexity should be O(log (m+n)).
+     * 
+     * @param nums1 a sorted array
+     * @param nums2 a sorted array
+     * @return the median of the two sorted arrays.
+     */
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2);
 
      /* @brief 199. Binary Tree Right Side View
      *
@@ -1778,6 +1889,18 @@ substring of s such that every character in t (including duplicates) is included
      * @return the number of words in the shortest transformation sequence from beginWord to endWord, or 0 if no such sequence exists.
      */
     int ladderLength(string beginWord, string endWord, vector<string>& wordList);
+
+    /* @brief Array Index & Element Equality
+     *
+     * Given a sorted array arr of distinct integers, write a function indexEqualsValueSearch that returns
+     * the lowest index i for which arr[i] == i. 
+     * 
+     * Return -1 if there is no such index. Analyze the time and space complexities of your solution and explain its correctness.
+     * 
+     * @param arr a sorted array
+     * @return the lowest index i for which arr[i] == i. Otherwise, -1 if there is no such index
+     */
+    int indexEqualsValueSearch(const vector<int> &arr);
 
     /* @brief 212. Word Search II
      *

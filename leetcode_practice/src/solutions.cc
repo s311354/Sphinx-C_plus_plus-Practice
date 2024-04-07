@@ -2184,60 +2184,6 @@ std::vector< std::vector<int> > Solutions::criticalConnections(int n, std::vecto
     return bridge;
 }
 
-/*! \brief Find Peak Element
- *
- *  A peak element is an element that is strictly greater than its neighbor.
- *
- *  Given an integer array nums, find a peak element, and return its index. If the array contains multiple peaks, return the index to any of the peaks.
- *
- *  You may imagine that nums[-1] = nums[n] = -∞.
- *
- *  You must write an algorithm that runs in O(log n) time.
- *
- * Runtime: 7 ms, faster than 41.95% of C++ online submissions for Find Peak Element.
- *
- * Memory Usage: 8.9 MB, less than 5.24% of C++ online submissions for Find Peak Element.
- *
- *
- * \return the index number of peak element
- */
-int Solutions::findPeakElement( std::vector<int> & nums)
-{
-    int start = 0, end = nums.size() - 1;
-    if (start > end && end == 0) return -1;
-
-    while (start < end) {
-        // Binary search
-        int middleIndex = (start + end)/2;
-
-        if (nums[middleIndex] > nums[middleIndex + 1]) {
-            end = middleIndex;
-        } else {
-            start = middleIndex + 1;
-        }
-    }
-
-    return start;
-
-
-/*
-    int start = 0, end = nums.size() - 1;
-    if (start > end && end == 0) return -1;
-
-    // Binary Search
-    while (start <= end) {
-        int middleIndex = start + (end - start)/2;
-
-        if (nums[middleIndex - 1] < nums[middleIndex] && ( nums[middleIndex] > nums[middleIndex + 1] || middleIndex == nums.size() - 1 ) || middleIndex == 0)
-            return middleIndex;
-        else if ( middleIndex - 1>= 0 && middleIndex + 1 <= nums.size() - 1 && nums[middleIndex -1] > nums[middleIndex] && nums[middleIndex - 1] > nums[middleIndex + 1]) { 
-            end = middleIndex - 1;
-        } else start = middleIndex + 1;
-    }
-
-    return -1;
-*/
-}
 
 
 
