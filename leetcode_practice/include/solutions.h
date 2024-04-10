@@ -928,16 +928,6 @@ public:
     // 9. Valid Palindrome
     bool isPalindrome(int x);
 
-    /**
-     * @brief 153. Find Minimum in Rotated Sorted Array (Medium)
-     * 
-     * Suppose an array of length n sorted in ascending order is rotated between 1 and n times.  
-     * Given the sorted rotated array nums of unique elements, return the minimum element of this array.
-     *
-     * @param nums an integer array nums
-     * @return the minumum element of this array
-    */
-    int findMin(std::vector<int> & nums); 
 
     /**
      * @brief 169. Majority Element
@@ -1136,17 +1126,6 @@ public:
      */                                                                          
      int removeDuplicatesII(std::vector<int> & nums);
 
-     /* @brief 33. Search in Rotated Sorted Array
-     *
-     * Given the array nums after the possible rotation and an integer target, 
-     * return the index of target if it is in nums, or -1 if it is not in nums.
-     *
-     * You must write an algorithm with O(log n) runtime complexity.
-     *
-     * @param nums an array
-     * @return the index of target if it is in nums
-     */                                                                          
-     int search(std::vector<int>& nums, int target);
 
      /* @brief 4. Median of Two Sorted Arrays
      *
@@ -1723,7 +1702,18 @@ substring of s such that every character in t (including duplicates) is included
      */
     int findPeakElement( std::vector<int> & nums);
 
-     /* @brief 33. Search in Rotated Sorted Array
+     /* @brief 1161. Maximum Level Sum of a Binary Tree
+     *
+     * Given the root of a binary tree, the level of its root is 1, the level of its children is 2, and so on.
+     * Return the smallest level x such that the sum of all the values of nodes at level x is maximal.
+     * 
+     * @param root the root of a binary tree
+     * @return the smallest level x such that the sum of all the values of nodes at level x is maximal.
+     */
+    int maxLevelSum(TreeNode* root);
+
+
+     /* @brief 33
      *
      * There is an integer array nums sorted in ascending order (with distinct values).
      * 

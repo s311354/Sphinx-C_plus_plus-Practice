@@ -128,5 +128,31 @@ Input: root = [3,9,20,null,null,15,7]
 Output: [[3],[20,9],[15,7]]
 */
 
+void dfsTravel(TreeNode* node, int level, vector<int>& sum) {
+    if (!node) return;
+
+    if(sum.size() == level) sum.push_back(node->val);
+    else sum[level] += node->val;
+
+    dfsTravel(node->left, level + 1, sum);
+    dfsTravel(node->right, level + 1, sum);
+}
+
+int Solutions::maxLevelSum(TreeNode* root) {
+    vector<int> sum = {INT_MIN};
+
+    dfsTravel(root, 1, sum);
+
+    return max_element(sum.begin(), sum.end()) - sum.begin();
+}
+/*
+Input: root = [1,7,0,7,-8,null,null]
+Output: 2
+Explanation: 
+Level 1 sum = 1.
+Level 2 sum = 7 + 0 = 7.
+Level 3 sum = 7 + -8 = -1.
+So we return the level with the maximum sum which is level 2.
+*/
 
 } /* namespace leetcode */

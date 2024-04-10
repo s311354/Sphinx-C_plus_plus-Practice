@@ -3049,23 +3049,9 @@ int Solutions::palindromePairsSum( std::vector< std::string > & words) {
     return sum;
 }
 
-int Solutions::findMin(std::vector<int> & nums)
-{
-    /*
-    int min = INT_MAX;
-    for(auto & num : nums) {
-        min = min < num ? min : num;
-    }
 
-    return min;
-    */
 
-    for(int i = 1; i < nums.size() ; ++i) {
-        if (nums[i-1] > nums[i]) return nums[i];
-    }
 
-    return nums[0];
-}
 
 
 
@@ -3358,36 +3344,6 @@ int Solutions::findMin(std::vector<int> & nums)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-int Solutions::search(std::vector<int>& nums, int target)
-{
-    int start = 0, end = nums.size();
-    while (start != end) {
-        int mid = start + (end - start)/2;
-        if (nums[mid] == target) return mid;
-        else if ( nums[start] <= nums[mid] ) {
-            if (nums[start] <= target && target < nums[mid]) end = mid;
-            else start = mid + 1;
-        }
-        else {
-            if (nums[mid] < target && target <= nums[end -1] ) start = mid + 1;
-            else end = mid;
-        }
-    }
-    return -1;
-}
 
 
 
