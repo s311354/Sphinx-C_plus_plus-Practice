@@ -296,6 +296,34 @@ public:
      */
      int addDigits(int num);
 
+     /* @brief 450. Delete Node in a BST
+     *
+     * Given a root node reference of a BST and a key, delete the node with the given key in the BST. 
+     * Return the root node reference (possibly updated) of the BST.
+     * 
+     * Basically, the deletion can be divided into two stages:
+     * 
+     * Search for a node to remove. If the node is found, delete the node.
+     *
+     * @param root a root node reference of a BST
+     * @param key a key
+     * @return the root node reference (possibly updated) of the BST
+     */
+    TreeNode* deleteNode(TreeNode* root, int key);
+
+     /* @brief 700. Search in a Binary Search Tree
+     *
+     * You are given the root of a binary search tree (BST) and an integer val.
+     * 
+     * Find the node in the BST that the node's value equals val and return the subtree rooted with that node. 
+     * If such a node does not exist, return null.
+     *
+     * @param root the root of a binary search tree (BST)
+     * @param val an integer 
+     * @return the subtree rooted with that node
+     */
+    TreeNode* searchBST(TreeNode* root, int val);
+  
     /**
     * @brief 1304 Find N Unique Integers Sum up to Zero (Easy)
     *
