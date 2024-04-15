@@ -298,9 +298,7 @@ int Solutions::candy(std::vector<int>& ratings)
         ratings[i-1] > ratings[i] ? candies[i -1]++: candies[i]++;
     }
 
-    int ans = 0;
-
-    for(auto & candy: candies) ans+= candy;
+    int ans = accumulate(candies.begin(), candies.end(), 0);
 
     return ans;
 }
@@ -356,7 +354,7 @@ std::string Solutions::intToRoman(int num)
 
     std::string ans = "";
 
-    for(auto & it: mp) {
+    for(auto const & it: mp) {
         while(it.first <= num) {
             ans += it.second;
             num -= it.first;
@@ -450,7 +448,7 @@ std::string Solutions::convert(std::string s, int numRows)
 
     std::string ans = "";
 
-    for(auto & pattern : patterns) {
+    for(auto const & pattern : patterns) {
 
         ans += pattern;
     }
