@@ -35,9 +35,9 @@ bool Solutions::isSameTree(TreeNode* p, TreeNode* q) {
 
     if(p == nullptr || q == nullptr) return false;
 
-    if(p->val == q->val) return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+    if(p->val != q->val) return false;
 
-    return false;
+    return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
 }
 /*
 Input: p = [1,2,3], q = [1,2,3]
