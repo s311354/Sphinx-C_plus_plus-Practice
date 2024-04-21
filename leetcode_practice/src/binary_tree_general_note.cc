@@ -52,6 +52,19 @@ TreeNode* Solutions::invertTree(TreeNode* root) {
         std::swap(root->left, root->right);
     }
     return root;
+
+/*
+    if(!root) return nullptr;
+
+    TreeNode* temp = root->right;
+    root->left = root->right;
+    root->right = temp;
+
+    invertTree(root->left);
+    invertTree(root->right);
+
+    return root;
+*/
 }
 /*
 Input: root = [4,2,7,1,3,6,9]
