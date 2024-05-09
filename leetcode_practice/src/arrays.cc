@@ -13,6 +13,8 @@ using namespace std;
 
 std::vector<int> Solutions::sortedmerge(std::vector<int> & nums1, int m , std::vector<int> & nums2, int n)
 {
+    // time: O(N) space: O(1)
+
     int i = m - 1, j = n - 1, k = m + n - 1;
 
     while(i >= 0 && j >= 0) {
@@ -40,6 +42,8 @@ iterate through the vector from the end once it a single array sorted in non-dec
 
 int Solutions::removeElement(std::vector<int> & nums, int val)
 {
+    // time: O(N) space: O(1)
+
     int count = 0;
 
     for(int i = 0; i < nums.size(); i ++) {
@@ -63,6 +67,8 @@ we can count the number of elements in array which are not equal to value
 
 int Solutions::removeDuplicates(std::vector<int> & nums)
 {
+    // time: O(N) space: O(1)
+
     int count = 1;
     
     for(int i = 1; i < nums.size(); i ++) {
@@ -85,6 +91,8 @@ we can count the number of elements in array which are unique elements in array
 
 int Solutions::removeDuplicatesII(std::vector<int> & nums)
 {
+    // time: O(N) space: O(1)
+
     int count = 2;
 
     if (nums.size() < 2) return nums.size();
@@ -108,6 +116,8 @@ we would try to iterate through the vector to check all elements
 
 int Solutions::majorityElement(std::vector<int> & nums)
 {
+    // time: O(N) space: O(1)
+
     int count = 0, major = 0;
 
     for(int i = 0; i < nums.size(); i++) {
@@ -123,9 +133,21 @@ Input: nums = [3,2,3]
 Output: 3
 */
 
+/*
+Approach 1: Sorting
+This approach is that if an element occurs more than n/2 times in the array, 
+it will always occupy the middle position when the array is sorted. Therefore, we can sort the array and 
+return the element at index n/2.
+
+Approach 2: Moore Voting Algorithm:
+We would try to adopt the Moore's Voting Algorithm that is based on the fact that if there is a majority element in an array,
+it will always remain in the lead, even after encountering other elements.
+*/
 
 std::vector<int> Solutions::rotate(std::vector<int> & nums, int k)
 {
+    // time: O(N) space: O(N)
+
     std::vector<int> temp = nums;
 
     for(int i = 0; i < nums.size(); i++)
@@ -144,6 +166,8 @@ rotate 3 steps to the right: [5,6,7,1,2,3,4]
 
 int Solutions::maxProfitI(std::vector<int> & prices)
 {
+    // time: O(N) space: O(1)
+
     int profit = 0, hold = INT_MAX;
 
     for(int i = 0; i < prices.size(); i++){
@@ -161,8 +185,15 @@ Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-
 Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
 */
 
+/*
+We would try to adopt straightforward approach that iterates through the array of stock prices. At each step,
+we keep track of the minimum stock price and calculated the potentially maximum profit.
+*/
+
 int Solutions::maxProfit(std::vector<int> & prices)
 {
+    // time: O(N) space: O(1)
+
     int cur_profit = 0, cur_hold = INT_MIN;
 
     for(int i = 0; i < prices.size(); i++) {
@@ -184,6 +215,8 @@ Total profit is 4 + 3 = 7.
 
 bool Solutions::canJump(std::vector<int> & nums)
 {
+    // time: O(N) space: O(1)
+
     int reachable = 0;
 
     for(int i = 0; i < nums.size(); i ++) {
@@ -199,8 +232,14 @@ Output: true
 Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
 */
 
+/*
+we would try to iterate through the vector to check if we can reach the last index.
+*/
+
 int Solutions::jump(std::vector<int> & nums)
 {
+    // time: O(N) space: O(1)
+
     int reach = 0, step = 0, max_reach = 0;
 
     for(int i = 0; i < nums.size() - 1; i++) {
@@ -221,9 +260,16 @@ Output: 2
 Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, then 3 steps to the last index.
 */
 
+/*
+we would try to iterate through the vector to find the minimum number of jumps required to reach the end of a given
+array of non-negative integers. At each step, we keep track of the farthest reachable position and update the number of jumps 
+needed to reach that farthest position.
+*/
 
 int Solutions::hIndex(std::vector<int> & citations)
 {
+    // time: O(n * log(n)) space: O(n)
+
     std::priority_queue<int> pq(citations.begin(), citations.end());
 
     int h;
@@ -239,6 +285,8 @@ Since the researcher has 3 papers with at least 3 citations each and the remaini
 
 std::vector<int> Solutions::productExceptself(std::vector<int> & nums)
 {
+    // time: O(N) space: O(N)
+
     int front = 1, back = 1;
     std::vector<int> ans(nums.size(), 1);
 
@@ -258,8 +306,14 @@ Input: nums = [1,2,3,4]
 Output: [24,12,8,6]
 */
 
+/*
+We would try to adopt dynamic programming that iterates through the array of nums.
+*/
+
 int Solutions::canCompleteCircuit(std::vector<int> & gas, std::vector<int>& cost)
 {
+    // time: O(N) space: O(1)
+
     int total_gas = 0, total_cost = 0, count = 0;
     int start = 0;
 
@@ -292,13 +346,27 @@ Therefore, return 3 as the starting index.
 
 int Solutions::candy(std::vector<int>& ratings)
 {
-    std::vector<int> candies(ratings.size(), 1);
-   
-    for(int i = 1; i < ratings.size(); i ++) {
-        ratings[i-1] > ratings[i] ? candies[i -1]++: candies[i]++;
+    // time: O(N) space: O(N)
+
+    int n = ratings.size();
+
+    std::vector<int> candies(n, 1);
+
+    for(int i = 1; i < n; i ++) {
+        if(ratings[i] > ratings[i-1]) {
+            candies[i] = candies[i-1] + 1;
+        }
     }
 
-    int ans = accumulate(candies.begin(), candies.end(), 0);
+    for(int i = n -2; i >= 0; i --) {
+        if(ratings[i] > ratings[i+1]) {
+            candies[i] = std::max(candies[i], candies[i+1] + 1);
+        }
+    }
+
+    int ans = 0;
+
+    ans = accumulate(candies.begin(), candies.end(), 0);
 
     return ans;
 }
@@ -308,8 +376,15 @@ Output: 5
 Explanation: You can allocate to the first, second and third child with 2, 1, 2 candies respectively.
 */
 
+/*
+We would try to adopt greedy algorithm that iterates through the array of ratings with two-pass method. At each pass,
+we ensure that each child gets the appropriate amount of candy.
+*/
+
 int Solutions::trap(std::vector<int>& height)
 {
+    // time: O(N) space: O(1)
+
     int left = 0, right = height.size() -1;
     int level = 0, water = 0;
 
@@ -327,8 +402,15 @@ Output: 6
 Explanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped.
 */
 
+/*
+We would try to adopt two pointers approach that iterates through the array of height from both the left and right. At each pass,
+we ensure that the water trapped would be dependent on the tower's height in the direction from right to left.
+*/
+
 int Solutions::romanToInt(std::string s)
 {
+    // time: O(N) space: O(N)
+
    std::unordered_map<char, int> mp = {{'I', 1}, {'V', 5}, {'X', 10}, {'L', 50},
                                               {'C', 100}, {'D', 500}, {'M', 1000}};
 
@@ -347,8 +429,16 @@ Output: 3
 Explanation: III = 3.
 */
 
+/*
+We would try to iterate through the string to store in unordered map. At each step,
+we keep track of whether a smaller value appears before a larger value and then 
+ represent the integer conversion of the Roman numeral string.
+*/
+
 std::string Solutions::intToRoman(int num)
 {
+    // time: O(N) space: O(N)
+
     std::unordered_map<int, char> mp = {{1000, 'M'}, {500, 'D'}, {100, 'C'}, 
                                         {50, 'L'}, {10, 'X'}, {5, 'V'}, {1, 'I'}};
 
@@ -369,9 +459,16 @@ Output: "III"
 Explanation: 3 is represented as 3 ones.
 */
 
+/*
+We would try to store a bunch of Roman numeral string in unordered map and iterate through a number within a map. At each step,
+we keep track of whether the input integer is greater than or equal to the Roman numeral value and then
+ represent the Roman numeral string conversion of the integer.
+*/
 
 int Solutions::lenghtofLastword(std::string s)
 {
+    // time: O(N) space: O(1)
+
     int ans = 0;
 
     for(int i = s.length() - 1; i >= 0; i--) {
@@ -389,8 +486,14 @@ Output: 5
 Explanation: The last word is "World" with length 5.
 */
 
+/*
+We would try to iterate through the string. At each step, we keep track of splitting the string into words.
+*/
+
 std::string Solutions::longestCommonPrefix(std::vector<std::string> & strs)
 {
+    // time: O(N) space: O(1)
+
     std::sort(strs.begin(), strs.end());
     std::string ans = "";
 
