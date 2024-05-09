@@ -35,9 +35,9 @@ bool Solutions::isSameTree(TreeNode* p, TreeNode* q) {
 
     if(p == nullptr || q == nullptr) return false;
 
-    if(p->val == q->val) return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+    if(p->val != q->val) return false;
 
-    return false;
+    return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
 }
 /*
 Input: p = [1,2,3], q = [1,2,3]
@@ -52,6 +52,19 @@ TreeNode* Solutions::invertTree(TreeNode* root) {
         std::swap(root->left, root->right);
     }
     return root;
+
+/*
+    if(!root) return nullptr;
+
+    TreeNode* temp = root->right;
+    root->left = root->right;
+    root->right = temp;
+
+    invertTree(root->left);
+    invertTree(root->right);
+
+    return root;
+*/
 }
 /*
 Input: root = [4,2,7,1,3,6,9]
