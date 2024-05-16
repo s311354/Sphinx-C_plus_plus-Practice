@@ -156,4 +156,131 @@ Output: 3
 Explanation: The substring "iii" contains 3 vowel letters.
 */
 
+int Solutions::maximumStrongPairXor(vector<int>& nums) {
+    sort(nums.begin(), nums.end());
+
+    int slow = 0, fast = 1;
+    int bitwise = 0, ans = 0;
+
+    while(fast < nums.size() && slow < nums.size()) {
+        if(abs(nums[fast] - nums[slow] <= min(nums[fast], nums[slow]))) {
+            bitwise = nums[fast] ^ nums[slow];
+            ans = max(ans, bitwise);
+        } else {
+            slow ++;
+            fast = slow;
+        }
+
+        if(fast == nums.size() - 1 && slow < fast) {
+            fast = slow;
+            slow++;
+        }
+
+        fast++;
+    }
+
+    return ans;
+}
+/*
+Example 1:
+Input: nums = [1,2,3,4,5]
+Output: 7
+Explanation: There are 11 strong pairs in the array nums: (1, 1), (1, 2), (2, 2), (2, 3), (2, 4), (3, 3), (3, 4), (3, 5), (4, 4), (4, 5) and (5, 5).
+The maximum XOR possible from these pairs is 3 XOR 4 = 7.
+*/
+
+int Solutions::countGoodSubstrings(string s) {
+
+    int slow = 0, fast = 0;
+    int n = s.length(), ans = 0;
+    unordered_map<char, int> mp;
+
+    while(fast < n && slow < n) {
+        mp[s[fast++]]++;
+        
+        if(fast - slow == 3) {
+            if(mp.size() == 3) ans ++;
+
+            if(mp[s[slow]]-- == 1) mp.erase(s[slow]); // keep it as size 1 
+            slow ++;
+        }
+    }
+
+    return ans;
+}
+/*
+Example 1:
+
+Input: s = "xyzzaz"
+Output: 1
+Explanation: There are 4 substrings of size 3: "xyz", "yzz", "zza", and "zaz". 
+The only good substring of length 3 is "xyz".
+*/
+
+
+#pragma GCC optimize("O3,unroll-loops")
+/*
+This pragma allows you to set global optimization options for functions defined later in the source file.
+*/
+#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
+/*
+The target attribute can be used for instance to have a function compiled with a different ISA (instruction set architecture) 
+than the default. ‘#pragma GCC target’ can be used to specify target-specific options for more than one function
+*/
+
+auto __unsync_ios_stdio = ios_base::sync_with_stdio(false);
+// If the synchronization is turned off, the C++ standard 
+// streams are allowed to buffer their I/O independently, which may be considerably faster in some cases.
+auto __untie_cin = cin.tie(nullptr); 
+/*
+The tied stream is an output stream object which is flushed before each i/o operation in this stream object
+*/
+
+vector<int> Solutions::decrypt(vector<int>& code, int k) {
+    int n = code.size();
+
+    code.insert(code.end(), code.begin(), code.end());
+
+    vector<int> ans(n, 0);
+
+    if(k == 0) return ans;
+    else if(k > 0) {
+        int slow = 0, fast = 1, sum = 0;
+
+        while (slow < n) {
+            sum += code[fast++];
+            
+            if(fast - slow == k + 1) {
+                ans[slow] = sum;
+                slow ++;
+                sum -= code[slow];    
+            }
+        }
+    } else {
+        k *=-1;
+
+        int slow = 2*n - 1, fast = 2*n - 2, sum = 0;
+
+        while(slow >= n) {
+            sum += code[fast--];
+
+            if(slow - fast == k + 1) {
+                ans[slow - n] = sum;
+                slow --;
+                sum -= code[slow];
+            }
+        }
+    }
+
+    return ans;
+}
+/*
+Example 1:
+Input: code = [5,7,1,4], k = 3
+Output: [12,10,16,13]
+Explanation: Each number is replaced by the sum of the next 3 numbers. 
+The decrypted code is [7+1+4, 1+4+5, 4+5+7, 5+7+1]. Notice that the numbers wrap around.
+*/
+
+
 } /* namespace leetcode */

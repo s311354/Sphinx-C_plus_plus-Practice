@@ -1446,6 +1446,59 @@ public:
      */
      std::string longestCommonPrefix(std::vector<std::string> & strs);
 
+     /* @brief 2932. Maximum Strong Pair XOR I
+     *
+     * You are given a 0-indexed integer array nums. A pair of integers x and y is called a strong pair if it satisfies
+     * the condition: |x - y| <= min(x, y) 
+     * 
+     * You need to select two integers from nums such that they form a strong pair and
+     * their bitwise XOR is the maximum among all strong pairs in the array.
+     * 
+     * Return the maximum XOR value out of all possible strong pairs in the array nums.
+     * 
+     * Note that you can pick the same integer twice to form a pair.
+     *
+     * @param nums a 0-indexed integer array nums
+     * @return the maximum XOR value out of all possible strong pairs in the array nums
+     */
+    int maximumStrongPairXor(vector<int>& nums);
+
+     /* @brief 1876. Substrings of Size Three with Distinct Characters
+     *
+     * A string is good if there are no repeated characters.
+     * 
+     * Given a string s​​​​​, return the number of good substrings of length three in s​​​​​​.
+     * 
+     * Note that if there are multiple occurrences of the same substring, every occurrence should be counted.
+     * 
+     * A substring is a contiguous sequence of characters in a string.
+     *
+     * @param s a string
+     * @return the number of good substrings of length three in s​​​​​​
+     */
+    int countGoodSubstrings(string s);
+
+     /* @brief 1652. Defuse the Bomb
+     *
+     * You have a bomb to defuse, and your time is running out! Your informer will provide
+     * you with a circular array code of length of n and a key k.
+     * 
+     * To decrypt the code, you must replace every number. All the numbers are replaced simultaneously.
+     * 
+     * If k > 0, replace the ith number with the sum of the next k numbers.
+     * If k < 0, replace the ith number with the sum of the previous k numbers.
+     * If k == 0, replace the ith number with 0.
+     * 
+     * As code is circular, the next element of code[n-1] is code[0], and the previous element of code[0] is code[n-1].
+     * 
+     * Given the circular array code and an integer key k, return the decrypted code to defuse the bomb!
+     *
+     * @param code a circular array code of length of n
+     * @param k a key
+     * @return the decrypted code to defuse the bomb
+     */
+    vector<int> decrypt(vector<int>& code, int k);
+
      /* @brief 151. Reverse Words in a String
      *
      * Given an input string s, reverse the order of the words.
