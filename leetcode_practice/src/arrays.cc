@@ -36,9 +36,24 @@ The result of the merge is [1,2,2,3,5,6] with the underlined elements coming fro
 */
 
 /*
-iterate through the vector from the end once it a single array sorted in non-decreasing order
-*/
+Approach
+Native Approach: straightforward approach
+Second Approach: …
+Third Approach: …
 
+Explanation (Step by Step)
+Step 1. we would try to iterate through the vector from the end once it a single array sorted in non-decreasing order
+Step 2. …
+…
+
+Dry Run (pseudo code)
+k = m + n - 1
+while(i >= 0 && j >= 0) {..}
+while( j >= 0 ) {...}
+
+Implementation
+...
+*/
 
 int Solutions::removeElement(std::vector<int> & nums, int val)
 {
@@ -60,10 +75,23 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 */
 
 /*
-we would try to iterate through the vector to check all elements from i to the end of array.
-we can count the number of elements in array which are not equal to value
-*/
+Approach
+Native Approach: straightforward approach
+Second Approach: …
+Third Approach: …
 
+Explanation (Step by Step)
+Step 1. we would try to iterate through the vector to check all elements from i to the end of array.
+we can count the number of elements in array which are not equal to value
+Step 2. …
+…
+
+Dry Run (pseudo code)
+if (nums[i] != val) count ++
+
+Implementation
+...
+*/
 
 int Solutions::removeDuplicates(std::vector<int> & nums)
 {
@@ -85,8 +113,22 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 */
 
 /*
-we would try to iterate through the vector to check all elements from i to the end of array
+Approach
+Native Approach: straightforward approach
+Second Approach: …
+Third Approach: …
+
+Explanation (Step by Step)
+Step 1. we would try to iterate through the vector to check all elements from i to the end of array
 we can count the number of elements in array which are unique elements in array
+Step 2. …
+…
+
+Dry Run (pseudo code)
+if(nums[i - 1] != nums[i]) count++
+
+Implementation
+...
 */
 
 int Solutions::removeDuplicatesII(std::vector<int> & nums)
@@ -111,7 +153,21 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 */
 
 /*
-we would try to iterate through the vector to check all elements 
+Approach
+Native Approach: straightforward approach
+Second Approach: …
+Third Approach: …
+
+Explanation (Step by Step)
+Step 1. we would try to iterate through the vector to check all elements 
+Step 2. …
+…
+
+Dry Run (pseudo code)
+if( nums[count - 2] != nums[i]) nums[count++] = nums[i]
+
+Implementation
+...
 */
 
 int Solutions::majorityElement(std::vector<int> & nums)
@@ -134,14 +190,24 @@ Output: 3
 */
 
 /*
-Approach 1: Sorting
-This approach is that if an element occurs more than n/2 times in the array, 
-it will always occupy the middle position when the array is sorted. Therefore, we can sort the array and 
-return the element at index n/2.
+Approach
+Native Approach: Sorting (more than n/2 times in the array)
+Second Approach: Moore Voting Algorithm
+Third Approach: …
 
-Approach 2: Moore Voting Algorithm:
-We would try to adopt the Moore's Voting Algorithm that is based on the fact that if there is a majority element in an array,
+Explanation (Step by Step)
+Step 1. We would try to adopt the Moore's Voting Algorithm that is based on the fact that if there is a majority element in an array,
 it will always remain in the lead, even after encountering other elements.
+Step 2. ...
+…
+
+Dry Run (pseudo code)
+if(count == 0) major = nums[i]
+
+major == nums[i] ? count ++: count --
+
+Implementation
+...
 */
 
 std::vector<int> Solutions::rotate(std::vector<int> & nums, int k)
@@ -186,8 +252,22 @@ Note that buying on day 2 and selling on day 1 is not allowed because you must b
 */
 
 /*
-We would try to adopt straightforward approach that iterates through the array of stock prices. At each step,
-we keep track of the minimum stock price and calculated the potentially maximum profit.
+Approach
+Native Approach: straightforward approach
+Second Approach: …
+Third Approach: …
+
+Explanation (Step by Step)
+Step 1. We would try to adopt straightforward approach that iterates through the array of stock prices. 
+Step 2. At each step, we keep track of the minimum stock price and calculated the potentially maximum profit.
+…
+
+Dry Run (pseudo code)
+hold = std::min(hold, prices[i])
+profit = std::max(profit, prices[i] - hold)
+
+Implementation
+...
 */
 
 int Solutions::maxProfit(std::vector<int> & prices)
@@ -233,7 +313,22 @@ Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
 */
 
 /*
-we would try to iterate through the vector to check if we can reach the last index.
+Approach
+Native Approach: straightforward approach
+Second Approach: …
+Third Approach: …
+
+Explanation (Step by Step)
+Step 1. we would try to iterate through the vector to check if we can reach the last index.
+Step 2. …
+…
+
+Dry Run (pseudo code)
+if(reachable == nums.size() - 1) return true
+reachable = std::max(reachable, i + nums[i])
+
+Implementation
+...
 */
 
 int Solutions::jump(std::vector<int> & nums)
@@ -261,9 +356,27 @@ Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 st
 */
 
 /*
-we would try to iterate through the vector to find the minimum number of jumps required to reach the end of a given
-array of non-negative integers. At each step, we keep track of the farthest reachable position and update the number of jumps 
+Approach
+Native Approach: straightforward approach
+Second Approach: …
+Third Approach: …
+
+Explanation (Step by Step)
+Step 1. we would try to iterate through the vector to find the minimum number of jumps required to reach the end of a given
+array of non-negative integers. 
+Step 2. At each step, we keep track of the farthest reachable position and update the number of jumps 
 needed to reach that farthest position.
+…
+
+Dry Run (pseudo code)
+max_reach = max(max_reach, i + nums[i])
+if(reach == i) {
+    step++
+    reach = max_reach
+}
+
+Implementation
+...
 */
 
 int Solutions::hIndex(std::vector<int> & citations)
@@ -307,7 +420,28 @@ Output: [24,12,8,6]
 */
 
 /*
-We would try to adopt dynamic programming that iterates through the array of nums.
+*/
+
+/*
+Approach
+Native Approach: straightforward approach
+Second Approach: …
+Third Approach: …
+
+Explanation (Step by Step)
+Step 1. We would try to adopt dynamic programming that iterates through the array of nums.
+Step 2. …
+…
+
+Dry Run (pseudo code)
+max_reach = max(max_reach, i + nums[i])
+if(reach == i) {
+    step++
+    reach = max_reach
+}
+
+Implementation
+...
 */
 
 int Solutions::canCompleteCircuit(std::vector<int> & gas, std::vector<int>& cost)
