@@ -37,7 +37,7 @@ int Solutions::lengthOfLongestSubstring(std::string s)
 
     int slow = 0, fast = 0, ans = 0;
 
-    while(slow < s.size() && fast < s.size()) {
+    while (fast < s.length() && slow < s.length()) {
         if(set.find(s[fast]) != set.end()) {
             set.erase(s[slow++]);
         } else {
@@ -92,29 +92,30 @@ std::string Solutions::minWindow(std::string s, std::string t)
 {
     std::unordered_map<char, int> scnt;
     std::unordered_map<char, int> tcnt;
-    int start = 0, requiredlen = t.length();
-    int minwin = INT_MAX;
+    int slow = 0, fast = 0, start = 0, requiredlen = t.length();
+    int ans = INT_MAX;
     
     for(auto& c: t) ++tcnt[c];
 
-    for(int left = 0, right = 0; right < s.length() ; right++) {
-        if(++scnt[s[right]] <= tcnt[s[right]]) --requiredlen;
+    while (fast < s.length() && slow < s.length()) {
+        if(++scnt[s[fast]] <= tcnt[s[fast]]) --requiredlen;
 
         while(requiredlen == 0) {
-
-            if (--scnt[s[left]] < tcnt[s[left]]) {
+            if (--scnt[s[slow]] < tcnt[s[slow]]) {
                 ++requiredlen;
 
-                if (minwin > right - left + 1) {
-                    minwin = right - left + 1;
-                    start = left; 
+                if (ans > fast - slow + 1) {
+                    ans = fast - slow + 1;
+                    start = slow; 
                 }
             }
-            ++left;
+            ++slow;
         }
+
+        ++fast;
     }
 
-    return minwin == INT_MAX ? "" : s.substr(start, minwin);
+    return ans == INT_MAX ? "" : s.substr(start, ans);
 }
 /*
 Input: s = "ADOBECODEBANC", t = "ABC"
@@ -138,7 +139,7 @@ int Solutions::maxVowels(string s, int k) {
 
     int slow = 0, fast = k;
 
-    while(slow < s.length() && fast < s.length()) {
+    while (fast < s.length() && slow < s.length()) {
         if(checkvol(s[fast++])) count++;
         if(checkvol(s[slow++])) count--;
     
@@ -159,24 +160,21 @@ Explanation: The substring "iii" contains 3 vowel letters.
 int Solutions::maximumStrongPairXor(vector<int>& nums) {
     sort(nums.begin(), nums.end());
 
-    int slow = 0, fast = 1;
-    int bitwise = 0, ans = 0;
+    int slow = 0, fast = 0;
+    int ans = 0;
 
     while(fast < nums.size() && slow < nums.size()) {
-        if(abs(nums[fast] - nums[slow] <= min(nums[fast], nums[slow]))) {
-            bitwise = nums[fast] ^ nums[slow];
+        if(abs(nums[fast] - nums[slow]) <= min(nums[fast], nums[slow])) {
+            int bitwise = nums[fast] ^ nums[slow];
             ans = max(ans, bitwise);
-        } else {
-            slow ++;
-            fast = slow;
-        }
+        } 
 
         if(fast == nums.size() - 1 && slow < fast) {
+            ++slow;
             fast = slow;
-            slow++;
         }
 
-        fast++;
+        ++fast;
     }
 
     return ans;
@@ -190,18 +188,20 @@ The maximum XOR possible from these pairs is 3 XOR 4 = 7.
 */
 
 int Solutions::countGoodSubstrings(string s) {
-
     int slow = 0, fast = 0;
-    int n = s.length(), ans = 0;
+    int ans = 0;
     unordered_map<char, int> mp;
 
-    while(fast < n && slow < n) {
+    while(fast < s.length() && slow < s.length()) {
         mp[s[fast++]]++;
         
         if(fast - slow == 3) {
             if(mp.size() == 3) ans ++;
 
-            if(mp[s[slow]]-- == 1) mp.erase(s[slow]); // keep it as size 1 
+            mp[s[slow]]--;
+
+            if(mp[s[slow]] == 0) mp.erase(s[slow]);
+            
             slow ++;
         }
     }
@@ -245,7 +245,8 @@ vector<int> Solutions::decrypt(vector<int>& code, int k) {
 
     if(k == 0) return ans;
     else if(k > 0) {
-        int slow = 0, fast = 1, sum = 0;
+        int slow = 0, fast = 1;
+        int sum = 0;
 
         while (slow < n) {
             sum += code[fast++];
@@ -256,10 +257,12 @@ vector<int> Solutions::decrypt(vector<int>& code, int k) {
                 sum -= code[slow];    
             }
         }
+
     } else {
         k *=-1;
 
-        int slow = 2*n - 1, fast = 2*n - 2, sum = 0;
+        int slow = 2*n - 1, fast = 2*n - 2;
+        int sum = 0;
 
         while(slow >= n) {
             sum += code[fast--];
@@ -282,5 +285,265 @@ Explanation: Each number is replaced by the sum of the next 3 numbers.
 The decrypted code is [7+1+4, 1+4+5, 4+5+7, 5+7+1]. Notice that the numbers wrap around.
 */
 
+int Solutions::maximumLengthSubstring(string s) {
+    int slow = 0, fast = 0;
+    int ans = 0;
+    unordered_map<char, int> mp;
+
+    while(fast < s.length() && slow < s.length()) {
+        mp[s[fast]]++;
+
+        while(mp[s[fast]] == 3)
+            mp[s[slow++]]--;
+        
+        ans = max(ans, fast - slow + 1);
+        fast ++;
+    }
+
+    return ans;
+}
+/*
+Example 1:
+Input: s = "bcbbbcba"
+Output: 4
+Explanation:
+The following substring has a length of 4 and contains at 
+most two occurrences of each character: "bcbbbcba".
+*/
+
+int Solutions::divisorSubstrings(int num, int k) {
+    string s = to_string(num);
+    int slow = 0, fast = 0;
+    int ans = 0;
+    string substring = "";
+
+    while(fast < s.length() && slow < s.length()) {
+        substring += s[fast++];
+
+        if (fast - slow == k) {
+            int nums = stoi(substring);
+            
+            if(nums != 0 && num%nums == 0) {
+                ans++;
+            }
+
+            substring.erase(substring.begin());
+            slow ++;
+        }
+    }
+
+    return ans;
+}
+/*
+Example 1:
+Input: num = 240, k = 2
+Output: 2
+Explanation: The following are the substrings of num of length k:
+- "24" from "240": 24 is a divisor of 240.
+- "40" from "240": 40 is a divisor of 240.
+Therefore, the k-beauty is 2.
+*/
+
+int Solutions::minimumRecolors(string blocks, int k) {
+    int slow = 0, fast = 0;
+    int ans = INT_MAX, count = 0;
+
+    while(fast < blocks.length() && slow < blocks.length()) {
+        if(blocks[fast++] == 'W') count++;
+
+        if(fast - slow == k) {
+            ans = min(ans, count);
+
+            if(blocks[slow] == 'W') count--;
+
+            slow++;
+        }
+    }
+    
+    return ans;
+}
+/*
+Example 1:
+
+Input: blocks = "WBBWWBBWBW", k = 7
+Output: 3
+Explanation:
+One way to achieve 7 consecutive black blocks is to recolor the 0th, 3rd, and 4th blocks
+so that blocks = "BBBBBBBWBW". 
+It can be shown that there is no way to achieve 7 consecutive black blocks in less than 3 operations.
+Therefore, we return 3.
+*/
+
+int Solutions::minimumDifference(vector<int>& nums, int k) {
+    sort(nums.begin(), nums.end());
+
+    int slow = 0, fast = k - 1;
+    int ans = INT_MAX;
+
+    while(fast < nums.size() && slow < nums.size()) {
+
+        int diff = nums[fast++] - nums[slow++];
+        ans = min(ans, diff);
+
+    }
+    
+    return ans;
+}
+/*
+Example 2:
+
+Input: nums = [9,4,1,7], k = 2
+Output: 2
+Explanation: There are six ways to pick score(s) of two students:
+- [9,4,1,7]. The difference between the highest and lowest score is 9 - 4 = 5.
+- [9,4,1,7]. The difference between the highest and lowest score is 9 - 1 = 8.
+- [9,4,1,7]. The difference between the highest and lowest score is 9 - 7 = 2.
+- [9,4,1,7]. The difference between the highest and lowest score is 4 - 1 = 3.
+- [9,4,1,7]. The difference between the highest and lowest score is 7 - 4 = 3.
+- [9,4,1,7]. The difference between the highest and lowest score is 7 - 1 = 6.
+The minimum possible difference is 2.
+*/
+
+int Solutions::findLHS(vector<int>& nums) {
+    sort(nums.begin(), nums.end());
+    
+    int slow = 0, fast = 1
+    int ans = 0;
+
+    while(fast < nums.size() && slow < nums.size()) {
+        
+        if(nums[fast] - nums[slow] == 1) {
+            ans = max(ans, fast - slow + 1);
+        }
+
+        while(nums[fast] - nums[slow] > 1) {
+            ++slow;
+        }
+
+        ++fast;
+    }
+
+    return ans;
+}
+/*
+Example 1:
+
+Input: nums = [1,3,2,2,5,2,3,7]
+Output: 5
+Explanation: The longest harmonious subsequence is [3,2,2,2,3].
+*/
+
+bool Solutions::containsNearbyDuplicate(vector<int>& nums, int k) {
+    int slow = 0, fast = 0;
+    unordered_set<int> set ;
+    
+    while( fast < nums.size() && slow < nums.size())
+    {   
+        if( fast - slow > k) {
+            set.erase(nums[slow++]);
+        }
+        
+        if(set.count(nums[fast]) > 0) {
+            return true;
+        }
+
+        set.insert(nums[fast++]);
+    }
+    return false ;
+}
+/*
+Example 1:
+
+Input: nums = [1,2,3,1], k = 3
+Output: true
+*/
+
+double Solutions::findMaxAverage(vector<int>& nums, int k) {
+    double ans = 0, temp = 0;
+    
+    for(int i=0; i<k; i++) {
+        temp += (double)nums[i];
+    }
+
+    ans = temp;
+
+    int slow = 0, fast = k;
+
+    while(fast < nums.size() && slow < nums.size()){
+        temp += (double)nums[fast++];
+        temp -= (double)nums[slow++]; 
+            
+            ans = max(ans, temp);
+    }
+
+    return ans/k; 
+}
+/*
+Example 1:
+
+Input: nums = [1,12,-5,-6,50,3], k = 4
+Output: 12.75000
+Explanation: Maximum average is (12 - 5 - 6 + 50) / 4 = 51 / 4 = 12.75
+*/
+
+int Solutions::minimumSubarrayLength(vector<int>& nums, int k) {
+    int slow = 0, fast = 0, n = nums.size();;
+    int ans = INT_MAX;
+
+    while(fast < n && slow < n) {
+        
+        int special = 0;
+        fast = slow;
+
+        while(special <= k && fast < n) {
+            
+            special |= nums[fast];
+
+            if(special >= k) {
+                ans = min(ans, fast - slow + 1);
+                break;
+            }
+            ++fast;
+        }
+        ++slow;
+    }
+
+    return ans == INT_MAX ? -1 : ans;
+}
+/*
+Example 1:
+Input: nums = [1,2,3], k = 2
+Output: 1
+Explanation:
+The subarray [3] has OR value of 3. Hence, we return 1.
+*/
+
+int Solutions::longestAlternatingSubarray(vector<int>& nums, int threshold) {
+    int slow = 0, fast = 0;
+    int ans = 0;
+
+    while(fast < nums.size() && slow < nums.size()) {
+        
+        if(fast > 0 && (nums[fast - 1 ] % 2 == nums[fast] % 2 || nums[fast]  > threshold) ) {
+            slow = fast;
+        }
+
+        if(nums[slow] % 2 != 0 || nums[slow] > threshold) 
+            ++slow;
+
+        ans = max(ans, fast - slow + 1);
+
+        ++fast;
+    }
+
+    return ans;
+}
+/*
+Example 2:
+Input: nums = [1,2], threshold = 2
+Output: 1
+Explanation: In this example, we can select the subarray that starts at l = 1 and ends at r = 1 => [2]. 
+It satisfies all the conditions and we can show that 1 is the maximum possible achievable length.
+*/
 
 } /* namespace leetcode */

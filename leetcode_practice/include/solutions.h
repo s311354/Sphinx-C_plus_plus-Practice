@@ -1793,6 +1793,78 @@ substring of s such that every character in t (including duplicates) is included
      */
     int maxLevelSum(TreeNode* root);
 
+     /* @brief 3090. Maximum Length Substring With Two Occurrences
+     *
+     * Given a string s, return the maximum length of a substring such that it contains at most two occurrences of each character.
+     * 
+     * @param s string
+     * @return he maximum length of a substringsuch that it contains at most two occurrences of each character.
+     */
+    int maximumLengthSubstring(string s);
+
+     /* @brief 2269. Find the K-Beauty of a Number
+     *
+     * The k-beauty of an integer num is defined as the number of substrings of num when it is read as a string that meet the following conditions:
+     * 
+     * It has a length of k.
+     * It is a divisor of num.
+     * 
+     * Given integers num and k, return the k-beauty of num.
+     * 
+     * Note: Leading zeros are allowed. 
+     * 0 is not a divisor of any value.
+     * A substring is a contiguous sequence of characters in a string.
+     * 
+     * @param num an integer defined as the number of substrings of num
+     * @param k the k-beauty of an integer 
+     * @return the k-beauty of num
+     */
+    int divisorSubstrings(int num, int k);
+
+     /* @brief 1984. Minimum Difference Between Highest and Lowest of K Scores
+     *
+     * You are given a 0-indexed integer array nums, where nums[i] represents the score of the ith student. You are also given an integer k.
+     * 
+     * Pick the scores of any k students from the array so that the difference between the highest and the lowest of the k scores is minimized.
+     * 
+     * Return the minimum possible difference.
+     * 
+     * @param nums a 0-indexed integer array 
+     * @param K the scores of any k students from the array 
+     * @return the minimum possible difference
+     */
+    int minimumDifference(vector<int>& nums, int k);
+
+     /* @brief 594. Longest Harmonious Subsequence
+     *
+     * We define a harmonious array as an array where the difference between its maximum value and its minimum value is exactly 1.
+     * 
+     * Given an integer array nums, return the length of its longest harmonious subsequence among all its possible subsequences.
+     * 
+     * A subsequence of array is a sequence that can be derived from the array by deleting some or no elements without changing the order of the remaining elements.
+     * 
+     * @param nums an integer array 
+     * @param K the scores of any k students from the array 
+     * @return the minimum possible difference
+     */
+    int findLHS(vector<int>& nums);
+
+     /* @brief 2379. Minimum Recolors to Get K Consecutive Black Blocks
+     *
+     * You are given a 0-indexed string blocks of length n, where blocks[i] is either 'W' or 'B', 
+     * representing the color of the ith block. The characters 'W' and 'B' denote the colors white and black, respectively.
+     * 
+     * You are also given an integer k, which is the desired number of consecutive black blocks.
+     * 
+     * In one operation, you can recolor a white block such that it becomes a black block.
+     * 
+     * Return the minimum number of operations needed such that there is at least one occurrence of k consecutive black blocks.
+     * 
+     * @param blocks a 0-indexed string blocks of length n
+     * @param k an integer 
+     * @return the minimum number of operations needed such that there is at least one occurrence of k consecutive black blocks.
+     */
+    int minimumRecolors(string blocks, int k);
 
      /* @brief 33
      *
@@ -1824,6 +1896,65 @@ substring of s such that every character in t (including duplicates) is included
      * @return the starting and ending position of a given target value
      */
     vector<int> searchRange(vector<int>& nums, int target);
+
+     /* @brief 219. Contains Duplicate II
+     *
+     * Given an integer array nums and an integer k, return true if there are two distinct 
+     * indices i and j in the array such that nums[i] == nums[j] and abs(i - j) <= k.
+     * 
+     * @param nums an array of integers nums sorted in non-decreasing order
+     * @param target an integer
+     * @return the starting and ending position of a given target value
+     */
+    bool containsNearbyDuplicate(vector<int>& nums, int k);
+
+     /* @brief 643. Maximum Average Subarray I
+     *
+     * You are given an integer array nums consisting of n elements, and an integer k.
+     * 
+     * Find a contiguous subarray whose length is equal to k that has the maximum average value and return 
+     * this value. Any answer with a calculation error less than 10-5 will be accepted.
+     * 
+     * @param nums an integer array
+     * @param k an integer
+     * @return a contiguous subarray whose length is equal to k that has the maximum average value
+     */
+    double findMaxAverage(vector<int>& nums, int k);
+
+     /* @brief 3095. Shortest Subarray With OR at Least K I
+     *
+     * You are given an array nums of non-negative integers and an integer k.
+     * 
+     * An array is called special if the bitwise OR of all of its elements is at least k.
+     * 
+     * Return the length of the shortest special non-empty subarray of nums, or return -1 if no special subarray exists.
+     * 
+     * @param nums an array nums of non-negative integers
+     * @param k an integer
+     * @return the length of the shortest special non-empty subarray of nums
+     */
+    int minimumSubarrayLength(vector<int>& nums, int k);
+
+     /* @brief 2760. Longest Even Odd Subarray With Threshold
+     *
+     * You are given a 0-indexed integer array nums and an integer threshold.
+     * 
+     * Find the length of the longest subarray of nums starting at index l and ending at 
+     * index r (0 <= l <= r < nums.length) that satisfies the following conditions:
+     * 
+     * nums[l] % 2 == 0
+     * For all indices i in the range [l, r - 1], nums[i] % 2 != nums[i + 1] % 2
+     * For all indices i in the range [l, r], nums[i] <= threshold
+     * 
+     * Return an integer denoting the length of the longest such subarray.
+     * 
+     * Note: A subarray is a contiguous non-empty sequence of elements within an array.
+     * 
+     * @param nums a 0-indexed integer array
+     * @param threshold an integer
+     * @return an integer denoting the length of the longest such subarray
+     */
+    int longestAlternatingSubarray(vector<int>& nums, int threshold);
 
      /* @brief 153. Find Minimum in Rotated Sorted Array
      *
