@@ -1141,6 +1141,249 @@ public:
      */
      int removeElement(std::vector<int> & nums, int val);
 
+     /* @brief 1929. Concatenation of Array
+     *
+     * Given an integer array nums of length n, you want to create an array ans of length
+     * 2n where ans[i] == nums[i] and ans[i + n] == nums[i] for 0 <= i < n (0-indexed).
+     * 
+     * Specifically, ans is the concatenation of two nums arrays.
+     * 
+     * Return the array ans.
+     * 
+     * @param nums an integer array 
+     * @return the array ans
+     */
+    vector<int> getConcatenation(vector<int>& nums);
+
+     /* @brief 1920. Build Array from Permutation
+     *
+     * Given a zero-based permutation nums (0-indexed), build an array ans of the same
+     * length where ans[i] = nums[nums[i]] for each 0 <= i < nums.length and return it.
+     * 
+     * A zero-based permutation nums is an array of distinct integers from 0 to 
+     * nums.length - 1 (inclusive).
+     * 
+     * @param nums a zero-based permutation 
+     * @return a zero-based permutation nums
+     */
+    vector<int> buildArray(vector<int>& nums);
+
+     /* @brief 1512. Number of Good Pairs
+     *
+     * Given an array of integers nums, return the number of good pairs.
+     * 
+     * A pair (i, j) is called good if nums[i] == nums[j] and i < j. 
+     * 
+     * @param nums an array of integers
+     * @return the number of good pairs
+     */
+    int numIdenticalPairs(vector<int>& nums);
+
+     /* @brief 2011. Final Value of Variable After Performing Operations
+     *
+     * There is a programming language with only four operations and one variable X:
+     * 
+     * ++X and X++ increments the value of the variable X by 1.
+     * --X and X-- decrements the value of the variable X by 1.
+     * 
+     * Initially, the value of X is 0.
+     * 
+     * Given an array of strings operations containing a list of operations, 
+     * return the final value of X after performing all the operations.
+     * 
+     * @param operations an array of strings operations
+     * @return the final value of X after performing all the operations
+     */
+    int finalValueAfterOperations(vector<string>& operations);
+
+     /* @brief 1470. Shuffle the Array
+     *
+     * Given the array nums consisting of 2n elements in the form [x1,x2,...,xn,y1,y2,...,yn].
+     * 
+     * Return the array in the form [x1,y1,x2,y2,...,xn,yn].
+     * 
+     * @param nums the array nums consisting of 2n elements
+     * @param n n elements
+     * @return the array in the form [x1,y1,x2,y2,...,xn,yn]
+     */
+    vector<int> shuffle(vector<int>& nums, int n);
+
+     /* @brief 2942. Find Words Containing Character
+     *
+     * You are given a 0-indexed array of strings words and a character x.
+     * 
+     * Return an array of indices representing the words that contain the character x.
+     * 
+     * Note that the returned array may be in any order.
+     * 
+     * @param words a 0-indexed array of strings 
+     * @param x a character
+     * @return an array of indices representing the words that contain the character x.
+     */
+    vector<int> findWordsContaining(vector<string>& words, char x);
+
+     /* @brief 2373. Largest Local Values in a Matrix
+     *
+     * You are given an n x n integer matrix grid.
+     * 
+     * Generate an integer matrix maxLocal of size (n - 2) x (n - 2) such that:
+     * 
+     * maxLocal[i][j] is equal to the largest value of the 3 x 3 matrix in grid 
+     * centered around row i + 1 and column j + 1.
+     * 
+     * In other words, we want to find the largest value in every contiguous 3 x 3 matrix in grid.
+     * 
+     * Return the generated matrix.
+     * 
+     * @param grid an n x n integer matrix grid
+     * @return the generated matrix
+     */
+    vector<vector<int>> largestLocal(vector<vector<int>>& grid);
+
+     /* @brief 1672. Richest Customer Wealth
+     *
+     * You are given an m x n integer grid accounts where accounts[i][j] is 
+     * the amount of money the i​​​​​​​​​​​th​​​​ customer has in the j​​​​​​​​​​​th​​​​ bank. 
+     * Return the wealth that the richest customer has.
+     * 
+     * A customer's wealth is the amount of money they have in all their bank accounts.
+     * The richest customer is the customer that has the maximum wealth.
+     * 
+     * @param accounts an m x n integer grid accounts
+     * @return the wealth that the richest customer has
+     */
+    int maximumWealth(vector<vector<int>>& accounts);
+
+     /* @brief 1863. Sum of All Subset XOR Totals
+     *
+     * The XOR total of an array is defined as the bitwise XOR of all
+     *  its elements, or 0 if the array is empty.
+     * 
+     * For example, the XOR total of the array [2,5,6] is 2 XOR 5 XOR 6 = 1.
+     * Given an array nums, return the sum of all XOR totals for every subset of nums. 
+     * 
+     * Note: Subsets with the same elements should be counted multiple times.
+     * 
+     * An array a is a subset of an array b if a can be obtained from b by deleting some
+     *  (possibly zero) elements of b.
+     * 
+     * @param nums an array
+     * @return the sum of all XOR totals for every subset of nums.
+     */
+    int subsetXORSum(vector<int>& nums);
+
+     /* @brief 2037. Minimum Number of Moves to Seat Everyone
+     *
+     * There are n seats and n students in a room. You are given an array seats of 
+     * length n, where seats[i] is the position of the ith seat. You are also given
+     *  the array students of length n, where students[j] is the position of the jth student.
+     * 
+     * You may perform the following move any number of times:
+     * 
+     * Increase or decrease the position of the ith student by 1 (i.e., moving the ith student
+     *  from position x to x + 1 or x - 1)
+     * 
+     * Return the minimum number of moves required to move each student to a seat such that
+     *  no two students are in the same seat.
+     * 
+     * Note that there may be multiple seats or students in the same position at the beginning.
+     * 
+     * @param seats n seats
+     * @param seats n seats
+     * @return the sum of all XOR totals for every subset of nums.
+     */
+    int minMovesToSeat(vector<int>& seats, vector<int>& students);
+
+     /* @brief 2798. Number of Employees Who Met the Target
+     *
+     *  There are n employees in a company, numbered from 0 to n - 1. Each employee
+     *  i has worked for hours[i] hours in the company.
+     * 
+     * The company requires each employee to work for at least target hours.
+     * 
+     * You are given a 0-indexed array of non-negative integers hours of length 
+     * n and a non-negative integer target.
+     * 
+     * Return the integer denoting the number of employees who worked at least target hours.
+     * 
+     * @param hours Each employee i has worked for hours[i] hours in the company.
+     * @param target a non-negative integer
+     * @return the integer denoting the number of employees who worked at least target hours
+     */
+    int numberOfEmployeesWhoMetTarget(vector<int>& hours, int target);
+
+     /* @brief 1431. Kids With the Greatest Number of Candies
+     *
+     *  There are n kids with candies. You are given an integer array candies, 
+     *  where each candies[i] represents the number of candies the ith kid has, 
+     *  and an integer extraCandies, denoting the number of extra candies that you have.
+     * 
+     *  Return a boolean array result of length n, where result[i] is true if, after giving
+     *  the ith kid all the extraCandies, they will have the greatest number of candies
+     *  among all the kids, or false otherwise.
+     * 
+     * Note that multiple kids can have the greatest number of candies.
+     * 
+     * @param candies an integer array
+     * @param extraCandies an integer extraCandies, denoting the number of extra candies that you have
+     * @return a boolean array result of length n
+     */
+    vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies);
+
+     /* @brief 1637. Widest Vertical Area Between Two Points Containing No Points
+     *
+     *  Given n points on a 2D plane where points[i] = [xi, yi], 
+     * Return the widest vertical area between two points such that no points are inside the area.
+     * 
+     * A vertical area is an area of fixed-width extending infinitely along the y-axis 
+     * (i.e., infinite height). The widest vertical area is the one with the maximum width.
+     * 
+     * Note that points on the edge of a vertical area are not considered included in the area.
+     * 
+     * @param points n points on a 2D plane 
+     * @return the widest vertical area between two points such that no points are inside the area.
+     */
+    int maxWidthOfVerticalArea(vector<vector<int>>& points);
+
+     /* @brief 2824. Count Pairs Whose Sum is Less than Target
+     *
+     *  Given a 0-indexed integer array nums of length n and an integer target, 
+     * return the number of pairs (i, j) where 0 <= i < j < n and nums[i] + nums[j] < target.
+     * 
+     * @param nums a 0-indexed integer array
+     * @param target an integer target
+     * @return the number of pairs (i, j)
+     */
+    int countPairs(vector<int>& nums, int target);
+
+     /* @brief 3162. Find the Number of Good Pairs I
+     *
+     *  You are given 2 integer arrays nums1 and nums2 of lengths n and m respectively.
+     *  You are also given a positive integer k.
+     * 
+     * A pair (i, j) is called good if nums1[i] is divisible by nums2[j] * k 
+     * (0 <= i <= n - 1, 0 <= j <= m - 1).
+     * 
+     * Return the total number of good pairs.
+     * 
+     * @param nums1 a integer array
+     * @param nums2 a integer array
+     * @param k a positive integer
+     * @return the total number of good pairs
+     */
+    int numberOfPairs(vector<int>& nums1, vector<int>& nums2, int k);
+
+     /* @brief 1480. Running Sum of 1d Array
+     *
+     *  Given an array nums. We define a running sum of an array as runningSum[i] = sum(nums[0]…nums[i]).
+     * 
+     *  Return the running sum of nums.
+     *
+     * @param nums an array
+     * @return the running sum of nums
+     */
+    vector<int> runningSum(vector<int>& nums);
+
      /* @brief 80. Remove Duplicates from Sorted Array II
      *
      * Given an integer array nums sorted in non-decreasing order,

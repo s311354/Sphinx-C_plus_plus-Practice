@@ -11,6 +11,32 @@ namespace leetcode {
 
 using namespace std;
 
+int Solutions::trap(std::vector<int>& height)
+{
+    // time: O(N) space: O(1)
+
+    int start = 0, end = height.size() -1;
+    int level = 0, water = 0;
+
+    while(start <= end) {
+        int lower = height[height[start] < height[end] ? start ++ : end --];
+        level = max(lower, level);
+        water += level - lower;
+    }
+
+    return water;
+}
+/*
+Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
+Output: 6
+Explanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped.
+*/
+
+/*
+We would try to adopt two pointers approach that iterates through the array of height from both the left and right. At each pass,
+we ensure that the water trapped would be dependent on the tower's height in the direction from right to left.
+*/
+
 bool Solutions::isPalindrome(std::string s)
 {
     int start = 0, end = s.length() - 1;

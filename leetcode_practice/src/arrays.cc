@@ -301,7 +301,7 @@ bool Solutions::canJump(std::vector<int> & nums)
 
     for(int i = 0; i < nums.size(); i ++) {
         if(reachable == nums.size() - 1) return true;
-        reachable = std::max(reachable, i + nums[i]);
+        reachable = max(reachable, i + nums[i]);
     }
 
     return false;
@@ -339,7 +339,7 @@ int Solutions::jump(std::vector<int> & nums)
 
     for(int i = 0; i < nums.size() - 1; i++) {
     
-        max_reach = std::max(max_reach, i + nums[i]);
+        max_reach = max(max_reach, i + nums[i]);
 
         if(reach == i) {
            step++;
@@ -420,9 +420,6 @@ Output: [24,12,8,6]
 */
 
 /*
-*/
-
-/*
 Approach
 Native Approach: straightforward approach
 Second Approach: …
@@ -494,7 +491,7 @@ int Solutions::candy(std::vector<int>& ratings)
 
     for(int i = n -2; i >= 0; i --) {
         if(ratings[i] > ratings[i+1]) {
-            candies[i] = std::max(candies[i], candies[i+1] + 1);
+            candies[i] = max(candies[i], candies[i+1] + 1);
         }
     }
 
@@ -513,32 +510,6 @@ Explanation: You can allocate to the first, second and third child with 2, 1, 2 
 /*
 We would try to adopt greedy algorithm that iterates through the array of ratings with two-pass method. At each pass,
 we ensure that each child gets the appropriate amount of candy.
-*/
-
-int Solutions::trap(std::vector<int>& height)
-{
-    // time: O(N) space: O(1)
-
-    int left = 0, right = height.size() -1;
-    int level = 0, water = 0;
-
-    while(left < right) {
-        int lower = height[height[left] < height[right] ? left ++ : right --];
-        level = std::max(lower, level);
-        water += level - lower;
-    }
-
-    return water;
-}
-/*
-Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
-Output: 6
-Explanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped.
-*/
-
-/*
-We would try to adopt two pointers approach that iterates through the array of height from both the left and right. At each pass,
-we ensure that the water trapped would be dependent on the tower's height in the direction from right to left.
 */
 
 int Solutions::romanToInt(std::string s)
@@ -717,6 +688,320 @@ Input: haystack = "sadbutsad", needle = "sad"
 Output: 0
 Explanation: "sad" occurs at index 0 and 6.
 The first occurrence is at index 0, so we return 0.
+*/
+
+vector<int> Solutions::getConcatenation(vector<int>& nums) {
+    int n = nums.size();
+
+    for(int i = 0; i < n ; i ++) {
+        nums.push_back(nums[i]);
+    }
+
+    return nums;
+}
+/*
+Example 1:
+
+Input: nums = [1,2,1]
+Output: [1,2,1,1,2,1]
+Explanation: The array ans is formed as follows:
+- ans = [nums[0],nums[1],nums[2],nums[0],nums[1],nums[2]]
+- ans = [1,2,1,1,2,1]
+*/
+
+vector<int> Solutions::buildArray(vector<int>& nums) {
+    vector<int> ans;
+
+    int n = nums.size();
+
+    for(int i = 0; i < n ; i ++) {
+        ans.push_back(nums[nums[i]]);
+    }
+
+    return ans;
+}
+/*
+Example 1:
+
+Input: nums = [0,2,1,5,3,4]
+Output: [0,1,2,4,5,3]
+Explanation: The array ans is built as follows: 
+ans = [nums[nums[0]], nums[nums[1]], nums[nums[2]], nums[nums[3]], nums[nums[4]], nums[nums[5]]]
+    = [nums[0], nums[2], nums[1], nums[5], nums[3], nums[4]]
+    = [0,1,2,4,5,3]
+*/
+
+int Solutions::minMovesToSeat(vector<int>& seats, vector<int>& students) {
+    sort(seats.begin(), seats.end());
+    sort(students.begin(), students.end());
+
+    int ans = 0;
+
+    for(int i = 0; i < seats.size(); i ++) {
+        ans += abs(seats[i] - students[i]);
+    }
+
+    return ans;
+}
+/*
+Example 1:
+
+Input: seats = [3,1,5], students = [2,7,4]
+Output: 4
+Explanation: The students are moved as follows:
+- The first student is moved from from position 2 to position 1 using 1 move.
+- The second student is moved from from position 7 to position 5 using 2 moves.
+- The third student is moved from from position 4 to position 3 using 1 move.
+In total, 1 + 2 + 1 = 4 moves were used.
+*/
+
+int Solutions::numIdenticalPairs(vector<int>& nums) {
+    int ans = 0;
+    vector<int> count(101,0);
+
+    for(auto const & num: nums) {
+        ans += count[num];
+        count[num] ++;
+    }
+
+    return ans;
+}
+/*
+Example 1:
+
+Input: nums = [1,2,3,1,1,3]
+Output: 4
+Explanation: There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.
+*/
+
+int Solutions::finalValueAfterOperations(vector<string>& operations) {
+    int ans = 0;
+
+    for(auto const & operation : operations) {
+        if(operation == "--X" || operation == "X--") {
+            ans--;
+        } else {
+            ans++;
+        }
+    }
+
+    return ans;
+}
+/*
+Example 1:
+Input: operations = ["--X","X++","X++"]
+Output: 1
+Explanation: The operations are performed as follows:
+Initially, X = 0.
+--X: X is decremented by 1, X =  0 - 1 = -1.
+X++: X is incremented by 1, X = -1 + 1 =  0.
+X++: X is incremented by 1, X =  0 + 1 =  1.
+*/
+
+vector<int> Solutions::shuffle(vector<int>& nums, int n) {
+    vector<int> ans;
+    for(int i = 0; i < n; i ++) {
+        ans.push_back(nums[i]);
+        ans.push_back(nums[i+n]);
+    }
+
+    return ans;
+}
+/*
+Example 1:
+Input: nums = [2,5,1,3,4,7], n = 3
+Output: [2,3,5,4,1,7] 
+Explanation: Since x1=2, x2=5, x3=1, y1=3, y2=4, y3=7 then the answer is [2,3,5,4,1,7].
+*/
+
+vector<int> Solutions::findWordsContaining(vector<string>& words, char x) {
+    int n = words.size();
+    vector<int> ans;
+
+    for(int i = 0; i < n; i++) {
+        if(count(words[i].begin(), words[i].end(), x) > 0) {
+            ans.push_back(i);
+        }
+    }
+
+    return ans;
+}
+/*
+Example 1:
+
+Input: words = ["leet","code"], x = "e"
+Output: [0,1]
+Explanation: "e" occurs in both words: "leet", and "code". Hence, we return indices 0 and 1.
+*/
+
+int Solutions::maximumWealth(vector<vector<int>>& accounts) {
+    int ans = 0;
+    for(auto const & account: accounts) {
+        ans = max(ans, accumulate(account.begin(), account.end(), 0));
+    }
+
+    return ans;
+}
+/*
+Example 1:
+
+Input: accounts = [[1,2,3],[3,2,1]]
+Output: 6
+Explanation:
+1st customer has wealth = 1 + 2 + 3 = 6
+2nd customer has wealth = 3 + 2 + 1 = 6
+Both customers are considered the richest with a wealth of 6 each, so return 6.
+*/
+
+int Solutions::subsetXORSum(vector<int>& nums) {
+    int n = nums.size();
+    int sum = 0;
+    
+    for(int i = 0 ; i <  n; i++) sum |= nums[i];
+
+    return sum << (nums.size()-1); 
+}
+/*
+Example 1:
+
+Input: nums = [1,3]
+Output: 6
+Explanation: The 4 subsets of [1,3] are:
+- The empty subset has an XOR total of 0.
+- [1] has an XOR total of 1.
+- [3] has an XOR total of 3.
+- [1,3] has an XOR total of 1 XOR 3 = 2.
+0 + 1 + 3 + 2 = 6
+*/
+
+int Solutions::numberOfEmployeesWhoMetTarget(vector<int>& hours, int target) {
+    int count = 0;
+    for(auto const & hour: hours) {
+        if(hour >= target) count ++;
+    }
+
+    return count;
+}
+/*
+Example 1:
+
+Input: hours = [0,1,2,3,4], target = 2
+Output: 3
+Explanation: The company wants each employee to work for at least 2 hours.
+- Employee 0 worked for 0 hours and didn't meet the target.
+- Employee 1 worked for 1 hours and didn't meet the target.
+- Employee 2 worked for 2 hours and met the target.
+- Employee 3 worked for 3 hours and met the target.
+- Employee 4 worked for 4 hours and met the target.
+There are 3 employees who met the target.
+*/
+
+vector<bool> Solutions::kidsWithCandies(vector<int>& candies, int extraCandies) {
+    int maxcandy = 0;
+
+    vector<bool> ans;
+
+    for(auto& candy: candies) maxcandy = max(maxcandy, candy);
+
+    for(auto& candy: candies) {
+        if(candy + extraCandies >= maxcandy) ans.push_back(true);
+        else ans.push_back(false); 
+    } 
+
+    return ans;
+}
+/*
+Example 1:
+
+Input: candies = [2,3,5,1,3], extraCandies = 3
+Output: [true,true,true,false,true] 
+Explanation: If you give all extraCandies to:
+- Kid 1, they will have 2 + 3 = 5 candies, which is the greatest among the kids.
+- Kid 2, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
+- Kid 3, they will have 5 + 3 = 8 candies, which is the greatest among the kids.
+- Kid 4, they will have 1 + 3 = 4 candies, which is not the greatest among the kids.
+- Kid 5, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
+*/
+
+int Solutions::maxWidthOfVerticalArea(vector<vector<int>>& points) {
+    priority_queue<int> pq;
+    for(auto const & point: points) {
+        pq.push(point[0]);
+    }
+
+    int node = pq.top(), ans = 0;
+
+    while(!pq.empty()) {
+        int next = pq.top();
+        pq.pop();
+
+        ans = max(ans, node - next);
+        node = next;
+    }
+
+    return ans;
+}
+/*
+Input: points = [[8,7],[9,9],[7,4],[9,7]]
+Output: 1
+Explanation: Both the red and the blue area are optimal.
+*/
+
+int Solutions::countPairs(vector<int>& nums, int target) {
+    int ans = 0;
+
+    for(int i = 0; i < nums.size(); i ++) {
+        for(int j = i+1; j < nums.size(); j ++) {
+            if(nums[i] + nums[j] < target) ans++;
+        }
+    }
+
+    return ans;
+}
+/*
+Example 1:
+
+Input: nums = [-1,1,2,3,1], target = 2
+Output: 3
+Explanation: There are 3 pairs of indices that satisfy the conditions in the statement:
+- (0, 1) since 0 < 1 and nums[0] + nums[1] = 0 < target
+- (0, 2) since 0 < 2 and nums[0] + nums[2] = 1 < target 
+- (0, 4) since 0 < 4 and nums[0] + nums[4] = 0 < target
+Note that (0, 3) is not counted since nums[0] + nums[3] is not strictly less than the target.
+*/
+
+int Solutions::numberOfPairs(vector<int>& nums1, vector<int>& nums2, int k) {
+    int ans = 0;
+
+    for(auto const & num1: nums1) {
+        for(auto const & num2: nums2) {
+            int div = num2 * k;
+            if(num1 % div == 0) ans++;
+        }
+    }
+
+    return ans;
+}
+/*
+Example 1:
+Input: nums1 = [1,3,4], nums2 = [1,3,4], k = 1
+Output: 5
+Explanation:
+The 5 good pairs are (0, 0), (1, 0), (1, 1), (2, 0), and (2, 2).
+*/
+
+vector<int> Solutions::runningSum(vector<int>& nums) {
+    for(int i = 1; i < nums.size(); i ++) {
+        nums[i] += nums[i-1];
+    }
+
+    return nums;
+}
+/*
+Example 1:
+Input: nums = [1,2,3,4]
+Output: [1,3,6,10]
+Explanation: Running sum is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4].
 */
 
 // Hard!!!
