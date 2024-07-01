@@ -1397,6 +1397,19 @@ public:
      */                                                                          
      int removeDuplicatesII(std::vector<int> & nums);
 
+     /* @brief Smallest Substring of All Characters
+     *
+     * Given an array of unique characters arr and a string str, Implement a function getShortestUniqueSubstring 
+     * that finds the smallest substring of str containing all the characters in arr. Return "" (empty string)
+     * if such a substring doesn’t exist.
+     * 
+     * Come up with an asymptotically optimal solution and analyze the time and space complexities.
+     *
+     * @param arr an array of unique characters
+     * @param str a string
+     * @return the smallest substring of str containing all the characters in arr. 
+     */                                                                          
+    string getShortestUniqueSubstring( const vector<char>& arr, const string &str );
 
      /* @brief 4. Median of Two Sorted Arrays
      *

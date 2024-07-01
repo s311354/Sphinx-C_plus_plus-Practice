@@ -123,6 +123,79 @@ Output: "BANC"
 Explanation: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
 */
 
+string getShortestUniqueSubstring( const vector<char>& arr, const string &str ) 
+{
+  unordered_map<char, int> acnt;
+  unordered_map<char, int> scnt;
+  int slow = 0, fast = 0;
+  int start = 0, requiredlen = arr.size();
+  int ans = INT_MAX;
+  
+  for(auto const &c: arr) ++acnt[c];
+  
+  while(fast < str.length() && slow < str.length()) {
+    
+    if(++scnt[str[fast]] <= acnt[str[fast]]) --requiredlen;
+    
+    while(requiredlen == 0) {
+      if(--scnt[str[slow]] < acnt[str[slow]]) {
+        ++requiredlen;
+        
+        if(ans > fast - slow + 1) {
+          ans = fast - slow + 1;
+          start = slow;
+        }
+      }
+      ++slow;
+    }
+    ++fast;
+
+  }
+  
+  return ans == INT_MAX ? "" : str.substr(start, ans);
+  
+}
+/*
+input:  arr = ['x','y','z'], str = "xyyzyzyx"
+output: "zyx"
+*/
+
+/*
+Approach
+Native Approach: …
+Second Approach: sliding window approach
+Third Approach: …
+
+Explanation (Step by Step)
+Step 1. We would try to use a hash map to track the count of characters in arr and iterate through a string with two pointers, fast and slow.
+Step 2. At each step, we keep expand the window by moving the fast pointer until the window contains all characters.
+Step 3. Once the window is valid, we try to shrink it by moving the slow pointer to find the smallest window, and keep track of the start point.
+…
+
+Dry Run (pseudo code)
+
+requiredlen = arr.size()
+
+for(auto const &c: arr) ++acnt[c]
+
+if(++scnt[str[fast]] <= acnt[str[fast]]) --requiredlen
+
+while(requiredlen == 0) {
+    if(--scnt[str[slow]] < acnt[str[slow]]) {
+        ++requiredlen;
+    
+        if(ans > fast - slow + 1) {
+          ans = fast - slow + 1;
+          start = slow;
+        }
+    }
+}
+
+Implementation
+...
+*/
+
+
 bool checkvol(char c) {
     if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') return true;
 

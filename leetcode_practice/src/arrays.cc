@@ -96,13 +96,15 @@ Implementation
 int Solutions::removeDuplicates(std::vector<int> & nums)
 {
     // time: O(N) space: O(1)
-
-    int count = 1;
+    if (!nums.size()) return 0;
     
-    for(int i = 1; i < nums.size(); i ++) {
-        if(nums[i - 1] != nums[i]) count++;
-    }
+    int count = 1;
 
+    for (int i = 0; i < nums.size() - 1; i++) {
+        if (nums[i] != nums[i+1]) {
+            nums[count++] = nums[i+1];
+        }
+    }
     return count;
 }
 /*
@@ -119,7 +121,7 @@ Second Approach: …
 Third Approach: …
 
 Explanation (Step by Step)
-Step 1. we would try to iterate through the vector to check all elements from i to the end of array
+Step 1. we would try to iterate through the vector to check all elements from i to the end - 1 of array
 we can count the number of elements in array which are unique elements in array
 Step 2. …
 …
@@ -134,13 +136,14 @@ Implementation
 int Solutions::removeDuplicatesII(std::vector<int> & nums)
 {
     // time: O(N) space: O(1)
+    if (nums.size() < 2) return nums.size();
 
     int count = 2;
 
-    if (nums.size() < 2) return nums.size();
-
     for(int i = 2; i < nums.size(); i ++) {
-        if( nums[count - 2] != nums[i]) nums[count++] = nums[i];
+        if( nums[i] != nums[count - 2] ) { 
+            nums[count++] = nums[i];
+        }
     }
 
     return count;
@@ -177,6 +180,7 @@ int Solutions::majorityElement(std::vector<int> & nums)
     int count = 0, major = 0;
 
     for(int i = 0; i < nums.size(); i++) {
+       
        if(count == 0) major = nums[i];
 
        major == nums[i] ? count ++: count --;
@@ -301,6 +305,7 @@ bool Solutions::canJump(std::vector<int> & nums)
 
     for(int i = 0; i < nums.size(); i ++) {
         if(reachable == nums.size() - 1) return true;
+
         reachable = max(reachable, i + nums[i]);
     }
 
@@ -325,6 +330,7 @@ Step 2. …
 
 Dry Run (pseudo code)
 if(reachable == nums.size() - 1) return true
+
 reachable = std::max(reachable, i + nums[i])
 
 Implementation
@@ -335,7 +341,8 @@ int Solutions::jump(std::vector<int> & nums)
 {
     // time: O(N) space: O(1)
 
-    int reach = 0, step = 0, max_reach = 0;
+    int reach = 0, max_reach = 0;
+    int step = 0;
 
     for(int i = 0; i < nums.size() - 1; i++) {
     
@@ -370,6 +377,7 @@ needed to reach that farthest position.
 
 Dry Run (pseudo code)
 max_reach = max(max_reach, i + nums[i])
+
 if(reach == i) {
     step++
     reach = max_reach
@@ -381,7 +389,7 @@ Implementation
 
 int Solutions::hIndex(std::vector<int> & citations)
 {
-    // time: O(n * log(n)) space: O(n)
+    // time: O(N * log(N)) space: O(N)
 
     std::priority_queue<int> pq(citations.begin(), citations.end());
 
@@ -421,8 +429,8 @@ Output: [24,12,8,6]
 
 /*
 Approach
-Native Approach: straightforward approach
-Second Approach: …
+Native Approach: ...
+Second Approach: dynamic programming approach
 Third Approach: …
 
 Explanation (Step by Step)
@@ -431,11 +439,11 @@ Step 2. …
 …
 
 Dry Run (pseudo code)
-max_reach = max(max_reach, i + nums[i])
-if(reach == i) {
-    step++
-    reach = max_reach
-}
+ans[i] = front
+front *= nums[i]
+
+ans[i] *= back
+back *= nums[i]
 
 Implementation
 ...
@@ -454,7 +462,8 @@ int Solutions::canCompleteCircuit(std::vector<int> & gas, std::vector<int>& cost
         count += gas[i] - cost[i];
 
         if (count < 0) {
-           count = 0; start = i + 1;
+           count = 0; 
+           start = i + 1;
         }
     }
 
@@ -475,6 +484,31 @@ Travel to station 3. The cost is 5. Your gas is just enough to travel back to st
 Therefore, return 3 as the starting index.
 */
 
+/*
+Approach
+Native Approach: straightforward approach
+Second Approach: …
+Third Approach: …
+
+Explanation (Step by Step)
+Step 1. we would try to iterate through the vector to caculate gas tank and it costs of gas 
+Step 2. At each step, we keep track of the amount of gas and it costs, and update the starting index to travel around the circuit
+…
+
+Dry Run (pseudo code)
+total_gas += gas[i];
+total_cost += cost[i];
+count += gas[i] - cost[i];
+
+if (count < 0) {
+    count = 0; 
+    start = i + 1;
+}
+
+Implementation
+...
+*/
+
 int Solutions::candy(std::vector<int>& ratings)
 {
     // time: O(N) space: O(N)
@@ -489,7 +523,7 @@ int Solutions::candy(std::vector<int>& ratings)
         }
     }
 
-    for(int i = n -2; i >= 0; i --) {
+    for(int i = n - 2; i >= 0; i --) {
         if(ratings[i] > ratings[i+1]) {
             candies[i] = max(candies[i], candies[i+1] + 1);
         }
@@ -508,25 +542,46 @@ Explanation: You can allocate to the first, second and third child with 2, 1, 2 
 */
 
 /*
+Approach
+Native Approach: …
+Second Approach: greedy algorithm
+Third Approach: …
+
+Explanation (Step by Step)
 We would try to adopt greedy algorithm that iterates through the array of ratings with two-pass method. At each pass,
 we ensure that each child gets the appropriate amount of candy.
+…
+
+Dry Run (pseudo code)
+std::vector<int> candies(n, 1);
+
+if(ratings[i] > ratings[i-1]) {
+    candies[i] = candies[i-1] + 1;
+}
+
+if(ratings[i] > ratings[i+1]) {
+    candies[i] = max(candies[i], candies[i+1] + 1);
+}
+
+Implementation
+...
 */
 
 int Solutions::romanToInt(std::string s)
 {
     // time: O(N) space: O(N)
 
-   std::unordered_map<char, int> mp = {{'I', 1}, {'V', 5}, {'X', 10}, {'L', 50},
-                                              {'C', 100}, {'D', 500}, {'M', 1000}};
+    std::unordered_map<char, int> map = {{'I', 1}, {'V', 5}, {'X', 10}, {'L', 50},
+                                            {'C', 100}, {'D', 500}, {'M', 1000}};
 
-   int ans = 0;
+    int ans = 0;
 
-   for(int i = 0; i < s.length(); i ++) {
-      if((i-1)> 0 && s[i-1] < s[i]) ans += mp[s[i]] - mp[s[i-1]];
-      else ans += mp[s[i]];
-   }
+    for(int i = 0; i < s.length(); i ++) {
+        if (map[s[i]] < map[s[i+1]]) ans -= map[s[i]];
+        else ans += map[s[i]];
+    }
 
-   return ans;
+    return ans;
 }
 /*
 Input: s = "III"
@@ -535,28 +590,45 @@ Explanation: III = 3.
 */
 
 /*
-We would try to iterate through the string to store in unordered map. At each step,
-we keep track of whether a smaller value appears before a larger value and then 
- represent the integer conversion of the Roman numeral string.
+Approach
+Native Approach: straightforward approach
+Second Approach: …
+Third Approach: …
+
+Explanation (Step by Step)
+Step 1. We would try to store a bunch of Roman and the mapped value in unordered map and iterate through a key character within a map. 
+Step 2. At each step, we keep track of whether a smaller mapped value appears before a larger mapped value and then represent the integer conversion of the Roman numeral string.
+…
+
+Dry Run (pseudo code)
+unordered_map  {{'I', 1}, {'V', 5}, {'X', 10}, {'L', 50},
+               {'C', 100}, {'D', 500}, {'M', 1000}}
+
+if((i-1)> 0 && s[i-1] < s[i])  ans += mp[s[i]] - mp[s[i-1]]
+else  ans += mp[s[i]]
+
+Implementation
+...
 */
 
 std::string Solutions::intToRoman(int num)
 {
     // time: O(N) space: O(N)
 
-    std::unordered_map<int, char> mp = {{1000, 'M'}, {500, 'D'}, {100, 'C'}, 
-                                        {50, 'L'}, {10, 'X'}, {5, 'V'}, {1, 'I'}};
+    std::vector<std::pair<int, std::string>> mp{{1000, "M"}, {900, "CM"}, {500, "D"},
+                                                {400, "CD"}, {100, "C"}, {90, "XC"},
+                                                {50, "L"}, {40, "XL"}, {10, "X"},
+                                                {9, "IX"}, {5, "V"}, {4, "IV"}, {1, "I"}};
 
-    std::string ans = "";
+    string ans = "";
 
-    for(auto const & it: mp) {
-        while(it.first <= num) {
+    for(auto & it : mp) {
+        while (num >= it.first) {
             ans += it.second;
             num -= it.first;
         }
     }
-
-    return ans;
+    return ans; 
 }
 /*
 Input: num = 3
@@ -565,9 +637,25 @@ Explanation: 3 is represented as 3 ones.
 */
 
 /*
-We would try to store a bunch of Roman numeral string in unordered map and iterate through a number within a map. At each step,
-we keep track of whether the input integer is greater than or equal to the Roman numeral value and then
- represent the Roman numeral string conversion of the integer.
+Approach
+Native Approach: straightforward approach
+Second Approach: …
+Third Approach: …
+
+Explanation (Step by Step)
+Step 1. We would try to store a bunch of Roman numeral string and the mapped character in unordered map and iterate through a number within a map. 
+Step 2. At each step, we keep track of whether the input integer is greater than or equal to the Roman numeral value and then represent the Roman numeral string conversion of the integer.
+…
+
+Dry Run (pseudo code)
+unordered_map  {{'I', 1}, {'V', 5}, {'X', 10}, {'L', 50},
+               {'C', 100}, {'D', 500}, {'M', 1000}}
+
+if((i-1)> 0 && s[i-1] < s[i])  ans += mp[s[i]] - mp[s[i-1]]
+else  ans += mp[s[i]]
+
+Implementation
+...
 */
 
 int Solutions::lenghtofLastword(std::string s)
@@ -592,7 +680,23 @@ Explanation: The last word is "World" with length 5.
 */
 
 /*
+Approach
+Native Approach: straightforward approach
+Second Approach: …
+Third Approach: …
+
+Explanation (Step by Step)
 We would try to iterate through the string. At each step, we keep track of splitting the string into words.
+…
+
+Dry Run (pseudo code)
+if(ans == 0 && s[i] == ' ' ) continue;
+
+if(s[i] != ' ') ans++;
+else break;
+
+Implementation
+...
 */
 
 std::string Solutions::longestCommonPrefix(std::vector<std::string> & strs)
@@ -604,13 +708,36 @@ std::string Solutions::longestCommonPrefix(std::vector<std::string> & strs)
 
     for(int i = 0; i < strs.size(); i ++) {
         if(strs[0][i] != strs[strs.size()-1][i]) break;
+        
         ans += strs[0][i];
     }
+
     return ans;
 }
 /*
 Input: strs = ["flower","flow","flight"]
 Output: "fl"
+*/
+
+/*
+Approach
+Native Approach: straightforward approach
+Second Approach: …
+Third Approach: …
+
+Explanation (Step by Step)
+We would try to sort an array and iterate through the string. At each step, we keep track of the smallest and longest strings with a common prefix in a word.
+…
+
+Dry Run (pseudo code)
+sort(strs.begin(), strs.end());
+
+if(strs[0][i] != strs[strs.size()-1][i]) break;
+
+ans += strs[0][i];
+
+Implementation
+...
 */
 
 std::string Solutions::reverseWords(std::string s)
@@ -636,6 +763,30 @@ std::string Solutions::reverseWords(std::string s)
 /*
 Input: s = "the sky is blue"
 Output: "blue is sky the"
+*/
+
+/*
+Approach
+Native Approach: straightforward approach
+Second Approach: …
+Third Approach: …
+
+Explanation (Step by Step)
+Step 1. We would try to iterate through the string from last to first.
+Step 2. At each step, we keep track of a sequence of non-space characters in a word and reverse the word into a list of words.
+Step 3. At end step, we remove the last element in the vector.
+…
+
+Dry Run (pseudo code)
+word += s[i--];
+reverse(word.begin(), word.end());
+
+if (word != "") ans += word + ' ';
+
+ans.pop_back();
+
+Implementation
+...
 */
 
 std::string Solutions::convert(std::string s, int numRows)
@@ -668,6 +819,29 @@ Input: s = "PAYPALISHIRING", numRows = 3
 Output: "PAHNAPLSIIGYIR"
 */
 
+/*
+Approach
+Native Approach: straightforward approach
+Second Approach: …
+Third Approach: …
+
+Explanation (Step by Step)
+Step 1. We would try to iterate through the string.
+Step 2. At each step, we keep track of  in a array and reverse the word into a list of words.
+Step 3. At end step, we remove the last element in the vector.
+…
+
+Dry Run (pseudo code)
+word += s[i--];
+reverse(word.begin(), word.end());
+
+if (word != "") ans += word + ' ';
+
+ans.pop_back();
+
+Implementation
+...
+*/
 
 int Solutions::strStr(std::string haystack, std::string needle)
 {
