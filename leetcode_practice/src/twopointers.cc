@@ -206,4 +206,23 @@ input:  arr = [2, 7, 4, 0, 9, 5, 1, 3], s = 20
 output: [0, 4, 7, 9] 
 */
 
+int Solutions::bracketMatch( const string& text ) 
+{
+    int leftunmatched = 0, rightunmatched = 0;
+
+    for(auto & ch: text) {
+        if(ch == '(') {
+            rightunmatched++;
+        } else if (ch == ')') {
+            if(rightunmatched > 0) {
+                rightunmatched--;
+            } else {
+                leftunmatched++;
+            }
+        }
+    }
+
+    return rightunmatched + leftunmatched;
+}
+
 } /* namespace leetcode */
