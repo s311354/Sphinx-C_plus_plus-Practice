@@ -43,12 +43,14 @@ Third Approach: …
 
 Explanation (Step by Step)
 Step 1. we would try to iterate through the vector from the end once it a single array sorted in non-decreasing order
-Step 2. …
+Step 2. we would try to iterate through the vector from the rest of integer in non-decreasing order
 …
 
 Dry Run (pseudo code)
 k = m + n - 1
+
 while(i >= 0 && j >= 0) {..}
+
 while( j >= 0 ) {...}
 
 Implementation
@@ -81,9 +83,8 @@ Second Approach: …
 Third Approach: …
 
 Explanation (Step by Step)
-Step 1. we would try to iterate through the vector to check all elements from i to the end of array.
+Step 1. we would try to iterate through the vector to check all elements from i to the end of array. And 
 we can count the number of elements in array which are not equal to value
-Step 2. …
 …
 
 Dry Run (pseudo code)
@@ -141,7 +142,7 @@ int Solutions::removeDuplicatesII(std::vector<int> & nums)
     int count = 2;
 
     for(int i = 2; i < nums.size(); i ++) {
-        if( nums[i] != nums[count - 2] ) { 
+        if( nums[count - 2] != nums[i] ) { 
             nums[count++] = nums[i];
         }
     }
@@ -518,13 +519,13 @@ int Solutions::candy(std::vector<int>& ratings)
     std::vector<int> candies(n, 1);
 
     for(int i = 1; i < n; i ++) {
-        if(ratings[i] > ratings[i-1]) {
+        if( ratings[i-1] < ratings[i] ) {
             candies[i] = candies[i-1] + 1;
         }
     }
 
     for(int i = n - 2; i >= 0; i --) {
-        if(ratings[i] > ratings[i+1]) {
+        if( ratings[i+1] < ratings[i] ) {
             candies[i] = max(candies[i], candies[i+1] + 1);
         }
     }
@@ -555,11 +556,11 @@ we ensure that each child gets the appropriate amount of candy.
 Dry Run (pseudo code)
 std::vector<int> candies(n, 1);
 
-if(ratings[i] > ratings[i-1]) {
+if( ratings[i-1] < ratings[i] ) {
     candies[i] = candies[i-1] + 1;
 }
 
-if(ratings[i] > ratings[i+1]) {
+if( ratings[i+1] < ratings[i] ) {
     candies[i] = max(candies[i], candies[i+1] + 1);
 }
 
@@ -597,7 +598,8 @@ Third Approach: …
 
 Explanation (Step by Step)
 Step 1. We would try to store a bunch of Roman and the mapped value in unordered map and iterate through a key character within a map. 
-Step 2. At each step, we keep track of whether a smaller mapped value appears before a larger mapped value and then represent the integer conversion of the Roman numeral string.
+Step 2. At each step, we keep track of whether a smaller mapped value appears before a larger mapped
+ value and then represent the integer conversion of the Roman numeral string.
 …
 
 Dry Run (pseudo code)
@@ -644,15 +646,20 @@ Third Approach: …
 
 Explanation (Step by Step)
 Step 1. We would try to store a bunch of Roman numeral string and the mapped character in unordered map and iterate through a number within a map. 
-Step 2. At each step, we keep track of whether the input integer is greater than or equal to the Roman numeral value and then represent the Roman numeral string conversion of the integer.
+Step 2. At each step, we keep track of whether the input integer is greater than or equal to the Roman numeral value 
+and then represent the Roman numeral string conversion of the integer.
 …
 
 Dry Run (pseudo code)
-unordered_map  {{'I', 1}, {'V', 5}, {'X', 10}, {'L', 50},
-               {'C', 100}, {'D', 500}, {'M', 1000}}
+std::vector<std::pair<int, std::string>> mp{{1000, "M"}, {900, "CM"}, {500, "D"},
+                                            {400, "CD"}, {100, "C"}, {90, "XC"},
+                                            {50, "L"}, {40, "XL"}, {10, "X"},
+                                            {9, "IX"}, {5, "V"}, {4, "IV"}, {1, "I"}};
 
-if((i-1)> 0 && s[i-1] < s[i])  ans += mp[s[i]] - mp[s[i-1]]
-else  ans += mp[s[i]]
+while (num >= it.first) {
+    ans += it.second;
+    num -= it.first;
+}
 
 Implementation
 ...
@@ -701,7 +708,7 @@ Implementation
 
 std::string Solutions::longestCommonPrefix(std::vector<std::string> & strs)
 {
-    // time: O(N) space: O(1)
+    // time: O(N Log N) space: O(1)
 
     std::sort(strs.begin(), strs.end());
     std::string ans = "";
@@ -726,7 +733,8 @@ Second Approach: …
 Third Approach: …
 
 Explanation (Step by Step)
-We would try to sort an array and iterate through the string. At each step, we keep track of the smallest and longest strings with a common prefix in a word.
+We would try to sort an array and iterate through the string. At each step, we keep track of the
+ smallest and longest strings with a common prefix in a word.
 …
 
 Dry Run (pseudo code)
@@ -742,6 +750,9 @@ Implementation
 
 std::string Solutions::reverseWords(std::string s)
 {
+
+    // time: O(N) space: O(1)
+
     std::string ans = "";
 
     for(int i = s.length() - 1; i >=0 ; i --) {
@@ -791,6 +802,9 @@ Implementation
 
 std::string Solutions::convert(std::string s, int numRows)
 {
+
+    // time: O(N) space: O(N)
+
     std::vector<std::string> patterns(numRows, "");
 
     int rows = 0, direction = 1;
@@ -827,17 +841,20 @@ Third Approach: …
 
 Explanation (Step by Step)
 Step 1. We would try to iterate through the string.
-Step 2. At each step, we keep track of  in a array and reverse the word into a list of words.
-Step 3. At end step, we remove the last element in the vector.
+Step 2. At each step, we keep track of string in a array and would try to store a bunch of string in a array with zigzag pattern.
+Step 3. We represent zigzag pattern string.
 …
 
 Dry Run (pseudo code)
-word += s[i--];
-reverse(word.begin(), word.end());
+std::vector<std::string> patterns(numRows, "");
+int rows = 0, direction = 1;
 
-if (word != "") ans += word + ' ';
+patterns[rows] += s[i];
 
-ans.pop_back();
+if(rows == 0) direction = 1;
+if(rows == numRows - 1) direction = -1;
+
+rows += direction;
 
 Implementation
 ...
@@ -845,6 +862,8 @@ Implementation
 
 int Solutions::strStr(std::string haystack, std::string needle)
 {
+    // time: O(N * M) space: O(1)
+
    int len1 = haystack.length(), len2 = needle.length();
 
    for(int i = 0; i < len1 - len2 + 1; i ++ ){
@@ -864,7 +883,31 @@ Explanation: "sad" occurs at index 0 and 6.
 The first occurrence is at index 0, so we return 0.
 */
 
+/*
+Approach
+Native Approach: straightforward approach
+Second Approach: … 
+Third Approach: …
+
+Explanation (Step by Step)
+Step 1. We would try to iterate through the haystack from the beginning up to the point where there are enough characters with needle.
+Step 2. At each step, we keep track of whether the starting index of characters in the haystack matches the character in needle.
+…
+
+Dry Run (pseudo code)
+
+if(haystack[i+j] != needle[j]) break;
+
+if (j == len2 - 1) return i;
+
+Implementation
+...
+*/
+
 vector<int> Solutions::getConcatenation(vector<int>& nums) {
+
+    // time: O(N) space: O(1)
+
     int n = nums.size();
 
     for(int i = 0; i < n ; i ++) {
@@ -883,7 +926,28 @@ Explanation: The array ans is formed as follows:
 - ans = [1,2,1,1,2,1]
 */
 
+/*
+Approach
+Native Approach: straightforward approach
+Second Approach: … 
+Third Approach: …
+
+Explanation (Step by Step)
+We would try to iterate through the array and store a bunch of number to the end of the vector nums.
+…
+
+Dry Run (pseudo code)
+
+nums.push_back(nums[i]);
+
+Implementation
+...
+*/
+
 vector<int> Solutions::buildArray(vector<int>& nums) {
+
+    // time: O(N) space: O(N)
+
     vector<int> ans;
 
     int n = nums.size();
@@ -903,6 +967,24 @@ Explanation: The array ans is built as follows:
 ans = [nums[nums[0]], nums[nums[1]], nums[nums[2]], nums[nums[3]], nums[nums[4]], nums[nums[5]]]
     = [nums[0], nums[2], nums[1], nums[5], nums[3], nums[4]]
     = [0,1,2,4,5,3]
+*/
+
+/*
+Approach
+Native Approach: straightforward approach
+Second Approach: … 
+Third Approach: …
+
+Explanation (Step by Step)
+We would try to iterate through the array and store a bunch of number specified by the current element to the result vector.
+…
+
+Dry Run (pseudo code)
+
+ans.push_back(nums[nums[i]]);
+
+Implementation
+...
 */
 
 int Solutions::minMovesToSeat(vector<int>& seats, vector<int>& students) {
@@ -928,6 +1010,7 @@ Explanation: The students are moved as follows:
 - The third student is moved from from position 4 to position 3 using 1 move.
 In total, 1 + 2 + 1 = 4 moves were used.
 */
+
 
 int Solutions::numIdenticalPairs(vector<int>& nums) {
     int ans = 0;
@@ -1227,5 +1310,46 @@ Output:
    "justification.  "
 ]
 */
+
+bool isValidSegment(const string &segment) {
+
+    if (segment.empty() || segment.length() > 3) return false;
+
+    if (segment.length() > 1 && segment[0] == '0') return false;
+
+    for (char ch : segment) {
+        if (!isdigit(ch)) return false;
+    }
+
+    int num = std::stoi(segment);
+
+    if (num < 0 || num > 255) return false;
+
+    return true;
+}
+
+bool Solutions::validateIP(const std::string &ip) {
+    vector<std::string> segments;
+    string segment;
+
+    for(auto & ch: ip) {
+        if(ch == '.') {
+            segments.push_back(ch);
+            segment = "";            
+        } else {
+            segment += ch;
+        }
+    }
+    segments.push_back(segment);
+
+    if (segments.size() != 4) return false;
+
+    for (const std::string &seg : segments) {
+        if (!isValidSegment(seg)) return false;
+    }
+
+    return true;
+}
+
 
 } /* namespace leetcode */
