@@ -36,6 +36,14 @@ The result of the merge is [1,2,2,3,5,6] with the underlined elements coming fro
 */
 
 /*
+Overview
+Given two integer arrays nums1 and nums2
+Merge nums1 and nums2 into a single array sorted in non-decreasing order
+
+Test case 1. nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3 => [1,2,2,3,5,6]
+Test case 2. nums1 = [1], m = 1, nums2 = [], n = 0 => [1]
+Test case 3. nums1 = [0], m = 0, nums2 = [1], n = 1 => [1]
+
 Approach
 Native Approach: straightforward approach
 Second Approach: …
@@ -77,6 +85,12 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 */
 
 /*
+Overview
+remove Element Given an integer array nums and an integer val
+
+Test case1. [3,2,2,3], val = 3 => [2,2,_,_]
+Test case2. nums = [0,1,2,2,3,0,4,2], val = 2 => [0,1,4,0,3,_,_,_]
+
 Approach
 Native Approach: straightforward approach
 Second Approach: …
@@ -116,6 +130,12 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 */
 
 /*
+Overview
+remove Duplicates from Sorted Array Given an integer array nums
+
+Test case1. nums = [3,2,2,3], val = 3 => [2,2,_,_]
+Test case2. nums = [0,1,2,2,3,0,4,2], val = 2 => [0,1,4,0,3,_,_,_]
+
 Approach
 Native Approach: straightforward approach
 Second Approach: …
@@ -157,6 +177,12 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 */
 
 /*
+Overview
+remove Duplicates from Sorted Array II Given an integer array nums
+
+Test case1. nums = [1,1,1,2,2,3] => [1,1,2,2,3,_], 5
+Test case2. nums = [0,0,1,1,1,1,2,3,3] => [0,0,1,1,2,3,3,_,_], 7
+
 Approach
 Native Approach: straightforward approach
 Second Approach: …
@@ -195,6 +221,12 @@ Output: 3
 */
 
 /*
+Overview
+find the majority Element Given an array nums of size n
+
+Test case1. nums = [3,2,3] => 3
+Test case2. nums = [2,2,1,1,1,2,2] => 2
+
 Approach
 Native Approach: Sorting (more than n/2 times in the array)
 Second Approach: Moore Voting Algorithm
@@ -257,6 +289,12 @@ Note that buying on day 2 and selling on day 1 is not allowed because you must b
 */
 
 /*
+Overview
+find the maximum profit you can achieve from this transaction
+
+Test case1. prices = [7,1,5,3,6,4] => 5
+Test case2. prices = [7,6,4,3,1] => 0
+
 Approach
 Native Approach: straightforward approach
 Second Approach: …
@@ -319,6 +357,12 @@ Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
 */
 
 /*
+Overview
+determine if we can reach the last index
+
+Test case1. nums = [2,3,1,1,4] => true
+Test case2. nums = [3,2,1,0,4] => false
+
 Approach
 Native Approach: straightforward approach
 Second Approach: …
