@@ -261,4 +261,37 @@ Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
 Output: 3
 */
 
+BNode* findMin(BNode* node) {
+    while (node->left != NULL) {
+        node = node->left;
+    }
+    return node;
+}
+
+BNode* Solutions::findInOrderSuccessor(BNode *inputNode) {
+    if (inputNode->right != nullptr) {
+        return findMin(inputNode->right);
+    }
+
+    BNode *successor = nullptr;
+    BNode *current = inputNode->parent;
+
+    while (current != nullptr) {
+        if (inputNode == current->left) {
+            successor = current;
+            break;
+        }
+        inputNode = current;
+        current = current->parent;
+    }
+
+    return successor;
+}
+/*
+Inorder traveler: 5->9->11->12->14->20->25
+Test case1. the inorder successor of 9 is 11 
+Test case2. the inorder successor of 14 is 20.
+*/
+
+
 } /* namespace leetcode */

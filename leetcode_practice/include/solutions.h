@@ -2313,6 +2313,18 @@ substring of s such that every character in t (including duplicates) is included
      */
     vector<vector<int>> zigzagLevelOrder(TreeNode* root);
 
+    /* @brief 
+     *
+     * In a Binary Search Tree (BST), an Inorder Successor of a node is defined as the node with the
+     * smallest key greater than the key of the input node (see examples below). Given a node inputNode in
+     * a BST, you’re asked to write a function  findInOrderSuccessor that returns the Inorder Successor of
+     * inputNode. If inputNode has no Inorder Successor, return null.
+     * 
+     * @param inputNode 
+     * @return the Inorder Successor of inputNode
+     */
+    BNode* findInOrderSuccessor(BNode *inputNode);
+
     /* @brief 909. Snakes and Ladders
      *
      * You are given an n x n integer matrix board where the cells are labeled 

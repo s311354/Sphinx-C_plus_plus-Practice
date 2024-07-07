@@ -18,6 +18,8 @@ static const std::regex UNSIGNED_DOUBLE_TYPE("[+]?[0-9]+[.]?[0-9]+");
 #define ROW 4
 #define COLUMN 4
 
+
+
 struct TreeNode
 {
     TreeNode() : val(0), left(nullptr), right(nullptr) {};
@@ -53,6 +55,17 @@ struct Node {
   Node *right;
   Node *next;
 };
+
+// Definition for a binary tree node
+struct BNode {
+    int key;
+    BNode *left;
+    BNode *right;
+    BNode *parent;
+
+    BNode(int k) : key(k), left(nullptr), right(nullptr), parent(nullptr) {}
+};
+
 
 } /* leetcode */ 
 
