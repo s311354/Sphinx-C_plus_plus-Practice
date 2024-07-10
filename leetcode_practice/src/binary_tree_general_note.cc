@@ -29,6 +29,25 @@ Input: root = [3,9,20,null,null,15,7]
 Output: 3
 */
 
+/*
+Overview:
+Given the root of a binary tree, return its maximum depth.
+
+Approach:
+Native Approach: recursive approach 
+Second Approach: …
+Third Approach: …
+
+Explanation: (Step by Step)
+We try to do a recursive call and pass a left or right subtree plus 1 to itself. And find the maximum depth of BT.
+
+Dry Run: (pseudo code)
+1 + std::max(maxDepth(root->left), maxDepth(root->right))
+
+Implementation:
+...
+
+*/
 
 bool Solutions::isSameTree(TreeNode* p, TreeNode* q) {
     if(p == nullptr && q == nullptr) return true;
@@ -44,6 +63,32 @@ Input: p = [1,2,3], q = [1,2,3]
 Output: true
 */
 
+/*
+Overview:
+Given the roots of two binary trees, and to check the nodes have the same value
+
+Approach:
+Native Approach: recursive approach 
+Second Approach: …
+Third Approach: …
+
+Explanation: (Step by Step)
+We try to do a recursive call and pass both of left subtree and both of right subtree to itself. And check the nodes have the same value.
+
+Dry Run: (pseudo code)
+
+if p == nullptr && q == nullptr true
+
+if p == nullptr || q == nullptr false
+
+if p->val != q->val return false
+
+return isSameTree(p->left, q->left) && isSameTree(p->right, q->right)
+
+Implementation:
+...
+
+*/
 
 TreeNode* Solutions::invertTree(TreeNode* root) {
     if(root) {
@@ -52,24 +97,37 @@ TreeNode* Solutions::invertTree(TreeNode* root) {
         std::swap(root->left, root->right);
     }
     return root;
-
-/*
-    if(!root) return nullptr;
-
-    TreeNode* temp = root->right;
-    root->left = root->right;
-    root->right = temp;
-
-    invertTree(root->left);
-    invertTree(root->right);
-
-    return root;
-*/
 }
 /*
 Input: root = [4,2,7,1,3,6,9]
 Output: [4,7,2,9,6,3,1]
 */
+
+/*
+Overview:
+Given the root of a binary tree, invert the tree
+
+Approach:
+Native Approach: recursive approach 
+Second Approach: …
+Third Approach: …
+
+Explanation: (Step by Step)
+Step 1. We try to do a recursive call, and pass left subtree and right subtree respectively
+Step 2. We swap left subtree and right subtree for each node
+
+Dry Run: (pseudo code)
+
+invertTree(root->left);
+invertTree(root->right);
+
+std::swap(root->left, root->right);
+
+Implementation:
+...
+
+*/
+
 
 /* HARD */
 TreeNode* helper(const std::vector<int>& preorder, const std::vector<int>& inorder, int& index, int left, int right) {
@@ -294,23 +352,23 @@ Test case2. the inorder successor of 14 is 20.
 */
 
 /*
-Overview
+Overview:
 Finds the inorder successor of a given node (inputNode) in a Binary Search Tree (BST). The inorder successor
  of a node is the node with the smallest key greater than the key of the input node.
 
-Approach
+Approach:
 Native Approach: binary tree travel approach
 Second Approach: …
 Third Approach: …
 
-Explanation (Step by Step)
+Explanation: (Step by Step)
 Step 1. we would try to travel right of BST to check the right subtree. 
 Step 2. If BST has the right subtree, then this smallest node in right subtree is the successor.
 Step 3. If BST has the no right subtree, then travel left of BST begining from the parent of input node to check the the left subtree.
 If input node is same as the left subtree, then the parent of input node is the successor.
 …
 
-Dry Run (pseudo code)
+Dry Run: (pseudo code)
 if (inputNode->right != nullptr) {
     return findMin(inputNode->right);
 }
@@ -325,7 +383,7 @@ if (inputNode == current->left) {
 inputNode = current;
 current = current->parent;
 
-Implementation
+Implementation:
 ...
 */
 
