@@ -293,5 +293,40 @@ Test case1. the inorder successor of 9 is 11
 Test case2. the inorder successor of 14 is 20.
 */
 
+/*
+Overview
+Finds the inorder successor of a given node (inputNode) in a Binary Search Tree (BST). The inorder successor
+ of a node is the node with the smallest key greater than the key of the input node.
+
+Approach
+Native Approach: binary tree travel approach
+Second Approach: …
+Third Approach: …
+
+Explanation (Step by Step)
+Step 1. we would try to travel right of BST to check the right subtree. 
+Step 2. If BST has the right subtree, then this smallest node in right subtree is the successor.
+Step 3. If BST has the no right subtree, then travel left of BST begining from the parent of input node to check the the left subtree.
+If input node is same as the left subtree, then the parent of input node is the successor.
+…
+
+Dry Run (pseudo code)
+if (inputNode->right != nullptr) {
+    return findMin(inputNode->right);
+}
+
+BNode *successor = nullptr;
+BNode *current = inputNode->parent;
+
+if (inputNode == current->left) {
+    successor = current;
+    break;
+}
+inputNode = current;
+current = current->parent;
+
+Implementation
+...
+*/
 
 } /* namespace leetcode */
