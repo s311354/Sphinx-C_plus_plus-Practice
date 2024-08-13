@@ -58,8 +58,10 @@ Dry Run (pseudo code)
 k = m + n - 1
 
 while(i >= 0 && j >= 0) {..}
+        nums1[k--] = nums1[i] > nums2[j] ? nums1[i--] : nums2[j--];
 
 while( j >= 0 ) {...}
+        nums1[k--] = nums2[j--];
 
 Implementation
 ...
@@ -408,6 +410,11 @@ Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 st
 */
 
 /*
+Overview
+calculate the minimum number of jumps to reach nums[n - 1]
+
+Test case1. nums = [2,3,1,1,4] => 2
+
 Approach
 Native Approach: straightforward approach
 Second Approach: …
@@ -473,6 +480,11 @@ Output: [24,12,8,6]
 */
 
 /*
+Overview
+calculate an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
+
+Test case1. nums = [1,2,3,4] => [24,12,8,6]
+
 Approach
 Native Approach: ...
 Second Approach: dynamic programming approach
@@ -498,8 +510,8 @@ int Solutions::canCompleteCircuit(std::vector<int> & gas, std::vector<int>& cost
 {
     // time: O(N) space: O(1)
 
-    int total_gas = 0, total_cost = 0, count = 0;
-    int start = 0;
+    int total_gas = 0, total_cost = 0;
+    int start = 0, count = 0;
 
     for(int i = 0; i < gas.size(); i ++) {
         total_gas += gas[i];
@@ -530,6 +542,11 @@ Therefore, return 3 as the starting index.
 */
 
 /*
+Overview
+determine a starting gas station's index
+
+Test case1. gas = [1,2,3,4,5], cost = [3,4,5,1,2]=> 3
+
 Approach
 Native Approach: straightforward approach
 Second Approach: …
@@ -587,6 +604,11 @@ Explanation: You can allocate to the first, second and third child with 2, 1, 2 
 */
 
 /*
+Overview
+determine a starting gas station's index
+
+Test case1. ratings = [1,0,2] => 5
+
 Approach
 Native Approach: …
 Second Approach: greedy algorithm
@@ -635,13 +657,18 @@ Explanation: III = 3.
 */
 
 /*
+Overview
+translate a Roman numerals into Integer
+
+Test case1. "III" => 3
+
 Approach
 Native Approach: straightforward approach
 Second Approach: …
 Third Approach: …
 
 Explanation (Step by Step)
-Step 1. We would try to store a bunch of Roman and the mapped value in unordered map and iterate through a key character within a map. 
+Step 1. We would try to store a bunch of Roman and the mapped value in unordered map (hash table) and iterate through a key character within a map. 
 Step 2. At each step, we keep track of whether a smaller mapped value appears before a larger mapped
  value and then represent the integer conversion of the Roman numeral string.
 …
@@ -650,8 +677,8 @@ Dry Run (pseudo code)
 unordered_map  {{'I', 1}, {'V', 5}, {'X', 10}, {'L', 50},
                {'C', 100}, {'D', 500}, {'M', 1000}}
 
-if((i-1)> 0 && s[i-1] < s[i])  ans += mp[s[i]] - mp[s[i-1]]
-else  ans += mp[s[i]]
+if (map[s[i]] < map[s[i+1]]) ans -= map[s[i]];
+else ans += map[s[i]];
 
 Implementation
 ...
@@ -683,13 +710,18 @@ Explanation: 3 is represented as 3 ones.
 */
 
 /*
+Overview
+translate an integer to Roman numerals
+
+Test case1. num = 3 => "III"
+
 Approach
 Native Approach: straightforward approach
 Second Approach: …
 Third Approach: …
 
 Explanation (Step by Step)
-Step 1. We would try to store a bunch of Roman numeral string and the mapped character in unordered map and iterate through a number within a map. 
+Step 1. We would try to store a bunch of Roman numeral string and the mapped character in unordered map (hash table) and iterate through a number within a map. 
 Step 2. At each step, we keep track of whether the input integer is greater than or equal to the Roman numeral value 
 and then represent the Roman numeral string conversion of the integer.
 …
@@ -731,6 +763,11 @@ Explanation: The last word is "World" with length 5.
 */
 
 /*
+Overview
+calculate the length of the last word in the string
+
+Test case1. "Hello World" => 5
+
 Approach
 Native Approach: straightforward approach
 Second Approach: …
@@ -771,6 +808,11 @@ Output: "fl"
 */
 
 /*
+Overview
+find the longest common prefix string amongst an array of strings.
+
+Test case1. ["flower","flow","flight"] => "fl"
+
 Approach
 Native Approach: straightforward approach
 Second Approach: …
@@ -821,6 +863,11 @@ Output: "blue is sky the"
 */
 
 /*
+Overview
+reverse order concatenated by a single space.
+
+Test case1. "the sky is blue" => "blue is sky the"
+
 Approach
 Native Approach: straightforward approach
 Second Approach: …
@@ -833,7 +880,11 @@ Step 3. At end step, we remove the last element in the vector.
 …
 
 Dry Run (pseudo code)
-word += s[i--];
+
+while( i >= 0 && s[i] != ' ') {
+    word += s[i--];
+}
+
 reverse(word.begin(), word.end());
 
 if (word != "") ans += word + ' ';
@@ -850,7 +901,6 @@ std::string Solutions::convert(std::string s, int numRows)
     // time: O(N) space: O(N)
 
     std::vector<std::string> patterns(numRows, "");
-
     int rows = 0, direction = 1;
 
     for(int i = 0; i < s.length(); i ++) {
@@ -866,7 +916,6 @@ std::string Solutions::convert(std::string s, int numRows)
     std::string ans = "";
 
     for(auto const & pattern : patterns) {
-
         ans += pattern;
     }
 
@@ -878,6 +927,11 @@ Output: "PAHNAPLSIIGYIR"
 */
 
 /*
+Overview
+reverse order in a zigzag pattern
+
+Test case1. s = "PAYPALISHIRING", numRows = 3 => "PAHNAPLSIIGYIR"
+
 Approach
 Native Approach: straightforward approach
 Second Approach: …
@@ -928,6 +982,11 @@ The first occurrence is at index 0, so we return 0.
 */
 
 /*
+Overview
+find the index of the first occurrence of needle in haystack
+
+Test case1. haystack = "sadbutsad", needle = "sad" => 0
+
 Approach
 Native Approach: straightforward approach
 Second Approach: … 
@@ -971,6 +1030,11 @@ Explanation: The array ans is formed as follows:
 */
 
 /*
+Overview
+create the concatenation of two nums arrays
+
+Test case1. [1,2,1] => [1,2,1,1,2,1]
+
 Approach
 Native Approach: straightforward approach
 Second Approach: … 
@@ -1014,6 +1078,11 @@ ans = [nums[nums[0]], nums[nums[1]], nums[nums[2]], nums[nums[3]], nums[nums[4]]
 */
 
 /*
+Overview
+create the zero-based permutation nums
+
+Test case1. [0,2,1,5,3,4] => [0,1,2,4,5,3]
+
 Approach
 Native Approach: straightforward approach
 Second Approach: … 
@@ -1032,6 +1101,9 @@ Implementation
 */
 
 int Solutions::minMovesToSeat(vector<int>& seats, vector<int>& students) {
+
+    // time: O(N log N) space: O(1)
+
     sort(seats.begin(), seats.end());
     sort(students.begin(), students.end());
 
@@ -1055,8 +1127,36 @@ Explanation: The students are moved as follows:
 In total, 1 + 2 + 1 = 4 moves were used.
 */
 
+/*
+Overview
+calculate the minimum number of moves required to move each student to a seat 
+
+Test case1. seats = [3,1,5], students = [2,7,4] => 4
+
+Approach
+Native Approach: straightforward approach
+Second Approach: … 
+Third Approach: …
+
+Explanation (Step by Step)
+Step1. We would try to sort the array seats and students. 
+Step2. We iterate through the array seats and students and calculate the minimum number of moves required to move each student to a seat 
+
+Dry Run (pseudo code)
+
+sort(seats.begin(), seats.end());
+sort(students.begin(), students.end());
+
+ans += abs(seats[i] - students[i]);
+
+Implementation
+...
+*/
 
 int Solutions::numIdenticalPairs(vector<int>& nums) {
+
+    // time: O(N) space: O(N)
+
     int ans = 0;
     vector<int> count(101,0);
 
@@ -1075,7 +1175,33 @@ Output: 4
 Explanation: There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.
 */
 
+/*
+Overview
+calculate the number of good pairs
+
+Test case1. [1,2,3,1,1,3] => 4
+
+Approach
+Native Approach: straightforward approach
+Second Approach: … 
+Third Approach: …
+
+Explanation (Step by Step)
+We would try to iterate through the array and calculate the number of good pairs
+
+Dry Run (pseudo code)
+
+ans += count[num];
+count[num] ++;
+
+Implementation
+...
+*/
+
 int Solutions::finalValueAfterOperations(vector<string>& operations) {
+    
+    // time: O(N) space: O(1)
+
     int ans = 0;
 
     for(auto const & operation : operations) {
@@ -1099,8 +1225,35 @@ X++: X is incremented by 1, X = -1 + 1 =  0.
 X++: X is incremented by 1, X =  0 + 1 =  1.
 */
 
+/*
+Overview
+calculate the final value of X after performing all the operations
+
+Test case1. ["--X","X++","X++"] => 1
+
+Approach
+Native Approach: straightforward approach
+Second Approach: … 
+Third Approach: …
+
+Explanation (Step by Step)
+We would try to iterate through the operations and calculate the final value 
+
+Dry Run (pseudo code)
+
+if(operation == "--X" || operation == "X--")  ans--;
+else ans++;
+
+Implementation
+...
+*/
+
 vector<int> Solutions::shuffle(vector<int>& nums, int n) {
+
+    // time: O(N) space: O(N)
+
     vector<int> ans;
+
     for(int i = 0; i < n; i ++) {
         ans.push_back(nums[i]);
         ans.push_back(nums[i+n]);
@@ -1115,7 +1268,34 @@ Output: [2,3,5,4,1,7]
 Explanation: Since x1=2, x2=5, x3=1, y1=3, y2=4, y3=7 then the answer is [2,3,5,4,1,7].
 */
 
+/*
+Overview
+create Shuffle the Array
+
+Test case1. nums = [2,5,1,3,4,7], n = 3 => [2,3,5,4,1,7]
+
+Approach
+Native Approach: straightforward approach
+Second Approach: … 
+Third Approach: …
+
+Explanation (Step by Step)
+We would try to iterate through the nums consisting of 2n elements and store a bunch of 2n elements in a array 
+…
+
+Dry Run (pseudo code)
+
+ans.push_back(nums[i]);
+ans.push_back(nums[i+n]);
+
+Implementation
+...
+*/
+
 vector<int> Solutions::findWordsContaining(vector<string>& words, char x) {
+    
+    // time: O(N) space: O(N)
+
     int n = words.size();
     vector<int> ans;
 
@@ -1135,8 +1315,36 @@ Output: [0,1]
 Explanation: "e" occurs in both words: "leet", and "code". Hence, we return indices 0 and 1.
 */
 
+/*
+Overview
+create an array of indices representing the words that contain the character x.
+
+Test case1. words = ["leet","code"], x = "e" => [0,1]
+
+Approach
+Native Approach: straightforward approach
+Second Approach: … 
+Third Approach: …
+
+Explanation (Step by Step)
+Step 1. We would try to iterate through the array and find the words that contain the character x
+Step 2. We store a bunch of indices of strings in a array 
+…
+
+Dry Run (pseudo code)
+
+if(count(words[i].begin(), words[i].end(), x) > 0) ans.push_back(i)
+
+Implementation
+...
+*/
+
 int Solutions::maximumWealth(vector<vector<int>>& accounts) {
+
+    // time: O(N) space: O(1)
+
     int ans = 0;
+
     for(auto const & account: accounts) {
         ans = max(ans, accumulate(account.begin(), account.end(), 0));
     }
@@ -1154,13 +1362,39 @@ Explanation:
 Both customers are considered the richest with a wealth of 6 each, so return 6.
 */
 
-int Solutions::subsetXORSum(vector<int>& nums) {
-    int n = nums.size();
-    int sum = 0;
-    
-    for(int i = 0 ; i <  n; i++) sum |= nums[i];
+/*
+Overview
+calculate the wealth that the richest customer has
 
-    return sum << (nums.size()-1); 
+Test case1. words = [[1,2,3],[3,2,1]] => 6
+
+Approach
+Native Approach: straightforward approach
+Second Approach: … 
+Third Approach: …
+
+Explanation (Step by Step)
+We would try to iterate through the accounts and calculate the wealth that the richest customer has
+…
+
+Dry Run (pseudo code)
+
+ans = max(ans, accumulate(account.begin(), account.end(), 0));
+
+Implementation
+...
+*/
+
+int Solutions::subsetXORSum(vector<int>& nums) {
+
+    // time: O(N) space: O(1)
+
+    int n = nums.size();
+    int sum = 0, subset_count = 1 << (n -1);
+    
+    for(int i = 0 ; i <  n; i++) sum |= nums[i] * subset_count;
+
+    return sum;  
 }
 /*
 Example 1:
@@ -1175,8 +1409,39 @@ Explanation: The 4 subsets of [1,3] are:
 0 + 1 + 3 + 2 = 6
 */
 
+/*
+Overview
+calculate the sum of all XOR totals for every subset of nums
+
+Test case1. words = [1,3] => 6
+Test case2. words = [1, 3, 5] => 28
+
+Approach
+Native Approach: straightforward approach
+Second Approach: optimized approach
+Third Approach: …
+
+Explanation (Step by Step)
+Step 1. We would try to iterate through the array
+Step 2. We calculate the OR sum of half the subsets and each element appears in 2^(n-1) subsets
+…
+
+Dry Run (pseudo code)
+
+subset_count = 1 << (n -1)
+
+for(int i = 0 ; i <  n; i++) sum |= nums[i] * subset_count;
+
+Implementation
+...
+*/
+
 int Solutions::numberOfEmployeesWhoMetTarget(vector<int>& hours, int target) {
+    
+    // time: O(N) space: O(1)
+
     int count = 0;
+
     for(auto const & hour: hours) {
         if(hour >= target) count ++;
     }
@@ -1197,7 +1462,34 @@ Explanation: The company wants each employee to work for at least 2 hours.
 There are 3 employees who met the target.
 */
 
+/*
+Overview
+determine the integer denoting the number of employees who worked at least target hours.
+
+Test case1. hours = [0,1,2,3,4], target = 2 => 3
+Test case2. words = [1, 3, 5] => 28
+
+Approach
+Native Approach: straightforward approach
+Second Approach:
+Third Approach: …
+
+Explanation (Step by Step)
+We would try to iterate through the array and determine the integer denoting the number of employees who worked at least target hours.
+…
+
+Dry Run (pseudo code)
+
+if(hour >= target) count ++;
+
+Implementation
+...
+*/
+
 vector<bool> Solutions::kidsWithCandies(vector<int>& candies, int extraCandies) {
+
+    // time: O(N) space: O(N)
+
     int maxcandy = 0;
 
     vector<bool> ans;
@@ -1224,13 +1516,45 @@ Explanation: If you give all extraCandies to:
 - Kid 5, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
 */
 
+/*
+Overview
+determine kids with the greatest number of candies
+
+Test case1. candies = [2,3,5,1,3], extraCandies = 3 => [true,true,true,false,true] 
+
+Approach
+Native Approach: straightforward approach
+Second Approach:
+Third Approach: …
+
+Explanation (Step by Step)
+Step1. We would try to iterate through the array and determine the greatest number of candies among all the kids.
+Step2. We would try to iterate through the array and determine whether kids with the greatest number of candies
+…
+
+Dry Run (pseudo code)
+
+for(auto& candy: candies) maxcandy = max(maxcandy, candy)
+
+if(candy + extraCandies >= maxcandy) ans.push_back(true);
+else ans.push_back(false); 
+
+Implementation
+...
+*/
+
 int Solutions::maxWidthOfVerticalArea(vector<vector<int>>& points) {
+
+    // time: O(log N) space: O(N)
+
+    int ans = 0;
     priority_queue<int> pq;
+
     for(auto const & point: points) {
         pq.push(point[0]);
     }
 
-    int node = pq.top(), ans = 0;
+    int node = pq.top();
 
     while(!pq.empty()) {
         int next = pq.top();
@@ -1248,7 +1572,46 @@ Output: 1
 Explanation: Both the red and the blue area are optimal.
 */
 
+/*
+Overview
+calculate the widest vertical area between two points
+
+Test case1. [[8,7],[9,9],[7,4],[9,7]] => 1
+
+Approach
+Native Approach: straightforward approach
+Second Approach: max-heap approach
+Third Approach: …
+
+Explanation (Step by Step)
+We would try to iterate through the array and store a bunch of xi in a priority_queue container. And 
+we can count the widest vertical area between two points.
+…
+
+Dry Run (pseudo code)
+
+priority_queue<int> pq;
+for(auto const & point: points) {
+    pq.push(point[0]);
+}
+
+int node = pq.top();
+while(!pq.empty()) {
+    int next = pq.top();
+    pq.pop();
+
+    ans = max(ans, node - next);
+    node = next;
+}
+
+Implementation
+...
+*/
+
 int Solutions::countPairs(vector<int>& nums, int target) {
+    
+    // time: O(N) space: O(1)
+
     int ans = 0;
 
     for(int i = 0; i < nums.size(); i ++) {
@@ -1271,7 +1634,33 @@ Explanation: There are 3 pairs of indices that satisfy the conditions in the sta
 Note that (0, 3) is not counted since nums[0] + nums[3] is not strictly less than the target.
 */
 
+/*
+Overview
+calculate the number of pairs whose sum is less than target
+
+Test case1. nums = [-1,1,2,3,1], target = 2 => 3
+
+Approach
+Native Approach: straightforward approach
+Second Approach: …
+Third Approach: …
+
+Explanation (Step by Step)
+We would try to iterate through the array and calculate the number of pairs whose sum is less than target
+…
+
+Dry Run (pseudo code)
+
+if(nums[i] + nums[j] < target) ans++;
+
+Implementation
+...
+*/
+
 int Solutions::numberOfPairs(vector<int>& nums1, vector<int>& nums2, int k) {
+
+    // time: O(N) space: O(1)
+
     int ans = 0;
 
     for(auto const & num1: nums1) {
@@ -1291,7 +1680,34 @@ Explanation:
 The 5 good pairs are (0, 0), (1, 0), (1, 1), (2, 0), and (2, 2).
 */
 
+/*
+Overview
+calculate the total number of good pairs.
+
+Test case1. nums1 = [1,3,4], nums2 = [1,3,4], k = 1 => 5
+
+Approach
+Native Approach: straightforward approach
+Second Approach: …
+Third Approach: …
+
+Explanation (Step by Step)
+We would try to iterate through the array and calculate the total number of good pairs.
+…
+
+Dry Run (pseudo code)
+
+int div = num2 * k;
+if(num1 % div == 0) ans++;
+
+Implementation
+...
+*/
+
 vector<int> Solutions::runningSum(vector<int>& nums) {
+
+    // time: O(N) space: O(1)
+
     for(int i = 1; i < nums.size(); i ++) {
         nums[i] += nums[i-1];
     }
@@ -1303,6 +1719,125 @@ Example 1:
 Input: nums = [1,2,3,4]
 Output: [1,3,6,10]
 Explanation: Running sum is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4].
+*/
+
+/*
+Overview
+calculate the running sum of nums
+
+Test case1. [1,2,3,4] => [1,3,6,10]
+
+Approach
+Native Approach: straightforward approach
+Second Approach: …
+Third Approach: …
+
+Explanation (Step by Step)
+We would try to iterate through the array and calculate the running sum of nums
+
+…
+
+Dry Run (pseudo code)
+
+nums[i] += nums[i-1];
+
+
+Implementation
+...
+*/
+
+bool isValidSegment(const string &segment) {
+
+    if (segment.empty() || segment.length() > 3) return false;
+
+    if (segment.length() > 1 && segment[0] == '0') return false;
+
+    for (char ch : segment) {
+        if (!isdigit(ch)) return false;
+    }
+
+    int num = std::stoi(segment);
+
+    if (num < 0 || num > 255) return false;
+
+    return true;
+}
+
+bool Solutions::validateIP(const std::string &ip) {
+
+    // time: O(N) space: O(1)
+
+    vector<std::string> segments;
+    string segment;
+
+    for(auto & ch: ip) {
+        if(ch == '.') {
+            segments.push_back(ch);
+            segment = "";            
+        } else {
+            segment += ch;
+        }
+    }
+    segments.push_back(segment);
+
+    if (segments.size() != 4) return false;
+
+    for (const std::string &seg : segments) {
+        if (!isValidSegment(seg)) return false;
+    }
+
+    return true;
+}
+
+/*
+Example 1:
+
+Input: ip = "172.16.254.1"
+Output: true
+Explanation: This is a valid IPv4 address, return true.
+*/
+
+/*
+Overview
+determine to validate an IP address
+
+Test case1. "172.16.254.1" => true
+
+Approach
+Native Approach: straightforward approach
+Second Approach: …
+Third Approach: …
+
+Explanation (Step by Step)
+Step1. We would try to iterate through the IP string
+Step2. At each step, we keep track of the parts of the IP address and store a bunch of IP address in a segments
+Step3. At end step, we store the last IP address in a segments and check if there are exactly four segments
+Step4. We would try to iterate through the segments.
+Step5. At each step, we keep track of the parts of the segment and check if it is a valid IP segment by isValidSegment function
+…
+
+Dry Run (pseudo code)
+
+if(ch == '.') {
+    segments.push_back(ch);
+    segment = "";            
+} else {
+    segment += ch;
+}
+segments.push_back(segment);
+
+isValidSegment function
+
+if (segment.empty() || segment.length() > 3) return false;
+if (segment.length() > 1 && segment[0] == '0') return false;
+
+if (!isdigit(ch)) return false;
+
+int num = std::stoi(segment);
+if (num < 0 || num > 255) return false;
+
+Implementation
+...
 */
 
 // Hard!!!
@@ -1354,46 +1889,5 @@ Output:
    "justification.  "
 ]
 */
-
-bool isValidSegment(const string &segment) {
-
-    if (segment.empty() || segment.length() > 3) return false;
-
-    if (segment.length() > 1 && segment[0] == '0') return false;
-
-    for (char ch : segment) {
-        if (!isdigit(ch)) return false;
-    }
-
-    int num = std::stoi(segment);
-
-    if (num < 0 || num > 255) return false;
-
-    return true;
-}
-
-bool Solutions::validateIP(const std::string &ip) {
-    vector<std::string> segments;
-    string segment;
-
-    for(auto & ch: ip) {
-        if(ch == '.') {
-            segments.push_back(ch);
-            segment = "";            
-        } else {
-            segment += ch;
-        }
-    }
-    segments.push_back(segment);
-
-    if (segments.size() != 4) return false;
-
-    for (const std::string &seg : segments) {
-        if (!isValidSegment(seg)) return false;
-    }
-
-    return true;
-}
-
 
 } /* namespace leetcode */
