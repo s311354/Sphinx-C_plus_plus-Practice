@@ -2212,6 +2212,35 @@ substring of s such that every character in t (including duplicates) is included
      */
     int longestAlternatingSubarray(vector<int>& nums, int threshold);
 
+     /* @brief Maximum Number of Vowels in a Substring of Given Length
+     *
+     * Given a string of lowercase English letters and an integer of the substring length, 
+     * determine the substring of that length that contains the most vowels. Vowels are in 
+     * the set (a, e, i, o, u). If there is more than one substring with the maximum number
+     * of vowels, return the one that starts at the lowest index. If there are no vowels in
+     * the input string, return the string 'Not found!' without quotes. 
+     * 
+     * @param s a string of lowercase English letters
+     * @param k an integer of the substring length
+     * @return the one that starts at the lowest index
+     */
+     string findSubstring(string s, int k);
+
+     /* @brief Maximum Number of Vowels in a Substring of Given Length
+     *
+     * Road Repair A number of points along the highway are in need of repair. 
+     * An equal number of crews are available, stationed at various points along
+     * the highway. They must move along the highway to reach an assigned point.
+     * Given that one crew must be assigned to each job, what is the minimum total
+     * amount of distance traveled by all crews before they can begin work?
+     * 
+     * @param crew_id an equal number of crews are available, stationed at various points along
+     * the highway
+     * @param job_id a number of points along the highway are in need of repair
+     * @return the minimum total amount of distance traveled by all crews before they can begin work
+     */
+    long getMinCost(vector<int> crew_id, vector<int> job_id);
+
      /* @brief Validate IP Address
      *
      * Validate an IP address (IPv4). An address is valid if and only 

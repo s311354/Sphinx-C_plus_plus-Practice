@@ -443,6 +443,7 @@ int Solutions::hIndex(std::vector<int> & citations)
 {
     // time: O(N * log(N)) space: O(N)
 
+    // max-heap
     std::priority_queue<int> pq(citations.begin(), citations.end());
 
     int h;
@@ -1888,6 +1889,32 @@ Output:
    "example  of text",
    "justification.  "
 ]
+*/
+
+long getMinCost(vector<int> crew_id, vector<int> job_id) {
+
+    priority_queue<int, vector<int>, greater<int>> crewQueue(crew_id.begin(), crew_id.end());
+    priority_queue<int, vector<int>, greater<int>> jobQueue(job_id.begin(), job_id.end());
+
+    long ans = 0;
+
+    // Greedily assign the closest crew to the closest job
+    while (!crewQueue.empty() && !jobQueue.empty()) {
+        int crew = crewQueue.top();
+        crewQueue.pop();
+        int job = jobQueue.top();
+        jobQueue.pop();
+
+        ans += abs(crew - job);  // Add the absolute difference to the total distance
+    }
+
+    return ans;
+}
+
+/*
+Example
+By index, crewId[i] → jobId[i], { (0 → 0) , (1 → 2) , (2 → 4) , (3 → 3) , (4 → 1) } is one possible assignment
+for a minimum cost of 17. 
 */
 
 } /* namespace leetcode */

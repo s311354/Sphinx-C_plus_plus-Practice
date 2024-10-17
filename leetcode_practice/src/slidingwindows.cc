@@ -30,6 +30,22 @@ Output: 2
 Explanation: The subarray [4,3] has the minimal length under the problem constraint.
 */
 
+bool Solutions::isSubsequence(std::string s, std::string t)
+{
+    int len1 = 0, len2 = 0;
+    
+    while( len1 < s.length() && len2 < t.length()) {
+       if(t[len2++] == s[len1]) len1++;
+    }
+
+    if (len1 == s.length()) return true;
+
+    return false;
+}
+/*
+Input: s = "abc", t = "ahbgdc"
+Output: true
+*/
 
 int Solutions::lengthOfLongestSubstring(std::string s)
 {
@@ -617,6 +633,57 @@ Input: nums = [1,2], threshold = 2
 Output: 1
 Explanation: In this example, we can select the subarray that starts at l = 1 and ends at r = 1 => [2]. 
 It satisfies all the conditions and we can show that 1 is the maximum possible achievable length.
+*/
+
+bool isVowel(char ch) {
+    return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
+}
+
+string Solutions::findSubstring(string s, int k) {
+    // Edge case: if k is greater than the string length
+    if (k > s.size()) {
+        return "Not found!";
+    }
+
+    int slow = 0, fast = 0;
+    int maxVowelCount = 0, currentVowelCount = 0;
+    int bestStart = -1;
+
+    for (fast = 0; fast < k; ++fast) {
+        if (isVowel(s[fast])) {
+            currentVowelCount++;
+        }
+    }
+
+    maxVowelCount = currentVowelCount;
+    bestStart = 0;
+
+    // Slide the window across the string
+    while (fast < s.size()) {
+
+        if (isVowel(s[slow])) {
+            currentVowelCount--;
+        }
+        ++slow;
+
+        if (isVowel(s[fast])) {
+            currentVowelCount++;
+        }
+        ++fast;
+
+        if (currentVowelCount > maxVowelCount) {
+            maxVowelCount = currentVowelCount;
+            bestStart = slow;
+        }
+    }
+
+    return s.substr(bestStart, k);
+}
+/*
+Example 1:
+Input: s = "abciiidef", k = 3
+Output: 3
+Explanation: The substring "iii" contains 3 vowel letters.
 */
 
 } /* namespace leetcode */

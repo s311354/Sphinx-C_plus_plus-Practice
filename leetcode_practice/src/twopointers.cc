@@ -56,25 +56,6 @@ Output: true
 Explanation: "amanaplanacanalpanama" is a palindrome.
 */
 
-
-bool Solutions::isSubsequence(std::string s, std::string t)
-{
-    int len1 = 0, len2 = 0;
-    
-    while( len1 < s.length() && len2 < t.length()) {
-       if(t[len2++] == s[len1]) len1++;
-    }
-
-    if (len1 == s.length()) return true;
-
-    return false;
-}
-/*
-Input: s = "abc", t = "ahbgdc"
-Output: true
-*/
-
-
 std::vector<int> Solutions::twoSum(std::vector<int>& num, int target)
 {
     std::sort(num.begin(), num.end());
