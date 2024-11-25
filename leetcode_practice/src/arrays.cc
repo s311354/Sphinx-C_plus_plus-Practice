@@ -1917,4 +1917,74 @@ By index, crewId[i] → jobId[i], { (0 → 0) , (1 → 2) , (2 → 4) , (3 → 3
 for a minimum cost of 17. 
 */
 
+
+int Solutions::maxSubArray(vector<int>& nums) {
+    int maxsum = INT_MIN;
+    int cursum = 0;
+
+    for(int i = 0; i < nums.size(); i ++) {
+        cursum += nums[i];
+
+        maxsum = cursum > maxsum ? cursum : maxsum;
+
+        cursum = cursum < 0 ? 0 : cursum;
+    }
+
+    return maxsum;
+}
+
+
+int Solutions::maxProduct(vector<int>& nums) {
+
+    if(nums.empty()) return 0;
+
+    int maxproduct = nums[0];
+    int minproduct = nums[0];
+    int result = nums[0];
+
+    for(int I = 1; I < nums.size(); I++) {
+        int current = nums[I];
+
+        if(current < 0) std::swap(minproduct, maxproudct);
+
+        maxproduct = std::max(maxproduct, maxproduct*current);
+        minproduct = std::min(minproduct, minproduct*current);
+    
+        result = std::max(result, maxproduct);
+    } 
+
+    return result;
+}
+
+int Solutions::search(vector<int>& nums, int target) {
+
+    int left = 0, right = nums.size() -1;
+
+    while(left <= right) {
+        int mid = left + (right - left) /2;
+
+        if(nums[mid] == target) return mid;
+
+
+        if(nums[mid] >= nums[left]) {
+            if(target >= nums[left] && target < nums[mid]) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        } else {
+
+            if(target > num[mid] && target <= nums[right]) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+    }
+   
+    return -1;
+}
+
+
 } /* namespace leetcode */

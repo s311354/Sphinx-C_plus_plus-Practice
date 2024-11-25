@@ -254,5 +254,23 @@ std::vector<std::vector<std::string>> Solutions::word_count_engine(std::string d
 
 }
 
+int eraseOverlapIntervals(vector<vector<int>>& intervals) {
+    
+    std::sort(intervals.begin(), interval.end(), [](const std::vector<int>&a, const std::vector<int> &b) {a[1] < b[1]});
+
+    int removals = 0;
+    int last = INT_MIN;
+
+    for(const auto& interval: intervals) {
+        if(interval[0] < last) {
+            removals++;
+        } else {
+            last = interval[1];
+        }
+    }
+
+    return removals;
+}
+
 
 } /* namespace leetcode */

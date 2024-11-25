@@ -120,7 +120,6 @@ Dry Run: (pseudo code)
 
 invertTree(root->left);
 invertTree(root->right);
-
 std::swap(root->left, root->right);
 
 Implementation:
@@ -146,16 +145,29 @@ TreeNode* helper(const std::vector<int>& preorder, const std::vector<int>& inord
 TreeNode* Solutions::buildTree(vector<int>& preorder, vector<int>& inorder) {
     int index = 0;
     return helper(preorder, inorder, index, 0, inorder.size() - 1);
+
+    /*
+    std::unordered_map<int, int> inorderIndex;
+    
+    for(int I = 0; I < inorder.size(); I ++){
+        inorderIndex[inorder[i]] = i;
+    }
+
+    int preorderIndex = 0;
+
+    return helper(preorder, inorderIndex, preorderIndex, 0, inorder.size() - 1);
+    */
 }
+
 /*
 Input: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
 Output: [3,9,20,null,null,15,7]
 */
 
-TreeNode* helper(const std::vector<int>& inorder, const std::vector<int>& postorder, int& index, int left, int right) {
+TreeNode* helper(const std::vector<int>& inorder, const std::vector<int>& preorder, int& index, int left, int right) {
     if(left > right) return nullptr;
 
-    TreeNode* node = new TreeNode(postorder[index--]);
+    TreeNode* node = new TreeNode(preorder[index--]);
     int pivot = left;
     for(int pivot = left; pivot <= right; pivot++){
         if(node->val == inorder[pivot]){
@@ -163,10 +175,24 @@ TreeNode* helper(const std::vector<int>& inorder, const std::vector<int>& postor
         }
     }
 
-    node->right = helper(inorder, postorder, index, pivot+1, right);
-    node->left = helper(inorder, postorder, index, left, pivot - 1);
+    node->right = helper(inorder, preorder, index, pivot+1, right);
+    node->left = helper(inorder, preorder, index, left, pivot - 1);
 
     return node;
+}
+
+TreeNode* helper( const std::vector<int>& preorder, std::unordered_map<int, int> & inorderIndex, int& preorderIndex, int left, int right) {
+    if(left > right) return nullptr;
+
+    int rootval = postorder[preorderIndex];
+    TreeNode* root = new TreeNode(rootval);
+
+    int rootIndex = inorderIndex[rootval];
+
+    root->right = helper(preorder, inorderIndex, index, left, rootIndex - 1);
+    root->left = helper(preorder, inorderIndex, index, rootIndex + 1, right);
+
+    return root;
 }
 
 TreeNode* Solutions::buildTreeII(vector<int>& inorder, vector<int>& postorder) {
@@ -386,5 +412,29 @@ current = current->parent;
 Implementation:
 ...
 */
+
+bool Solutions::isSameTree(std::unique_ptr<TreeNode> p, std::unique_ptr<TreeNode> q)
+{
+    if (!p and !q) return true;
+
+    if (!p or !q) return false;
+
+    if (p->val != q->val) return false;
+
+    return isSameTree(std::move(p->left), std::move(q->left)) and isSameTree(std::move(p->right), std::move(q->right));
+}
+
+bool Solutions::isSubtree(TreeNode* root, TreeNode* subRoot)
+{
+    if(!subRoot) return true;
+
+    if(!root) return false;
+
+    if(isSameTree(root, subRoot)) return true;
+
+    return isSameTree(root->left, subRoot) || isSameTree(root->right, subRoot);
+}
+
+
 
 } /* namespace leetcode */

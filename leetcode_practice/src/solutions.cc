@@ -1646,31 +1646,6 @@ std::vector< std::vector<int> > Solutions::fourSum( std::vector<int>& nums, int 
     return ans;
 }
 
-/*! \brief Same Tree
- *
- * Given the roots of two binary trees p and q, write a function to check if they are the same of not.
- *
- * Two binary trees are considered the same if they are structurally identical, and the nodes have the same value
- *
- *
- * Runtime: 0 ms, faster than 100.00% of Java online submissions for Same Tree.
- *
- * Memory Usage: 39.5 MB, less than 93.45% of Java online submissions for Same Tree.
- *
- * \return if they are structurally identical
- */
-bool Solutions::isSameTree(std::unique_ptr<TreeNode> p, std::unique_ptr<TreeNode> q)
-{
-    if (!p and !q) return true;
-
-    if (!p or !q) return false;
-
-    if (p->val != q->val) return false;
-
-    return isSameTree(std::move(p->left), std::move(q->left)) and isSameTree(std::move(p->right), std::move(q->right));
-}
-
-
 /*! \brief Replace Words
  *
  *  In English, we have a concept called root, which can be followed by some other word to form another longer word - let's call this word successor. For example, when the root "an" is followed by the successor word "other", we can form a new word "another".

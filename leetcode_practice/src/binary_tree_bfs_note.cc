@@ -94,6 +94,34 @@ vector<vector<int>> Solutions::levelOrder(TreeNode* root) {
 
     dfsTravel(root, 0, ans);
     return ans;
+
+    /* BFS traversal
+    std::queue<TreeNode*> q;
+    std::vector<vector<int>> result;
+
+    if(!root) return result;
+
+    q.push(root);
+
+    while(!queue.empty()) {
+        int level = q.size();
+        std::vector<int> currentLevel;  
+
+        for(int I = 0; I < levle; i++) {
+            TreeNode* node = q.front();
+            q.pop();
+            currentLevel.push_back(node->val);
+
+            if(node->left) q.push(node->left);
+            if(node->right) q.push(node->right);
+        }
+
+        result.push_back(currentLevel);
+    }
+
+    return result;
+    
+    */
 }
 /*
 Input: root = [3,9,20,null,null,15,7]
@@ -154,5 +182,45 @@ Level 2 sum = 7 + 0 = 7.
 Level 3 sum = 7 + -8 = -1.
 So we return the level with the maximum sum which is level 2.
 */
+
+Void dfsReach(vector<vector<int>>& heights, int rows, int cols, vector<vector<int>> & Reach) {
+    int m = heights.size();
+    int n = heights[0].size();
+
+    reach[rows][cols] = 1;
+
+    vector<int> directions = {-1, 0, 1, 0, -1};
+
+    for(int i = 0; i < 4; i ++ ){
+        int ni = rows + directions[i];
+        int nj = cols + directions[i + 1];
+
+        for(ni >= 0 && ni < rows && nj >=0 && nj < cols && !Reach[ni][nj]  && Reach[ni][nj] >= Reach[rows][cols]) {
+               dfsReach(hieghts, ni, nj, Reach);
+        }
+     }
+}
+
+vector<vector<int>> Solutions::pacificAtlantic(vector<vector<int>>& heights)
+{
+    int m = heights.size();
+    int n = heights[0].size();
+
+    vector<vector<int>> pacificReach(m, vector<int>(n, 0));
+    vector<vector<int>> atlanticReach(n, vector<int>(m, 0));
+
+    vector<vector<int>> result;
+
+    for(int i = 0; i < m ; i++) dfsReach(heights, i, 0, pacificReach);
+    for(int i = 0; i < n; i++) dfsReach(heights,0, i, atlanticReach);
+
+    for(int i = 0; i < m; i++) {
+        for(int j = 0; j < n; j++) {
+            if(pacificReach[i][j] && atlanticReach[i][j]) result.push_back({i, j});
+        }
+    }
+
+    return result;
+}
 
 } /* namespace leetcode */

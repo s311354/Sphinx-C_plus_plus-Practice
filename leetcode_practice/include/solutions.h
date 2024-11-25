@@ -286,6 +286,19 @@ public:
      */
      std::vector< std::vector<int> > mergeInterval(std::vector< std::vector<int>> &input_interval);
 
+   /* @brief 435. Non-overlapping Intervals
+     *
+     * Given an array of intervals intervals where intervals[i] = [starti, endi], return the minimum number of intervals 
+     * you need to remove to make the rest of the intervals non-overlapping.
+     * 
+     * Note that intervals which only touch at a point are non-overlapping. For
+     *  example, [1, 2] and [2, 3] are non-overlapping.
+     * 
+     * @param intervals an array of intervals
+     * @return the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping
+     */
+    int eraseOverlapIntervals(vector<vector<int>>& intervals);
+
      /* @brief 258. Add Digits
      *
      * Given an integer num, repeatedly add all its digits 
@@ -324,6 +337,26 @@ public:
      */
     TreeNode* searchBST(TreeNode* root, int val);
   
+     /* @brief 33. Search in Rotated Sorted Array
+     *
+     * There is an integer array nums sorted in ascending order (with distinct values).
+     * 
+     * Prior to being passed to your function, nums is possibly rotated at an unknown pivot index k 
+     * (1 <= k < nums.length) such that the resulting array is [nums[k], nums[k+1], ...,
+     *  nums[n-1], nums[0], nums[1], ..., nums[k-1]] (0-indexed). For example, [0,1,2,4,5,6,7]
+     *  might be rotated at pivot index 3 and become [4,5,6,7,0,1,2].
+     *
+     * Given the array nums after the possible rotation and an integer target, return the index
+     *  of target if it is in nums, or -1 if it is not in nums.
+     * 
+     * You must write an algorithm with O(log n) runtime complexity.
+     * 
+     * @param nums an integer array
+     * @param target an integer 
+     * @return the index of target if it is in nums, or -1 if it is not in nums.
+     */
+    int search(vector<int>& nums, int target);
+
     /**
     * @brief 1304 Find N Unique Integers Sum up to Zero (Easy)
     *
@@ -655,8 +688,35 @@ public:
     // 18. 4Sum
     std::vector< std::vector<int> >  fourSum( std::vector<int> & nums, int target);
 
-    // 100 Same Tree
+    /**
+    * @brief 100. Same Tree
+    *
+    *  Given the roots of two binary trees p and q, write a function to check if they are the same or not.
+    *
+    *  Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
+    * 
+    * @param p root of binary tree
+    * @param q root of binary tree
+    *
+    * @return check if they are the same or not
+    */
     bool isSameTree(std::unique_ptr<TreeNode> p, std::unique_ptr<TreeNode> q);
+
+    /**
+    * @brief 572. Subtree of Another Tree
+    *
+    *  Given the roots of two binary trees root and subRoot, 
+    *  return true if there is a subtree of root with the same structure and node values of subRoot and false otherwise.
+    *
+    *  A subtree of a binary tree tree is a tree that consists of a node in tree and all of this node's descendants. 
+    *  The tree tree could also be considered as a subtree of itself.
+    * 
+    * @param root root of binary tree
+    * @param subRoot root of binary tree
+    *
+    * @return true if there is a subtree of root with the same structure and node values of subRoot and false otherwise
+    */
+    bool isSubtree(TreeNode* root, TreeNode* subRoot);
 
     // 648. Replace Words
     std::string replaceWords( std::vector< std::string > & dictionary, std::string  sentence);
@@ -901,6 +961,43 @@ public:
     */
     std::vector< std::vector< std::string> > solveNQueens(int n);
 
+    /*! \brief 647. Palindromic Substrings
+    *
+    *  Given a string s, return the number of palindromic substrings in it.
+    * 
+    *  A string is a palindrome when it reads the same backward as forward.
+    * 
+    *  A substring is a contiguous sequence of characters within the string.
+    *
+    * @param s a string
+    * @return the number of palindromic substrings in it
+    */
+    int countSubstrings(string s);
+
+    /*! \brief 417. Pacific Atlantic Water Flow
+    *
+    *  There is an m x n rectangular island that borders both the 
+    *  Pacific Ocean and Atlantic Ocean. The Pacific Ocean touches the
+    *  island's left and top edges, and the Atlantic Ocean touches the
+    *  island's right and bottom edges.
+    * 
+    *  The island is partitioned into a grid of square cells. You are given
+    *  an m x n integer matrix heights where heights[r][c] represents the
+    *  height above sea level of the cell at coordinate (r, c).
+    * 
+    *  The island receives a lot of rain, and the rain water can flow to
+    *  neighboring cells directly north, south, east, and west if the
+    *  neighboring cell's height is less than or equal to the current 
+    *  cell's height. Water can flow from any cell adjacent to an ocean into the ocean.
+    *
+    *  Return a 2D list of grid coordinates result where result[i] = [ri, ci] denotes
+    *  that rain water can flow from cell (ri, ci) to both the Pacific and Atlantic oceans.
+    * 
+    * @param heights an m x n rectangular island
+    * @return  a 2D list of grid coordinates result where result[i] = [ri, ci] that rain water can flow from cell (ri, ci) to both the Pacific and Atlantic oceans
+    */
+    vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights);
+    
     // 1307.Verbal Arithmetic Puzzle
     bool isSolvable( std::vector< std::string > & words, std::string result);
 
@@ -1809,6 +1906,15 @@ public:
      */
      std::vector<std::string> fullyJustify(std::vector<std::string> & words, int maxWidth);
 
+     /* @brief 53. Maximum Subarray
+     *
+     * Given an integer array nums, find the  subarray with the largest sum, and return its sum.
+     * 
+     * @param nums an integer array
+     * @return subarray with the largest sum
+     */
+    int maxSubArray(vector<int>& nums);
+
      /* @brief 392. Is Subsequence
      *
      * Given two strings s and t, return true if s is a subsequence of t, or false otherwise.
@@ -2631,7 +2737,9 @@ substring of s such that every character in t (including duplicates) is included
     /* @brief 100. Same Tree
      *
      * Given the roots of two binary trees p and q, write a function to 
-     * check if they are the same or not.
+     * check if they are the
+     *  Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
+     *  same or not.
      * 
      * Two binary trees are considered the same if they are structurally 
      * identical, and the nodes have the same value.
@@ -2668,7 +2776,9 @@ substring of s such that every character in t (including duplicates) is included
      * traversal of the same tree, construct and return the binary tree.
      * 
      * @param preorder the preorder traversal of a binary tree
-     * @param inorder the inorder traversal of a binary tree
+     * @param inorder the inorder
+     *  Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
+     *  traversal of a binary tree
      * @return the binary tree
      */
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder);
@@ -2679,7 +2789,9 @@ substring of s such that every character in t (including duplicates) is included
      * traversal of the same tree, construct and return the binary tree.
      * 
      * @param inorder the inorder traversal of a binary tree
-     * @param postorder the postorder traversal of a binary tree
+     * @param postorder the posto
+     *  Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
+     * rder traversal of a binary tree
      * @return the binary tree
      */
     TreeNode* buildTreeII(vector<int>& inorder, vector<int>& postorder);
@@ -2704,6 +2816,8 @@ substring of s such that every character in t (including duplicates) is included
      * The "linked list" should be in the same order as a pre-order traversal of the binary tree.
      * 
      * @param root the root of a binary tree
+     *  Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
+     * 
      * @return The "linked list" should be in the same order as a pre-order traversal of the binary tree.
      */
     void flatten(TreeNode* root);
@@ -2866,6 +2980,17 @@ substring of s such that every character in t (including duplicates) is included
      * @return the group the anagrams in any order.
      */
      std::vector<std::vector<std::string>> groupAnagrams(std::vector<std::string>& strs);
+
+     /* @brief 152. Maximum Product Subarray
+     *
+     * Given an integer array nums, find a subarray that has the largest product, and return the product.
+     * 
+     * The test cases are generated so that the answer will fit in a 32-bit integer.
+     * 
+     * @param nums an integer array
+     * @return the product.
+     */
+    int maxProduct(vector<int>& nums);
 
      /* @brief 219. Contains Duplicate II 
      *
